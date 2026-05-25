@@ -1,0 +1,1062 @@
+﻿{
+    "x-generator":  "NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))",
+    "openapi":  "3.0.0",
+    "info":  {
+                 "title":  "Notification Service API",
+                 "version":  "v1"
+             },
+    "servers":  [
+                    {
+                        "url":  "http://localhost:5015"
+                    }
+                ],
+    "paths":  {
+                  "/api/v1/webhooks":  {
+                                           "post":  {
+                                                        "tags":  [
+                                                                     "Webhooks"
+                                                                 ],
+                                                        "summary":  "Create a webhook subscription",
+                                                        "operationId":  "NotificationWebWebhooksCreate",
+                                                        "requestBody":  {
+                                                                            "x-name":  "CreateWebhookRequest",
+                                                                            "description":  "",
+                                                                            "content":  {
+                                                                                            "application/json":  {
+                                                                                                                     "schema":  {
+                                                                                                                                    "$ref":  "#/components/schemas/CreateWebhookRequest"
+                                                                                                                                }
+                                                                                                                 }
+                                                                                        },
+                                                                            "required":  true,
+                                                                            "x-position":  1
+                                                                        },
+                                                        "responses":  {
+                                                                          "200":  {
+                                                                                      "description":  "Success",
+                                                                                      "content":  {
+                                                                                                      "application/json":  {
+                                                                                                                               "schema":  {
+                                                                                                                                              "$ref":  "#/components/schemas/CreateWebhookResponse"
+                                                                                                                                          }
+                                                                                                                           }
+                                                                                                  }
+                                                                                  },
+                                                                          "401":  {
+                                                                                      "description":  "Unauthorized"
+                                                                                  },
+                                                                          "403":  {
+                                                                                      "description":  "Forbidden"
+                                                                                  }
+                                                                      },
+                                                        "security":  [
+                                                                         {
+                                                                             "oauth2":  [
+                                                                                            "admin"
+                                                                                        ]
+                                                                         }
+                                                                     ]
+                                                    },
+                                           "get":  {
+                                                       "tags":  [
+                                                                    "Webhooks"
+                                                                ],
+                                                       "summary":  "List webhook subscriptions",
+                                                       "operationId":  "NotificationWebWebhooksListAll",
+                                                       "responses":  {
+                                                                         "200":  {
+                                                                                     "description":  "Success",
+                                                                                     "content":  {
+                                                                                                     "application/json":  {
+                                                                                                                              "schema":  {
+                                                                                                                                             "$ref":  "#/components/schemas/ListWebhooksResponse"
+                                                                                                                                         }
+                                                                                                                          }
+                                                                                                 }
+                                                                                 },
+                                                                         "401":  {
+                                                                                     "description":  "Unauthorized"
+                                                                                 },
+                                                                         "403":  {
+                                                                                     "description":  "Forbidden"
+                                                                                 }
+                                                                     },
+                                                       "security":  [
+                                                                        {
+                                                                            "oauth2":  [
+                                                                                           "admin"
+                                                                                       ]
+                                                                        }
+                                                                    ]
+                                                   }
+                                       },
+                  "/api/v1/webhooks/{id}":  {
+                                                "delete":  {
+                                                               "tags":  [
+                                                                            "Webhooks"
+                                                                        ],
+                                                               "summary":  "Delete a webhook subscription",
+                                                               "operationId":  "NotificationWebWebhooksDelete",
+                                                               "parameters":  [
+                                                                                  {
+                                                                                      "name":  "id",
+                                                                                      "in":  "path",
+                                                                                      "required":  true,
+                                                                                      "description":  "The webhook subscription external ID.",
+                                                                                      "schema":  {
+                                                                                                     "type":  "string",
+                                                                                                     "format":  "guid"
+                                                                                                 }
+                                                                                  }
+                                                                              ],
+                                                               "responses":  {
+                                                                                 "204":  {
+                                                                                             "description":  "No Content"
+                                                                                         },
+                                                                                 "401":  {
+                                                                                             "description":  "Unauthorized"
+                                                                                         },
+                                                                                 "403":  {
+                                                                                             "description":  "Forbidden"
+                                                                                         }
+                                                                             },
+                                                               "security":  [
+                                                                                {
+                                                                                    "oauth2":  [
+                                                                                                   "admin"
+                                                                                               ]
+                                                                                }
+                                                                            ]
+                                                           },
+                                                "get":  {
+                                                            "tags":  [
+                                                                         "Webhooks"
+                                                                     ],
+                                                            "summary":  "Get webhook subscription details",
+                                                            "operationId":  "NotificationWebWebhooksGetById",
+                                                            "parameters":  [
+                                                                               {
+                                                                                   "name":  "id",
+                                                                                   "in":  "path",
+                                                                                   "required":  true,
+                                                                                   "description":  "The webhook subscription external ID.",
+                                                                                   "schema":  {
+                                                                                                  "type":  "string",
+                                                                                                  "format":  "guid"
+                                                                                              }
+                                                                               }
+                                                                           ],
+                                                            "responses":  {
+                                                                              "200":  {
+                                                                                          "description":  "Success",
+                                                                                          "content":  {
+                                                                                                          "application/json":  {
+                                                                                                                                   "schema":  {
+                                                                                                                                                  "$ref":  "#/components/schemas/WebhookDetailDto"
+                                                                                                                                              }
+                                                                                                                               }
+                                                                                                      }
+                                                                                      },
+                                                                              "401":  {
+                                                                                          "description":  "Unauthorized"
+                                                                                      },
+                                                                              "403":  {
+                                                                                          "description":  "Forbidden"
+                                                                                      }
+                                                                          },
+                                                            "security":  [
+                                                                             {
+                                                                                 "oauth2":  [
+                                                                                                "admin"
+                                                                                            ]
+                                                                             }
+                                                                         ]
+                                                        },
+                                                "put":  {
+                                                            "tags":  [
+                                                                         "Webhooks"
+                                                                     ],
+                                                            "summary":  "Update a webhook subscription",
+                                                            "operationId":  "NotificationWebWebhooksUpdate",
+                                                            "parameters":  [
+                                                                               {
+                                                                                   "name":  "id",
+                                                                                   "in":  "path",
+                                                                                   "required":  true,
+                                                                                   "description":  "The webhook subscription external ID.",
+                                                                                   "schema":  {
+                                                                                                  "type":  "string",
+                                                                                                  "format":  "guid"
+                                                                                              }
+                                                                               }
+                                                                           ],
+                                                            "requestBody":  {
+                                                                                "x-name":  "UpdateWebhookRequest",
+                                                                                "description":  "",
+                                                                                "content":  {
+                                                                                                "application/json":  {
+                                                                                                                         "schema":  {
+                                                                                                                                        "$ref":  "#/components/schemas/UpdateWebhookRequest"
+                                                                                                                                    }
+                                                                                                                     }
+                                                                                            },
+                                                                                "required":  true,
+                                                                                "x-position":  1
+                                                                            },
+                                                            "responses":  {
+                                                                              "200":  {
+                                                                                          "description":  "Success",
+                                                                                          "content":  {
+                                                                                                          "application/json":  {
+                                                                                                                                   "schema":  {
+                                                                                                                                                  "$ref":  "#/components/schemas/WebhookDetailDto"
+                                                                                                                                              }
+                                                                                                                               }
+                                                                                                      }
+                                                                                      },
+                                                                              "401":  {
+                                                                                          "description":  "Unauthorized"
+                                                                                      },
+                                                                              "403":  {
+                                                                                          "description":  "Forbidden"
+                                                                                      }
+                                                                          },
+                                                            "security":  [
+                                                                             {
+                                                                                 "oauth2":  [
+                                                                                                "admin"
+                                                                                            ]
+                                                                             }
+                                                                         ]
+                                                        }
+                                            },
+                  "/api/v1/webhooks/{id}/deliveries":  {
+                                                           "get":  {
+                                                                       "tags":  [
+                                                                                    "Webhooks"
+                                                                                ],
+                                                                       "summary":  "List delivery attempts for a webhook subscription",
+                                                                       "operationId":  "NotificationWebWebhooksListDeliveries",
+                                                                       "parameters":  [
+                                                                                          {
+                                                                                              "name":  "id",
+                                                                                              "in":  "path",
+                                                                                              "required":  true,
+                                                                                              "description":  "The webhook subscription external ID.",
+                                                                                              "schema":  {
+                                                                                                             "type":  "string",
+                                                                                                             "format":  "guid"
+                                                                                                         }
+                                                                                          },
+                                                                                          {
+                                                                                              "name":  "skip",
+                                                                                              "in":  "query",
+                                                                                              "required":  true,
+                                                                                              "description":  "Number of records to skip (default 0).",
+                                                                                              "schema":  {
+                                                                                                             "type":  "integer",
+                                                                                                             "format":  "int32"
+                                                                                                         }
+                                                                                          },
+                                                                                          {
+                                                                                              "name":  "take",
+                                                                                              "in":  "query",
+                                                                                              "required":  true,
+                                                                                              "description":  "Number of records to take (default 20, max 100).",
+                                                                                              "schema":  {
+                                                                                                             "type":  "integer",
+                                                                                                             "format":  "int32"
+                                                                                                         }
+                                                                                          }
+                                                                                      ],
+                                                                       "responses":  {
+                                                                                         "200":  {
+                                                                                                     "description":  "Success",
+                                                                                                     "content":  {
+                                                                                                                     "application/json":  {
+                                                                                                                                              "schema":  {
+                                                                                                                                                             "$ref":  "#/components/schemas/ListDeliveriesResponse"
+                                                                                                                                                         }
+                                                                                                                                          }
+                                                                                                                 }
+                                                                                                 },
+                                                                                         "401":  {
+                                                                                                     "description":  "Unauthorized"
+                                                                                                 },
+                                                                                         "403":  {
+                                                                                                     "description":  "Forbidden"
+                                                                                                 }
+                                                                                     },
+                                                                       "security":  [
+                                                                                        {
+                                                                                            "oauth2":  [
+                                                                                                           "admin"
+                                                                                                       ]
+                                                                                        }
+                                                                                    ]
+                                                                   }
+                                                       },
+                  "/api/v1/webhooks/{id}/test":  {
+                                                     "post":  {
+                                                                  "tags":  [
+                                                                               "Webhooks"
+                                                                           ],
+                                                                  "summary":  "Send a test event to a webhook subscription",
+                                                                  "operationId":  "NotificationWebWebhooksTestWebhook",
+                                                                  "parameters":  [
+                                                                                     {
+                                                                                         "name":  "id",
+                                                                                         "in":  "path",
+                                                                                         "required":  true,
+                                                                                         "description":  "The webhook subscription external ID.",
+                                                                                         "schema":  {
+                                                                                                        "type":  "string",
+                                                                                                        "format":  "guid"
+                                                                                                    }
+                                                                                     }
+                                                                                 ],
+                                                                  "responses":  {
+                                                                                    "204":  {
+                                                                                                "description":  "No Content"
+                                                                                            },
+                                                                                    "401":  {
+                                                                                                "description":  "Unauthorized"
+                                                                                            },
+                                                                                    "403":  {
+                                                                                                "description":  "Forbidden"
+                                                                                            }
+                                                                                },
+                                                                  "security":  [
+                                                                                   {
+                                                                                       "oauth2":  [
+                                                                                                      "admin"
+                                                                                                  ]
+                                                                                   }
+                                                                               ]
+                                                              }
+                                                 },
+                  "/api/v1/notifications/preferences":  {
+                                                            "get":  {
+                                                                        "tags":  [
+                                                                                     "Notifications"
+                                                                                 ],
+                                                                        "summary":  "Get notification preferences",
+                                                                        "operationId":  "NotificationWebPreferencesGet",
+                                                                        "responses":  {
+                                                                                          "200":  {
+                                                                                                      "description":  "Success",
+                                                                                                      "content":  {
+                                                                                                                      "application/json":  {
+                                                                                                                                               "schema":  {
+                                                                                                                                                              "$ref":  "#/components/schemas/NotificationPreferenceDto"
+                                                                                                                                                          }
+                                                                                                                                           }
+                                                                                                                  }
+                                                                                                  },
+                                                                                          "401":  {
+                                                                                                      "description":  "Unauthorized"
+                                                                                                  },
+                                                                                          "403":  {
+                                                                                                      "description":  "Forbidden"
+                                                                                                  }
+                                                                                      },
+                                                                        "security":  [
+                                                                                         {
+                                                                                             "oauth2":  [
+                                                                                                            "admin",
+                                                                                                            "user"
+                                                                                                        ]
+                                                                                         }
+                                                                                     ]
+                                                                    },
+                                                            "put":  {
+                                                                        "tags":  [
+                                                                                     "Notifications"
+                                                                                 ],
+                                                                        "summary":  "Update notification preferences",
+                                                                        "operationId":  "NotificationWebPreferencesUpdate",
+                                                                        "requestBody":  {
+                                                                                            "x-name":  "UpdatePreferencesRequest",
+                                                                                            "description":  "",
+                                                                                            "content":  {
+                                                                                                            "application/json":  {
+                                                                                                                                     "schema":  {
+                                                                                                                                                    "$ref":  "#/components/schemas/UpdatePreferencesRequest"
+                                                                                                                                                }
+                                                                                                                                 }
+                                                                                                        },
+                                                                                            "required":  true,
+                                                                                            "x-position":  1
+                                                                                        },
+                                                                        "responses":  {
+                                                                                          "204":  {
+                                                                                                      "description":  "No Content"
+                                                                                                  },
+                                                                                          "401":  {
+                                                                                                      "description":  "Unauthorized"
+                                                                                                  },
+                                                                                          "403":  {
+                                                                                                      "description":  "Forbidden"
+                                                                                                  }
+                                                                                      },
+                                                                        "security":  [
+                                                                                         {
+                                                                                             "oauth2":  [
+                                                                                                            "admin",
+                                                                                                            "user"
+                                                                                                        ]
+                                                                                         }
+                                                                                     ]
+                                                                    }
+                                                        },
+                  "/api/v1/notifications/unread-count":  {
+                                                             "get":  {
+                                                                         "tags":  [
+                                                                                      "Notifications"
+                                                                                  ],
+                                                                         "summary":  "Get unread count",
+                                                                         "operationId":  "NotificationWebNotificationsGetUnreadCount",
+                                                                         "responses":  {
+                                                                                           "200":  {
+                                                                                                       "description":  "Success",
+                                                                                                       "content":  {
+                                                                                                                       "application/json":  {
+                                                                                                                                                "schema":  {
+                                                                                                                                                               "$ref":  "#/components/schemas/GetUnreadCountResponse"
+                                                                                                                                                           }
+                                                                                                                                            }
+                                                                                                                   }
+                                                                                                   },
+                                                                                           "401":  {
+                                                                                                       "description":  "Unauthorized"
+                                                                                                   },
+                                                                                           "403":  {
+                                                                                                       "description":  "Forbidden"
+                                                                                                   }
+                                                                                       },
+                                                                         "security":  [
+                                                                                          {
+                                                                                              "oauth2":  [
+                                                                                                             "admin",
+                                                                                                             "user"
+                                                                                                         ]
+                                                                                          }
+                                                                                      ]
+                                                                     }
+                                                         },
+                  "/api/v1/notifications":  {
+                                                "get":  {
+                                                            "tags":  [
+                                                                         "Notifications"
+                                                                     ],
+                                                            "summary":  "Get user notifications",
+                                                            "operationId":  "NotificationWebNotificationsList",
+                                                            "parameters":  [
+                                                                               {
+                                                                                   "name":  "skip",
+                                                                                   "in":  "query",
+                                                                                   "required":  true,
+                                                                                   "schema":  {
+                                                                                                  "type":  "integer",
+                                                                                                  "format":  "int32"
+                                                                                              }
+                                                                               },
+                                                                               {
+                                                                                   "name":  "take",
+                                                                                   "in":  "query",
+                                                                                   "required":  true,
+                                                                                   "schema":  {
+                                                                                                  "type":  "integer",
+                                                                                                  "format":  "int32"
+                                                                                              }
+                                                                               },
+                                                                               {
+                                                                                   "name":  "unreadOnly",
+                                                                                   "in":  "query",
+                                                                                   "required":  true,
+                                                                                   "schema":  {
+                                                                                                  "type":  "boolean"
+                                                                                              }
+                                                                               }
+                                                                           ],
+                                                            "responses":  {
+                                                                              "200":  {
+                                                                                          "description":  "Success",
+                                                                                          "content":  {
+                                                                                                          "application/json":  {
+                                                                                                                                   "schema":  {
+                                                                                                                                                  "$ref":  "#/components/schemas/ListNotificationsResponse"
+                                                                                                                                              }
+                                                                                                                               }
+                                                                                                      }
+                                                                                      },
+                                                                              "401":  {
+                                                                                          "description":  "Unauthorized"
+                                                                                      },
+                                                                              "403":  {
+                                                                                          "description":  "Forbidden"
+                                                                                      }
+                                                                          },
+                                                            "security":  [
+                                                                             {
+                                                                                 "oauth2":  [
+                                                                                                "admin",
+                                                                                                "user"
+                                                                                            ]
+                                                                             }
+                                                                         ]
+                                                        }
+                                            },
+                  "/api/v1/notifications/read-all":  {
+                                                         "put":  {
+                                                                     "tags":  [
+                                                                                  "Notifications"
+                                                                              ],
+                                                                     "summary":  "Mark all notifications as read",
+                                                                     "operationId":  "NotificationWebNotificationsMarkAllAsRead",
+                                                                     "responses":  {
+                                                                                       "200":  {
+                                                                                                   "description":  "Success",
+                                                                                                   "content":  {
+                                                                                                                   "application/json":  {
+                                                                                                                                            "schema":  {
+                                                                                                                                                           "$ref":  "#/components/schemas/MarkAllAsReadResponse"
+                                                                                                                                                       }
+                                                                                                                                        }
+                                                                                                               }
+                                                                                               },
+                                                                                       "401":  {
+                                                                                                   "description":  "Unauthorized"
+                                                                                               },
+                                                                                       "403":  {
+                                                                                                   "description":  "Forbidden"
+                                                                                               }
+                                                                                   },
+                                                                     "security":  [
+                                                                                      {
+                                                                                          "oauth2":  [
+                                                                                                         "admin",
+                                                                                                         "user"
+                                                                                                     ]
+                                                                                      }
+                                                                                  ]
+                                                                 }
+                                                     },
+                  "/api/v1/notifications/{id}/read":  {
+                                                          "put":  {
+                                                                      "tags":  [
+                                                                                   "Notifications"
+                                                                               ],
+                                                                      "summary":  "Mark notification as read",
+                                                                      "operationId":  "NotificationWebNotificationsMarkAsRead",
+                                                                      "parameters":  [
+                                                                                         {
+                                                                                             "name":  "id",
+                                                                                             "in":  "path",
+                                                                                             "required":  true,
+                                                                                             "schema":  {
+                                                                                                            "type":  "string",
+                                                                                                            "format":  "guid"
+                                                                                                        }
+                                                                                         }
+                                                                                     ],
+                                                                      "responses":  {
+                                                                                        "204":  {
+                                                                                                    "description":  "No Content"
+                                                                                                },
+                                                                                        "401":  {
+                                                                                                    "description":  "Unauthorized"
+                                                                                                },
+                                                                                        "403":  {
+                                                                                                    "description":  "Forbidden"
+                                                                                                }
+                                                                                    },
+                                                                      "security":  [
+                                                                                       {
+                                                                                           "oauth2":  [
+                                                                                                          "admin",
+                                                                                                          "user"
+                                                                                                      ]
+                                                                                       }
+                                                                                   ]
+                                                                  }
+                                                      }
+              },
+    "components":  {
+                       "schemas":  {
+                                       "CreateWebhookResponse":  {
+                                                                     "type":  "object",
+                                                                     "description":  "Response after creating a webhook subscription.",
+                                                                     "additionalProperties":  false,
+                                                                     "properties":  {
+                                                                                        "id":  {
+                                                                                                   "type":  "string",
+                                                                                                   "format":  "guid"
+                                                                                               },
+                                                                                        "name":  {
+                                                                                                     "type":  "string"
+                                                                                                 },
+                                                                                        "targetUrl":  {
+                                                                                                          "type":  "string"
+                                                                                                      },
+                                                                                        "events":  {
+                                                                                                       "type":  "array",
+                                                                                                       "items":  {
+                                                                                                                     "type":  "string"
+                                                                                                                 }
+                                                                                                   },
+                                                                                        "status":  {
+                                                                                                       "type":  "string"
+                                                                                                   },
+                                                                                        "signingSecret":  {
+                                                                                                              "type":  "string"
+                                                                                                          },
+                                                                                        "createdAt":  {
+                                                                                                          "type":  "string",
+                                                                                                          "format":  "date-time"
+                                                                                                      }
+                                                                                    }
+                                                                 },
+                                       "CreateWebhookRequest":  {
+                                                                    "type":  "object",
+                                                                    "description":  "Request to create a webhook subscription.",
+                                                                    "additionalProperties":  false,
+                                                                    "properties":  {
+                                                                                       "name":  {
+                                                                                                    "type":  "string",
+                                                                                                    "description":  "Human-readable name for this subscription."
+                                                                                                },
+                                                                                       "targetUrl":  {
+                                                                                                         "type":  "string",
+                                                                                                         "description":  "The target HTTPS endpoint URL."
+                                                                                                     },
+                                                                                       "events":  {
+                                                                                                      "type":  "array",
+                                                                                                      "description":  "List of event types to subscribe to.",
+                                                                                                      "items":  {
+                                                                                                                    "type":  "string"
+                                                                                                                }
+                                                                                                  }
+                                                                                   }
+                                                                },
+                                       "DeleteWebhookRequest":  {
+                                                                    "type":  "object",
+                                                                    "description":  "Request to delete a webhook by its external ID.",
+                                                                    "additionalProperties":  false
+                                                                },
+                                       "WebhookDetailDto":  {
+                                                                "type":  "object",
+                                                                "description":  "Detailed DTO for a webhook subscription (does not expose signing secret).",
+                                                                "additionalProperties":  false,
+                                                                "properties":  {
+                                                                                   "id":  {
+                                                                                              "type":  "string",
+                                                                                              "format":  "guid"
+                                                                                          },
+                                                                                   "name":  {
+                                                                                                "type":  "string"
+                                                                                            },
+                                                                                   "targetUrl":  {
+                                                                                                     "type":  "string"
+                                                                                                 },
+                                                                                   "eventTypes":  {
+                                                                                                      "type":  "string"
+                                                                                                  },
+                                                                                   "status":  {
+                                                                                                  "type":  "string"
+                                                                                              },
+                                                                                   "consecutiveFailures":  {
+                                                                                                               "type":  "integer",
+                                                                                                               "format":  "int32"
+                                                                                                           },
+                                                                                   "lastDeliveryAt":  {
+                                                                                                          "type":  "string",
+                                                                                                          "format":  "date-time",
+                                                                                                          "nullable":  true
+                                                                                                      },
+                                                                                   "lastSuccessAt":  {
+                                                                                                         "type":  "string",
+                                                                                                         "format":  "date-time",
+                                                                                                         "nullable":  true
+                                                                                                     },
+                                                                                   "createdAt":  {
+                                                                                                     "type":  "string",
+                                                                                                     "format":  "date-time"
+                                                                                                 },
+                                                                                   "lastUpdatedAt":  {
+                                                                                                         "type":  "string",
+                                                                                                         "format":  "date-time"
+                                                                                                     }
+                                                                               }
+                                                            },
+                                       "GetWebhookByIdRequest":  {
+                                                                     "type":  "object",
+                                                                     "description":  "Request to get a webhook by its external ID.",
+                                                                     "additionalProperties":  false
+                                                                 },
+                                       "ListWebhooksResponse":  {
+                                                                    "type":  "object",
+                                                                    "description":  "Response containing list of webhook subscriptions.",
+                                                                    "additionalProperties":  false,
+                                                                    "properties":  {
+                                                                                       "subscriptions":  {
+                                                                                                             "type":  "array",
+                                                                                                             "items":  {
+                                                                                                                           "$ref":  "#/components/schemas/WebhookSummaryDto"
+                                                                                                                       }
+                                                                                                         }
+                                                                                   }
+                                                                },
+                                       "WebhookSummaryDto":  {
+                                                                 "type":  "object",
+                                                                 "description":  "Summary DTO for a webhook subscription (does not expose signing secret).",
+                                                                 "additionalProperties":  false,
+                                                                 "properties":  {
+                                                                                    "id":  {
+                                                                                               "type":  "string",
+                                                                                               "format":  "guid"
+                                                                                           },
+                                                                                    "name":  {
+                                                                                                 "type":  "string"
+                                                                                             },
+                                                                                    "targetUrl":  {
+                                                                                                      "type":  "string"
+                                                                                                  },
+                                                                                    "eventTypes":  {
+                                                                                                       "type":  "string"
+                                                                                                   },
+                                                                                    "status":  {
+                                                                                                   "type":  "string"
+                                                                                               },
+                                                                                    "consecutiveFailures":  {
+                                                                                                                "type":  "integer",
+                                                                                                                "format":  "int32"
+                                                                                                            },
+                                                                                    "lastDeliveryAt":  {
+                                                                                                           "type":  "string",
+                                                                                                           "format":  "date-time",
+                                                                                                           "nullable":  true
+                                                                                                       },
+                                                                                    "lastSuccessAt":  {
+                                                                                                          "type":  "string",
+                                                                                                          "format":  "date-time",
+                                                                                                          "nullable":  true
+                                                                                                      },
+                                                                                    "createdAt":  {
+                                                                                                      "type":  "string",
+                                                                                                      "format":  "date-time"
+                                                                                                  }
+                                                                                }
+                                                             },
+                                       "ListDeliveriesResponse":  {
+                                                                      "type":  "object",
+                                                                      "description":  "Response containing list of webhook deliveries.",
+                                                                      "additionalProperties":  false,
+                                                                      "properties":  {
+                                                                                         "deliveries":  {
+                                                                                                            "type":  "array",
+                                                                                                            "items":  {
+                                                                                                                          "$ref":  "#/components/schemas/WebhookDeliveryDto"
+                                                                                                                      }
+                                                                                                        }
+                                                                                     }
+                                                                  },
+                                       "WebhookDeliveryDto":  {
+                                                                  "type":  "object",
+                                                                  "description":  "DTO for a webhook delivery record.",
+                                                                  "additionalProperties":  false,
+                                                                  "properties":  {
+                                                                                     "id":  {
+                                                                                                "type":  "string",
+                                                                                                "format":  "guid"
+                                                                                            },
+                                                                                     "eventType":  {
+                                                                                                       "type":  "string"
+                                                                                                   },
+                                                                                     "status":  {
+                                                                                                    "type":  "string"
+                                                                                                },
+                                                                                     "httpStatusCode":  {
+                                                                                                            "type":  "integer",
+                                                                                                            "format":  "int32",
+                                                                                                            "nullable":  true
+                                                                                                        },
+                                                                                     "attemptCount":  {
+                                                                                                          "type":  "integer",
+                                                                                                          "format":  "int32"
+                                                                                                      },
+                                                                                     "maxAttempts":  {
+                                                                                                         "type":  "integer",
+                                                                                                         "format":  "int32"
+                                                                                                     },
+                                                                                     "errorMessage":  {
+                                                                                                          "type":  "string",
+                                                                                                          "nullable":  true
+                                                                                                      },
+                                                                                     "durationMs":  {
+                                                                                                        "type":  "integer",
+                                                                                                        "format":  "int32",
+                                                                                                        "nullable":  true
+                                                                                                    },
+                                                                                     "deliveredAt":  {
+                                                                                                         "type":  "string",
+                                                                                                         "format":  "date-time",
+                                                                                                         "nullable":  true
+                                                                                                     },
+                                                                                     "lastAttemptAt":  {
+                                                                                                           "type":  "string",
+                                                                                                           "format":  "date-time",
+                                                                                                           "nullable":  true
+                                                                                                       },
+                                                                                     "nextRetryAt":  {
+                                                                                                         "type":  "string",
+                                                                                                         "format":  "date-time",
+                                                                                                         "nullable":  true
+                                                                                                     },
+                                                                                     "createdAt":  {
+                                                                                                       "type":  "string",
+                                                                                                       "format":  "date-time"
+                                                                                                   }
+                                                                                 }
+                                                              },
+                                       "ListDeliveriesRequest":  {
+                                                                     "type":  "object",
+                                                                     "description":  "Request to list deliveries for a webhook subscription.",
+                                                                     "additionalProperties":  false
+                                                                 },
+                                       "TestWebhookRequest":  {
+                                                                  "type":  "object",
+                                                                  "description":  "Request to test a webhook subscription.",
+                                                                  "additionalProperties":  false
+                                                              },
+                                       "UpdateWebhookRequest":  {
+                                                                    "type":  "object",
+                                                                    "description":  "Request to update a webhook subscription.",
+                                                                    "additionalProperties":  false,
+                                                                    "properties":  {
+                                                                                       "name":  {
+                                                                                                    "type":  "string",
+                                                                                                    "description":  "Updated name (optional).",
+                                                                                                    "nullable":  true
+                                                                                                },
+                                                                                       "targetUrl":  {
+                                                                                                         "type":  "string",
+                                                                                                         "description":  "Updated target URL (optional).",
+                                                                                                         "nullable":  true
+                                                                                                     },
+                                                                                       "events":  {
+                                                                                                      "type":  "array",
+                                                                                                      "description":  "Updated event types list (optional).",
+                                                                                                      "nullable":  true,
+                                                                                                      "items":  {
+                                                                                                                    "type":  "string"
+                                                                                                                }
+                                                                                                  }
+                                                                                   }
+                                                                },
+                                       "NotificationPreferenceDto":  {
+                                                                         "type":  "object",
+                                                                         "additionalProperties":  false,
+                                                                         "properties":  {
+                                                                                            "notificationsEnabled":  {
+                                                                                                                         "type":  "boolean"
+                                                                                                                     },
+                                                                                            "questionnaireSubmittedDisplay":  {
+                                                                                                                                  "$ref":  "#/components/schemas/DisplayPreference"
+                                                                                                                              },
+                                                                                            "templateUpdatedDisplay":  {
+                                                                                                                           "$ref":  "#/components/schemas/DisplayPreference"
+                                                                                                                       },
+                                                                                            "userInvitedDisplay":  {
+                                                                                                                       "$ref":  "#/components/schemas/DisplayPreference"
+                                                                                                                   },
+                                                                                            "menuUpdatedDisplay":  {
+                                                                                                                       "$ref":  "#/components/schemas/DisplayPreference"
+                                                                                                                   },
+                                                                                            "paymentDueDisplay":  {
+                                                                                                                      "$ref":  "#/components/schemas/DisplayPreference"
+                                                                                                                  },
+                                                                                            "quietHoursEnabled":  {
+                                                                                                                      "type":  "boolean"
+                                                                                                                  },
+                                                                                            "quietHoursStart":  {
+                                                                                                                    "type":  "string",
+                                                                                                                    "format":  "time",
+                                                                                                                    "nullable":  true
+                                                                                                                },
+                                                                                            "quietHoursEnd":  {
+                                                                                                                  "type":  "string",
+                                                                                                                  "format":  "time",
+                                                                                                                  "nullable":  true
+                                                                                                              },
+                                                                                            "quietHoursTimezone":  {
+                                                                                                                       "type":  "string",
+                                                                                                                       "nullable":  true
+                                                                                                                   }
+                                                                                        }
+                                                                     },
+                                       "DisplayPreference":  {
+                                                                 "type":  "integer",
+                                                                 "description":  "",
+                                                                 "x-enumNames":  [
+                                                                                     "None",
+                                                                                     "InApp",
+                                                                                     "OsNotification",
+                                                                                     "Both"
+                                                                                 ],
+                                                                 "enum":  [
+                                                                              0,
+                                                                              1,
+                                                                              2,
+                                                                              3
+                                                                          ]
+                                                             },
+                                       "UpdatePreferencesRequest":  {
+                                                                        "type":  "object",
+                                                                        "additionalProperties":  false,
+                                                                        "properties":  {
+                                                                                           "notificationsEnabled":  {
+                                                                                                                        "type":  "boolean"
+                                                                                                                    },
+                                                                                           "questionnaireSubmittedDisplay":  {
+                                                                                                                                 "$ref":  "#/components/schemas/DisplayPreference"
+                                                                                                                             },
+                                                                                           "templateUpdatedDisplay":  {
+                                                                                                                          "$ref":  "#/components/schemas/DisplayPreference"
+                                                                                                                      },
+                                                                                           "userInvitedDisplay":  {
+                                                                                                                      "$ref":  "#/components/schemas/DisplayPreference"
+                                                                                                                  },
+                                                                                           "menuUpdatedDisplay":  {
+                                                                                                                      "$ref":  "#/components/schemas/DisplayPreference"
+                                                                                                                  },
+                                                                                           "paymentDueDisplay":  {
+                                                                                                                     "$ref":  "#/components/schemas/DisplayPreference"
+                                                                                                                 },
+                                                                                           "quietHoursEnabled":  {
+                                                                                                                     "type":  "boolean"
+                                                                                                                 },
+                                                                                           "quietHoursStart":  {
+                                                                                                                   "type":  "string",
+                                                                                                                   "format":  "time",
+                                                                                                                   "nullable":  true
+                                                                                                               },
+                                                                                           "quietHoursEnd":  {
+                                                                                                                 "type":  "string",
+                                                                                                                 "format":  "time",
+                                                                                                                 "nullable":  true
+                                                                                                             },
+                                                                                           "quietHoursTimezone":  {
+                                                                                                                      "type":  "string",
+                                                                                                                      "nullable":  true
+                                                                                                                  }
+                                                                                       }
+                                                                    },
+                                       "GetUnreadCountResponse":  {
+                                                                      "type":  "object",
+                                                                      "additionalProperties":  false,
+                                                                      "properties":  {
+                                                                                         "count":  {
+                                                                                                       "type":  "integer",
+                                                                                                       "format":  "int32"
+                                                                                                   }
+                                                                                     }
+                                                                  },
+                                       "ListNotificationsResponse":  {
+                                                                         "type":  "object",
+                                                                         "additionalProperties":  false,
+                                                                         "properties":  {
+                                                                                            "notifications":  {
+                                                                                                                  "type":  "array",
+                                                                                                                  "items":  {
+                                                                                                                                "$ref":  "#/components/schemas/NotificationDto"
+                                                                                                                            }
+                                                                                                              }
+                                                                                        }
+                                                                     },
+                                       "NotificationDto":  {
+                                                               "type":  "object",
+                                                               "additionalProperties":  false,
+                                                               "properties":  {
+                                                                                  "id":  {
+                                                                                             "type":  "string",
+                                                                                             "format":  "guid"
+                                                                                         },
+                                                                                  "type":  {
+                                                                                               "type":  "string"
+                                                                                           },
+                                                                                  "title":  {
+                                                                                                "type":  "string"
+                                                                                            },
+                                                                                  "body":  {
+                                                                                               "type":  "string",
+                                                                                               "nullable":  true
+                                                                                           },
+                                                                                  "actionUrl":  {
+                                                                                                    "type":  "string",
+                                                                                                    "nullable":  true
+                                                                                                },
+                                                                                  "icon":  {
+                                                                                               "type":  "string",
+                                                                                               "nullable":  true
+                                                                                           },
+                                                                                  "priority":  {
+                                                                                                   "type":  "string"
+                                                                                               },
+                                                                                  "category":  {
+                                                                                                   "type":  "string",
+                                                                                                   "nullable":  true
+                                                                                               },
+                                                                                  "isRead":  {
+                                                                                                 "type":  "boolean"
+                                                                                             },
+                                                                                  "readAt":  {
+                                                                                                 "type":  "string",
+                                                                                                 "format":  "date-time",
+                                                                                                 "nullable":  true
+                                                                                             },
+                                                                                  "createdAt":  {
+                                                                                                    "type":  "string",
+                                                                                                    "format":  "date-time"
+                                                                                                }
+                                                                              }
+                                                           },
+                                       "ListNotificationsRequest":  {
+                                                                        "type":  "object",
+                                                                        "additionalProperties":  false
+                                                                    },
+                                       "MarkAllAsReadResponse":  {
+                                                                     "type":  "object",
+                                                                     "additionalProperties":  false,
+                                                                     "properties":  {
+                                                                                        "markedCount":  {
+                                                                                                            "type":  "integer",
+                                                                                                            "format":  "int32"
+                                                                                                        }
+                                                                                    }
+                                                                 },
+                                       "MarkAsReadRequest":  {
+                                                                 "type":  "object",
+                                                                 "additionalProperties":  false
+                                                             }
+                                   },
+                       "securitySchemes":  {
+                                               "oauth2":  {
+                                                              "type":  "oauth2",
+                                                              "description":  "Keycloak OAuth2 login (Authorization Code with PKCE)",
+                                                              "flows":  {
+                                                                            "authorizationCode":  {
+                                                                                                      "authorizationUrl":  "https://identity.dloizides.com/realms/OnlineMenu/protocol/openid-connect/auth",
+                                                                                                      "tokenUrl":  "https://identity.dloizides.com/realms/OnlineMenu/protocol/openid-connect/token",
+                                                                                                      "scopes":  {
+                                                                                                                     "openid":  "OpenID",
+                                                                                                                     "profile":  "Profile"
+                                                                                                                 }
+                                                                                                  }
+                                                                        },
+                                                              "x-clientId":  "notification-swagger",
+                                                              "x-usePkceWithAuthorizationCodeGrant":  true
+                                                          }
+                                           }
+                   }
+}

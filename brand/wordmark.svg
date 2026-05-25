@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 100" width="540" height="100" role="img" aria-label="Katalogos">
+  <defs>
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500&amp;display=swap');
+      .katalogos-wordmark {
+        font-family: 'Manrope', system-ui, sans-serif;
+        font-weight: 500;
+        font-size: 80px;
+        letter-spacing: -1.6px;
+        fill: currentColor;
+      }
+    </style>
+  </defs>
+  <text class="katalogos-wordmark" x="0" y="78">Katalogos</text>
+</svg>

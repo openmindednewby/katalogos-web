@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katalogos — Body Font Pairings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+
+<style>
+  /* P-01 Terracotta Warm palette — locked */
+  :root {
+    --primary: #b04632;
+    --accent: #dca85a;
+    --gray-900: #1c1410;
+    --gray-700: #4d3e34;
+    --gray-300: #d3c5b6;
+    --gray-100: #f4ede2;
+    --success: #5a8a3d;
+    --error: #a83232;
+    --frame-bg: #f7f5f0;
+    --frame-border: #ddd6cc;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { font-family: 'Manrope', system-ui, sans-serif; }
+  body {
+    background: var(--frame-bg);
+    color: var(--gray-900);
+    padding: 48px 24px 96px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1280px; margin: 0 auto; }
+
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--frame-border);
+  }
+  header h1 {
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  header p {
+    color: var(--gray-700);
+    margin-top: 12px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+  }
+  .how-to-use {
+    background: white;
+    border: 1px solid var(--frame-border);
+    border-left: 4px solid var(--gray-900);
+    padding: 18px 22px;
+    margin-bottom: 48px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .how-to-use code {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    background: var(--frame-bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  /* Each pairing card */
+  .card {
+    background: white;
+    border: 1px solid var(--frame-border);
+    border-radius: 12px;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--frame-border);
+    background: var(--gray-100);
+  }
+  .pair-id {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    background: white;
+    padding: 3px 10px;
+    border-radius: 3px;
+    color: var(--gray-700);
+    letter-spacing: 0.05em;
+    border: 1px solid var(--frame-border);
+  }
+  .pair-name {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--gray-900);
+  }
+  .pair-fonts {
+    font-size: 12px;
+    color: var(--gray-700);
+    margin-top: 4px;
+  }
+  .pair-meta {
+    font-size: 12px;
+    color: var(--gray-700);
+    margin-top: 6px;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+
+  /* In-context preview */
+  .preview {
+    padding: 36px 32px;
+  }
+
+  /* Heading always Manrope; body class varies per card */
+  .preview h2 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--gray-900);
+    margin-bottom: 6px;
+  }
+  .preview h3 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--gray-700);
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+
+  /* The body font is set via class on .preview */
+  .body-text {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--gray-700);
+    max-width: 640px;
+    margin-bottom: 24px;
+  }
+
+  /* Mock UI bar */
+  .ui-bar {
+    background: var(--frame-bg);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+    display: flex;
+    gap: 22px;
+    align-items: center;
+    font-size: 14px;
+  }
+  .ui-bar .nav-link {
+    color: var(--gray-700);
+    cursor: pointer;
+  }
+  .ui-bar .nav-link.active {
+    color: var(--gray-900);
+    font-weight: 500;
+  }
+  .ui-bar .spacer { flex: 1; }
+  .ui-bar .cta {
+    background: var(--primary);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    border: none;
+    font-family: inherit;
+  }
+
+  /* Form sample */
+  .form-sample {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 14px 22px;
+    margin-bottom: 18px;
+    align-items: center;
+  }
+  .form-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-700);
+  }
+  .form-value {
+    font-size: 15px;
+    color: var(--gray-900);
+  }
+  .form-input-mock {
+    background: white;
+    border: 1px solid var(--frame-border);
+    border-radius: 5px;
+    padding: 8px 12px;
+    color: var(--gray-900);
+    font-family: inherit;
+    font-size: 15px;
+    max-width: 320px;
+  }
+
+  /* Data table sample */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  .data-table th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray-700);
+    font-weight: 600;
+    border-bottom: 1px solid var(--frame-border);
+    background: var(--frame-bg);
+  }
+  .data-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--frame-border);
+    color: var(--gray-900);
+  }
+  .data-table .num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: var(--gray-700);
+  }
+  .data-table .status {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 99px;
+    font-weight: 500;
+    font-family: 'Courier New', monospace;
+    display: inline-block;
+  }
+  .data-table .status.ok { background: var(--success); color: white; }
+  .data-table .status.out { background: var(--error); color: white; }
+
+  /* Body font classes */
+  .body-manrope { font-family: 'Manrope', sans-serif; }
+  .body-manrope .body-text { font-weight: 400; }
+
+  .body-inter { font-family: 'Inter', sans-serif; }
+  .body-inter .body-text { font-weight: 400; }
+
+  .body-ibm-plex { font-family: 'IBM Plex Sans', sans-serif; }
+  .body-ibm-plex .body-text { font-weight: 400; }
+
+  .body-dm-sans { font-family: 'DM Sans', sans-serif; }
+  .body-dm-sans .body-text { font-weight: 400; }
+
+  .body-lora { font-family: 'Lora', serif; }
+  .body-lora .body-text { font-weight: 400; }
+
+  .body-source-serif { font-family: 'Source Serif 4', serif; }
+  .body-source-serif .body-text { font-weight: 400; }
+
+  .body-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; }
+  .body-jakarta .body-text { font-weight: 400; }
+
+  .body-newsreader { font-family: 'Newsreader', serif; }
+  .body-newsreader .body-text { font-weight: 400; }
+
+  /* Apply the body class to all UI sample text within .preview */
+  .body-manrope .body-text, .body-manrope .nav-link, .body-manrope .cta, .body-manrope .form-label, .body-manrope .form-value, .body-manrope .form-input-mock, .body-manrope .data-table { font-family: 'Manrope', sans-serif; }
+  .body-inter .body-text, .body-inter .nav-link, .body-inter .cta, .body-inter .form-label, .body-inter .form-value, .body-inter .form-input-mock, .body-inter .data-table { font-family: 'Inter', sans-serif; }
+  .body-ibm-plex .body-text, .body-ibm-plex .nav-link, .body-ibm-plex .cta, .body-ibm-plex .form-label, .body-ibm-plex .form-value, .body-ibm-plex .form-input-mock, .body-ibm-plex .data-table { font-family: 'IBM Plex Sans', sans-serif; }
+  .body-dm-sans .body-text, .body-dm-sans .nav-link, .body-dm-sans .cta, .body-dm-sans .form-label, .body-dm-sans .form-value, .body-dm-sans .form-input-mock, .body-dm-sans .data-table { font-family: 'DM Sans', sans-serif; }
+  .body-lora .body-text, .body-lora .nav-link, .body-lora .cta, .body-lora .form-label, .body-lora .form-value, .body-lora .form-input-mock, .body-lora .data-table { font-family: 'Lora', serif; }
+  .body-source-serif .body-text, .body-source-serif .nav-link, .body-source-serif .cta, .body-source-serif .form-label, .body-source-serif .form-value, .body-source-serif .form-input-mock, .body-source-serif .data-table { font-family: 'Source Serif 4', serif; }
+  .body-jakarta .body-text, .body-jakarta .nav-link, .body-jakarta .cta, .body-jakarta .form-label, .body-jakarta .form-value, .body-jakarta .form-input-mock, .body-jakarta .data-table { font-family: 'Plus Jakarta Sans', sans-serif; }
+  .body-newsreader .body-text, .body-newsreader .nav-link, .body-newsreader .cta, .body-newsreader .form-label, .body-newsreader .form-value, .body-newsreader .form-input-mock, .body-newsreader .data-table { font-family: 'Newsreader', serif; }
+
+  .summary-row {
+    background: white;
+    border: 1px solid var(--frame-border);
+    border-radius: 8px;
+    padding: 22px 28px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--gray-700);
+  }
+  .summary-row strong { color: var(--gray-900); }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>Katalogos — Body Font Pairings</h1>
+    <p>8 body-font candidates rendered in the actual product UI: hero, navigation bar, body paragraph, form, data table. Heading is locked to Manrope 500. Palette is locked to P-01 Terracotta Warm. Tell me the ID you like (e.g. <code>TY-A</code>).</p>
+  </header>
+
+  <div class="how-to-use">
+    <strong>How to read this:</strong> Each card uses Manrope for the H2/H3 (lines like "Truffle Tagliatelle Menu" / "Build, publish, and share your menu in minutes."), then renders everything else in the candidate body font. Pay attention to: paragraph readability, data-table number rendering, form-label tone (warm/clinical), nav-link weight. The right body font is the one that fades into the background while still looking distinctive.
+  </div>
+
+  <div class="summary-row">
+    <strong>Locked context:</strong> Manrope (heading) · P-01 Terracotta Warm (palette) · "Your menu, online — in minutes." (tagline) · KW-02 wordmark.
+  </div>
+
+  <!-- TY-A: Manrope only -->
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="pair-name">Single-font system — Manrope only</div>
+        <div class="pair-fonts">Heading: Manrope 500 · Body: Manrope 400</div>
+        <div class="pair-meta">One typeface across the entire product. Cleanest, simplest, modern indie SaaS default. Linear, Vercel, Stripe all use this approach. Recommended for Lane A indie pacing — easier to maintain.</div>
+      </div>
+      <div class="pair-id">TY-A</div>
+    </div>
+    <div class="preview body-manrope">
+      <h2>Truffle Tagliatelle</h2>
+      <h3>Build, publish, and share your menu in minutes.</h3>
+      <p class="body-text">Add your dishes, photos, and prices once. Katalogos generates a beautiful digital menu instantly — accessible from any QR code, browser, or device. No app downloads, no design skills, no headaches. Update prices in real time, hide a sold-out item with one tap, translate to any language without re-uploading anything.</p>
+
+      <div class="ui-bar">
+        <span class="nav-link active">Menus</span>
+        <span class="nav-link">Categories</span>
+        <span class="nav-link">Items</span>
+        <span class="nav-link">Translations</span>
+        <span class="nav-link">Settings</span>
+        <span class="spacer"></span>
+        <button class="cta">Publish menu</button>
+      </div>
+
+      <div class="form-sample">
+        <div class="form-label">Item name</div>
+        <input class="form-input-mock" value="Truffle Tagliatelle" />
+        <div class="form-label">Price</div>
+        <input class="form-input-mock" value="€24.50" />
+        <div class="form-label">Category</div>
+        <input class="form-input-mock" value="Pasta" />
+      </div>
+
+      <table class="data-table">
+        <thead><tr><th>Item</th><th>Category</th><th class="num">Price</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Truffle Tagliatelle</td><td>Pasta</td><td class="num">€24.50</td><td><span class="status ok">In stock</span></td></tr>
+          <tr><td>Burrata di Andria</td><td>Antipasti</td><td class="num">€16.00</td><td><span class="status ok">In stock</span></td></tr>
+          <tr><td>Sea bass carpaccio</td><td>Antipasti</td><td class="num">€22.00</td><td><span class="status out">Sold out</span></td></tr>
+          <tr><td>Tiramisù della casa</td><td>Dolci</td><td class="num">€9.50</td><td><span class="status ok">In stock</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TY-B: Manrope + Inter -->
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="pair-name">Manrope + Inter</div>
+        <div class="pair-fonts">Heading: Manrope 500 · Body: Inter 400</div>
+        <div class="pair-meta">Most readable indie pairing. Inter is Figma's body font — designed for UI legibility at small sizes. Slightly more neutral than Manrope, lets headings stand out more.</div>
+      </div>
+      <div class="pair-id">TY-B</div>
+    </div>
+    <div class="preview body-inter">
+      <h2>Truffle Tagliatelle</h2>
+      <h3>Build, publish, and share your menu in minutes.</h3>
+      <p class="body-text">Add your dishes, photos, and prices once. Katalogos generates a beautiful digital menu instantly — accessible from any QR code, browser, or device. No app downloads, no design skills, no headaches. Update prices in real time, hide a sold-out item with one tap, translate to any language without re-uploading anything.</p>
+
+      <div class="ui-bar">
+        <span class="nav-link active">Menus</span>
+        <span class="nav-link">Categories</span>
+        <span class="nav-link">Items</span>
+        <span class="nav-link">Translations</span>
+        <span class="nav-link">Settings</span>
+        <span class="spacer"></span>
+        <button class="cta">Publish menu</button>
+      </div>
+
+      <div class="form-sample">
+        <div class="form-label">Item name</div>
+        <input class="form-input-mock" value="Truffle Tagliatelle" />
+        <div class="form-label">Price</div>
+        <input class="form-input-mock" value="€24.50" />
+        <div class="form-label">Category</div>
+        <input class="form-input-mock" value="Pasta" />
+      </div>
+
+      <table class="data-table">
+        <thead><tr><th>Item</th><th>Category</th><th class="num">Price</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Truffle Tagliatelle</td><td>Pasta</td><td class="num">€24.50</td><td><span class="status ok">In stock</span></td></tr>
+          <tr><td>Burrata di Andria</td><td>Antipasti</td><td class="num">€16.00</td><td><span class="status ok">In stock</span></td></tr>
+          <tr><td>Sea bass carpaccio</td><td>Antipasti</td><td class="num">€22.00</td><td><span class="status out">Sold out</span></td></tr>
+          <tr><td>Tiramisù della casa</td><td>Dolci</td><td class="num">€9.50</td><td><span class="status ok">In stock</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TY-C: Manrope + IBM Plex Sans -->
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="pair-name">Manrope + IBM Plex Sans</div>
+        <div class="pair-fonts">Heading: Manrope 500 · Body: IBM Plex Sans 400</div>
+        <div class="pair-meta">Slightly technical / engineering tone. IBM Plex has Greek glyph support (useful for tenant-customer-facing menu items in Greek). Numbers in tables look particularly clean. Restaurant-vertical-wise, leans toward "design-forward" rather than "rustic."</div>
+      </div>
+      <div class="pair-id">TY-C</div>
+    </div>
+    <div class="preview body-ibm-plex">
+      <h2>Truffle Tagliatelle</h2>
+      <h3>Build, publish, and share your menu in minutes.</h3>
+      <p class="body-text">Add your dishes, photos, and prices once. Katalogos generates a beautiful digital menu instantly — accessible from any QR code, browser, or device. No app downloads, no design skills, no headaches. Update prices in real time, hide a sold-out item with one tap, translate to any language without re-uploading anything.</p>
+
+      <div class="ui-bar">
+        <span class="nav-link active">Menus</span>
+        <span class="nav-link">Categories</span>
+        <span class="nav-link">Items</span>
+        <span class="nav-link">Translations</span>
+        <span class="nav-link">Settings</span>
+        <span class="spacer"></span>
+        <button class="cta">Publish menu</button>
+      </div>
+
+      <div class="form-sample">
+        <div class="form-label">Item name</div>
+        <input class="form-input-mock" value="Truffle Tagliatelle" />
+        <div class="form-label">Price</div>
+        <input class="form-input-mock" value="€24.50" />
+        <div class="form-label">Category</div>
+        <input class="form-input-mock" value="Pasta" />
+      </div>
+
+      <table class="data-table">
+        <thead><tr><th>Item</th><th>Category</th><th class="num">Price</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Truffle Tagliatelle</td><td>Pasta</td><td class="num">€24.50</td><td><span class="status ok">In stock</span></td></tr>
+          <tr><td>Burrata di Andria</td><td>Antipasti</td><td class="num">€16.00</td><td><span class="status ok">In stock</span></td></tr>
+          <tr><td>Sea bass carpaccio</td><td>Antipasti</td><td class="num">€22.00</td><td><span class="status out">Sold out</span></td></tr>
+          <tr><td>Tiramisù della casa</td><td>Dolci</td><td class="num">€9.50</td><td><span class="status ok">In stock</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TY-D: Manrope + DM Sans -->
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="pair-name">Manrope + DM Sans</div>
+        <div class="pair-fonts">Heading: Manrope 500 · Body: DM Sans 400</div>
+        <div class="pair-meta">Softer body. DM Sans has rounder letterforms — feels approachable, friendly. Pairs especially well with the warm Terracotta palette by reinforcing the hospitality vibe.</div>
+      </div>
+      <div class="pair-id">TY-D</div>
+    </div>
+    <div class="preview body-dm-sans">
+      <h2>Truffle Tagliatelle</h2>
+      <h3>Build, publish, and share your menu in minutes.</h3>
+      <p class="body-text">Add your dishes, photos, and prices once. Katalogos generates a beautiful digital menu instantly — accessible from any QR code, browser, or device. No app downloads, no design skills, no headaches. Update prices in real time, hide a sold-out item with one tap, translate to any language without re-uploading anything.</p>
+
+      <div class="ui-bar">
+        <span class="nav-link active">Menus</span>
+        <span class="nav-link">Categories</span>
+        <span class="nav-link">Items</span>
+        <span class="nav-link">Translations</span>
+        <span class="nav-link">Settings</span>
+        <span class="spacer"></span>
+        <button class="cta">Publish menu</button>
+      </div>
+
+      <div class="form-sample">
+        <div class="form-label">Item name</div>
+        <input class="form-input-mock" value="Truffle Tagliatelle" />
+        <div class="form-label">Price</div>
+        <input class="form-input-mock" value="€24.50" />
+        <div class="form-label">Category</div>
+        <input class="form-input-mock" value="Pasta" />
+      </div>
+
+      <table class="data-table">
+        <thead><tr><th>Item</th><th>Category</th><th class="num">Price</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Truffle Tagliatelle</td><td>Pasta</td><td class="num">€24.50</td><td><span class="status ok">In stock</span></td></tr>
+          <tr><td>Burrata di Andria</td><td>Antipasti</td><td class="num">€16.00</td><td><span class="status ok">In stock</span></td></tr>
+          <tr><td>Sea bass carpaccio</td><td>Antipasti</td><td class="num">€22.00</td><td><span class="status out">Sold out</span></td></tr>
+          <tr><td>Tiramisù della casa</td><td>Dolci</td><td class="num">€9.50</td><td><span class="status ok">In stock</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TY-E: Manrope + Lora -->
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="pair-name">Manrope + Lora</div>
+        <div class="pair-fonts">Heading: Manrope 500 · Body: Lora 400 (serif)</div>
+        <div class="pair-meta">Editorial / magazine pairing. Sans heading + serif body is a classic editorial move — adds gravitas to body copy. Restaurant-vertical-wise: leans "menu-as-print-publication," upscale-ish. May feel heavy in dense data tables.</div>
+      </div>
+      <div class="pair-id">TY-E</div>
+    </div>
+    <div class="preview body-lora">
+      <h2>Truffle Tagliatelle</h2>
+      <h3>Build, publish, and share your menu in minutes.</h3>
+      <p class="body-text">Add your dishes, photos, and prices once. Katalogos generates a beautiful digital menu instantly — accessible from any QR code, browser, or device. No app downloads, no design skills, no headaches. Update prices in real time, hide a sold-out item with one tap, translate to any language without re-uploading anything.</p>
+
+      <div class="ui-bar">
+        <span class="nav-link active">Menus</span>
+        <span class="nav-link">Categories</span>
+        <span class="nav-link">Items</span>
+        <span class="nav-link">Translations</span>
+        <span class="nav-link">Settings</span>
+        <span class="spacer"></span>
+        <button class="cta">Publish menu</button>
+      </div>
+
+      <div class="form-sample">
+        <div class="form-label">Item name</div>
+        <input class="form-input-mock" value="Truffle Tagliatelle" />
+        <div class="form-label">Price</div>
+        <input class="form-input-mock" value="€24.50" />
+        <div class="form-label">Category</div>
+        <input class="form-input-mock" value="Pasta" />
+      </div>
+
+      <table class="data-table">
+        <thead><tr><th>Item</th><th>Category</th><th class="num">Price</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Truffle Tagliatelle</td><td>Pasta</td><td class="num">€24.50</td><td><span class="status ok">In stock</span></td></tr>
+          <tr><td>Burrata di Andria</td><td>Antipasti</td><td class="num">€16.00</td><td><span class="status ok">In stock</span></td></tr>
+          <tr><td>Sea bass carpaccio</td><td>Antipasti</td><td class="num">€22.00</td><td><span class="status out">Sold out</span></td></tr>
+          <tr><td>Tiramisù della casa</td><td>Dolci</td><td class="num">€9.50</td><td><span class="status ok">In stock</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TY-F: Manrope + Source Serif 4 -->
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="pair-name">Manrope + Source Serif 4</div>
+        <div class="pair-fonts">Heading: Manrope 500 · Body: Source Serif 4 400 (serif)</div>
+        <div class="pair-meta">Cleaner serif than Lora. Less editorial, more "considered modern document." Adobe's Source Serif. Reads "Substack" or "Medium" body. Restaurant fit: works for upscale restaurants but feels less "trattoria" than Lora.</div>
+      </div>
+      <div class="pair-id">TY-F</div>
+    </div>
+    <div class="preview body-source-serif">
+      <h2>Truffle Tagliatelle</h2>
+      <h3>Build, publish, and share your menu in minutes.</h3>
+      <p class="body-text">Add your dishes, photos, and prices once. Katalogos generates a beautiful digital menu instantly — accessible from any QR code, browser, or device. No app downloads, no design skills, no headaches. Update prices in real time, hide a sold-out item with one tap, translate to any language without re-uploading anything.</p>
+
+      <div class="ui-bar">
+        <span class="nav-link active">Menus</span>
+        <span class="nav-link">Categories</span>
+        <span class="nav-link">Items</span>
+        <span class="nav-link">Translations</span>
+        <span class="nav-link">Settings</span>
+        <span class="spacer"></span>
+        <button class="cta">Publish menu</button>
+      </div>
+
+      <div class="form-sample">
+        <div class="form-label">Item name</div>
+        <input class="form-input-mock" value="Truffle Tagliatelle" />
+        <div class="form-label">Price</div>
+        <input class="form-input-mock" value="€24.50" />
+        <div class="form-label">Category</div>
+        <input class="form-input-mock" value="Pasta" />
+      </div>
+
+      <table class="data-table">
+        <thead><tr><th>Item</th><th>Category</th><th class="num">Price</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Truffle Tagliatelle</td><td>Pasta</td><td class="num">€24.50</td><td><span class="status ok">In stock</span></td></tr>
+          <tr><td>Burrata di Andria</td><td>Antipasti</td><td class="num">€16.00</td><td><span class="status ok">In stock</span></td></tr>
+          <tr><td>Sea bass carpaccio</td><td>Antipasti</td><td class="num">€22.00</td><td><span class="status out">Sold out</span></td></tr>
+          <tr><td>Tiramisù della casa</td><td>Dolci</td><td class="num">€9.50</td><td><span class="status ok">In stock</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TY-G: Manrope + Plus Jakarta Sans -->
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="pair-name">Manrope + Plus Jakarta Sans</div>
+        <div class="pair-fonts">Heading: Manrope 500 · Body: Plus Jakarta Sans 400</div>
+        <div class="pair-meta">Subtle contrast — both modern geometric sans, but Jakarta has slightly more open letterforms. Less obvious pairing than Inter, more distinctive look.</div>
+      </div>
+      <div class="pair-id">TY-G</div>
+    </div>
+    <div class="preview body-jakarta">
+      <h2>Truffle Tagliatelle</h2>
+      <h3>Build, publish, and share your menu in minutes.</h3>
+      <p class="body-text">Add your dishes, photos, and prices once. Katalogos generates a beautiful digital menu instantly — accessible from any QR code, browser, or device. No app downloads, no design skills, no headaches. Update prices in real time, hide a sold-out item with one tap, translate to any language without re-uploading anything.</p>
+
+      <div class="ui-bar">
+        <span class="nav-link active">Menus</span>
+        <span class="nav-link">Categories</span>
+        <span class="nav-link">Items</span>
+        <span class="nav-link">Translations</span>
+        <span class="nav-link">Settings</span>
+        <span class="spacer"></span>
+        <button class="cta">Publish menu</button>
+      </div>
+
+      <div class="form-sample">
+        <div class="form-label">Item name</div>
+        <input class="form-input-mock" value="Truffle Tagliatelle" />
+        <div class="form-label">Price</div>
+        <input class="form-input-mock" value="€24.50" />
+        <div class="form-label">Category</div>
+        <input class="form-input-mock" value="Pasta" />
+      </div>
+
+      <table class="data-table">
+        <thead><tr><th>Item</th><th>Category</th><th class="num">Price</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Truffle Tagliatelle</td><td>Pasta</td><td class="num">€24.50</td><td><span class="status ok">In stock</span></td></tr>
+          <tr><td>Burrata di Andria</td><td>Antipasti</td><td class="num">€16.00</td><td><span class="status ok">In stock</span></td></tr>
+          <tr><td>Sea bass carpaccio</td><td>Antipasti</td><td class="num">€22.00</td><td><span class="status out">Sold out</span></td></tr>
+          <tr><td>Tiramisù della casa</td><td>Dolci</td><td class="num">€9.50</td><td><span class="status ok">In stock</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TY-H: Manrope + Newsreader -->
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="pair-name">Manrope + Newsreader</div>
+        <div class="pair-fonts">Heading: Manrope 500 · Body: Newsreader 400 (serif)</div>
+        <div class="pair-meta">Warm magazine serif. More personality than Source Serif, less ornamental than Lora. Slight handcrafted feel — pairs beautifully with Terracotta palette and the artisan-restaurant vibe.</div>
+      </div>
+      <div class="pair-id">TY-H</div>
+    </div>
+    <div class="preview body-newsreader">
+      <h2>Truffle Tagliatelle</h2>
+      <h3>Build, publish, and share your menu in minutes.</h3>
+      <p class="body-text">Add your dishes, photos, and prices once. Katalogos generates a beautiful digital menu instantly — accessible from any QR code, browser, or device. No app downloads, no design skills, no headaches. Update prices in real time, hide a sold-out item with one tap, translate to any language without re-uploading anything.</p>
+
+      <div class="ui-bar">
+        <span class="nav-link active">Menus</span>
+        <span class="nav-link">Categories</span>
+        <span class="nav-link">Items</span>
+        <span class="nav-link">Translations</span>
+        <span class="nav-link">Settings</span>
+        <span class="spacer"></span>
+        <button class="cta">Publish menu</button>
+      </div>
+
+      <div class="form-sample">
+        <div class="form-label">Item name</div>
+        <input class="form-input-mock" value="Truffle Tagliatelle" />
+        <div class="form-label">Price</div>
+        <input class="form-input-mock" value="€24.50" />
+        <div class="form-label">Category</div>
+        <input class="form-input-mock" value="Pasta" />
+      </div>
+
+      <table class="data-table">
+        <thead><tr><th>Item</th><th>Category</th><th class="num">Price</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Truffle Tagliatelle</td><td>Pasta</td><td class="num">€24.50</td><td><span class="status ok">In stock</span></td></tr>
+          <tr><td>Burrata di Andria</td><td>Antipasti</td><td class="num">€16.00</td><td><span class="status ok">In stock</span></td></tr>
+          <tr><td>Sea bass carpaccio</td><td>Antipasti</td><td class="num">€22.00</td><td><span class="status out">Sold out</span></td></tr>
+          <tr><td>Tiramisù della casa</td><td>Dolci</td><td class="num">€9.50</td><td><span class="status ok">In stock</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

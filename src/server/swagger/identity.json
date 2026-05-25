@@ -1,0 +1,3970 @@
+﻿{
+  "x-generator": "NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))",
+  "openapi": "3.0.0",
+  "info": {
+    "title": "IdentityService API",
+    "description": "Authentication, User Management, Tenant Management, and API Key Management",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5002"
+    }
+  ],
+  "paths": {
+    "/api/v1/users": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a new user",
+        "operationId": "IdentityServiceAPIUsersCreateUser",
+        "requestBody": {
+          "x-name": "CreateUserRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityServiceAPIUsersCreateUserRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPIUsersCreateUserResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "superUser"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get list of users for a tenant",
+        "operationId": "IdentityServiceAPIUsersListUsers",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPIUsersListUsersResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "superUser",
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/users/{userId}": {
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete a user",
+        "operationId": "IdentityServiceAPIUsersDeleteUser",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "superUser"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get a user by ID",
+        "operationId": "IdentityServiceAPIUsersGetUser",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityAbstractionsModelsUserListItem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "superUser"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/users/{userId}/enabled": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Enable or disable a user",
+        "operationId": "IdentityServiceAPIUsersSetUserEnabled",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "SetUserEnabledRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityServiceAPIUsersSetUserEnabledRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "superUser"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/users/{userId}/password": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update user password",
+        "operationId": "IdentityServiceAPIUsersUpdatePassword",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "UpdatePasswordRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityServiceAPIUsersUpdatePasswordRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "superUser"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/tenants": {
+      "post": {
+        "tags": [
+          "Tenants"
+        ],
+        "summary": "Create a new tenant",
+        "operationId": "IdentityServiceAPITenantsCreateTenant",
+        "requestBody": {
+          "x-name": "CreateTenantRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityServiceAPITenantsCreateTenantRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPITenantsCreateTenantResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "superUser"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Tenants"
+        ],
+        "summary": "Get list of all tenants",
+        "operationId": "IdentityServiceAPITenantsListTenants",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPITenantsListTenantsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "superUser"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Tenants"
+        ],
+        "summary": "Update an existing tenant",
+        "operationId": "IdentityServiceAPITenantsUpdateTenant",
+        "requestBody": {
+          "x-name": "UpdateTenantRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityServiceAPITenantsUpdateTenantRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "superUser"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/tenants/{tenantId}": {
+      "delete": {
+        "tags": [
+          "Tenants"
+        ],
+        "summary": "Delete a tenant",
+        "operationId": "IdentityServiceAPITenantsDeleteTenant",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "superUser"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Tenants"
+        ],
+        "summary": "Get tenant by ID",
+        "operationId": "IdentityServiceAPITenantsGetTenantById",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPITenantsTenantDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "superUser"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/tenants/{tenantId}/auth-config": {
+      "get": {
+        "tags": [
+          "Tenants"
+        ],
+        "summary": "Get tenant authentication configuration",
+        "operationId": "IdentityServiceAPITenantsGetTenantAuthConfig",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPITenantsGetTenantAuthConfigResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tenants/{tenantId}/business-profile": {
+      "get": {
+        "tags": [
+          "Tenants"
+        ],
+        "summary": "Get a tenant's public business profile",
+        "description": "Returns business profile data for public menu display. Supports ETag/If-None-Match for conditional requests.",
+        "operationId": "IdentityServiceAPITenantsGetTenantBusinessProfile",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPITenantsPublicBusinessProfileResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tenants/{tenantId}/theme": {
+      "get": {
+        "tags": [
+          "Tenants"
+        ],
+        "summary": "Get tenant theme configuration",
+        "description": "Returns the full theme configuration for a tenant. Returns defaults if no custom theme is set. Supports ETag/If-None-Match for conditional requests.",
+        "operationId": "IdentityServiceAPITenantsGetTenantTheme",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPITenantsTenantThemeResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Tenants"
+        ],
+        "summary": "Update tenant theme configuration",
+        "description": "Updates the full theme configuration for a tenant. SuperUsers can update any tenant; admins can only update their own tenant.",
+        "operationId": "IdentityServiceAPITenantsUpdateTenantTheme",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "UpdateTenantThemeRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityServiceAPITenantsUpdateTenantThemeRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "superUser",
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/tenants/theme-presets": {
+      "get": {
+        "tags": [
+          "Tenants"
+        ],
+        "summary": "Get available theme presets",
+        "description": "Returns a list of built-in theme presets that can be applied to a tenant.",
+        "operationId": "IdentityServiceAPITenantsGetThemePresets",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IdentityServiceAPITenantsThemePresetResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tenants/sync": {
+      "post": {
+        "tags": [
+          "Tenants"
+        ],
+        "summary": "Sync tenant authentication configuration from OnlineMenuSaaS",
+        "operationId": "IdentityServiceAPITenantsSyncTenantAuthConfig",
+        "requestBody": {
+          "x-name": "SyncTenantAuthConfigRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityServiceAPITenantsSyncTenantAuthConfigRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPITenantsSyncTenantAuthConfigResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/team/invitations/{token}/accept": {
+      "post": {
+        "tags": [
+          "Team",
+          "Team"
+        ],
+        "operationId": "IdentityServiceAPITeamAcceptInvitation",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceUseCasesTeamDTOsTeamMemberDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/v1/team/invite": {
+      "post": {
+        "tags": [
+          "Team",
+          "Team"
+        ],
+        "operationId": "IdentityServiceAPITeamInvite",
+        "requestBody": {
+          "x-name": "InviteTeamMemberRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityServiceAPITeamInviteTeamMemberRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceUseCasesTeamDTOsTeamInvitationDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": ""
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "superUser"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/team/invitations": {
+      "get": {
+        "tags": [
+          "Team",
+          "Team"
+        ],
+        "operationId": "IdentityServiceAPITeamListInvitations",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPITeamListInvitationsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "superUser",
+              "user"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/team/members": {
+      "get": {
+        "tags": [
+          "Team",
+          "Team"
+        ],
+        "operationId": "IdentityServiceAPITeamListMembers",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPITeamListMembersResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "superUser",
+              "user"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/team/members/{id}": {
+      "delete": {
+        "tags": [
+          "Team",
+          "Team"
+        ],
+        "operationId": "IdentityServiceAPITeamRemoveMember",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "superUser"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/team/invitations/{id}": {
+      "delete": {
+        "tags": [
+          "Team",
+          "Team"
+        ],
+        "operationId": "IdentityServiceAPITeamRevokeInvitation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "superUser"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/team/members/{id}/role": {
+      "put": {
+        "tags": [
+          "Team",
+          "Team"
+        ],
+        "operationId": "IdentityServiceAPITeamUpdateRole",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "UpdateRoleRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityServiceAPITeamUpdateRoleRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceUseCasesTeamDTOsTeamMemberDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "superUser"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/privacy/delete-request/{requestId}": {
+      "delete": {
+        "tags": [
+          "Privacy"
+        ],
+        "summary": "Cancel a pending or confirmed account deletion request",
+        "operationId": "IdentityServiceAPIPrivacyCancelAccountDeletion",
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPIPrivacyCancelAccountDeletionResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "user"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/privacy/delete-request/{requestId}/confirm": {
+      "post": {
+        "tags": [
+          "Privacy"
+        ],
+        "summary": "Confirm account deletion via email token",
+        "operationId": "IdentityServiceAPIPrivacyConfirmAccountDeletion",
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "ConfirmAccountDeletionRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityServiceAPIPrivacyConfirmAccountDeletionRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPIPrivacyConfirmAccountDeletionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/privacy/data-export/{requestId}/download": {
+      "get": {
+        "tags": [
+          "Privacy"
+        ],
+        "summary": "Download a completed data export as a ZIP file via presigned URL redirect",
+        "operationId": "IdentityServiceAPIPrivacyDownloadDataExport",
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "user"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/privacy/consent": {
+      "get": {
+        "tags": [
+          "Privacy"
+        ],
+        "summary": "Get consent preferences for the authenticated user",
+        "operationId": "IdentityServiceAPIPrivacyGetConsent",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPIPrivacyGetConsentResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "user"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Privacy"
+        ],
+        "summary": "Update consent preferences for the authenticated user",
+        "operationId": "IdentityServiceAPIPrivacyUpdateConsent",
+        "requestBody": {
+          "x-name": "UpdateConsentRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityServiceAPIPrivacyUpdateConsentRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPIPrivacyUpdateConsentResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "user"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/privacy/data-export/{requestId}": {
+      "get": {
+        "tags": [
+          "Privacy"
+        ],
+        "summary": "Get the status of a data export request",
+        "operationId": "IdentityServiceAPIPrivacyGetDataExportStatus",
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPIPrivacyGetDataExportStatusResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "user"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/privacy/delete-request": {
+      "post": {
+        "tags": [
+          "Privacy"
+        ],
+        "summary": "Request account deletion with email confirmation",
+        "operationId": "IdentityServiceAPIPrivacyRequestAccountDeletion",
+        "requestBody": {
+          "x-name": "RequestAccountDeletionRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityServiceAPIPrivacyRequestAccountDeletionRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPIPrivacyRequestAccountDeletionResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "user"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/privacy/data-export": {
+      "post": {
+        "tags": [
+          "Privacy"
+        ],
+        "summary": "Request a GDPR data export for the authenticated user",
+        "operationId": "IdentityServiceAPIPrivacyRequestDataExport",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPIPrivacyRequestDataExportResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "user"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/me/password": {
+      "put": {
+        "tags": [
+          "Me"
+        ],
+        "summary": "Change the authenticated user's password",
+        "operationId": "IdentityServiceAPIMeChangePassword",
+        "requestBody": {
+          "x-name": "ChangePasswordRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityServiceAPIMeChangePasswordRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "user"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/me/business-profile": {
+      "get": {
+        "tags": [
+          "Me"
+        ],
+        "summary": "Get the authenticated tenant's business profile",
+        "operationId": "IdentityServiceAPIMeGetBusinessProfile",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPIMeBusinessProfileResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Me"
+        ],
+        "summary": "Update the authenticated tenant's business profile",
+        "operationId": "IdentityServiceAPIMeUpdateBusinessProfile",
+        "requestBody": {
+          "x-name": "UpdateBusinessProfileRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityServiceAPIMeUpdateBusinessProfileRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/me/preferences": {
+      "get": {
+        "tags": [
+          "Me"
+        ],
+        "summary": "Get the authenticated user's preferences",
+        "operationId": "IdentityServiceAPIMeGetPreferences",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPIMeUserPreferenceResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "user"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Me"
+        ],
+        "summary": "Update the authenticated user's preferences",
+        "operationId": "IdentityServiceAPIMeUpdatePreferences",
+        "requestBody": {
+          "x-name": "UpdatePreferencesRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityServiceAPIMeUpdatePreferencesRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "user"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/me/profile": {
+      "get": {
+        "tags": [
+          "Me"
+        ],
+        "summary": "Get the authenticated user's profile",
+        "operationId": "IdentityServiceAPIMeGetProfile",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPIMeUserProfileResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "user"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Me"
+        ],
+        "summary": "Update the authenticated user's profile",
+        "operationId": "IdentityServiceAPIMeUpdateProfile",
+        "requestBody": {
+          "x-name": "UpdateProfileRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityServiceAPIMeUpdateProfileRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPIMeUpdateProfileResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "user"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/me/sessions": {
+      "get": {
+        "tags": [
+          "Me"
+        ],
+        "summary": "List the authenticated user's active sessions",
+        "operationId": "IdentityServiceAPIMeListSessions",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPIMeListSessionsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "user"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/me/sessions/{sessionId}": {
+      "delete": {
+        "tags": [
+          "Me"
+        ],
+        "summary": "Revoke a specific session for the authenticated user",
+        "operationId": "IdentityServiceAPIMeRevokeSession",
+        "parameters": [
+          {
+            "name": "sessionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "user"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/logs": {
+      "post": {
+        "tags": [
+          "Logs"
+        ],
+        "operationId": "IngestLogs",
+        "requestBody": {
+          "x-name": "LogBatchRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityServiceAPILogIngestionLogBatchRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPILogIngestionLogBatchResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/health/aggregate": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "summary": "Get aggregated health status of all platform services",
+        "description": "Polls health endpoints of all services and returns unified status. Results cached for 10 seconds.",
+        "operationId": "IdentityServiceAPIHealthAggregatorGetAggregateHealth",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPIHealthAggregatorAggregateHealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/methods": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "IdentityServiceAPIAuthGetAuthMethods",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPIAuthGetAuthMethodsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/api-keys": {
+      "post": {
+        "tags": [
+          "API Keys",
+          "Api-Keys"
+        ],
+        "operationId": "IdentityServiceAPIApiKeysCreate",
+        "requestBody": {
+          "x-name": "CreateApiKeyRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityServiceAPIApiKeysCreateApiKeyRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceUseCasesApiKeysDTOsCreateApiKeyResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "superUser"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "API Keys",
+          "Api-Keys"
+        ],
+        "operationId": "IdentityServiceAPIApiKeysList",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPIApiKeysListApiKeysResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "superUser"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/api-keys/{id}": {
+      "get": {
+        "tags": [
+          "API Keys",
+          "Api-Keys"
+        ],
+        "operationId": "IdentityServiceAPIApiKeysGetById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceUseCasesApiKeysDTOsApiKeyDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "superUser"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "API Keys",
+          "Api-Keys"
+        ],
+        "operationId": "IdentityServiceAPIApiKeysRevoke",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "admin",
+              "superUser"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/api-keys/validate": {
+      "post": {
+        "tags": [
+          "API Keys",
+          "Api-Keys"
+        ],
+        "operationId": "IdentityServiceAPIApiKeysValidate",
+        "requestBody": {
+          "x-name": "ValidateApiKeyRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityServiceAPIApiKeysValidateApiKeyRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdentityServiceAPIApiKeysValidateApiKeyResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "IdentityServiceAPIUsersCreateUserResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPIUsersCreateUserRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "tenantId": {
+            "type": "string",
+            "format": "guid",
+            "nullable": true
+          },
+          "tenantName": {
+            "type": "string",
+            "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "IdentityAbstractionsModelsUserListItem": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "createdTimestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPIUsersListUsersResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentityAbstractionsModelsUserListItem"
+            }
+          }
+        }
+      },
+      "IdentityServiceAPIUsersListUsersRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "IdentityServiceAPIUsersSetUserEnabledRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          }
+        }
+      },
+      "IdentityServiceAPIUsersUpdatePasswordRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "newPassword": {
+            "type": "string"
+          },
+          "temporary": {
+            "type": "boolean"
+          }
+        }
+      },
+      "IdentityServiceAPITenantsCreateTenantResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tenantId": {
+            "type": "string",
+            "format": "guid"
+          }
+        }
+      },
+      "IdentityServiceAPITenantsCreateTenantRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "tenantStatus": {
+            "$ref": "#/components/schemas/IdentityServiceCoreEntitiesTenantStatus"
+          },
+          "logoUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryAuthMethod": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "allowPhoneAuth": {
+            "type": "boolean"
+          },
+          "allowEmailAuth": {
+            "type": "boolean"
+          },
+          "otpCodeLength": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "otpExpiryMinutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "smsProvider": {
+            "type": "string",
+            "nullable": true
+          },
+          "requireSmsVerification": {
+            "type": "boolean"
+          }
+        }
+      },
+      "IdentityServiceCoreEntitiesTenantStatus": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Disabled",
+          "Enabled"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "IdentityServiceAPITenantsDeleteTenantRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "IdentityServiceAPITenantsGetTenantAuthConfigResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tenantId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "tenantName": {
+            "type": "string"
+          },
+          "tenantSlug": {
+            "type": "string"
+          },
+          "primaryAuthMethod": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "allowPhoneAuth": {
+            "type": "boolean"
+          },
+          "allowEmailAuth": {
+            "type": "boolean"
+          },
+          "otpCodeLength": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "otpExpiryMinutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "smsProvider": {
+            "type": "string",
+            "nullable": true
+          },
+          "requireSmsVerification": {
+            "type": "boolean"
+          },
+          "isEnabled": {
+            "type": "boolean"
+          }
+        }
+      },
+      "IdentityServiceAPITenantsGetTenantAuthConfigRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "IdentityServiceAPITenantsPublicBusinessProfileResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "logoUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "website": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine1": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine2": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "cuisineType": {
+            "type": "string",
+            "nullable": true
+          },
+          "operatingHoursJson": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPITenantsGetTenantBusinessProfileRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "IdentityServiceAPITenantsTenantDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tenantId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "tenantStatus": {
+            "$ref": "#/components/schemas/IdentityServiceCoreEntitiesTenantStatus"
+          },
+          "logoUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryAuthMethod": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "allowPhoneAuth": {
+            "type": "boolean"
+          },
+          "allowEmailAuth": {
+            "type": "boolean"
+          },
+          "otpCodeLength": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "otpExpiryMinutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "smsProvider": {
+            "type": "string",
+            "nullable": true
+          },
+          "requireSmsVerification": {
+            "type": "boolean"
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastUpdatedDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "IdentityServiceAPITenantsGetTenantByIdRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "IdentityServiceAPITenantsTenantThemeResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "presetId": {
+            "type": "string",
+            "nullable": true
+          },
+          "colors": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/IdentityServiceAPITenantsThemeColorsDto"
+              }
+            ]
+          },
+          "darkColors": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/IdentityServiceAPITenantsThemeColorsDto"
+              }
+            ]
+          },
+          "typography": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/IdentityServiceAPITenantsThemeTypographyDto"
+              }
+            ]
+          },
+          "logoContentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "faviconContentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "customLogoUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "customFaviconUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "customCss": {
+            "type": "string",
+            "nullable": true
+          },
+          "headerHtml": {
+            "type": "string",
+            "nullable": true
+          },
+          "footerHtml": {
+            "type": "string",
+            "nullable": true
+          },
+          "showPoweredBy": {
+            "type": "boolean"
+          },
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "supportEmail": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPITenantsThemeColorsDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "primary": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryLight": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryDark": {
+            "type": "string",
+            "nullable": true
+          },
+          "secondary": {
+            "type": "string",
+            "nullable": true
+          },
+          "background": {
+            "type": "string",
+            "nullable": true
+          },
+          "surface": {
+            "type": "string",
+            "nullable": true
+          },
+          "error": {
+            "type": "string",
+            "nullable": true
+          },
+          "onPrimary": {
+            "type": "string",
+            "nullable": true
+          },
+          "onBackground": {
+            "type": "string",
+            "nullable": true
+          },
+          "onSurface": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPITenantsThemeTypographyDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "fontFamily": {
+            "type": "string",
+            "nullable": true
+          },
+          "headerScale": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "bodyScale": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPITenantsGetTenantThemeRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "IdentityServiceAPITenantsThemePresetResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "config": {
+            "$ref": "#/components/schemas/IdentityServiceAPITenantsTenantThemeResponse"
+          }
+        }
+      },
+      "IdentityServiceAPITenantsListTenantsResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tenants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentityServiceAPITenantsTenantDto"
+            }
+          }
+        }
+      },
+      "IdentityServiceAPITenantsSyncTenantAuthConfigResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPITenantsSyncTenantAuthConfigRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tenantId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "tenantName": {
+            "type": "string"
+          },
+          "tenantSlug": {
+            "type": "string"
+          },
+          "primaryAuthMethod": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "allowPhoneAuth": {
+            "type": "boolean"
+          },
+          "allowEmailAuth": {
+            "type": "boolean"
+          },
+          "otpCodeLength": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "otpExpiryMinutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "smsProvider": {
+            "type": "string",
+            "nullable": true
+          },
+          "requireSmsVerification": {
+            "type": "boolean"
+          },
+          "isEnabled": {
+            "type": "boolean"
+          }
+        }
+      },
+      "IdentityServiceAPITenantsUpdateTenantRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tenantId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "tenantStatus": {
+            "$ref": "#/components/schemas/IdentityServiceCoreEntitiesTenantStatus"
+          },
+          "logoUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryAuthMethod": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "allowPhoneAuth": {
+            "type": "boolean"
+          },
+          "allowEmailAuth": {
+            "type": "boolean"
+          },
+          "otpCodeLength": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "otpExpiryMinutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "smsProvider": {
+            "type": "string",
+            "nullable": true
+          },
+          "requireSmsVerification": {
+            "type": "boolean"
+          }
+        }
+      },
+      "IdentityServiceAPITenantsUpdateTenantThemeRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "presetId": {
+            "type": "string",
+            "nullable": true
+          },
+          "colors": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/IdentityServiceAPITenantsThemeColorsDto"
+              }
+            ]
+          },
+          "darkColors": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/IdentityServiceAPITenantsThemeColorsDto"
+              }
+            ]
+          },
+          "typography": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/IdentityServiceAPITenantsThemeTypographyDto"
+              }
+            ]
+          },
+          "logoContentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "faviconContentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "customLogoUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "customFaviconUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "customCss": {
+            "type": "string",
+            "nullable": true
+          },
+          "headerHtml": {
+            "type": "string",
+            "nullable": true
+          },
+          "footerHtml": {
+            "type": "string",
+            "nullable": true
+          },
+          "showPoweredBy": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "supportEmail": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceUseCasesTeamDTOsTeamMemberDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "externalId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "userId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "role": {
+            "type": "string"
+          },
+          "invitedByUserId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "joinedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "IdentityServiceAPITeamAcceptInvitationRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "IdentityServiceUseCasesTeamDTOsTeamInvitationDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "externalId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "email": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "invitedByUserId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "invitedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "acceptedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPITeamInviteTeamMemberRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "role": {
+            "$ref": "#/components/schemas/IdentityServiceCoreEnumsTeamRole"
+          }
+        }
+      },
+      "IdentityServiceCoreEnumsTeamRole": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Owner",
+          "Manager",
+          "Staff"
+        ],
+        "enum": [
+          0,
+          1,
+          2
+        ]
+      },
+      "IdentityServiceAPITeamListInvitationsResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "invitations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentityServiceUseCasesTeamDTOsTeamInvitationDto"
+            }
+          }
+        }
+      },
+      "IdentityServiceAPITeamListMembersResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "members": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentityServiceUseCasesTeamDTOsTeamMemberDto"
+            }
+          }
+        }
+      },
+      "IdentityServiceAPITeamRemoveMemberRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "IdentityServiceAPITeamRevokeInvitationRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "IdentityServiceAPITeamUpdateRoleRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "newRole": {
+            "$ref": "#/components/schemas/IdentityServiceCoreEnumsTeamRole"
+          }
+        }
+      },
+      "IdentityServiceAPIPrivacyCancelAccountDeletionResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "IdentityServiceAPIPrivacyConfirmAccountDeletionResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "status": {
+            "type": "string"
+          },
+          "scheduledDeletionDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "IdentityServiceAPIPrivacyConfirmAccountDeletionRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "confirmationToken": {
+            "type": "string"
+          }
+        }
+      },
+      "IdentityServiceAPIPrivacyGetConsentResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "consents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentityServiceAPIPrivacyConsentItemResponse"
+            }
+          }
+        }
+      },
+      "IdentityServiceAPIPrivacyConsentItemResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "consentType": {
+            "type": "string"
+          },
+          "isGranted": {
+            "type": "boolean"
+          },
+          "grantedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "revokedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPIPrivacyGetDataExportStatusResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "status": {
+            "type": "string"
+          },
+          "requestedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "downloadUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileSizeBytes": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPIPrivacyRequestAccountDeletionResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "scheduledDeletionDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "confirmationEmailSent": {
+            "type": "boolean"
+          }
+        }
+      },
+      "IdentityServiceAPIPrivacyRequestAccountDeletionRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "reason": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPIPrivacyRequestDataExportResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "status": {
+            "type": "string"
+          },
+          "estimatedCompletionMinutes": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "IdentityServiceAPIPrivacyUpdateConsentResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "updated": {
+            "type": "boolean"
+          }
+        }
+      },
+      "IdentityServiceAPIPrivacyUpdateConsentRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "consents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentityServiceAPIPrivacyConsentItemRequest"
+            }
+          }
+        }
+      },
+      "IdentityServiceAPIPrivacyConsentItemRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "consentType": {
+            "type": "string"
+          },
+          "isGranted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "IdentityServiceAPIMeChangePasswordRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "currentPassword": {
+            "type": "string"
+          },
+          "newPassword": {
+            "type": "string"
+          }
+        }
+      },
+      "IdentityServiceAPIMeBusinessProfileResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "logoUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "website": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine1": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine2": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "cuisineType": {
+            "type": "string",
+            "nullable": true
+          },
+          "operatingHoursJson": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPIMeUserPreferenceResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "language": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "dateFormat": {
+            "type": "string"
+          },
+          "wizardCompleted": {
+            "type": "boolean"
+          },
+          "checklistDismissed": {
+            "type": "boolean"
+          }
+        }
+      },
+      "IdentityServiceAPIMeUserProfileResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPIMeListSessionsResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sessions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentityServiceAPIMeSessionItem"
+            }
+          }
+        }
+      },
+      "IdentityServiceAPIMeSessionItem": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "ipAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "start": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lastAccess": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "clients": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "IdentityServiceAPIMeUpdateBusinessProfileRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "logoUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "website": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine1": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine2": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "cuisineType": {
+            "type": "string",
+            "nullable": true
+          },
+          "operatingHoursJson": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPIMeUpdatePreferencesRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "language": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "dateFormat": {
+            "type": "string"
+          },
+          "wizardCompleted": {
+            "type": "boolean"
+          },
+          "checklistDismissed": {
+            "type": "boolean"
+          }
+        }
+      },
+      "IdentityServiceAPIMeUpdateProfileResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "updated": {
+            "type": "boolean"
+          }
+        }
+      },
+      "IdentityServiceAPIMeUpdateProfileRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPILogIngestionLogBatchResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "ingested": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "IdentityServiceAPILogIngestionLogBatchRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "entries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentityServiceAPILogIngestionLogEntry"
+            }
+          }
+        }
+      },
+      "IdentityServiceAPILogIngestionLogEntry": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "level": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "sessionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "deviceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "platform": {
+            "type": "string",
+            "nullable": true
+          },
+          "appVersion": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPIHealthAggregatorAggregateHealthResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "overallStatus": {
+            "type": "string"
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentityServiceAPIHealthAggregatorServiceHealthResult"
+            }
+          }
+        }
+      },
+      "IdentityServiceAPIHealthAggregatorServiceHealthResult": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "responseTimeMs": {
+            "type": "number",
+            "format": "double"
+          },
+          "lastChecked": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "IdentityServiceAPIAuthGetAuthMethodsResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "primaryMethod": {
+            "$ref": "#/components/schemas/IdentityAbstractionsModelsAuthMethod"
+          },
+          "allowedMethods": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentityAbstractionsModelsAuthMethod"
+            }
+          },
+          "otpCodeLength": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "otpExpiryMinutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "requireSmsVerification": {
+            "type": "boolean"
+          }
+        }
+      },
+      "IdentityAbstractionsModelsAuthMethod": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "UsernamePassword",
+          "PhoneOtp",
+          "EmailOtp",
+          "Social"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "IdentityServiceAPIAuthLoginResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "tokenType": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiresIn": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userInfo": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/IdentityAbstractionsModelsUserInfo"
+              }
+            ]
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityAbstractionsModelsUserInfo": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sub": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailVerified": {
+            "type": "boolean"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumberVerified": {
+            "type": "boolean"
+          },
+          "givenName": {
+            "type": "string",
+            "nullable": true
+          },
+          "familyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "preferredUsername": {
+            "type": "string",
+            "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tenantId": {
+            "type": "string",
+            "format": "guid",
+            "nullable": true
+          },
+          "customClaims": {
+            "type": "object",
+            "nullable": true,
+            "additionalProperties": {}
+          }
+        }
+      },
+      "IdentityServiceAPIAuthLoginRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "method": {
+            "$ref": "#/components/schemas/IdentityAbstractionsModelsAuthMethod"
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "otpCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "string",
+            "format": "guid",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPIAuthLogoutResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPIAuthLogoutRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "IdentityServiceAPIAuthRefreshResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "tokenType": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiresIn": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPIAuthRefreshRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "refreshToken": {
+            "type": "string"
+          }
+        }
+      },
+      "IdentityServiceAPIAuthSendOtpResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "expiresIn": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "smsSent": {
+            "type": "boolean"
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPIAuthSendOtpRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/IdentityAbstractionsModelsOtpType"
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "tenantId": {
+            "type": "string",
+            "format": "guid",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityAbstractionsModelsOtpType": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Sms",
+          "Email"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "IdentityServiceAPIAuthVerifyOtpResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "tokenType": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiresIn": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userInfo": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/IdentityAbstractionsModelsUserInfo"
+              }
+            ]
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPIAuthVerifyOtpRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "identifier": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "tenantId": {
+            "type": "string",
+            "format": "guid",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceUseCasesApiKeysDTOsCreateApiKeyResponseDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "externalId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "key": {
+            "type": "string"
+          },
+          "keyPrefix": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rateLimitTier": {
+            "type": "string"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceAPIApiKeysCreateApiKeyRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentityServiceCoreEnumsApiKeyScope"
+            }
+          },
+          "rateLimitTier": {
+            "$ref": "#/components/schemas/IdentityServiceCoreEnumsRateLimitTier"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "IdentityServiceCoreEnumsApiKeyScope": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "MenusRead",
+          "MenusWrite",
+          "TenantRead"
+        ],
+        "enum": [
+          0,
+          1,
+          2
+        ]
+      },
+      "IdentityServiceCoreEnumsRateLimitTier": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Standard",
+          "Premium"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "IdentityServiceUseCasesApiKeysDTOsApiKeyDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "externalId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "keyPrefix": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rateLimitTier": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastUsedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "IdentityServiceAPIApiKeysGetByIdRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "IdentityServiceAPIApiKeysListApiKeysResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "apiKeys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentityServiceUseCasesApiKeysDTOsApiKeyDto"
+            }
+          }
+        }
+      },
+      "IdentityServiceAPIApiKeysRevokeRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "IdentityServiceAPIApiKeysValidateApiKeyResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "apiKeyId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tenantId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rateLimitTier": {
+            "type": "string"
+          }
+        }
+      },
+      "IdentityServiceAPIApiKeysValidateApiKeyRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "rawKey": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "JWTBearerAuth": {
+        "type": "http",
+        "description": "Enter a JWT token to authorize the requests...",
+        "scheme": "Bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

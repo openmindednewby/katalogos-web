@@ -1,0 +1,599 @@
+{
+  "x-generator": "NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))",
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PaymentService API",
+    "description": "Subscription Billing, Pricing Plans, and Payment Management API",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5018"
+    }
+  ],
+  "paths": {
+    "/api/v1/subscriptions/current": {
+      "delete": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "operationId": "PaymentServiceAPISubscriptionsCancelSubscription",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "user"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "operationId": "PaymentServiceAPISubscriptionsGetCurrentSubscription",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentServiceUseCasesDTOsSubscriptionDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "user"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/subscriptions/current/plan": {
+      "patch": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "operationId": "PaymentServiceAPISubscriptionsChangePlan",
+        "requestBody": {
+          "x-name": "ChangePlanRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentServiceAPISubscriptionsChangePlanRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "user"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/subscriptions/features/{featureCode}": {
+      "get": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "operationId": "PaymentServiceAPISubscriptionsCheckFeatureAccess",
+        "parameters": [
+          {
+            "name": "featureCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentServiceCoreInterfacesFeatureAccessResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "user"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/subscriptions": {
+      "post": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "operationId": "PaymentServiceAPISubscriptionsCreateSubscription",
+        "requestBody": {
+          "x-name": "CreateSubscriptionRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentServiceAPISubscriptionsCreateSubscriptionRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentServiceUseCasesDTOsCreateSubscriptionResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "user"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/pricing-plans": {
+      "get": {
+        "tags": [
+          "Pricing-Plans"
+        ],
+        "operationId": "PaymentServiceAPIPricingPlansGetPricingPlans",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentServiceUseCasesDTOsPricingPlanDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/billing/portal-session": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "operationId": "PaymentServiceAPIBillingCreatePortalSession",
+        "requestBody": {
+          "x-name": "CreatePortalSessionRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentServiceAPIBillingCreatePortalSessionRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentServiceAPIBillingCreatePortalSessionResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "user"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/billing/history": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "operationId": "PaymentServiceAPIBillingGetBillingHistory",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentServiceUseCasesDTOsBillingHistoryDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "user"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PaymentServiceAPISubscriptionsChangePlanRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "newPlanExternalId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "billingCycle": {
+            "type": "string"
+          }
+        }
+      },
+      "PaymentServiceCoreInterfacesFeatureAccessResult": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "canAccess": {
+            "type": "boolean"
+          },
+          "limit": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isUnlimited": {
+            "type": "boolean"
+          },
+          "requiredPlan": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentPlan": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "PaymentServiceAPISubscriptionsCheckFeatureAccessRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PaymentServiceUseCasesDTOsCreateSubscriptionResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "subscriptionExternalId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "status": {
+            "type": "string"
+          },
+          "clientSecret": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "PaymentServiceAPISubscriptionsCreateSubscriptionRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "planExternalId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "billingCycle": {
+            "type": "string"
+          }
+        }
+      },
+      "PaymentServiceUseCasesDTOsSubscriptionDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "planExternalId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "planName": {
+            "type": "string"
+          },
+          "planTier": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "billingCycle": {
+            "type": "string"
+          },
+          "monthlyPrice": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "annualPrice": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "currentPeriodStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "currentPeriodEnd": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "trialEndDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "cancellationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "showWatermark": {
+            "type": "boolean"
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentServiceUseCasesDTOsFeatureLimitDto"
+            }
+          }
+        }
+      },
+      "PaymentServiceUseCasesDTOsFeatureLimitDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "featureCode": {
+            "type": "string"
+          },
+          "limitType": {
+            "type": "string"
+          },
+          "limitValue": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isEnabled": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PaymentServiceUseCasesDTOsPricingPlanDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "tier": {
+            "type": "string"
+          },
+          "monthlyPriceUsd": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "annualPriceUsd": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "displayOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentServiceUseCasesDTOsFeatureLimitDto"
+            }
+          }
+        }
+      },
+      "PaymentServiceAPIBillingCreatePortalSessionResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "PaymentServiceAPIBillingCreatePortalSessionRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "returnUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "PaymentServiceUseCasesDTOsBillingHistoryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "payments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentServiceUseCasesDTOsPaymentDto"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PaymentServiceUseCasesDTOsPaymentDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "amount": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "processedDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "invoiceUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiptUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "PaymentServiceAPIBillingGetBillingHistoryRequest": {
+        "type": "object",
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "JWTBearerAuth": {
+        "type": "http",
+        "description": "Enter a JWT token to authorize the requests...",
+        "scheme": "Bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

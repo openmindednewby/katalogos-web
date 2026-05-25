@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katalogos — Landing Hero Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* P-01 Terracotta Warm */
+    --primary: #b04632;
+    --accent: #dca85a;
+    --gray-900: #1c1410;
+    --gray-700: #4d3e34;
+    --gray-300: #d3c5b6;
+    --gray-100: #f4ede2;
+    --success: #5a8a3d;
+    --error: #a83232;
+    --bg: var(--gray-100);
+    --text: var(--gray-900);
+    --muted: var(--gray-700);
+    --border: var(--gray-300);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Manrope', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 64px 24px;
+    text-align: center;
+  }
+
+  .wordmark {
+    font-size: 96px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 24px;
+    color: var(--gray-900);
+  }
+
+  .tagline {
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--muted);
+    letter-spacing: -0.01em;
+    max-width: 620px;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 48px;
+  }
+  .cta {
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 12px 22px;
+    border-radius: 6px;
+    border: 1px solid var(--primary);
+    background: var(--primary);
+    color: white;
+    cursor: pointer;
+    letter-spacing: -0.01em;
+  }
+  .cta.secondary {
+    background: transparent;
+    color: var(--gray-900);
+    border-color: var(--border);
+  }
+
+  .footer-attribution {
+    position: fixed;
+    bottom: 16px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 11px;
+    opacity: 0.6;
+    color: var(--muted);
+  }
+  .footer-attribution a { color: inherit; text-decoration: none; }
+  .footer-attribution a:hover { text-decoration: underline; }
+
+  .variants {
+    margin-top: 96px;
+    padding-top: 48px;
+    border-top: 1px solid var(--border);
+    width: 100%;
+    max-width: 720px;
+  }
+  .variants-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .variant {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .variant:last-child { border-bottom: none; }
+  .v-name { font-size: 11px; color: var(--muted); width: 160px; text-align: left; }
+  .v-mark {
+    font-family: 'Manrope', sans-serif;
+    letter-spacing: -0.02em;
+    color: var(--gray-900);
+  }
+
+  .accent-strip {
+    margin-top: 48px;
+    padding: 20px 24px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    font-size: 13px;
+    color: var(--muted);
+    width: 100%;
+    max-width: 720px;
+  }
+  .pill {
+    padding: 4px 12px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: 'Courier New', monospace;
+  }
+  .pill.success { background: var(--success); color: white; }
+  .pill.error { background: var(--error); color: white; }
+  .pill.live { color: var(--accent); margin-left: auto; }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="wordmark">Katalogos</div>
+  <div class="tagline">Your menu, online — in minutes.</div>
+  <div class="cta-row">
+    <button class="cta">Build your menu</button>
+    <button class="cta secondary">Sign in</button>
+  </div>
+
+  <div class="accent-strip">
+    <span class="pill success">Saved</span>
+    <span class="pill error">Sold out</span>
+    <span style="color: var(--accent); font-weight: 500;">12 items live</span>
+    <span class="pill live">● Live</span>
+  </div>
+
+  <div class="variants">
+    <div class="variants-label">Variant strip</div>
+    <div class="variant">
+      <div class="v-name">Hero (96px / 500)</div>
+      <div class="v-mark" style="font-size: 96px; font-weight: 500;">Katalogos</div>
+    </div>
+    <div class="variant">
+      <div class="v-name">Section (48px / 500)</div>
+      <div class="v-mark" style="font-size: 48px; font-weight: 500;">Katalogos</div>
+    </div>
+    <div class="variant">
+      <div class="v-name">Navbar (24px / 500)</div>
+      <div class="v-mark" style="font-size: 24px; font-weight: 500;">Katalogos</div>
+    </div>
+    <div class="variant">
+      <div class="v-name">Inline (16px / 500)</div>
+      <div class="v-mark" style="font-size: 16px; font-weight: 500;">Katalogos</div>
+    </div>
+    <div class="variant">
+      <div class="v-name">Bold weight (96px / 700)</div>
+      <div class="v-mark" style="font-size: 96px; font-weight: 700;">Katalogos</div>
+    </div>
+    <div class="variant">
+      <div class="v-name">Light weight (96px / 300)</div>
+      <div class="v-mark" style="font-size: 96px; font-weight: 300;">Katalogos</div>
+    </div>
+  </div>
+</section>
+
+<div class="footer-attribution">
+  built by <a href="https://dloizides.com" target="_blank" rel="noopener noreferrer">dloizides.com</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Allow: /menus
+Allow: /questionnaires
+Allow: /pricing
+Allow: /public/
+
+Disallow: /(protected)/
+Disallow: /(auth)/
+
+# Allow public menu pages for SEO
+Allow: /public/menu/
+Allow: /public/menus/
+
+Sitemap: https://app.menuflow.com/sitemap.xml

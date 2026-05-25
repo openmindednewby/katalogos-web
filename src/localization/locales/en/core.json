@@ -1,0 +1,429 @@
+{
+  "welcome": "Welcome",
+  "login": {
+    "title": "Login",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Sign In"
+  },
+  "loading": "Loading...",
+  "app": {
+    "start": "Open up App.tsx to start working on your app!",
+    "title": "Katalogos"
+  },
+  "protected": {
+    "loggedIn": "✅ You are logged in!"
+  },
+  "logout": "Logout",
+  "common": {
+    "refresh": "Refresh",
+    "error": "An error occurred",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "no": "No",
+    "saving": "Saving...",
+    "delete": "Delete",
+    "edit": "Edit",
+    "enable": "Enable",
+    "disable": "Disable",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "showingRange": "Showing {{p1}}-{{p2}} of {{p3}}",
+    "first": "First",
+    "prev": "Prev",
+    "next": "Next",
+    "last": "Last",
+    "pageIndicator": "{{p1}} / {{p2}}",
+    "upload": "+ Upload {{p1}}",
+    "video": "VIDEO",
+    "videoLabel": "Video",
+    "pxUnit": "px",
+    "required": "*",
+    "tenant": "Tenant",
+    "search": "Search",
+    "add": "Add",
+    "print": "Print",
+    "exportCsv": "Export CSV",
+    "exportExcel": "Export Excel",
+    "exportPdf": "Export PDF",
+    "columnChooser": "Columns",
+    "showAll": "Show All",
+    "copy": "Copy",
+    "view": "View",
+    "close": "Close",
+    "closeDialogHint": "Closes this dialog"
+  },
+  "errorBoundary": {
+    "title": "Something went wrong",
+    "message": "An unexpected error occurred. Please try again.",
+    "errorDetails": "Error Details:",
+    "tryAgain": "Try Again",
+    "tryAgainHint": "Reloads the component that crashed"
+  },
+  "pwa": {
+    "installTitle": "Install This App",
+    "installBody": "Add this app to your home screen for the best experience.",
+    "installButton": "Install",
+    "installHint": "Installs this application to your device",
+    "dismiss": "Dismiss",
+    "cancelHint": "Closes the notification",
+    "continueInBrowser": "Continue in browser",
+    "iosTitle": "Add to Home Screen",
+    "iosInstructionTapThe": "Tap the ",
+    "share": "Share",
+    "iosInstructionIconThenSelect": " icon, then select ",
+    "addToHomeScreen": "\"Add to Home Screen\"",
+    "iosInstructionSuffix": " to install this app.",
+    "gotIt": "Got it",
+    "gotItHint": "Closes this notification"
+  },
+  "cookieConsent": {
+    "message": "We use cookies to improve your experience. You can customize your preferences or accept/reject all cookies.",
+    "acceptAll": "Accept All",
+    "rejectAll": "Reject All",
+    "customize": "Customize",
+    "savePreferences": "Save Preferences",
+    "necessaryLabel": "Necessary",
+    "necessaryDescription": "Essential cookies required for the application to function. These cannot be disabled.",
+    "analyticsLabel": "Analytics",
+    "analyticsDescription": "Help us understand how you use the application so we can improve it.",
+    "marketingLabel": "Marketing",
+    "marketingDescription": "Used to deliver relevant advertisements and track campaign effectiveness.",
+    "privacyPolicyLink": "Privacy Policy",
+    "acceptAllHint": "Accept all cookie categories",
+    "rejectAllHint": "Reject all optional cookies",
+    "customizeHint": "Open cookie preference settings",
+    "savePreferencesHint": "Save your cookie preferences",
+    "essentialToggleHint": "Essential cookies are always enabled and cannot be disabled",
+    "analyticsToggleHint": "Toggle analytics cookies on or off",
+    "marketingToggleHint": "Toggle marketing cookies on or off",
+    "privacyLinkHint": "Navigate to the privacy policy page"
+  },
+  "legal": {
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "disclaimer": "",
+      "lastUpdated": "Last updated: {{p1}}",
+      "introduction": {
+        "title": "1. Introduction",
+        "body": "This Privacy Policy explains how we collect, use, disclose, and protect your personal information when you use our cloud-based SaaS platform and related services (collectively, the \"Services\"). This policy applies to all users worldwide and is designed to comply with the EU General Data Protection Regulation (GDPR), the California Consumer Privacy Act and California Privacy Rights Act (CCPA/CPRA), Brazil's Lei Geral de Proteção de Dados (LGPD), Canada's Personal Information Protection and Electronic Documents Act (PIPEDA), Singapore's Personal Data Protection Act (PDPA), Thailand's Personal Data Protection Act (PDPA), China's Personal Information Protection Law (PIPL), and other applicable data protection laws. By using our Services, you acknowledge that you have read and understood this policy."
+      },
+      "dataWeCollect": {
+        "title": "2. Data We Collect",
+        "body": "We collect the following categories of personal information:\n\n• Account Information: name, email address, username, password (hashed), and organization/tenant details.\n• Usage Data: pages visited, features used, timestamps, IP address, browser type, device identifiers, and operating system.\n• Content Data: any content you create, upload, or store through the Services, including menus, templates, quizzes, images, and documents.\n• Communication Data: messages you send to us via support channels or feedback forms.\n• Cookie and Tracking Data: information collected through cookies, web beacons, and similar technologies (see Section 9).\n• Payment Data: if applicable, billing address and payment method details, processed by our third-party payment processor — we do not store full payment card numbers.\n\nWe collect this information directly from you, automatically through your use of the Services, and from third-party service providers that assist us."
+      },
+      "howWeUse": {
+        "title": "3. How We Use Your Data",
+        "body": "We process your personal information for the following purposes:\n\n• Providing the Services: to create and manage your account, authenticate your identity, and deliver the features you use.\n• Improving the Services: to analyze usage patterns, diagnose technical issues, and develop new features.\n• Communication: to send you service-related notifications, security alerts, and respond to your inquiries.\n• Compliance and Security: to detect, prevent, and respond to fraud, abuse, security incidents, and other harmful activity.\n• Legal Obligations: to comply with applicable laws, regulations, legal processes, or enforceable governmental requests.\n• With Your Consent: for any other purpose for which you have given us explicit consent."
+      },
+      "legalBasis": {
+        "title": "4. Legal Basis for Processing (EEA/UK/Switzerland)",
+        "body": "If you are located in the European Economic Area, the United Kingdom, or Switzerland, we process your personal data on the following legal bases under the GDPR:\n\n• Contract Performance: processing necessary to provide the Services you have requested (Article 6(1)(b)).\n• Legitimate Interests: processing necessary for our legitimate interests, such as improving our Services, ensuring security, and preventing fraud, provided these interests are not overridden by your rights (Article 6(1)(f)).\n• Legal Obligation: processing necessary to comply with a legal obligation to which we are subject (Article 6(1)(c)).\n• Consent: where you have given us explicit consent for a specific processing activity, such as marketing communications or optional analytics cookies (Article 6(1)(a)). You may withdraw consent at any time.\n\nWhere we rely on legitimate interests, we conduct balancing tests to ensure your fundamental rights and freedoms are protected."
+      },
+      "dataSharing": {
+        "title": "5. Data Sharing and Third Parties",
+        "body": "We do not sell your personal information to third parties. Under the CCPA/CPRA, we confirm that we have not sold or shared (for cross-context behavioral advertising) personal information of consumers in the preceding 12 months.\n\nWe may share your data with the following categories of recipients:\n\n• Service Providers: trusted third parties who perform services on our behalf (hosting, analytics, email delivery, payment processing), bound by data processing agreements.\n• Business Transfers: in connection with a merger, acquisition, or sale of assets, your data may be transferred as part of that transaction. We will notify you of any such change.\n• Legal Requirements: when required by law, regulation, legal process, or governmental request, or to protect our rights, privacy, safety, or property.\n• With Your Consent: with any other third party where you have provided explicit consent.\n\nAll third-party service providers are contractually obligated to protect your data and may only process it for the specified purposes."
+      },
+      "internationalTransfers": {
+        "title": "6. International Data Transfers",
+        "body": "Your personal information may be transferred to and processed in countries other than your country of residence. These countries may have data protection laws that differ from those of your jurisdiction.\n\nFor transfers from the EEA/UK/Switzerland, we rely on:\n• EU Standard Contractual Clauses (SCCs) approved by the European Commission.\n• Adequacy decisions where the European Commission has determined the destination country provides adequate protection.\n• Your explicit consent where required.\n\nFor transfers from China under the PIPL, we comply with the requirements of the Cyberspace Administration of China, including standard contract filing where applicable.\n\nFor transfers from other jurisdictions (Singapore, Thailand, Brazil, Canada), we ensure compliance with local cross-border transfer requirements and implement appropriate safeguards."
+      },
+      "dataRetention": {
+        "title": "7. Data Retention",
+        "body": "We retain your personal information only for as long as necessary to fulfill the purposes for which it was collected, including to satisfy legal, accounting, or reporting requirements.\n\nSpecific retention periods:\n• Account Data: retained for the duration of your account and up to 30 days after deletion request, to allow for account recovery.\n• Usage and Analytics Data: retained for up to 24 months in anonymized or aggregated form.\n• Content Data: retained until you delete it or close your account, then permanently removed within 90 days.\n• Legal and Compliance Records: retained as required by applicable law (typically 3–7 years depending on jurisdiction).\n• Backup Copies: purged within 90 days following the primary data deletion.\n\nWhen data is no longer required, we securely delete or anonymize it so that it can no longer be associated with you."
+      },
+      "yourRights": {
+        "title": "8. Your Privacy Rights",
+        "body": "Depending on your location, you may have some or all of the following rights regarding your personal information:\n\nUnder EU/UK GDPR:\n• Access: request a copy of your personal data.\n• Rectification: correct inaccurate or incomplete data.\n• Erasure (\"Right to be Forgotten\"): request deletion of your data.\n• Restriction: request that we limit processing of your data.\n• Portability: receive your data in a structured, machine-readable format.\n• Objection: object to processing based on legitimate interests or direct marketing.\n• Withdraw Consent: withdraw consent at any time without affecting prior processing.\n• Lodge a Complaint: file a complaint with your local supervisory authority.\n\nUnder US CCPA/CPRA (California Residents):\n• Right to Know: what personal information we collect, use, disclose, and sell.\n• Right to Delete: request deletion of your personal information.\n• Right to Correct: correct inaccurate personal information.\n• Right to Opt-Out: opt out of the sale or sharing of personal information.\n• Right to Limit Use of Sensitive Personal Information.\n• Non-Discrimination: we will not discriminate against you for exercising your rights.\n\nUnder Brazil LGPD:\n• Confirmation of processing, access, correction, anonymization, portability, deletion, and information about sharing.\n\nUnder Canada PIPEDA:\n• Access, correction, and the ability to challenge compliance.\n\nUnder Singapore/Thailand PDPA:\n• Access, correction, withdrawal of consent, data portability, and erasure.\n\nUnder China PIPL:\n• Right to know, decide, restrict, refuse, access, copy, correct, delete, and request explanation of processing rules.\n\nTo exercise any of these rights, contact us using the details in Section 13. We will respond within the timeframe required by applicable law (typically 30 days under GDPR, 45 days under CCPA). We may need to verify your identity before processing your request."
+      },
+      "cookies": {
+        "title": "9. Cookies and Tracking Technologies",
+        "body": "We use cookies and similar technologies to operate and improve the Services. Our cookie categories are:\n\n• Strictly Necessary: required for the Services to function (authentication, security, load balancing). These cannot be disabled.\n• Analytics: help us understand how users interact with the Services (e.g., page views, feature usage). These are only activated with your consent where required by law.\n• Marketing: used to deliver relevant communications and measure campaign effectiveness. These are only activated with your consent.\n\nYou can manage your cookie preferences at any time through our cookie consent banner. Most browsers also allow you to block or delete cookies through their settings. Note that disabling certain cookies may affect the functionality of the Services."
+      },
+      "childrenPrivacy": {
+        "title": "10. Children's Privacy",
+        "body": "Our Services are not directed to individuals under the age of 16 (or the applicable age of digital consent in your jurisdiction). We do not knowingly collect personal information from children. If we become aware that we have collected personal information from a child without verified parental consent, we will take steps to delete that information promptly. If you believe we have collected data from a child, please contact us immediately."
+      },
+      "dataSecurity": {
+        "title": "11. Data Security",
+        "body": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. These measures include:\n\n• Encryption of data in transit (TLS 1.2+) and at rest (AES-256).\n• Regular security assessments and penetration testing.\n• Access controls and authentication requirements for all personnel.\n• Incident response procedures and breach notification processes.\n• Regular backups with secure storage.\n\nWhile we strive to protect your data, no method of transmission over the Internet or electronic storage is completely secure. We cannot guarantee absolute security but are committed to promptly notifying affected users and relevant authorities in the event of a data breach, as required by applicable law."
+      },
+      "policyChanges": {
+        "title": "12. Changes to This Policy",
+        "body": "We may update this Privacy Policy from time to time to reflect changes in our practices, technologies, legal requirements, or other factors. When we make material changes, we will notify you by posting a prominent notice within the Services or by sending you a direct notification. The \"Last updated\" date at the top of this policy indicates when it was last revised. Your continued use of the Services after the effective date of any changes constitutes your acceptance of the updated policy."
+      },
+      "contact": {
+        "title": "13. Contact Us",
+        "body": "If you have questions about this Privacy Policy, wish to exercise your data rights, or need to file a complaint, you can reach us at:\n\n• Email: privacy@example.com\n• Data Protection Officer: dpo@example.com\n\nFor EU/UK residents, you also have the right to lodge a complaint with your local Data Protection Authority. A list of EU DPAs is available at https://edpb.europa.eu.\n\nFor California residents, you may also contact the California Attorney General's office at https://oag.ca.gov.\n\nWe aim to resolve all complaints and requests within the timeframes required by applicable law."
+      }
+    },
+    "termsOfService": {
+      "title": "Terms of Service",
+      "disclaimer": "",
+      "lastUpdated": "Last updated: {{p1}}",
+      "acceptance": {
+        "title": "1. Acceptance of Terms",
+        "body": "By accessing or using our cloud-based SaaS platform and related services (collectively, the \"Services\"), you agree to be bound by these Terms of Service (\"Terms\"). If you do not agree to these Terms, you must not access or use the Services. These Terms constitute a legally binding agreement between you and us. We may update these Terms from time to time; continued use after changes constitutes acceptance of the revised Terms."
+      },
+      "services": {
+        "title": "2. Description of Services",
+        "body": "We provide a cloud-based SaaS platform for managing digital menus, quizzes, content, notifications, and related business operations. The Services include web and mobile applications, APIs, and associated documentation. We reserve the right to modify, suspend, or discontinue any part of the Services at any time, with reasonable notice where practicable. We will make commercially reasonable efforts to ensure uptime and availability but do not guarantee uninterrupted access."
+      },
+      "userAccounts": {
+        "title": "3. User Accounts and Access",
+        "body": "To use the Services, you must create an account and provide accurate, complete information. You are responsible for:\n\n• Maintaining the confidentiality of your account credentials.\n• All activities that occur under your account.\n• Notifying us immediately of any unauthorized use or security breach.\n• Ensuring that all users within your organization comply with these Terms.\n\nWe reserve the right to suspend or terminate accounts that violate these Terms, pose a security risk, or remain inactive for an extended period."
+      },
+      "acceptableUse": {
+        "title": "4. Acceptable Use",
+        "body": "You agree not to use the Services to:\n\n• Violate any applicable law, regulation, or third-party right.\n• Upload, transmit, or store any content that is unlawful, harmful, threatening, abusive, defamatory, or otherwise objectionable.\n• Attempt to gain unauthorized access to any part of the Services or related systems.\n• Interfere with or disrupt the integrity or performance of the Services.\n• Use the Services for any purpose that is fraudulent or deceptive.\n• Reverse-engineer, decompile, or disassemble any part of the Services.\n• Use automated systems (bots, scrapers) to access the Services without our prior written consent.\n\nWe reserve the right to investigate and take appropriate action against any violation, including account suspension or termination."
+      },
+      "intellectualProperty": {
+        "title": "5. Intellectual Property",
+        "body": "All content, software, trademarks, logos, and intellectual property comprising the Services are owned by us or our licensors and are protected by applicable intellectual property laws worldwide. You may not reproduce, distribute, modify, create derivative works of, publicly display, or otherwise exploit our intellectual property without our prior written consent.\n\nYou retain ownership of any content you upload or create through the Services. By uploading content, you grant us a limited, non-exclusive license to host, store, and display that content solely for the purpose of providing the Services to you."
+      },
+      "dataPrivacy": {
+        "title": "6. Data Privacy",
+        "body": "Your use of the Services is also governed by our Privacy Policy, which describes how we collect, use, and protect your personal information in compliance with GDPR, CCPA/CPRA, LGPD, PIPEDA, PDPA, PIPL, and other applicable data protection laws. By using the Services, you acknowledge that you have read and understood our Privacy Policy."
+      },
+      "paymentTerms": {
+        "title": "7. Payment and Subscription",
+        "body": "If you subscribe to a paid plan, you agree to pay all applicable fees as described at the time of purchase. Fees are non-refundable except as required by applicable law or as expressly stated in these Terms.\n\n• Billing: subscription fees are billed in advance on a recurring basis (monthly or annually).\n• Price Changes: we may change subscription fees with at least 30 days' prior notice. Changes take effect at the next billing cycle.\n• Cancellation: you may cancel your subscription at any time. Access continues until the end of the current billing period.\n• Taxes: you are responsible for all applicable taxes. We will collect and remit taxes where legally required."
+      },
+      "limitationOfLiability": {
+        "title": "8. Limitation of Liability",
+        "body": "To the maximum extent permitted by applicable law:\n\n• The Services are provided \"as is\" and \"as available\" without warranties of any kind, whether express, implied, or statutory.\n• We shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, data, or business opportunities.\n• Our total aggregate liability for any claims arising from or related to these Terms or the Services shall not exceed the amount you have paid us in the 12 months preceding the claim.\n\nSome jurisdictions do not allow the exclusion or limitation of certain warranties or liabilities. In such jurisdictions, our liability is limited to the greatest extent permitted by law. Nothing in these Terms excludes liability for death or personal injury caused by negligence, fraud, or any other liability that cannot be excluded by law."
+      },
+      "indemnification": {
+        "title": "9. Indemnification",
+        "body": "You agree to indemnify, defend, and hold us harmless from and against any claims, damages, losses, liabilities, costs, and expenses (including reasonable legal fees) arising from or related to:\n\n• Your use of the Services.\n• Your violation of these Terms.\n• Your violation of any applicable law or third-party right.\n• Any content you upload, transmit, or store through the Services.\n\nThis indemnification obligation does not apply to the extent that the claim arises from our own negligence or willful misconduct."
+      },
+      "termination": {
+        "title": "10. Termination",
+        "body": "Either party may terminate these Terms at any time by providing written notice. We may also suspend or terminate your access immediately if:\n\n• You breach any provision of these Terms.\n• We are required to do so by law.\n• We reasonably believe your use poses a security risk.\n\nUpon termination, your right to access the Services ceases. We will retain your data for the period specified in our Privacy Policy and make it available for export upon request for up to 30 days following termination."
+      },
+      "disputeResolution": {
+        "title": "11. Dispute Resolution",
+        "body": "We encourage you to contact us first to resolve any disputes informally. If a dispute cannot be resolved informally within 30 days, the following provisions apply based on your jurisdiction:\n\n• EU/EEA Residents: disputes are subject to the jurisdiction of the courts in the member state where you are domiciled. You may also use the EU Online Dispute Resolution platform at https://ec.europa.eu/odr.\n• US Residents: disputes shall be resolved through binding arbitration in accordance with the rules of the American Arbitration Association, unless you opt out within 30 days of accepting these Terms. Class action waivers apply to the extent permitted by law.\n• All Other Jurisdictions: disputes shall be resolved in the competent courts of the jurisdiction in which the company is registered, unless local law mandates a different forum.\n\nNothing in this section limits your right to bring claims before the competent courts of your jurisdiction where required by applicable consumer protection law."
+      },
+      "generalProvisions": {
+        "title": "12. General Provisions",
+        "body": "• Entire Agreement: these Terms, together with our Privacy Policy, constitute the entire agreement between you and us regarding the Services.\n• Severability: if any provision of these Terms is found to be unenforceable, the remaining provisions continue in full force and effect.\n• Waiver: our failure to enforce any right or provision does not constitute a waiver of that right or provision.\n• Assignment: you may not assign your rights or obligations under these Terms without our prior written consent. We may assign our rights and obligations without restriction.\n• Force Majeure: we are not liable for any failure or delay in performance due to circumstances beyond our reasonable control, including natural disasters, war, terrorism, pandemics, labor disputes, government actions, or Internet outages.\n• Notices: we may provide notices to you via email, in-app notifications, or by posting on the Services. You may provide notices to us via the contact information below."
+      },
+      "contact": {
+        "title": "13. Contact Us",
+        "body": "If you have questions about these Terms of Service, please contact us at:\n\n• Email: legal@example.com\n• Address: [Your Company Address]\n\nFor dispute resolution inquiries, please include \"Legal Inquiry\" in the subject line."
+      }
+    },
+    "privacyLinkLabel": "Privacy Policy",
+    "termsLinkLabel": "Terms of Service",
+    "privacyLinkHint": "Navigate to the privacy policy page",
+    "termsLinkHint": "Navigate to the terms of service page"
+  },
+  "errors": {
+    "adminAuth": "Check Keycloak admin permissions and CORS (Access-Control-Allow-Credentials).",
+    "sessionExpired": "Your session has expired. Please sign in again.",
+    "forbidden": "You do not have permission to perform this action.",
+    "featureNotAvailable": "This feature is not available on your current plan.",
+    "maintenanceMode": "The system is currently under maintenance. Please try again later.",
+    "maintenanceEstimate": "Estimated return: {{p1}}",
+    "networkError": "Network error. Please check your connection and try again.",
+    "serverError": "An unexpected server error occurred. Please try again.",
+    "genericError": "Something went wrong. Please try again.",
+    "backgroundRefreshFailed": "Failed to refresh data in the background.",
+    "upgradePrompt": "Upgrade your plan to access this feature.",
+    "modalClose": "Close",
+    "modalDismiss": "Dismiss"
+  },
+  "landing": {
+    "brand": "MenuFlow",
+    "tagline": "Smart tools for modern businesses",
+    "nav": {
+      "menus": "Online Menus",
+      "questionnaires": "Questionnaires",
+      "pricing": "Pricing",
+      "login": "Log In",
+      "register": "Get Started",
+      "dashboard": "Go to Dashboard",
+      "menuHint": "Opens the navigation menu",
+      "menusHint": "Navigate to online menus landing page",
+      "questionnairesHint": "Navigate to questionnaires landing page",
+      "pricingHint": "Navigate to pricing page",
+      "loginHint": "Navigate to the login page",
+      "registerHint": "Navigate to the registration page",
+      "dashboardHint": "Navigate to your dashboard",
+      "homeHint": "Navigate to the home page"
+    },
+    "hub": {
+      "seoTitle": "MenuFlow",
+      "seoDescription": "Create digital menus with QR codes and customizable questionnaires. Two powerful tools to engage your customers.",
+      "title": "Everything your business needs",
+      "subtitle": "Two powerful tools to engage your customers — online menus with QR codes and customizable questionnaires.",
+      "menusTitle": "Online Menus",
+      "menusDescription": "Create beautiful digital menus with QR code access. Perfect for restaurants, cafes, and food businesses.",
+      "menusAction": "Learn More",
+      "menusActionHint": "Navigate to online menus details",
+      "questionnairesTitle": "Questionnaires",
+      "questionnairesDescription": "Build custom surveys and feedback forms to understand your customers better.",
+      "questionnairesAction": "Learn More",
+      "questionnairesActionHint": "Navigate to questionnaires details"
+    },
+    "menus": {
+      "heroTitle": "Digital Menus Made Simple",
+      "heroSubtitle": "Create, manage, and share your restaurant menu online. Generate QR codes for instant table-side access.",
+      "heroCta": "Start Free",
+      "heroCtaHint": "Navigate to registration to start for free",
+      "seoTitle": "Online Menus",
+      "seoDescription": "Create beautiful digital menus with QR code access. Real-time updates, custom branding, and multi-language support.",
+      "features": {
+        "title": "Everything you need for your digital menu",
+        "qrCode": "QR Code Generation",
+        "qrCodeDesc": "Generate unique QR codes for each menu. Customers scan and browse instantly — no app needed.",
+        "liveUpdates": "Real-Time Updates",
+        "liveUpdatesDesc": "Update prices, items, or availability instantly. Changes go live immediately across all QR codes.",
+        "customBranding": "Custom Branding",
+        "customBrandingDesc": "Match your menu to your restaurant's look and feel with custom colors, logos, and themes.",
+        "analytics": "Scan Analytics",
+        "analyticsDesc": "Track how many customers scan your QR codes, when they visit, and which items are most viewed.",
+        "multiLanguage": "Multi-Language Support",
+        "multiLanguageDesc": "Serve international guests with menus in multiple languages.",
+        "offlineAccess": "Works Offline",
+        "offlineAccessDesc": "Customers can browse your menu even with poor connectivity thanks to PWA technology."
+      },
+      "cta": {
+        "title": "Ready to go digital?",
+        "subtitle": "Join hundreds of restaurants already using MenuFlow to serve their customers better.",
+        "button": "Create Your Menu",
+        "buttonHint": "Navigate to registration to create your menu"
+      }
+    },
+    "questionnaires": {
+      "heroTitle": "Customer Feedback, Simplified",
+      "heroSubtitle": "Create engaging surveys and questionnaires to gather valuable insights from your customers.",
+      "heroCta": "Start Free",
+      "heroCtaHint": "Navigate to registration to start for free",
+      "seoTitle": "Questionnaires",
+      "seoDescription": "Create engaging surveys and feedback forms. Ready-made templates, real-time responses, and built-in analysis.",
+      "features": {
+        "title": "Powerful survey tools for any business",
+        "templates": "Ready-Made Templates",
+        "templatesDesc": "Start with professional templates for customer satisfaction, product feedback, and more.",
+        "customizable": "Fully Customizable",
+        "customizableDesc": "Drag and drop questions, add your branding, and create the perfect survey for your needs.",
+        "responses": "Real-Time Responses",
+        "responsesDesc": "Watch responses come in live. Get instant notifications when customers complete your surveys.",
+        "analysis": "Built-In Analysis",
+        "analysisDesc": "Automatic charts and insights from your response data. No spreadsheets needed.",
+        "sharing": "Easy Sharing",
+        "sharingDesc": "Share via link, QR code, or embed in your website. Reach customers wherever they are.",
+        "privacy": "Privacy First",
+        "privacyDesc": "GDPR-compliant data handling. Your customers' data is safe and secure."
+      },
+      "cta": {
+        "title": "Start listening to your customers",
+        "subtitle": "Create your first questionnaire in minutes. No credit card required.",
+        "button": "Create Your Survey",
+        "buttonHint": "Navigate to registration to create your survey"
+      }
+    },
+    "pricing": {
+      "title": "Simple, transparent pricing",
+      "subtitle": "Start free, upgrade when you need more.",
+      "seoTitle": "Pricing",
+      "seoDescription": "Simple, transparent pricing for MenuFlow. Start free, upgrade when you need more.",
+      "free": {
+        "name": "Free",
+        "price": "0",
+        "period": "forever",
+        "cta": "Get Started",
+        "ctaHint": "Sign up for the free plan",
+        "feature1": "1 menu or questionnaire",
+        "feature2": "Basic QR codes",
+        "feature3": "Up to 100 responses/month",
+        "feature4": "Community support"
+      },
+      "pro": {
+        "name": "Professional",
+        "price": "29",
+        "period": "month",
+        "cta": "Start Free Trial",
+        "ctaHint": "Start a free trial of the Professional plan",
+        "feature1": "Unlimited menus & questionnaires",
+        "feature2": "Custom branding",
+        "feature3": "Analytics dashboard",
+        "feature4": "Priority support",
+        "feature5": "Custom domain",
+        "feature6": "API access"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "Contact us",
+        "period": "",
+        "cta": "Contact Sales",
+        "ctaHint": "Contact sales for enterprise pricing",
+        "feature1": "Everything in Professional",
+        "feature2": "Dedicated account manager",
+        "feature3": "SLA guarantee",
+        "feature4": "SSO / SAML",
+        "feature5": "Custom integrations",
+        "feature6": "On-premise option"
+      },
+      "currencySymbol": "$",
+      "perMonth": "/mo"
+    },
+    "footer": {
+      "products": "Products",
+      "company": "Company",
+      "legal": "Legal",
+      "about": "About Us",
+      "aboutHint": "Learn more about our company",
+      "privacyPolicy": "Privacy Policy",
+      "privacyPolicyHint": "Read our privacy policy",
+      "termsOfService": "Terms of Service",
+      "termsOfServiceHint": "Read our terms of service",
+      "copyright": "\u00a9 2026 MenuFlow. All rights reserved."
+    }
+  },
+  "dashboard": {
+    "welcomeBack": "Welcome back, {{p1}}",
+    "welcomeNew": "Welcome to MenuFlow",
+    "subtitleActive": "Here's what's happening with your business",
+    "subtitleEmpty": "Let's get you started — create your first menu or survey in minutes",
+    "menus": {
+      "guidedTitle": "Create Your First Menu",
+      "guidedDescription": "Build a beautiful digital menu for your restaurant. Add categories, items, and prices — then share it with a QR code.",
+      "guidedCta": "Create Menu",
+      "guidedCtaHint": "Navigate to create your first menu",
+      "overviewTitle": "Online Menus",
+      "overviewCta": "View All Menus",
+      "overviewCtaHint": "Navigate to your menus list",
+      "emptyList": "No menus yet. Create your first menu to get started.",
+      "emptyListCta": "Create Menu",
+      "emptyListCtaHint": "Navigate to create a new menu"
+    },
+    "templates": {
+      "guidedTitle": "Create Your First Survey",
+      "guidedDescription": "Build a customer feedback form or quiz. Choose from templates or start from scratch — share via link or QR code.",
+      "guidedCta": "Create Survey",
+      "guidedCtaHint": "Navigate to create your first survey template",
+      "overviewTitle": "Questionnaires",
+      "overviewCta": "View All Templates",
+      "overviewCtaHint": "Navigate to your survey templates",
+      "emptyList": "No templates yet. Create your first survey to get started.",
+      "emptyListCta": "Create Template",
+      "emptyListCtaHint": "Navigate to create a new template"
+    },
+    "tenants": {
+      "title": "Tenant Management",
+      "cta": "Manage Tenants",
+      "ctaHint": "Navigate to tenant management"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "createMenu": "New Menu",
+      "createMenuHint": "Create a new online menu",
+      "createSurvey": "New Survey",
+      "createSurveyHint": "Create a new survey template"
+    }
+  }
+}

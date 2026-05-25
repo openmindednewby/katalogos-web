@@ -1,0 +1,5276 @@
+{
+  "x-generator": "NSwag v14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))",
+  "openapi": "3.0.0",
+  "info": {
+    "title": "OnlineMenu.Web",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://localhost:5006"
+    }
+  ],
+  "paths": {
+    "/api/v1/TenantMenus/{externalId}/translations/{languageCode}": {
+      "delete": {
+        "tags": [
+          "Translations",
+          "Tenantmenus"
+        ],
+        "summary": "Deletes a specific language translation for a menu.",
+        "operationId": "OnlineMenuWebTranslationsDelete",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          },
+          {
+            "name": "languageCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Translations",
+          "Tenantmenus"
+        ],
+        "summary": "Gets the full detail of a single translation for a menu.",
+        "operationId": "OnlineMenuWebTranslationsGetByLanguage",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          },
+          {
+            "name": "languageCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MenuTranslationDetailDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Translations",
+          "Tenantmenus"
+        ],
+        "summary": "Manually updates a translation's content.",
+        "operationId": "OnlineMenuWebTranslationsUpdate",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          },
+          {
+            "name": "languageCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "UpdateTranslationRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTranslationRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/TenantMenus/{externalId}/translations": {
+      "get": {
+        "tags": [
+          "Translations",
+          "Tenantmenus"
+        ],
+        "summary": "Lists all translations for a menu.",
+        "operationId": "OnlineMenuWebTranslationsList",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MenuTranslationSummaryDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/TenantMenus/{externalId}/translations/translate": {
+      "post": {
+        "tags": [
+          "Translations",
+          "Tenantmenus"
+        ],
+        "summary": "Triggers AI translation of a menu into one or more target languages.",
+        "operationId": "OnlineMenuWebTranslationsTranslate",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "TranslateRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TranslateRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/TenantMenus/{externalId}": {
+      "delete": {
+        "tags": [
+          "Tenantmenus"
+        ],
+        "operationId": "OnlineMenuWebMenuDelete",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Tenantmenus"
+        ],
+        "operationId": "OnlineMenuWebMenuGetById",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantMenusDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/TenantMenus/list": {
+      "get": {
+        "tags": [
+          "Tenantmenus"
+        ],
+        "operationId": "OnlineMenuWebMenuList",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListTenantMenusResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/TenantMenus/list/all": {
+      "get": {
+        "tags": [
+          "Tenantmenus"
+        ],
+        "operationId": "OnlineMenuWebMenuListAll",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListAllTenantMenusResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "superUser"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/TenantMenus": {
+      "put": {
+        "tags": [
+          "Tenantmenus"
+        ],
+        "operationId": "OnlineMenuWebMenuUpdate",
+        "requestBody": {
+          "x-name": "UpdateTenantMenusRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTenantMenusRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Tenantmenus"
+        ],
+        "summary": "Create a new Tenant Menu.",
+        "operationId": "OnlineMenuWebTenantMenusCreate",
+        "requestBody": {
+          "x-name": "CreateTenantMenusRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTenantMenusRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTenantMenusResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": ""
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/TenantMenus/{externalId}/activate": {
+      "patch": {
+        "tags": [
+          "Tenantmenus"
+        ],
+        "summary": "Activate a tenant menu to make it publicly visible",
+        "operationId": "OnlineMenuWebTenantMenusActivate",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/TenantMenus/{externalId}/apply-import": {
+      "post": {
+        "tags": [
+          "Tenantmenus"
+        ],
+        "summary": "Applies previously imported menu data to an existing menu.",
+        "operationId": "OnlineMenuWebTenantMenusApplyImport",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "ApplyImportRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplyImportRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/TenantMenus/{externalId}/deactivate": {
+      "patch": {
+        "tags": [
+          "Tenantmenus"
+        ],
+        "summary": "Deactivate a tenant menu to hide it from public view",
+        "operationId": "OnlineMenuWebTenantMenusDeactivate",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/TenantMenus/{externalId}/generate-description": {
+      "post": {
+        "tags": [
+          "Tenantmenus"
+        ],
+        "summary": "Generates an AI-powered description for a menu item.",
+        "operationId": "OnlineMenuWebTenantMenusGenerateDescription",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "GenerateDescriptionRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateDescriptionRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateDescriptionResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/TenantMenus/{externalId}/generate-nutrition": {
+      "post": {
+        "tags": [
+          "Tenantmenus"
+        ],
+        "summary": "Generates AI-estimated nutritional info for a menu item based on its ingredients.\nReturns data for frontend preview; does NOT auto-save.",
+        "operationId": "OnlineMenuWebTenantMenusGenerateNutrition",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "GenerateNutritionRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateNutritionRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateNutritionResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/TenantMenus/import-from-image": {
+      "post": {
+        "tags": [
+          "Tenantmenus"
+        ],
+        "summary": "Accepts a menu image or PDF and returns extracted menu data for user review.",
+        "operationId": "OnlineMenuWebTenantMenusImportFromImage",
+        "requestBody": {
+          "x-name": "ImportFromImageRequest",
+          "description": "",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportFromImageRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImportFromImageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/TenantMenus/{externalId}/schedule": {
+      "delete": {
+        "tags": [
+          "Tenantmenus"
+        ],
+        "summary": "Removes the time-based schedule from a menu.",
+        "operationId": "OnlineMenuWebTenantMenusRemoveSchedule",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Tenantmenus"
+        ],
+        "summary": "Sets or updates a time-based schedule on a menu.",
+        "operationId": "OnlineMenuWebTenantMenusSetSchedule",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "SetMenuScheduleRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetMenuScheduleRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/menus/{menuId}/qr-analytics": {
+      "get": {
+        "tags": [
+          "QR Scans",
+          "Menus"
+        ],
+        "summary": "Authenticated endpoint for menu owners to view QR scan analytics.",
+        "operationId": "OnlineMenuWebQrScansGetAnalytics",
+        "parameters": [
+          {
+            "name": "menuId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QrAnalyticsDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/qr/{menuId}": {
+      "get": {
+        "tags": [
+          "QR Scans",
+          "Qr"
+        ],
+        "summary": "Public endpoint that records a QR code scan and redirects to the public menu page.\nNo authentication required - this is what customers hit when scanning a QR code.",
+        "operationId": "OnlineMenuWebQrScansTrack",
+        "parameters": [
+          {
+            "name": "menuId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": ""
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/api/v1/public/menus/{externalId}": {
+      "get": {
+        "tags": [
+          "Public Menus",
+          "Public"
+        ],
+        "summary": "Public endpoint for viewing active menus without authentication.",
+        "operationId": "OnlineMenuWebPublicMenusGetById",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "description": "Optional BCP-47 language code for serving translated content (e.g., \"es\", \"fr\").",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicMenuDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/public/dietary-tags": {
+      "get": {
+        "tags": [
+          "Public Menus",
+          "Public"
+        ],
+        "summary": "Public endpoint to list system dietary tags without authentication.\nReturns only predefined (system) tags, never tenant-specific custom tags.",
+        "operationId": "OnlineMenuWebPublicMenusListDietaryTags",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DietaryTagDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/public-api/menus/{id}": {
+      "get": {
+        "tags": [
+          "Public API - Menus",
+          "Public-Api"
+        ],
+        "summary": "Public API endpoint to get a menu with full details.\nRequires API key authentication via X-Api-Key header.",
+        "operationId": "OnlineMenuWebPublicApiGetMenuById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicApiMenuDetailResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/v1/public-api/menus/{id}/items": {
+      "get": {
+        "tags": [
+          "Public API - Menus",
+          "Public-Api"
+        ],
+        "summary": "Public API endpoint to get all items for a specific menu (flattened across categories).\nRequires API key authentication via X-Api-Key header.",
+        "operationId": "OnlineMenuWebPublicApiGetMenuItems",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PublicApiMenuItemResponse"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/v1/public-api/menus": {
+      "get": {
+        "tags": [
+          "Public API - Menus",
+          "Public-Api"
+        ],
+        "summary": "Public API endpoint to list active menus for the authenticated tenant.\nRequires API key authentication via X-Api-Key header.",
+        "operationId": "OnlineMenuWebPublicApiListMenus",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicApiPaginatedResponseOfPublicApiMenuResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/v1/TenantMenus/{menuId}/versions/{versionId1}/compare/{versionId2}": {
+      "get": {
+        "tags": [
+          "Tenantmenus"
+        ],
+        "operationId": "OnlineMenuWebMenuVersionsCompare",
+        "parameters": [
+          {
+            "name": "menuId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          },
+          {
+            "name": "versionId1",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          },
+          {
+            "name": "versionId2",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MenuVersionComparisonDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/TenantMenus/{menuId}/versions/{versionId}": {
+      "get": {
+        "tags": [
+          "Tenantmenus"
+        ],
+        "operationId": "OnlineMenuWebMenuVersionsGetById",
+        "parameters": [
+          {
+            "name": "menuId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          },
+          {
+            "name": "versionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MenuVersionDetailDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/TenantMenus/{menuId}/versions": {
+      "get": {
+        "tags": [
+          "Tenantmenus"
+        ],
+        "operationId": "OnlineMenuWebMenuVersionsList",
+        "parameters": [
+          {
+            "name": "menuId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedMenuVersionsDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/TenantMenus/{menuId}/versions/{versionId}/restore": {
+      "post": {
+        "tags": [
+          "Tenantmenus"
+        ],
+        "operationId": "OnlineMenuWebMenuVersionsRestore",
+        "parameters": [
+          {
+            "name": "menuId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          },
+          {
+            "name": "versionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestoreMenuVersionResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/menu-templates": {
+      "get": {
+        "tags": [
+          "Menu Templates",
+          "Menu-Templates"
+        ],
+        "summary": "Lists all available starter menu templates.\nAuthenticated users with any role can browse templates.",
+        "operationId": "OnlineMenuWebMenuTemplatesList",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MenuTemplateDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/api/v1/locations": {
+      "post": {
+        "tags": [
+          "Locations",
+          "Api"
+        ],
+        "summary": "Creates a new location for the current tenant.",
+        "operationId": "OnlineMenuWebLocationsCreate",
+        "requestBody": {
+          "x-name": "CreateLocationRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateLocationRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateLocationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": ""
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Locations",
+          "Api"
+        ],
+        "summary": "Lists all locations for the current tenant.",
+        "operationId": "OnlineMenuWebLocationsList",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocationDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/api/v1/locations/{externalId}": {
+      "delete": {
+        "tags": [
+          "Locations",
+          "Api"
+        ],
+        "summary": "Deletes a location.",
+        "operationId": "OnlineMenuWebLocationsDelete",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Locations",
+          "Api"
+        ],
+        "summary": "Gets a single location by its ExternalId.",
+        "operationId": "OnlineMenuWebLocationsGetById",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Locations",
+          "Api"
+        ],
+        "summary": "Updates an existing location.",
+        "operationId": "OnlineMenuWebLocationsUpdate",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "UpdateLocationRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLocationRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateLocationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/api/v1/experiments": {
+      "post": {
+        "tags": [
+          "Experiments",
+          "Api"
+        ],
+        "summary": "Create a new A/B test experiment for a menu.",
+        "operationId": "OnlineMenuWebExperimentsCreate",
+        "requestBody": {
+          "x-name": "CreateExperimentRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateExperimentRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateExperimentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Experiments",
+          "Api"
+        ],
+        "summary": "List all experiments for the current tenant.",
+        "operationId": "OnlineMenuWebExperimentsList",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListExperimentsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/api/v1/experiments/{experimentId}": {
+      "get": {
+        "tags": [
+          "Experiments",
+          "Api"
+        ],
+        "summary": "Get a specific experiment with its current metrics.",
+        "operationId": "OnlineMenuWebExperimentsGetById",
+        "parameters": [
+          {
+            "name": "experimentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperimentDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/api/v1/experiments/{experimentId}/view": {
+      "post": {
+        "tags": [
+          "Experiments",
+          "Api"
+        ],
+        "summary": "Record a view for a variant of an experiment.\nPublic endpoint called from the public menu page.\nAlways returns 204 regardless of outcome (analytics must not break the public page).",
+        "operationId": "OnlineMenuWebExperimentsRecordView",
+        "parameters": [
+          {
+            "name": "experimentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "RecordExperimentViewRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordExperimentViewRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/api/v1/api/v1/experiments/{experimentId}/start": {
+      "post": {
+        "tags": [
+          "Experiments",
+          "Api"
+        ],
+        "summary": "Start a draft experiment, transitioning it to Running status.",
+        "operationId": "OnlineMenuWebExperimentsStart",
+        "parameters": [
+          {
+            "name": "experimentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/api/v1/experiments/{experimentId}/stop": {
+      "post": {
+        "tags": [
+          "Experiments",
+          "Api"
+        ],
+        "summary": "Stop a running experiment, calculate the winner, and complete it.",
+        "operationId": "OnlineMenuWebExperimentsStop",
+        "parameters": [
+          {
+            "name": "experimentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/dietary-tags": {
+      "post": {
+        "tags": [
+          "Dietary Tags",
+          "Dietary-Tags"
+        ],
+        "summary": "Creates a custom dietary tag for the current tenant.",
+        "operationId": "OnlineMenuWebDietaryTagsCreate",
+        "requestBody": {
+          "x-name": "CreateDietaryTagRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDietaryTagRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateDietaryTagResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": ""
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Dietary Tags",
+          "Dietary-Tags"
+        ],
+        "summary": "Lists available dietary tags (system + tenant custom) for authenticated admin users.",
+        "operationId": "OnlineMenuWebDietaryTagsList",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DietaryTagDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/dietary-tags/{externalId}": {
+      "delete": {
+        "tags": [
+          "Dietary Tags",
+          "Dietary-Tags"
+        ],
+        "summary": "Deletes a custom (non-system) dietary tag.",
+        "operationId": "OnlineMenuWebDietaryTagsDelete",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/CustomDomains": {
+      "post": {
+        "tags": [
+          "Custom Domains",
+          "Customdomains"
+        ],
+        "summary": "Adds a custom domain for the current tenant.",
+        "operationId": "OnlineMenuWebCustomDomainsAdd",
+        "requestBody": {
+          "x-name": "AddCustomDomainRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCustomDomainRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomDomainDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": ""
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Custom Domains",
+          "Customdomains"
+        ],
+        "summary": "Gets the custom domain for the current tenant.\nReturns the domain configuration or null if no domain is configured.",
+        "operationId": "OnlineMenuWebCustomDomainsGetByTenant",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomDomainDto"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/internal/domains/check": {
+      "get": {
+        "tags": [
+          "Custom Domains",
+          "Internal"
+        ],
+        "summary": "Internal endpoint to check if a domain is already claimed.\nReturns 200 if the domain is claimed, 404 if available.\nNo information disclosure — no body returned.",
+        "operationId": "OnlineMenuWebCustomDomainsCheckDomain",
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/public/domains/resolve": {
+      "get": {
+        "tags": [
+          "Custom Domains",
+          "Public"
+        ],
+        "summary": "Public endpoint to resolve a custom domain to a menu ExternalId.\nReturns 200 with the menu ExternalId, or 404 for unknown/inactive domains.",
+        "operationId": "OnlineMenuWebCustomDomainsGetByDomain",
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetByDomainResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/CustomDomains/{externalId}": {
+      "delete": {
+        "tags": [
+          "Custom Domains",
+          "Customdomains"
+        ],
+        "summary": "Removes (revokes) a custom domain.",
+        "operationId": "OnlineMenuWebCustomDomainsRemove",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/CustomDomains/{externalId}/verify": {
+      "post": {
+        "tags": [
+          "Custom Domains",
+          "Customdomains"
+        ],
+        "summary": "Requests re-verification of a custom domain.\nResets the domain to PendingVerification status.",
+        "operationId": "OnlineMenuWebCustomDomainsRequestVerification",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/analytics/menu/{menuId}": {
+      "get": {
+        "tags": [
+          "Analytics",
+          "Analytics"
+        ],
+        "summary": "Authenticated endpoint for menu owners to view detailed menu analytics\nwith date-range filtering, device breakdown, and top-viewed items.",
+        "operationId": "OnlineMenuWebAnalyticsGetMenuAnalyticsDetail",
+        "parameters": [
+          {
+            "name": "menuId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Start of the date range (inclusive). Defaults to 30 days ago.",
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "End of the date range (exclusive). Defaults to end of today.",
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MenuAnalyticsDetailDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/analytics/tenant-summary": {
+      "get": {
+        "tags": [
+          "Analytics",
+          "Analytics"
+        ],
+        "summary": "Authenticated endpoint for tenant admins to view aggregate analytics.",
+        "operationId": "OnlineMenuWebAnalyticsGetTenantSummary",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantAnalyticsSummaryDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/menus/{menuId}/views": {
+      "post": {
+        "tags": [
+          "Analytics",
+          "Menus"
+        ],
+        "summary": "Public endpoint that records a menu item view event.\nNo authentication required — this is called from the public menu page.\nAlways returns 204 NoContent regardless of success or failure\nbecause analytics failures must never break the public page.",
+        "operationId": "OnlineMenuWebAnalyticsTrackMenuItemView",
+        "parameters": [
+          {
+            "name": "menuId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "TrackMenuItemViewRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TrackMenuItemViewRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DeleteTranslationRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "MenuTranslationDetailDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "languageCode": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TranslationStatus"
+          },
+          "contents": {
+            "$ref": "#/components/schemas/TranslatedMenuContents"
+          },
+          "lastUpdatedDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "TranslationStatus": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Pending",
+          "InProgress",
+          "Completed",
+          "Failed",
+          "Stale"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "TranslatedMenuContents": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "menuName": {
+            "type": "string",
+            "nullable": true
+          },
+          "menuDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "featuredSectionTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TranslatedCategory"
+            }
+          }
+        }
+      },
+      "TranslatedCategory": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "originalIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TranslatedMenuItem"
+            }
+          }
+        }
+      },
+      "TranslatedMenuItem": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "originalIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "staffNote": {
+            "type": "string",
+            "nullable": true
+          },
+          "variantGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TranslatedVariantGroup"
+            }
+          },
+          "modifierGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TranslatedModifierGroup"
+            }
+          }
+        }
+      },
+      "TranslatedVariantGroup": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "originalIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "variants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TranslatedVariant"
+            }
+          }
+        }
+      },
+      "TranslatedVariant": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "originalIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "TranslatedModifierGroup": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "originalIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "modifiers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TranslatedModifier"
+            }
+          }
+        }
+      },
+      "TranslatedModifier": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "originalIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "GetTranslationRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "MenuTranslationSummaryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "languageCode": {
+            "type": "string"
+          },
+          "languageName": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TranslationStatus"
+          },
+          "isStale": {
+            "type": "boolean"
+          },
+          "lastUpdatedDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ListTranslationsRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TranslateRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "languageCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "UpdateTranslationRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "contents": {
+            "$ref": "#/components/schemas/TranslatedMenuContents"
+          }
+        }
+      },
+      "DeleteTenantMenusRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TenantMenusDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseResponseDto"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string",
+                "nullable": true
+              },
+              "isActive": {
+                "type": "boolean"
+              },
+              "contents": {
+                "$ref": "#/components/schemas/MenuContents"
+              },
+              "contentsJson": {
+                "type": "string"
+              },
+              "schedule": {
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/MenuSchedule"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "MenuContents": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "titleFont": {
+            "type": "string",
+            "nullable": true
+          },
+          "titleFontSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "backgroundColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "textColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Category"
+            }
+          },
+          "schemaVersion": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "typography": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/GlobalTypography"
+              }
+            ]
+          },
+          "colorScheme": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ColorScheme"
+              }
+            ]
+          },
+          "layout": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/MenuLayoutSettings"
+              }
+            ]
+          },
+          "header": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/HeaderSettings"
+              }
+            ]
+          },
+          "spacing": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SpacingSettings"
+              }
+            ]
+          },
+          "featuredSectionEnabled": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "featuredSectionTitle": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Category": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "backgroundColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "textColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "fontSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "displayOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MenuItem"
+            }
+          },
+          "imageContentId": {
+            "type": "string",
+            "format": "guid",
+            "nullable": true
+          },
+          "videoContentId": {
+            "type": "string",
+            "format": "guid",
+            "nullable": true
+          },
+          "imageSettings": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/MediaSettings"
+              }
+            ]
+          },
+          "videoSettings": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/MediaSettings"
+              }
+            ]
+          },
+          "typography": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CategoryTypography"
+              }
+            ]
+          },
+          "layout": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CategoryLayout"
+              }
+            ]
+          },
+          "styling": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/BoxStyling"
+              }
+            ]
+          }
+        }
+      },
+      "MenuItem": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "isAvailable": {
+            "type": "boolean"
+          },
+          "backgroundColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "textColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "fontSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "displayOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "imageContentId": {
+            "type": "string",
+            "format": "guid",
+            "nullable": true
+          },
+          "videoContentId": {
+            "type": "string",
+            "format": "guid",
+            "nullable": true
+          },
+          "imageSettings": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/MediaSettings"
+              }
+            ]
+          },
+          "videoSettings": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/MediaSettings"
+              }
+            ]
+          },
+          "typography": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ItemTypography"
+              }
+            ]
+          },
+          "priceStyle": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PriceStyle"
+              }
+            ]
+          },
+          "layout": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ItemLayout"
+              }
+            ]
+          },
+          "styling": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/BoxStyling"
+              }
+            ]
+          },
+          "availabilityBadge": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/AvailabilityBadgeStyle"
+              }
+            ]
+          },
+          "badges": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/Badge"
+            }
+          },
+          "tags": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "isFeatured": {
+            "type": "boolean"
+          },
+          "staffNote": {
+            "type": "string",
+            "nullable": true
+          },
+          "featuredOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "variantGroups": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/VariantGroup"
+            }
+          },
+          "modifierGroups": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/ModifierGroup"
+            }
+          },
+          "ingredients": {
+            "type": "string",
+            "nullable": true
+          },
+          "nutritionalInfo": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/NutritionalInfo"
+              }
+            ]
+          },
+          "availableFrom": {
+            "type": "string",
+            "nullable": true
+          },
+          "availableTo": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "MediaSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "position": {
+            "type": "string",
+            "nullable": true
+          },
+          "size": {
+            "type": "string",
+            "nullable": true
+          },
+          "customWidth": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "customHeight": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "fit": {
+            "type": "string",
+            "nullable": true
+          },
+          "borderRadius": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "opacity": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "overlay": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/OverlaySettings"
+              }
+            ]
+          }
+        }
+      },
+      "OverlaySettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "color": {
+            "type": "string",
+            "nullable": true
+          },
+          "opacity": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        }
+      },
+      "ItemTypography": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "nameFontSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "nameFontWeight": {
+            "type": "string",
+            "nullable": true
+          },
+          "nameColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "descriptionFontSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "descriptionFontWeight": {
+            "type": "string",
+            "nullable": true
+          },
+          "descriptionColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "descriptionVisible": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "descriptionMaxLines": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        }
+      },
+      "PriceStyle": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "fontSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "fontWeight": {
+            "type": "string",
+            "nullable": true
+          },
+          "color": {
+            "type": "string",
+            "nullable": true
+          },
+          "position": {
+            "type": "string",
+            "nullable": true
+          },
+          "prefix": {
+            "type": "string",
+            "nullable": true
+          },
+          "suffix": {
+            "type": "string",
+            "nullable": true
+          },
+          "showCurrency": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "currencyPosition": {
+            "type": "string",
+            "nullable": true
+          },
+          "strikethroughWhenUnavailable": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "ItemLayout": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "variant": {
+            "type": "string",
+            "nullable": true
+          },
+          "imagePosition": {
+            "type": "string",
+            "nullable": true
+          },
+          "contentAlignment": {
+            "type": "string",
+            "nullable": true
+          },
+          "minHeight": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "maxWidth": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        }
+      },
+      "BoxStyling": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "padding": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "margin": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "borderWidth": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "borderColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "borderRadius": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "shadowEnabled": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "shadowColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "shadowBlur": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        }
+      },
+      "AvailabilityBadgeStyle": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "show": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "position": {
+            "type": "string",
+            "nullable": true
+          },
+          "unavailableText": {
+            "type": "string",
+            "nullable": true
+          },
+          "unavailableColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "unavailableBackgroundColor": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Badge": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "text": {
+            "type": "string",
+            "nullable": true
+          },
+          "backgroundColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "textColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "icon": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "VariantGroup": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "displayOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isRequired": {
+            "type": "boolean"
+          },
+          "minSelections": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxSelections": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "variants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Variant"
+            }
+          }
+        }
+      },
+      "Variant": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "displayOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isAvailable": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ModifierGroup": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "displayOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isRequired": {
+            "type": "boolean"
+          },
+          "minSelections": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxSelections": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "modifiers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Modifier"
+            }
+          }
+        }
+      },
+      "Modifier": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "priceAdjustment": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "displayOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isAvailable": {
+            "type": "boolean"
+          }
+        }
+      },
+      "NutritionalInfo": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "calories": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "proteinGrams": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "carbsGrams": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "fatGrams": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "fiberGrams": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "sodiumMg": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "servingSize": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CategoryTypography": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "titleFontSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "titleFontWeight": {
+            "type": "string",
+            "nullable": true
+          },
+          "titleColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "descriptionFontSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "descriptionFontWeight": {
+            "type": "string",
+            "nullable": true
+          },
+          "descriptionColor": {
+            "type": "string",
+            "nullable": true
+          },
+          "descriptionVisible": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "CategoryLayout": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "titlePosition": {
+            "type": "string",
+            "nullable": true
+          },
+          "contentAlignment": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemLayout": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemsPerRow": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "collapsible": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "defaultCollapsed": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "GlobalTypography": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "titleFont": {
+            "type": "string",
+            "nullable": true
+          },
+          "titleFontSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "titleFontWeight": {
+            "type": "string",
+            "nullable": true
+          },
+          "bodyFont": {
+            "type": "string",
+            "nullable": true
+          },
+          "bodyFontSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bodyFontWeight": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceFont": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceFontSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "priceFontWeight": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "ColorScheme": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "background": {
+            "type": "string",
+            "nullable": true
+          },
+          "surface": {
+            "type": "string",
+            "nullable": true
+          },
+          "text": {
+            "type": "string",
+            "nullable": true
+          },
+          "textSecondary": {
+            "type": "string",
+            "nullable": true
+          },
+          "accent": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "string",
+            "nullable": true
+          },
+          "border": {
+            "type": "string",
+            "nullable": true
+          },
+          "divider": {
+            "type": "string",
+            "nullable": true
+          },
+          "unavailable": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "MenuLayoutSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "template": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryLayout": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemLayout": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemsPerRow": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "showCategoryDividers": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "showItemDividers": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "HeaderSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "showLogo": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "logoPosition": {
+            "type": "string",
+            "nullable": true
+          },
+          "logoSize": {
+            "type": "string",
+            "nullable": true
+          },
+          "logoContentId": {
+            "type": "string",
+            "format": "guid",
+            "nullable": true
+          },
+          "bannerContentId": {
+            "type": "string",
+            "format": "guid",
+            "nullable": true
+          },
+          "bannerHeight": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "showMenuName": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "showMenuDescription": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "titlePosition": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "SpacingSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "pagePadding": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "categorySpacing": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "itemSpacing": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "contentPadding": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        }
+      },
+      "MenuSchedule": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "scheduledDays": {
+            "$ref": "#/components/schemas/ScheduledDays"
+          },
+          "startTime": {
+            "type": "string"
+          },
+          "endTime": {
+            "type": "string"
+          },
+          "isEnabled": {
+            "type": "boolean"
+          },
+          "timeZoneId": {
+            "type": "string"
+          }
+        }
+      },
+      "ScheduledDays": {
+        "type": "integer",
+        "description": "",
+        "x-enumFlags": true,
+        "x-enumNames": [
+          "None",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Weekdays",
+          "Saturday",
+          "Sunday",
+          "Weekends",
+          "EveryDay"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          4,
+          8,
+          16,
+          31,
+          32,
+          64,
+          96,
+          127
+        ]
+      },
+      "BaseResponseDto": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false,
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastUpdatedDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "GetTenantMenusRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ListTenantMenusResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "menus": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TenantMenusDto"
+            }
+          }
+        }
+      },
+      "ListAllTenantMenusResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "menus": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TenantMenusDto"
+            }
+          }
+        }
+      },
+      "UpdateTenantMenusRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "contents": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/MenuContents"
+              }
+            ]
+          }
+        }
+      },
+      "ActivateTenantMenusRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ApplyImportRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "importedData": {
+            "$ref": "#/components/schemas/ImportedMenuData"
+          },
+          "strategy": {
+            "$ref": "#/components/schemas/MergeStrategy"
+          }
+        }
+      },
+      "ImportedMenuData": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImportedCategory"
+            }
+          }
+        }
+      },
+      "ImportedCategory": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImportedMenuItem"
+            }
+          }
+        }
+      },
+      "ImportedMenuItem": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "dietaryTags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "MergeStrategy": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Replace",
+          "Merge"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "CreateTenantMenusResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "format": "guid"
+          }
+        }
+      },
+      "CreateTenantMenusRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "templateSlug": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "DeactivateTenantMenusRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "GenerateDescriptionResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "GenerateDescriptionRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "itemName": {
+            "type": "string"
+          },
+          "categoryName": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "existingDescription": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "GenerateNutritionResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "calories": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "proteinGrams": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "carbsGrams": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "fatGrams": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "fiberGrams": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "sodiumMg": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "servingSize": {
+            "type": "string",
+            "nullable": true
+          },
+          "detectedAllergens": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "GenerateNutritionRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "itemName": {
+            "type": "string"
+          },
+          "ingredients": {
+            "type": "string"
+          }
+        }
+      },
+      "ImportFromImageResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ImportedMenuData"
+          }
+        }
+      },
+      "ImportFromImageRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "file": {
+            "type": "string",
+            "format": "binary",
+            "nullable": true
+          }
+        }
+      },
+      "RemoveMenuScheduleRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SetMenuScheduleRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "scheduledDays": {
+            "$ref": "#/components/schemas/ScheduledDays"
+          },
+          "startTime": {
+            "type": "string"
+          },
+          "endTime": {
+            "type": "string"
+          },
+          "isEnabled": {
+            "type": "boolean"
+          },
+          "timeZoneId": {
+            "type": "string"
+          }
+        }
+      },
+      "QrAnalyticsDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "totalScans": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "scansToday": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "scansByDay": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScansByDayDto"
+            }
+          }
+        }
+      },
+      "ScansByDayDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "GetQrAnalyticsRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TrackQrScanRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PublicMenuDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseResponseDto"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "tenantId": {
+                "type": "string",
+                "format": "guid"
+              },
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string",
+                "nullable": true
+              },
+              "contents": {
+                "$ref": "#/components/schemas/MenuContents"
+              },
+              "showWatermark": {
+                "type": "boolean"
+              },
+              "availableLanguages": {
+                "type": "array",
+                "nullable": true,
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "GetPublicMenuRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "DietaryTagDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseResponseDto"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string",
+                "nullable": true
+              },
+              "icon": {
+                "type": "string",
+                "nullable": true
+              },
+              "color": {
+                "type": "string",
+                "nullable": true
+              },
+              "isSystem": {
+                "type": "boolean"
+              },
+              "displayOrder": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        ]
+      },
+      "PublicApiMenuDetailResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicApiCategoryResponse"
+            }
+          }
+        }
+      },
+      "PublicApiCategoryResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "displayOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicApiMenuItemResponse"
+            }
+          }
+        }
+      },
+      "PublicApiMenuItemResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "isAvailable": {
+            "type": "boolean"
+          },
+          "displayOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tags": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "isFeatured": {
+            "type": "boolean"
+          }
+        }
+      },
+      "GetMenuByIdRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "GetMenuItemsRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PublicApiPaginatedResponseOfPublicApiMenuResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicApiMenuResponse"
+            }
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/PaginationInfo"
+          }
+        }
+      },
+      "PublicApiMenuResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "categoryCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "itemCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PaginationInfo": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hasMore": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ListMenusRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "MenuVersionComparisonDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version1": {
+            "$ref": "#/components/schemas/MenuVersionListDto"
+          },
+          "version2": {
+            "$ref": "#/components/schemas/MenuVersionListDto"
+          },
+          "snapshot1": {
+            "type": "string"
+          },
+          "snapshot2": {
+            "type": "string"
+          },
+          "differences": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MenuVersionDiff"
+            }
+          }
+        }
+      },
+      "MenuVersionListDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseResponseDto"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "menuId": {
+                "type": "string",
+                "format": "guid"
+              },
+              "versionNumber": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "createdByUserId": {
+                "type": "string",
+                "format": "guid"
+              },
+              "changeDescription": {
+                "type": "string",
+                "nullable": true
+              },
+              "isCurrent": {
+                "type": "boolean"
+              },
+              "menuName": {
+                "type": "string"
+              },
+              "menuDescription": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "MenuVersionDiff": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "changeType": {
+            "type": "string"
+          },
+          "oldValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "newValue": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CompareMenuVersionsRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "MenuVersionDetailDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MenuVersionListDto"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "snapshot": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "GetMenuVersionRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PaginatedMenuVersionsDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MenuVersionListDto"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ListMenuVersionsRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "RestoreMenuVersionResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "newVersionId": {
+            "type": "string",
+            "format": "guid"
+          }
+        }
+      },
+      "RestoreMenuVersionRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "MenuTemplateDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "previewIcon": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateLocationResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          }
+        }
+      },
+      "CreateLocationRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0,
+            "nullable": false
+          },
+          "addressLine1": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0,
+            "nullable": true
+          },
+          "addressLine2": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0,
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0,
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0,
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 0,
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0,
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 0,
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 200,
+            "minLength": 0,
+            "pattern": "^[^@]+@[^@]+$",
+            "nullable": true
+          },
+          "timezone": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 0,
+            "nullable": true
+          },
+          "isHeadquarters": {
+            "type": "boolean"
+          }
+        }
+      },
+      "DeleteLocationRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "LocationDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseResponseDto"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "addressLine1": {
+                "type": "string",
+                "nullable": true
+              },
+              "addressLine2": {
+                "type": "string",
+                "nullable": true
+              },
+              "city": {
+                "type": "string",
+                "nullable": true
+              },
+              "state": {
+                "type": "string",
+                "nullable": true
+              },
+              "postalCode": {
+                "type": "string",
+                "nullable": true
+              },
+              "country": {
+                "type": "string",
+                "nullable": true
+              },
+              "phone": {
+                "type": "string",
+                "nullable": true
+              },
+              "email": {
+                "type": "string",
+                "nullable": true
+              },
+              "timezone": {
+                "type": "string",
+                "nullable": true
+              },
+              "isHeadquarters": {
+                "type": "boolean"
+              },
+              "isActive": {
+                "type": "boolean"
+              }
+            }
+          }
+        ]
+      },
+      "GetLocationByIdRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "UpdateLocationResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          }
+        }
+      },
+      "UpdateLocationRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0,
+            "nullable": false
+          },
+          "addressLine1": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0,
+            "nullable": true
+          },
+          "addressLine2": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0,
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0,
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0,
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 0,
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0,
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 0,
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 200,
+            "minLength": 0,
+            "pattern": "^[^@]+@[^@]+$",
+            "nullable": true
+          },
+          "timezone": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 0,
+            "nullable": true
+          },
+          "isHeadquarters": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CreateExperimentResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "format": "guid"
+          }
+        }
+      },
+      "CreateExperimentRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "menuId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "variantAMenuId": {
+            "type": "string",
+            "description": "Optional. Defaults to MenuId (variant A is the original menu).",
+            "format": "guid"
+          },
+          "variantBConfig": {
+            "description": "Accepts both a JSON string and a JSON object from the frontend.\nStored as a serialized JSON string in the database."
+          }
+        }
+      },
+      "ExperimentDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "menuId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ExperimentStatus"
+          },
+          "variantAMenuId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "variantBConfig": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "winnerVariant": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ExperimentVariant"
+              }
+            ]
+          },
+          "metrics": {
+            "$ref": "#/components/schemas/ExperimentMetrics"
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastUpdatedDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ExperimentStatus": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Draft",
+          "Running",
+          "Completed",
+          "Archived"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "ExperimentVariant": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "A",
+          "B"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "ExperimentMetrics": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "variantAViews": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "variantBViews": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "variantAItemClicks": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "variantBItemClicks": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "variantAAvgTimeSeconds": {
+            "type": "number",
+            "format": "double"
+          },
+          "variantBAvgTimeSeconds": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalViews": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "GetExperimentByIdRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ListExperimentsResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "experiments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExperimentDto"
+            }
+          }
+        }
+      },
+      "RecordExperimentViewRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "variant": {
+            "$ref": "#/components/schemas/ExperimentVariant"
+          }
+        }
+      },
+      "StartExperimentRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "StopExperimentRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CreateDietaryTagResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          }
+        }
+      },
+      "CreateDietaryTagRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "icon": {
+            "type": "string",
+            "nullable": true
+          },
+          "color": {
+            "type": "string",
+            "nullable": true
+          },
+          "displayOrder": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "DeleteDietaryTagRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CustomDomainDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "domainName": {
+            "type": "string"
+          },
+          "ownershipToken": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/CustomDomainStatus"
+          },
+          "verifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastVerificationAttempt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastVerificationError": {
+            "type": "string",
+            "nullable": true
+          },
+          "cnameTarget": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomDomainStatus": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "PendingVerification",
+          "Active",
+          "Failed",
+          "Revoked"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "AddCustomDomainRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "domainName": {
+            "type": "string"
+          }
+        }
+      },
+      "CheckDomainRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "GetByDomainResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "menuExternalId": {
+            "type": "string",
+            "format": "guid"
+          }
+        }
+      },
+      "GetByDomainRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "RemoveCustomDomainRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "RequestVerificationRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "MenuAnalyticsDetailDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "totalScans": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "scansByDay": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScansByDayDto"
+            }
+          },
+          "deviceBreakdown": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeviceBreakdownDto"
+            }
+          },
+          "topViewedItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemViewDto"
+            }
+          }
+        }
+      },
+      "DeviceBreakdownDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "deviceType": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "percentage": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "ItemViewDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "categoryName": {
+            "type": "string"
+          },
+          "itemName": {
+            "type": "string"
+          },
+          "viewCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "GetMenuAnalyticsDetailRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TenantAnalyticsSummaryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "totalMenus": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "activeMenus": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalQrScans": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "scansToday": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "topMenusByScans": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MenuScanSummaryDto"
+            }
+          }
+        }
+      },
+      "MenuScanSummaryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "menuId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "menuName": {
+            "type": "string"
+          },
+          "scanCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "TrackMenuItemViewRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "categoryName": {
+            "type": "string"
+          },
+          "itemName": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "description": "Keycloak OAuth2 login (Authorization Code with PKCE)",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://identity.dloizides.com/realms/OnlineMenu/protocol/openid-connect/auth",
+            "tokenUrl": "https://identity.dloizides.com/realms/OnlineMenu/protocol/openid-connect/token",
+            "scopes": {
+              "openid": "OpenID",
+              "profile": "User profile"
+            }
+          }
+        },
+        "x-clientId": "online-menu-swagger",
+        "x-usePkceWithAuthorizationCodeGrant": true
+      }
+    }
+  }
+}

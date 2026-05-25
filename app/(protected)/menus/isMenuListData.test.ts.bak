@@ -1,0 +1,59 @@
+/**
+ * Tests for isMenuListData type guard (BUG-MENU-014).
+ *
+ * The fix adds a 'menus' property check so arbitrary non-null objects
+ * are no longer accepted as menu list data.
+ */
+
+// Extract the logic to test it directly
+function isMenuListData(value: unknown): boolean {
+  const isNonNullObject = typeof value === 'object' && value !== null;
+  if (!isNonNullObject) return false;
+  return 'menus' in value;
+}
+
+describe('isMenuListData type guard (BUG-MENU-014)', () => {
+  it('returns true for object with menus property', () => {
+    expect(isMenuListData({ menus: [] })).toBe(true);
+  });
+
+  it('returns true for object with menus set to undefined', () => {
+    expect(isMenuListData({ menus: undefined })).toBe(true);
+  });
+
+  it('returns true for object with menus array containing items', () => {
+    expect(isMenuListData({ menus: [{ id: '1', name: 'Test' }] })).toBe(true);
+  });
+
+  it('returns false for null', () => {
+    expect(isMenuListData(null)).toBe(false);
+  });
+
+  it('returns false for undefined', () => {
+    expect(isMenuListData(undefined)).toBe(false);
+  });
+
+  it('returns false for a string', () => {
+    expect(isMenuListData('hello')).toBe(false);
+  });
+
+  it('returns false for a number', () => {
+    expect(isMenuListData(42)).toBe(false);
+  });
+
+  it('returns false for empty object (no menus property)', () => {
+    expect(isMenuListData({})).toBe(false);
+  });
+
+  it('returns false for object with unrelated properties', () => {
+    expect(isMenuListData({ data: [], items: [] })).toBe(false);
+  });
+
+  it('returns false for an array', () => {
+    expect(isMenuListData([1, 2, 3])).toBe(false);
+  });
+
+  it('returns false for object with similar but wrong property name', () => {
+    expect(isMenuListData({ menu: [] })).toBe(false);
+  });
+});

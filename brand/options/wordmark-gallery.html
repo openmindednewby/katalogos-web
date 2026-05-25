@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katalogos — Wordmark &amp; Tagline Options</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;500;700&family=IBM+Plex+Sans+Greek:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,500;6..72,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Reddit+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #fafaf8;
+    --card-bg: #ffffff;
+    --text: #14110f;
+    --muted: #5d5854;
+    --border: #e8e4dd;
+    --accent: #0a0a0a;
+    --green: #2e7d4f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 48px 24px;
+  }
+  .container { max-width: 1280px; margin: 0 auto; }
+  header {
+    text-align: center;
+    margin-bottom: 64px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  header h1 { font-size: 32px; font-weight: 600; letter-spacing: -0.02em; }
+  header p {
+    color: var(--muted);
+    margin-top: 12px;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  h2 {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin: 64px 0 24px 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 32px 28px;
+    transition: border-color 0.15s ease;
+  }
+  .card:hover { border-color: var(--text); }
+  .card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .card-id {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    background: var(--bg);
+    padding: 3px 8px;
+    border-radius: 3px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .font-name { font-size: 13px; font-weight: 600; }
+  .font-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    background: #e8f5e9;
+    color: var(--green);
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+  }
+  .wordmark {
+    font-size: 56px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .wordmark.bold { font-weight: 700; }
+  .wordmark.light { font-weight: 300; }
+  .wordmark.greek { font-size: 56px; }
+  .small-mark { font-size: 18px; font-weight: 500; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--border); }
+  .stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .notes {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    line-height: 1.5;
+  }
+
+  /* font-specific classes */
+  .ff-outfit { font-family: 'Outfit', sans-serif; }
+  .ff-manrope { font-family: 'Manrope', sans-serif; }
+  .ff-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; }
+  .ff-bricolage { font-family: 'Bricolage Grotesque', sans-serif; }
+  .ff-ibm-plex { font-family: 'IBM Plex Sans', 'IBM Plex Sans Greek', sans-serif; }
+  .ff-fraunces { font-family: 'Fraunces', serif; }
+  .ff-newsreader { font-family: 'Newsreader', serif; }
+  .ff-noto-serif { font-family: 'Noto Serif', serif; }
+  .ff-gfs-didot { font-family: 'GFS Didot', serif; }
+  .ff-cormorant { font-family: 'Cormorant', serif; }
+  .ff-reddit { font-family: 'Reddit Sans', sans-serif; }
+  .ff-space { font-family: 'Space Grotesk', sans-serif; }
+
+  /* Tagline section */
+  .tagline-group {
+    margin-bottom: 40px;
+    padding: 24px 28px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .tagline-group-name {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .tagline {
+    font-size: 18px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .tagline:last-child { border-bottom: none; }
+  .tagline-id {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    background: var(--bg);
+    padding: 2px 7px;
+    border-radius: 3px;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+  .how-to-use {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .how-to-use strong { color: var(--accent); }
+  .how-to-use code {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    background: var(--bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Katalogos — Wordmark &amp; Tagline Options</h1>
+    <p>Same 12 fonts and 5 voice categories as Erevna's gallery (so you can compare across both products), inflected for the restaurant / menu vertical. Tell me the IDs you like (e.g. <code>KW-04</code>, <code>KT-02</code>).</p>
+  </header>
+
+  <div class="how-to-use">
+    <strong>How to read this:</strong> KW = Katalogos Wordmark, KT = Katalogos Tagline. Each card shows "Katalogos" rendered in 12 different Google Fonts at 3 weights. Cards with a <span class="badge">GREEK ✓</span> badge correctly render Κατάλογος — others fall back to your system Greek font for that line. Wordmark sizing here is 56px (vs Erevna's 64px) because "Katalogos" is longer — visual weight stays comparable.
+  </div>
+
+  <h2>Wordmark Candidates — Modern Geometric</h2>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-meta">
+        <div>
+          <div class="font-name">Outfit</div>
+          <div class="font-meta">Geometric Sans · 9 weights · Variable</div>
+        </div>
+        <div class="card-id">KW-01</div>
+      </div>
+      <div class="stack ff-outfit">
+        <div class="wordmark light">Katalogos</div>
+        <div class="wordmark">Katalogos</div>
+        <div class="wordmark bold">Katalogos</div>
+        <div class="wordmark greek">Κατάλογος</div>
+      </div>
+      <div class="small-mark ff-outfit">katalogos.dloizides.com</div>
+      <div class="notes">Same font as Erevna (W-01). Cohesive portfolio look — both products feel like sibling brands. Latin only.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-meta">
+        <div>
+          <div class="font-name">Manrope</div>
+          <div class="font-meta">Modern Sans · 7 weights</div>
+        </div>
+        <div class="card-id">KW-02</div>
+      </div>
+      <div class="stack ff-manrope">
+        <div class="wordmark light">Katalogos</div>
+        <div class="wordmark">Katalogos</div>
+        <div class="wordmark bold">Katalogos</div>
+        <div class="wordmark greek">Κατάλογος</div>
+      </div>
+      <div class="small-mark ff-manrope">katalogos.dloizides.com</div>
+      <div class="notes">Friendlier geometric. Slightly warmer than Outfit — leans into restaurant hospitality. Latin only.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-meta">
+        <div>
+          <div class="font-name">Plus Jakarta Sans</div>
+          <div class="font-meta">Modern Sans · 8 weights</div>
+        </div>
+        <div class="card-id">KW-03</div>
+      </div>
+      <div class="stack ff-jakarta">
+        <div class="wordmark light">Katalogos</div>
+        <div class="wordmark">Katalogos</div>
+        <div class="wordmark bold">Katalogos</div>
+        <div class="wordmark greek">Κατάλογος</div>
+      </div>
+      <div class="small-mark ff-jakarta">katalogos.dloizides.com</div>
+      <div class="notes">Open letterforms. Reads well at small sizes — important for menu items and table cards. Latin only.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-meta">
+        <div>
+          <div class="font-name">Bricolage Grotesque</div>
+          <div class="font-meta">Display Sans · Variable · Optical Size</div>
+        </div>
+        <div class="card-id">KW-04</div>
+      </div>
+      <div class="stack ff-bricolage">
+        <div class="wordmark light">Katalogos</div>
+        <div class="wordmark">Katalogos</div>
+        <div class="wordmark bold">Katalogos</div>
+        <div class="wordmark greek">Κατάλογος</div>
+      </div>
+      <div class="small-mark ff-bricolage">katalogos.dloizides.com</div>
+      <div class="notes">Quirky character — the slight irregularity feels handcrafted, fits artisanal restaurant vibe. Latin only.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-meta">
+        <div>
+          <div class="font-name">IBM Plex Sans</div>
+          <div class="font-meta">Technical Sans · 7 weights</div>
+          <div class="badge">GREEK ✓</div>
+        </div>
+        <div class="card-id">KW-05</div>
+      </div>
+      <div class="stack ff-ibm-plex">
+        <div class="wordmark light">Katalogos</div>
+        <div class="wordmark">Katalogos</div>
+        <div class="wordmark bold">Katalogos</div>
+        <div class="wordmark greek">Κατάλογος</div>
+      </div>
+      <div class="small-mark ff-ibm-plex">katalogos.dloizides.com</div>
+      <div class="notes">Clean, professional. Latin and Greek glyphs harmonize beautifully — best practical Latin+Greek wordmark option.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-meta">
+        <div>
+          <div class="font-name">Space Grotesk</div>
+          <div class="font-meta">Geometric Display · 5 weights</div>
+        </div>
+        <div class="card-id">KW-06</div>
+      </div>
+      <div class="stack ff-space">
+        <div class="wordmark light">Katalogos</div>
+        <div class="wordmark">Katalogos</div>
+        <div class="wordmark bold">Katalogos</div>
+        <div class="wordmark greek">Κατάλογος</div>
+      </div>
+      <div class="small-mark ff-space">katalogos.dloizides.com</div>
+      <div class="notes">Slightly futuristic. Tech-forward but with personality in 'a' and 's'. Latin only.</div>
+    </div>
+
+  </div>
+
+  <h2>Wordmark Candidates — Editorial / Serif</h2>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-meta">
+        <div>
+          <div class="font-name">Fraunces</div>
+          <div class="font-meta">Editorial Serif · Variable · Optical Size</div>
+        </div>
+        <div class="card-id">KW-07</div>
+      </div>
+      <div class="stack ff-fraunces">
+        <div class="wordmark light">Katalogos</div>
+        <div class="wordmark">Katalogos</div>
+        <div class="wordmark bold">Katalogos</div>
+        <div class="wordmark greek">Κατάλογος</div>
+      </div>
+      <div class="small-mark ff-fraunces">katalogos.dloizides.com</div>
+      <div class="notes">Magazine-style serif with quirky character. Strong food-editorial fit — feels like a print restaurant guide. Latin only.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-meta">
+        <div>
+          <div class="font-name">Newsreader</div>
+          <div class="font-meta">Editorial Serif · Variable · Optical Size</div>
+        </div>
+        <div class="card-id">KW-08</div>
+      </div>
+      <div class="stack ff-newsreader">
+        <div class="wordmark light">Katalogos</div>
+        <div class="wordmark">Katalogos</div>
+        <div class="wordmark bold">Katalogos</div>
+        <div class="wordmark greek">Κατάλογος</div>
+      </div>
+      <div class="small-mark ff-newsreader">katalogos.dloizides.com</div>
+      <div class="notes">Newspaper feel. Restrained personality — looks "published". Latin only.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-meta">
+        <div>
+          <div class="font-name">Noto Serif</div>
+          <div class="font-meta">Universal Serif · 9 weights</div>
+          <div class="badge">GREEK ✓</div>
+        </div>
+        <div class="card-id">KW-09</div>
+      </div>
+      <div class="stack ff-noto-serif">
+        <div class="wordmark light">Katalogos</div>
+        <div class="wordmark">Katalogos</div>
+        <div class="wordmark bold">Katalogos</div>
+        <div class="wordmark greek">Κατάλογος</div>
+      </div>
+      <div class="small-mark ff-noto-serif">katalogos.dloizides.com</div>
+      <div class="notes">Renders Greek beautifully. Restrained, scholarly. Good fit for upscale restaurants.</div>
+    </div>
+
+  </div>
+
+  <h2>Wordmark Candidates — Greek-Display / Classical</h2>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-meta">
+        <div>
+          <div class="font-name">GFS Didot</div>
+          <div class="font-meta">Modern Greek Didone · Single Weight</div>
+          <div class="badge">GREEK ✓</div>
+        </div>
+        <div class="card-id">KW-10</div>
+      </div>
+      <div class="stack ff-gfs-didot">
+        <div class="wordmark">Katalogos</div>
+        <div class="wordmark greek">Κατάλογος</div>
+      </div>
+      <div class="small-mark ff-gfs-didot">katalogos.dloizides.com</div>
+      <div class="notes">Greek typography classic. Very high-end — taverna-meets-Vogue vibe. Single weight. Most "classical Greek" of all options.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-meta">
+        <div>
+          <div class="font-name">Cormorant</div>
+          <div class="font-meta">Display Serif · 9 weights</div>
+          <div class="badge">GREEK ✓</div>
+        </div>
+        <div class="card-id">KW-11</div>
+      </div>
+      <div class="stack ff-cormorant">
+        <div class="wordmark light">Katalogos</div>
+        <div class="wordmark">Katalogos</div>
+        <div class="wordmark bold">Katalogos</div>
+        <div class="wordmark greek">Κατάλογος</div>
+      </div>
+      <div class="small-mark ff-cormorant">katalogos.dloizides.com</div>
+      <div class="notes">Elegant fashion-magazine feel. Beautiful Greek glyphs. Premium / upscale restaurant positioning.</div>
+    </div>
+
+  </div>
+
+  <h2>Wordmark Candidates — Friendly / Distinctive</h2>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-meta">
+        <div>
+          <div class="font-name">Reddit Sans</div>
+          <div class="font-meta">Modern Sans · 4 weights</div>
+        </div>
+        <div class="card-id">KW-12</div>
+      </div>
+      <div class="stack ff-reddit">
+        <div class="wordmark light">Katalogos</div>
+        <div class="wordmark">Katalogos</div>
+        <div class="wordmark bold">Katalogos</div>
+        <div class="wordmark greek">Κατάλογος</div>
+      </div>
+      <div class="small-mark ff-reddit">katalogos.dloizides.com</div>
+      <div class="notes">Friendly, approachable. Distinctive 'a'. Fits casual / SMB restaurant positioning. Latin only.</div>
+    </div>
+
+  </div>
+
+  <h2>Tagline Candidates — by Voice</h2>
+
+  <div class="tagline-group">
+    <div class="tagline-group-name">Functional</div>
+    <div class="tagline"><span class="tagline-id">KT-01</span>Digital menus that just work.</div>
+    <div class="tagline"><span class="tagline-id">KT-02</span>Your menu, online — in minutes.</div>
+    <div class="tagline"><span class="tagline-id">KT-03</span>From kitchen to QR code.</div>
+  </div>
+
+  <div class="tagline-group">
+    <div class="tagline-group-name">Evocative</div>
+    <div class="tagline"><span class="tagline-id">KT-04</span>Every menu tells a story.</div>
+    <div class="tagline"><span class="tagline-id">KT-05</span>Set the table.</div>
+    <div class="tagline"><span class="tagline-id">KT-06</span>Where the meal begins.</div>
+  </div>
+
+  <div class="tagline-group">
+    <div class="tagline-group-name">Bold / Direct</div>
+    <div class="tagline"><span class="tagline-id">KT-07</span>Menus that don't suck.</div>
+    <div class="tagline"><span class="tagline-id">KT-08</span>Stop printing menus.</div>
+    <div class="tagline"><span class="tagline-id">KT-09</span>The menu, evolved.</div>
+  </div>
+
+  <div class="tagline-group">
+    <div class="tagline-group-name">Greek-hint / Poetic</div>
+    <div class="tagline"><span class="tagline-id">KT-10</span>Καλή όρεξη. Beautifully served.</div>
+    <div class="tagline"><span class="tagline-id">KT-11</span>The catalogue of every taste.</div>
+    <div class="tagline"><span class="tagline-id">KT-12</span>Κατάλογος — the menu, in any language.</div>
+  </div>
+
+  <div class="tagline-group">
+    <div class="tagline-group-name">Indie / Quirky</div>
+    <div class="tagline"><span class="tagline-id">KT-13</span>Hungry guests, faster orders.</div>
+    <div class="tagline"><span class="tagline-id">KT-14</span>Menus, made smarter.</div>
+    <div class="tagline"><span class="tagline-id">KT-15</span>One menu. Every device. No tears.</div>
+  </div>
+
+</div>
+</body>
+</html>

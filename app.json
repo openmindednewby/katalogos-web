@@ -1,0 +1,51 @@
+{
+    "expo":  {
+                 "name":  "Katalogos",
+                 "slug":  "katalogos",
+                 "version":  "1.0.0",
+                 "extra":  {
+                               "env":  "dev"
+                           },
+                 "orientation":  "portrait",
+                 "icon":  "./assets/logo-192-no-background.png",
+                 "userInterfaceStyle":  "light",
+                 "newArchEnabled":  true,
+                 "splash":  {
+                                "image":  "./assets/logo-192-no-background.png",
+                                "resizeMode":  "contain",
+                                "backgroundColor":  "#ffffff"
+                            },
+                 "ios":  {
+                             "supportsTablet":  true
+                         },
+                 "android":  {
+                                 "adaptiveIcon":  {
+                                                      "foregroundImage":  "./assets/logo-192-no-background.png",
+                                                      "backgroundColor":  "#ffffff"
+                                                  },
+                                 "edgeToEdgeEnabled":  true,
+                                 "predictiveBackGestureEnabled":  false
+                             },
+                 "web":  {
+                             "favicon":  "./assets/logo-50-no-background.png",
+                             "name":  "Katalogos — Your menu, online in minutes",
+                             "shortName":  "Katalogos",
+                             "description":  "Build a beautiful digital menu for your restaurant. QR code per table, real-time updates, multi-language. Free trial, no credit card required.",
+                             "lang":  "en",
+                             "themeColor":  "#b04632",
+                             "backgroundColor":  "#f4ede2"
+                         },
+                 "scheme":  "katalogos",
+                 "plugins":  [
+                                 [
+                                     "expo-router",
+                                     {
+                                         "asyncRoutes":  {
+                                                             "web":  true
+                                                         }
+                                     }
+                                 ],
+                                 "expo-secure-store"
+                             ]
+             }
+}

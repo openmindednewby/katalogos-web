@@ -1,0 +1,93 @@
+{
+  "$schema": "./brand.schema.json",
+  "product": "Katalogos",
+  "productGreek": "Κατάλογος",
+  "strategy": "greenfield",
+  "rationale": "Katalogos has no tenant-continuity constraint (no Tag-Heuer-style migration). Full 5-step brand exercise. Distinct visual identity from Erevna by design — they're sibling indie products, not the same brand.",
+  "wordmark": {
+    "id": "KW-02",
+    "fontFamily": "Manrope",
+    "fontFamilyClass": "Modern Sans",
+    "fontProvider": "Google Fonts",
+    "fontUrl": "https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700&display=swap",
+    "weights": [300, 500, 700],
+    "isVariable": false,
+    "supportsGreek": false,
+    "greekFallbackStrategy": "system",
+    "preferredWeight": 500,
+    "letterSpacing": "-0.02em",
+    "notes": "Friendlier geometric than Outfit. Slightly warmer letterforms — fits restaurant hospitality. Differentiates Katalogos from Erevna while staying in the modern-indie-SaaS family. Latin only."
+  },
+  "tagline": {
+    "id": "KT-02",
+    "text": "Your menu, online — in minutes.",
+    "voice": "functional",
+    "angle": "speed-to-deploy",
+    "notes": "Direct value-prop framing. Speaks to the SMB restaurant owner's biggest objection ('digital menus sound complicated'). The em-dash gives it a rhythm beat without feeling formal."
+  },
+  "palette": {
+    "id": "P-01",
+    "name": "Terracotta Warm",
+    "direction": "mediterranean-rustic",
+    "rationale": "Italian trattoria / rustic taverna feel. Clay primary signals warmth and food. Honey accent for highlights. Cream backgrounds keep it inviting rather than aggressive. Pairs well with the Manrope wordmark by giving it a soft, handcrafted context.",
+    "tokens": {
+      "primary": "#b04632",
+      "accent": "#dca85a",
+      "gray-900": "#1c1410",
+      "gray-700": "#4d3e34",
+      "gray-300": "#d3c5b6",
+      "gray-100": "#f4ede2",
+      "success": "#5a8a3d",
+      "error": "#a83232"
+    },
+    "usage": {
+      "primary": "Buttons, links, headers, brand-accent UI elements",
+      "accent": "Focus states, badges, secondary highlights, active indicators",
+      "gray-900": "Primary text",
+      "gray-700": "Body text, secondary text",
+      "gray-300": "Borders, dividers, disabled states",
+      "gray-100": "Surface backgrounds, subtle fills",
+      "success": "Positive states (saved, confirmed, in-stock)",
+      "error": "Negative states (failed, sold-out, validation errors)"
+    }
+  },
+  "typography": {
+    "id": "TY-A",
+    "strategy": "single-font-default-with-tenant-override",
+    "marketingHeading": "Manrope",
+    "marketingBody": "Manrope",
+    "appUi": "Manrope",
+    "appUiWeight": 400,
+    "tenantOverridable": true,
+    "tenantOverrideFeatureName": "Custom Menu Typography",
+    "tenantOverrideRationale": "Restaurants invest heavily in their printed-menu typography. Letting them carry that typography into their digital menu is a real differentiator vs. competitors that lock the font. Marketing positioning: 'Match your printed menu's typography.' Same code path applies to Erevna tenants for free.",
+    "curatedFontLibrary": [
+      { "id": "manrope",        "label": "Manrope",           "category": "modern-geometric", "tier": "free",     "default": true, "weights": [300, 400, 500, 700] },
+      { "id": "inter",          "label": "Inter",             "category": "modern-geometric", "tier": "free",                       "weights": [400, 500, 600] },
+      { "id": "outfit",         "label": "Outfit",            "category": "modern-geometric", "tier": "free",                       "weights": [400, 500, 600] },
+      { "id": "ibm-plex-sans",  "label": "IBM Plex Sans",     "category": "technical-sans",   "tier": "paid",                       "weights": [400, 500, 600], "supportsGreek": true },
+      { "id": "dm-sans",        "label": "DM Sans",           "category": "soft-sans",        "tier": "paid",                       "weights": [400, 500, 600] },
+      { "id": "plus-jakarta",   "label": "Plus Jakarta Sans", "category": "modern-geometric", "tier": "paid",                       "weights": [400, 500, 600] },
+      { "id": "lora",           "label": "Lora",              "category": "editorial-serif",  "tier": "paid",                       "weights": [400, 500, 600] },
+      { "id": "source-serif",   "label": "Source Serif 4",    "category": "editorial-serif",  "tier": "paid",                       "weights": [400, 500, 600] },
+      { "id": "newsreader",     "label": "Newsreader",        "category": "warm-serif",       "tier": "paid",                       "weights": [400, 500, 600] },
+      { "id": "fraunces",       "label": "Fraunces",          "category": "display-serif",    "tier": "paid-full",                  "weights": [400, 500, 700] },
+      { "id": "cormorant",      "label": "Cormorant",         "category": "elegant-serif",    "tier": "paid-full",                  "weights": [400, 500, 600], "supportsGreek": true },
+      { "id": "bricolage",      "label": "Bricolage Grotesque","category": "display-sans",    "tier": "paid-full",                  "weights": [400, 500, 700] }
+    ],
+    "tierMapping": {
+      "trial": "Manrope only",
+      "free-with-ads": "3 free fonts (Manrope, Inter, Outfit)",
+      "paid-no-ads": "9 fonts (adds IBM Plex, DM Sans, Plus Jakarta, Lora, Source Serif, Newsreader)",
+      "paid-full": "Full library — 12 fonts (adds Fraunces, Cormorant, Bricolage Grotesque)"
+    },
+    "fallbackBehavior": "Tenants with no font override get Manrope. New feature for Phase 3.5 — does NOT block launch. Tag Heuer migrates with no font field set; visual change-free since Erevna inherits BaseClient defaults and Katalogos tenants are greenfield."
+  },
+  "appliesTo": [
+    "marketing-landing",
+    "in-app-theme-default",
+    "browser-tab-title",
+    "marketing-emails",
+    "transactional-emails-fallback"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@dloizides/auth-client": ["./node_modules/@dloizides/auth-client"],
+      "@dloizides/auth-client/*": ["./node_modules/@dloizides/auth-client/*"]
+    }
+  }
+}

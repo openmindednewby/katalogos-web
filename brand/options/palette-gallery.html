@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katalogos — Palette Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --frame-bg: #f7f5f0;
+    --frame-text: #1a1815;
+    --frame-muted: #6b6660;
+    --frame-border: #ddd6cc;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { font-family: 'Manrope', system-ui, sans-serif; }
+  body {
+    background: var(--frame-bg);
+    color: var(--frame-text);
+    padding: 48px 24px;
+  }
+  .container { max-width: 1280px; margin: 0 auto; }
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--frame-border);
+  }
+  header h1 { font-size: 32px; font-weight: 600; letter-spacing: -0.02em; }
+  header p {
+    color: var(--frame-muted);
+    margin-top: 12px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+  }
+  .how-to-use {
+    background: white;
+    border: 1px solid var(--frame-border);
+    border-left: 4px solid var(--frame-text);
+    padding: 18px 22px;
+    margin-bottom: 48px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .how-to-use code {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    background: var(--frame-bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  .palette-card {
+    background: white;
+    border: 1px solid var(--frame-border);
+    border-radius: 10px;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+  .palette-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--frame-border);
+  }
+  .palette-id {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    background: var(--frame-bg);
+    padding: 3px 10px;
+    border-radius: 3px;
+    color: var(--frame-muted);
+    letter-spacing: 0.05em;
+  }
+  .palette-name { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
+  .palette-desc { font-size: 13px; color: var(--frame-muted); margin-top: 4px; max-width: 600px; line-height: 1.5; }
+
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 0;
+  }
+  .swatch {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 12px;
+    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    line-height: 1.3;
+  }
+  .swatch-label {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+    opacity: 0.85;
+  }
+  .swatch-hex {
+    opacity: 0.7;
+  }
+
+  .preview {
+    padding: 32px 28px;
+    border-top: 1px solid var(--frame-border);
+  }
+  .preview-card {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid;
+  }
+  .preview-hero {
+    padding: 48px 32px;
+    text-align: center;
+  }
+  .preview-wordmark {
+    font-family: 'Manrope', sans-serif;
+    font-size: 56px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .preview-tagline {
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+  .preview-cta-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 28px;
+  }
+  .preview-cta {
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 18px;
+    border-radius: 5px;
+    border: 1px solid;
+    cursor: pointer;
+    letter-spacing: -0.01em;
+  }
+  .preview-toolbar {
+    padding: 14px 24px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-size: 12px;
+    border-top: 1px solid;
+  }
+  .preview-pill {
+    padding: 4px 10px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+  }
+  .preview-pill.success { background: var(--p-success); color: white; }
+  .preview-pill.error { background: var(--p-error); color: white; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Katalogos — Palette Options</h1>
+    <p>Six restaurant-flavored palettes, each with 8 colors (primary, accent, gray-900, gray-700, gray-300, gray-100, success, error). Each card shows the swatches, then a preview hero rendered in that palette so you can see the wordmark + tagline in context. Tell me the ID you like (e.g. <code>P-03</code>).</p>
+  </header>
+
+  <div class="how-to-use">
+    <strong>What "primary" and "accent" mean here:</strong> primary is the dominant brand color used on buttons, links, headers; accent is the secondary highlight used sparingly for focus / important states. Grays are the neutral scale for text and surfaces. Success/error are semantic states (always green/red but adjusted to fit the palette's warmth).
+  </div>
+
+  <!-- Palette 1: Terracotta Warm -->
+  <div class="palette-card" style="--p-primary:#b04632; --p-accent:#dca85a; --p-g900:#1c1410; --p-g700:#4d3e34; --p-g300:#d3c5b6; --p-g100:#f4ede2; --p-success:#5a8a3d; --p-error:#a83232;">
+    <div class="palette-header">
+      <div>
+        <div class="palette-name">Terracotta Warm</div>
+        <div class="palette-desc">Mediterranean restaurant warmth. Earthy clay primary with honey-mustard accent. Cream backgrounds. Reads "Italian trattoria" or "rustic taverna" — works for warm, family-style restaurants.</div>
+      </div>
+      <div class="palette-id">P-01</div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#b04632;color:white;"><div class="swatch-label">Primary</div><div class="swatch-hex">#b04632</div></div>
+      <div class="swatch" style="background:#dca85a;color:#1c1410;"><div class="swatch-label">Accent</div><div class="swatch-hex">#dca85a</div></div>
+      <div class="swatch" style="background:#1c1410;color:white;"><div class="swatch-label">Gray-900</div><div class="swatch-hex">#1c1410</div></div>
+      <div class="swatch" style="background:#4d3e34;color:white;"><div class="swatch-label">Gray-700</div><div class="swatch-hex">#4d3e34</div></div>
+      <div class="swatch" style="background:#d3c5b6;color:#1c1410;"><div class="swatch-label">Gray-300</div><div class="swatch-hex">#d3c5b6</div></div>
+      <div class="swatch" style="background:#f4ede2;color:#1c1410;"><div class="swatch-label">Gray-100</div><div class="swatch-hex">#f4ede2</div></div>
+      <div class="swatch" style="background:#5a8a3d;color:white;"><div class="swatch-label">Success</div><div class="swatch-hex">#5a8a3d</div></div>
+      <div class="swatch" style="background:#a83232;color:white;"><div class="swatch-label">Error</div><div class="swatch-hex">#a83232</div></div>
+    </div>
+    <div class="preview">
+      <div class="preview-card" style="background:#f4ede2;border-color:#d3c5b6;">
+        <div class="preview-hero">
+          <div class="preview-wordmark" style="color:#1c1410;">Katalogos</div>
+          <div class="preview-tagline" style="color:#4d3e34;">Your menu, online — in minutes.</div>
+          <div class="preview-cta-row">
+            <button class="preview-cta" style="background:#b04632;color:white;border-color:#b04632;">Build your menu</button>
+            <button class="preview-cta" style="background:transparent;color:#1c1410;border-color:#d3c5b6;">Sign in</button>
+          </div>
+        </div>
+        <div class="preview-toolbar" style="border-color:#d3c5b6;background:white;color:#4d3e34;">
+          <span class="preview-pill success">Saved</span>
+          <span class="preview-pill error">Sold out</span>
+          <span style="margin-left:auto;color:#dca85a;">● Live</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Palette 2: Olive Mediterranean -->
+  <div class="palette-card" style="--p-primary:#5e6b3b; --p-accent:#c98a3f; --p-g900:#1a1a14; --p-g700:#454635; --p-g300:#cdc9b5; --p-g100:#f5f3ea; --p-success:#3e7a3e; --p-error:#a13d1f;">
+    <div class="palette-header">
+      <div>
+        <div class="palette-name">Olive Mediterranean</div>
+        <div class="palette-desc">Olive-grove green primary with sun-dried orange accent. Cream backgrounds. Greek / Mediterranean restaurant DNA. Pairs perfectly with the Greek-portfolio aesthetic.</div>
+      </div>
+      <div class="palette-id">P-02</div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#5e6b3b;color:white;"><div class="swatch-label">Primary</div><div class="swatch-hex">#5e6b3b</div></div>
+      <div class="swatch" style="background:#c98a3f;color:white;"><div class="swatch-label">Accent</div><div class="swatch-hex">#c98a3f</div></div>
+      <div class="swatch" style="background:#1a1a14;color:white;"><div class="swatch-label">Gray-900</div><div class="swatch-hex">#1a1a14</div></div>
+      <div class="swatch" style="background:#454635;color:white;"><div class="swatch-label">Gray-700</div><div class="swatch-hex">#454635</div></div>
+      <div class="swatch" style="background:#cdc9b5;color:#1a1a14;"><div class="swatch-label">Gray-300</div><div class="swatch-hex">#cdc9b5</div></div>
+      <div class="swatch" style="background:#f5f3ea;color:#1a1a14;"><div class="swatch-label">Gray-100</div><div class="swatch-hex">#f5f3ea</div></div>
+      <div class="swatch" style="background:#3e7a3e;color:white;"><div class="swatch-label">Success</div><div class="swatch-hex">#3e7a3e</div></div>
+      <div class="swatch" style="background:#a13d1f;color:white;"><div class="swatch-label">Error</div><div class="swatch-hex">#a13d1f</div></div>
+    </div>
+    <div class="preview">
+      <div class="preview-card" style="background:#f5f3ea;border-color:#cdc9b5;">
+        <div class="preview-hero">
+          <div class="preview-wordmark" style="color:#1a1a14;">Katalogos</div>
+          <div class="preview-tagline" style="color:#454635;">Your menu, online — in minutes.</div>
+          <div class="preview-cta-row">
+            <button class="preview-cta" style="background:#5e6b3b;color:white;border-color:#5e6b3b;">Build your menu</button>
+            <button class="preview-cta" style="background:transparent;color:#1a1a14;border-color:#cdc9b5;">Sign in</button>
+          </div>
+        </div>
+        <div class="preview-toolbar" style="border-color:#cdc9b5;background:white;color:#454635;">
+          <span class="preview-pill success">Saved</span>
+          <span class="preview-pill error">Sold out</span>
+          <span style="margin-left:auto;color:#c98a3f;">● Live</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Palette 3: Charcoal Minimal -->
+  <div class="palette-card" style="--p-primary:#0e0e0e; --p-accent:#d4a437; --p-g900:#0e0e0e; --p-g700:#3d3d3d; --p-g300:#d6d6d6; --p-g100:#f7f7f5; --p-success:#1d7e3a; --p-error:#c63b3b;">
+    <div class="palette-header">
+      <div>
+        <div class="palette-name">Charcoal Minimal</div>
+        <div class="palette-desc">Near-black primary with single warm-saffron accent. Almost monochrome. Reads "fine dining" or "designed restaurant" — minimalist, expensive, modern. Closest to Toast / Square aesthetic.</div>
+      </div>
+      <div class="palette-id">P-03</div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#0e0e0e;color:white;"><div class="swatch-label">Primary</div><div class="swatch-hex">#0e0e0e</div></div>
+      <div class="swatch" style="background:#d4a437;color:#0e0e0e;"><div class="swatch-label">Accent</div><div class="swatch-hex">#d4a437</div></div>
+      <div class="swatch" style="background:#0e0e0e;color:white;"><div class="swatch-label">Gray-900</div><div class="swatch-hex">#0e0e0e</div></div>
+      <div class="swatch" style="background:#3d3d3d;color:white;"><div class="swatch-label">Gray-700</div><div class="swatch-hex">#3d3d3d</div></div>
+      <div class="swatch" style="background:#d6d6d6;color:#0e0e0e;"><div class="swatch-label">Gray-300</div><div class="swatch-hex">#d6d6d6</div></div>
+      <div class="swatch" style="background:#f7f7f5;color:#0e0e0e;"><div class="swatch-label">Gray-100</div><div class="swatch-hex">#f7f7f5</div></div>
+      <div class="swatch" style="background:#1d7e3a;color:white;"><div class="swatch-label">Success</div><div class="swatch-hex">#1d7e3a</div></div>
+      <div class="swatch" style="background:#c63b3b;color:white;"><div class="swatch-label">Error</div><div class="swatch-hex">#c63b3b</div></div>
+    </div>
+    <div class="preview">
+      <div class="preview-card" style="background:#f7f7f5;border-color:#d6d6d6;">
+        <div class="preview-hero">
+          <div class="preview-wordmark" style="color:#0e0e0e;">Katalogos</div>
+          <div class="preview-tagline" style="color:#3d3d3d;">Your menu, online — in minutes.</div>
+          <div class="preview-cta-row">
+            <button class="preview-cta" style="background:#0e0e0e;color:white;border-color:#0e0e0e;">Build your menu</button>
+            <button class="preview-cta" style="background:transparent;color:#0e0e0e;border-color:#d6d6d6;">Sign in</button>
+          </div>
+        </div>
+        <div class="preview-toolbar" style="border-color:#d6d6d6;background:white;color:#3d3d3d;">
+          <span class="preview-pill success">Saved</span>
+          <span class="preview-pill error">Sold out</span>
+          <span style="margin-left:auto;color:#d4a437;">● Live</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Palette 4: Cream and Deep Red -->
+  <div class="palette-card" style="--p-primary:#8b1c2b; --p-accent:#c98a3f; --p-g900:#1f1411; --p-g700:#4f3a35; --p-g300:#dec5b8; --p-g100:#fbf2e7; --p-success:#3e7a3e; --p-error:#8b1c2b;">
+    <div class="palette-header">
+      <div>
+        <div class="palette-name">Cream and Deep Red</div>
+        <div class="palette-desc">Wine-bar deep red primary with warm cream backgrounds. Honey accent. Reads "wine bar," "European bistro," "anniversary dinner spot." Slightly more upmarket than terracotta.</div>
+      </div>
+      <div class="palette-id">P-04</div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#8b1c2b;color:white;"><div class="swatch-label">Primary</div><div class="swatch-hex">#8b1c2b</div></div>
+      <div class="swatch" style="background:#c98a3f;color:white;"><div class="swatch-label">Accent</div><div class="swatch-hex">#c98a3f</div></div>
+      <div class="swatch" style="background:#1f1411;color:white;"><div class="swatch-label">Gray-900</div><div class="swatch-hex">#1f1411</div></div>
+      <div class="swatch" style="background:#4f3a35;color:white;"><div class="swatch-label">Gray-700</div><div class="swatch-hex">#4f3a35</div></div>
+      <div class="swatch" style="background:#dec5b8;color:#1f1411;"><div class="swatch-label">Gray-300</div><div class="swatch-hex">#dec5b8</div></div>
+      <div class="swatch" style="background:#fbf2e7;color:#1f1411;"><div class="swatch-label">Gray-100</div><div class="swatch-hex">#fbf2e7</div></div>
+      <div class="swatch" style="background:#3e7a3e;color:white;"><div class="swatch-label">Success</div><div class="swatch-hex">#3e7a3e</div></div>
+      <div class="swatch" style="background:#8b1c2b;color:white;"><div class="swatch-label">Error</div><div class="swatch-hex">#8b1c2b</div></div>
+    </div>
+    <div class="preview">
+      <div class="preview-card" style="background:#fbf2e7;border-color:#dec5b8;">
+        <div class="preview-hero">
+          <div class="preview-wordmark" style="color:#1f1411;">Katalogos</div>
+          <div class="preview-tagline" style="color:#4f3a35;">Your menu, online — in minutes.</div>
+          <div class="preview-cta-row">
+            <button class="preview-cta" style="background:#8b1c2b;color:white;border-color:#8b1c2b;">Build your menu</button>
+            <button class="preview-cta" style="background:transparent;color:#1f1411;border-color:#dec5b8;">Sign in</button>
+          </div>
+        </div>
+        <div class="preview-toolbar" style="border-color:#dec5b8;background:white;color:#4f3a35;">
+          <span class="preview-pill success">Saved</span>
+          <span class="preview-pill error">Sold out</span>
+          <span style="margin-left:auto;color:#c98a3f;">● Live</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Palette 5: Sage and Honey -->
+  <div class="palette-card" style="--p-primary:#7e9183; --p-accent:#e0a85a; --p-g900:#1d1f1a; --p-g700:#4a4d44; --p-g300:#d3d2c4; --p-g100:#f6f5ee; --p-success:#5a8a3d; --p-error:#b04632;">
+    <div class="palette-header">
+      <div>
+        <div class="palette-name">Sage and Honey</div>
+        <div class="palette-desc">Soft sage-green primary with warm honey accent. Off-white backgrounds. Reads "modern brunch place," "farm-to-table," "third-wave cafe." Calmer than other warm palettes — more contemporary.</div>
+      </div>
+      <div class="palette-id">P-05</div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#7e9183;color:white;"><div class="swatch-label">Primary</div><div class="swatch-hex">#7e9183</div></div>
+      <div class="swatch" style="background:#e0a85a;color:#1d1f1a;"><div class="swatch-label">Accent</div><div class="swatch-hex">#e0a85a</div></div>
+      <div class="swatch" style="background:#1d1f1a;color:white;"><div class="swatch-label">Gray-900</div><div class="swatch-hex">#1d1f1a</div></div>
+      <div class="swatch" style="background:#4a4d44;color:white;"><div class="swatch-label">Gray-700</div><div class="swatch-hex">#4a4d44</div></div>
+      <div class="swatch" style="background:#d3d2c4;color:#1d1f1a;"><div class="swatch-label">Gray-300</div><div class="swatch-hex">#d3d2c4</div></div>
+      <div class="swatch" style="background:#f6f5ee;color:#1d1f1a;"><div class="swatch-label">Gray-100</div><div class="swatch-hex">#f6f5ee</div></div>
+      <div class="swatch" style="background:#5a8a3d;color:white;"><div class="swatch-label">Success</div><div class="swatch-hex">#5a8a3d</div></div>
+      <div class="swatch" style="background:#b04632;color:white;"><div class="swatch-label">Error</div><div class="swatch-hex">#b04632</div></div>
+    </div>
+    <div class="preview">
+      <div class="preview-card" style="background:#f6f5ee;border-color:#d3d2c4;">
+        <div class="preview-hero">
+          <div class="preview-wordmark" style="color:#1d1f1a;">Katalogos</div>
+          <div class="preview-tagline" style="color:#4a4d44;">Your menu, online — in minutes.</div>
+          <div class="preview-cta-row">
+            <button class="preview-cta" style="background:#7e9183;color:white;border-color:#7e9183;">Build your menu</button>
+            <button class="preview-cta" style="background:transparent;color:#1d1f1a;border-color:#d3d2c4;">Sign in</button>
+          </div>
+        </div>
+        <div class="preview-toolbar" style="border-color:#d3d2c4;background:white;color:#4a4d44;">
+          <span class="preview-pill success">Saved</span>
+          <span class="preview-pill error">Sold out</span>
+          <span style="margin-left:auto;color:#e0a85a;">● Live</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Palette 7: Forest + Sand -->
+  <div class="palette-card" style="--p-primary:#2f4a35; --p-accent:#c9a87a; --p-g900:#1a1f1a; --p-g700:#3f4a3f; --p-g300:#d2cdb6; --p-g100:#f6f1e3; --p-success:#5e8a3a; --p-error:#9b3a2a;">
+    <div class="palette-header">
+      <div>
+        <div class="palette-name">Deep Forest + Sand</div>
+        <div class="palette-desc">Botanical deep green primary with warm sand accent. Reads "vegetarian / vegan / farm-to-table" or "eco-conscious modern restaurant." Cooler temperature than the warm-earth palettes — more contemporary plant-forward feel.</div>
+      </div>
+      <div class="palette-id">P-07</div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#2f4a35;color:white;"><div class="swatch-label">Primary</div><div class="swatch-hex">#2f4a35</div></div>
+      <div class="swatch" style="background:#c9a87a;color:#1a1f1a;"><div class="swatch-label">Accent</div><div class="swatch-hex">#c9a87a</div></div>
+      <div class="swatch" style="background:#1a1f1a;color:white;"><div class="swatch-label">Gray-900</div><div class="swatch-hex">#1a1f1a</div></div>
+      <div class="swatch" style="background:#3f4a3f;color:white;"><div class="swatch-label">Gray-700</div><div class="swatch-hex">#3f4a3f</div></div>
+      <div class="swatch" style="background:#d2cdb6;color:#1a1f1a;"><div class="swatch-label">Gray-300</div><div class="swatch-hex">#d2cdb6</div></div>
+      <div class="swatch" style="background:#f6f1e3;color:#1a1f1a;"><div class="swatch-label">Gray-100</div><div class="swatch-hex">#f6f1e3</div></div>
+      <div class="swatch" style="background:#5e8a3a;color:white;"><div class="swatch-label">Success</div><div class="swatch-hex">#5e8a3a</div></div>
+      <div class="swatch" style="background:#9b3a2a;color:white;"><div class="swatch-label">Error</div><div class="swatch-hex">#9b3a2a</div></div>
+    </div>
+    <div class="preview">
+      <div class="preview-card" style="background:#f6f1e3;border-color:#d2cdb6;">
+        <div class="preview-hero">
+          <div class="preview-wordmark" style="color:#1a1f1a;">Katalogos</div>
+          <div class="preview-tagline" style="color:#3f4a3f;">Your menu, online — in minutes.</div>
+          <div class="preview-cta-row">
+            <button class="preview-cta" style="background:#2f4a35;color:white;border-color:#2f4a35;">Build your menu</button>
+            <button class="preview-cta" style="background:transparent;color:#1a1f1a;border-color:#d2cdb6;">Sign in</button>
+          </div>
+        </div>
+        <div class="preview-toolbar" style="border-color:#d2cdb6;background:white;color:#3f4a3f;">
+          <span class="preview-pill success">Saved</span>
+          <span class="preview-pill error">Sold out</span>
+          <span style="margin-left:auto;color:#c9a87a;">● Live</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Palette 8: Navy + Cream -->
+  <div class="palette-card" style="--p-primary:#1d2a47; --p-accent:#c2a358; --p-g900:#0e1525; --p-g700:#384359; --p-g300:#cfd0d6; --p-g100:#f6f3e8; --p-success:#2c7a3a; --p-error:#a83a3a;">
+    <div class="palette-header">
+      <div>
+        <div class="palette-name">Navy + Cream</div>
+        <div class="palette-desc">Classic deep navy primary with brass-gold accent on cream backgrounds. Cooler than terracotta or red palettes. Reads "European bistro," "preppy clubby brasserie," "longstanding establishment." Trustworthy.</div>
+      </div>
+      <div class="palette-id">P-08</div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#1d2a47;color:white;"><div class="swatch-label">Primary</div><div class="swatch-hex">#1d2a47</div></div>
+      <div class="swatch" style="background:#c2a358;color:#0e1525;"><div class="swatch-label">Accent</div><div class="swatch-hex">#c2a358</div></div>
+      <div class="swatch" style="background:#0e1525;color:white;"><div class="swatch-label">Gray-900</div><div class="swatch-hex">#0e1525</div></div>
+      <div class="swatch" style="background:#384359;color:white;"><div class="swatch-label">Gray-700</div><div class="swatch-hex">#384359</div></div>
+      <div class="swatch" style="background:#cfd0d6;color:#0e1525;"><div class="swatch-label">Gray-300</div><div class="swatch-hex">#cfd0d6</div></div>
+      <div class="swatch" style="background:#f6f3e8;color:#0e1525;"><div class="swatch-label">Gray-100</div><div class="swatch-hex">#f6f3e8</div></div>
+      <div class="swatch" style="background:#2c7a3a;color:white;"><div class="swatch-label">Success</div><div class="swatch-hex">#2c7a3a</div></div>
+      <div class="swatch" style="background:#a83a3a;color:white;"><div class="swatch-label">Error</div><div class="swatch-hex">#a83a3a</div></div>
+    </div>
+    <div class="preview">
+      <div class="preview-card" style="background:#f6f3e8;border-color:#cfd0d6;">
+        <div class="preview-hero">
+          <div class="preview-wordmark" style="color:#0e1525;">Katalogos</div>
+          <div class="preview-tagline" style="color:#384359;">Your menu, online — in minutes.</div>
+          <div class="preview-cta-row">
+            <button class="preview-cta" style="background:#1d2a47;color:white;border-color:#1d2a47;">Build your menu</button>
+            <button class="preview-cta" style="background:transparent;color:#0e1525;border-color:#cfd0d6;">Sign in</button>
+          </div>
+        </div>
+        <div class="preview-toolbar" style="border-color:#cfd0d6;background:white;color:#384359;">
+          <span class="preview-pill success">Saved</span>
+          <span class="preview-pill error">Sold out</span>
+          <span style="margin-left:auto;color:#c2a358;">● Live</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Palette 9: Aubergine + Ochre -->
+  <div class="palette-card" style="--p-primary:#473052; --p-accent:#d18937; --p-g900:#1c1219; --p-g700:#46394e; --p-g300:#cdc1ce; --p-g100:#f5eff3; --p-success:#3e7a3e; --p-error:#a13d2c;">
+    <div class="palette-header">
+      <div>
+        <div class="palette-name">Aubergine + Ochre</div>
+        <div class="palette-desc">Moody deep purple-brown primary with warm ochre accent. Theatrical, distinctive. Reads "fine dining alternative" or "modern wine bar with edge" — for restaurants that don't want the stock terracotta-or-monochrome split.</div>
+      </div>
+      <div class="palette-id">P-09</div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#473052;color:white;"><div class="swatch-label">Primary</div><div class="swatch-hex">#473052</div></div>
+      <div class="swatch" style="background:#d18937;color:#1c1219;"><div class="swatch-label">Accent</div><div class="swatch-hex">#d18937</div></div>
+      <div class="swatch" style="background:#1c1219;color:white;"><div class="swatch-label">Gray-900</div><div class="swatch-hex">#1c1219</div></div>
+      <div class="swatch" style="background:#46394e;color:white;"><div class="swatch-label">Gray-700</div><div class="swatch-hex">#46394e</div></div>
+      <div class="swatch" style="background:#cdc1ce;color:#1c1219;"><div class="swatch-label">Gray-300</div><div class="swatch-hex">#cdc1ce</div></div>
+      <div class="swatch" style="background:#f5eff3;color:#1c1219;"><div class="swatch-label">Gray-100</div><div class="swatch-hex">#f5eff3</div></div>
+      <div class="swatch" style="background:#3e7a3e;color:white;"><div class="swatch-label">Success</div><div class="swatch-hex">#3e7a3e</div></div>
+      <div class="swatch" style="background:#a13d2c;color:white;"><div class="swatch-label">Error</div><div class="swatch-hex">#a13d2c</div></div>
+    </div>
+    <div class="preview">
+      <div class="preview-card" style="background:#f5eff3;border-color:#cdc1ce;">
+        <div class="preview-hero">
+          <div class="preview-wordmark" style="color:#1c1219;">Katalogos</div>
+          <div class="preview-tagline" style="color:#46394e;">Your menu, online — in minutes.</div>
+          <div class="preview-cta-row">
+            <button class="preview-cta" style="background:#473052;color:white;border-color:#473052;">Build your menu</button>
+            <button class="preview-cta" style="background:transparent;color:#1c1219;border-color:#cdc1ce;">Sign in</button>
+          </div>
+        </div>
+        <div class="preview-toolbar" style="border-color:#cdc1ce;background:white;color:#46394e;">
+          <span class="preview-pill success">Saved</span>
+          <span class="preview-pill error">Sold out</span>
+          <span style="margin-left:auto;color:#d18937;">● Live</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Palette 10: Blush + Sage -->
+  <div class="palette-card" style="--p-primary:#c97a8a; --p-accent:#7e9183; --p-g900:#2a1c1f; --p-g700:#4d4044; --p-g300:#dec5c8; --p-g100:#f7eef0; --p-success:#5a8a5a; --p-error:#a8443d;">
+    <div class="palette-header">
+      <div>
+        <div class="palette-name">Blush + Sage</div>
+        <div class="palette-desc">Soft dusty-pink primary with sage-green accent. Bakery / patisserie / brunch-Instagram aesthetic. Reads "third-wave coffee shop," "modern bakery," "boutique cake studio." Distinctive and current — slightly youth-coded.</div>
+      </div>
+      <div class="palette-id">P-10</div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#c97a8a;color:white;"><div class="swatch-label">Primary</div><div class="swatch-hex">#c97a8a</div></div>
+      <div class="swatch" style="background:#7e9183;color:white;"><div class="swatch-label">Accent</div><div class="swatch-hex">#7e9183</div></div>
+      <div class="swatch" style="background:#2a1c1f;color:white;"><div class="swatch-label">Gray-900</div><div class="swatch-hex">#2a1c1f</div></div>
+      <div class="swatch" style="background:#4d4044;color:white;"><div class="swatch-label">Gray-700</div><div class="swatch-hex">#4d4044</div></div>
+      <div class="swatch" style="background:#dec5c8;color:#2a1c1f;"><div class="swatch-label">Gray-300</div><div class="swatch-hex">#dec5c8</div></div>
+      <div class="swatch" style="background:#f7eef0;color:#2a1c1f;"><div class="swatch-label">Gray-100</div><div class="swatch-hex">#f7eef0</div></div>
+      <div class="swatch" style="background:#5a8a5a;color:white;"><div class="swatch-label">Success</div><div class="swatch-hex">#5a8a5a</div></div>
+      <div class="swatch" style="background:#a8443d;color:white;"><div class="swatch-label">Error</div><div class="swatch-hex">#a8443d</div></div>
+    </div>
+    <div class="preview">
+      <div class="preview-card" style="background:#f7eef0;border-color:#dec5c8;">
+        <div class="preview-hero">
+          <div class="preview-wordmark" style="color:#2a1c1f;">Katalogos</div>
+          <div class="preview-tagline" style="color:#4d4044;">Your menu, online — in minutes.</div>
+          <div class="preview-cta-row">
+            <button class="preview-cta" style="background:#c97a8a;color:white;border-color:#c97a8a;">Build your menu</button>
+            <button class="preview-cta" style="background:transparent;color:#2a1c1f;border-color:#dec5c8;">Sign in</button>
+          </div>
+        </div>
+        <div class="preview-toolbar" style="border-color:#dec5c8;background:white;color:#4d4044;">
+          <span class="preview-pill success">Saved</span>
+          <span class="preview-pill error">Sold out</span>
+          <span style="margin-left:auto;color:#7e9183;">● Live</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Palette 11: Citrus + Slate -->
+  <div class="palette-card" style="--p-primary:#1f2937; --p-accent:#f4c026; --p-g900:#0e1218; --p-g700:#3a4452; --p-g300:#cfd5dc; --p-g100:#f6f7f9; --p-success:#2c7a3a; --p-error:#dc4734;">
+    <div class="palette-header">
+      <div>
+        <div class="palette-name">Citrus + Slate</div>
+        <div class="palette-desc">Cool slate-blue primary with bright citrus-yellow accent. Energetic, modern. Reads "smoothie / juicery," "fast-casual healthy," "energetic café chain." High contrast — playful and bold.</div>
+      </div>
+      <div class="palette-id">P-11</div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#1f2937;color:white;"><div class="swatch-label">Primary</div><div class="swatch-hex">#1f2937</div></div>
+      <div class="swatch" style="background:#f4c026;color:#0e1218;"><div class="swatch-label">Accent</div><div class="swatch-hex">#f4c026</div></div>
+      <div class="swatch" style="background:#0e1218;color:white;"><div class="swatch-label">Gray-900</div><div class="swatch-hex">#0e1218</div></div>
+      <div class="swatch" style="background:#3a4452;color:white;"><div class="swatch-label">Gray-700</div><div class="swatch-hex">#3a4452</div></div>
+      <div class="swatch" style="background:#cfd5dc;color:#0e1218;"><div class="swatch-label">Gray-300</div><div class="swatch-hex">#cfd5dc</div></div>
+      <div class="swatch" style="background:#f6f7f9;color:#0e1218;"><div class="swatch-label">Gray-100</div><div class="swatch-hex">#f6f7f9</div></div>
+      <div class="swatch" style="background:#2c7a3a;color:white;"><div class="swatch-label">Success</div><div class="swatch-hex">#2c7a3a</div></div>
+      <div class="swatch" style="background:#dc4734;color:white;"><div class="swatch-label">Error</div><div class="swatch-hex">#dc4734</div></div>
+    </div>
+    <div class="preview">
+      <div class="preview-card" style="background:#f6f7f9;border-color:#cfd5dc;">
+        <div class="preview-hero">
+          <div class="preview-wordmark" style="color:#0e1218;">Katalogos</div>
+          <div class="preview-tagline" style="color:#3a4452;">Your menu, online — in minutes.</div>
+          <div class="preview-cta-row">
+            <button class="preview-cta" style="background:#1f2937;color:white;border-color:#1f2937;">Build your menu</button>
+            <button class="preview-cta" style="background:transparent;color:#0e1218;border-color:#cfd5dc;">Sign in</button>
+          </div>
+        </div>
+        <div class="preview-toolbar" style="border-color:#cfd5dc;background:white;color:#3a4452;">
+          <span class="preview-pill success">Saved</span>
+          <span class="preview-pill error">Sold out</span>
+          <span style="margin-left:auto;color:#f4c026;">● Live</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Palette 12: Beige Monochrome -->
+  <div class="palette-card" style="--p-primary:#5e4f3b; --p-accent:#1f2937; --p-g900:#1f1810; --p-g700:#5e5446; --p-g300:#d8cdb8; --p-g100:#f5eedf; --p-success:#5a7a3d; --p-error:#a83a2a;">
+    <div class="palette-header">
+      <div>
+        <div class="palette-name">Beige Monochrome</div>
+        <div class="palette-desc">Warm taupe-brown primary, all-neutral palette with deep slate as a quiet "accent." Reads "minimalist coastal," "Mediterranean modern," "Aesop / The Row aesthetic." Restrained, expensive-feeling, no brand color shouting at you.</div>
+      </div>
+      <div class="palette-id">P-12</div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#5e4f3b;color:white;"><div class="swatch-label">Primary</div><div class="swatch-hex">#5e4f3b</div></div>
+      <div class="swatch" style="background:#1f2937;color:white;"><div class="swatch-label">Accent</div><div class="swatch-hex">#1f2937</div></div>
+      <div class="swatch" style="background:#1f1810;color:white;"><div class="swatch-label">Gray-900</div><div class="swatch-hex">#1f1810</div></div>
+      <div class="swatch" style="background:#5e5446;color:white;"><div class="swatch-label">Gray-700</div><div class="swatch-hex">#5e5446</div></div>
+      <div class="swatch" style="background:#d8cdb8;color:#1f1810;"><div class="swatch-label">Gray-300</div><div class="swatch-hex">#d8cdb8</div></div>
+      <div class="swatch" style="background:#f5eedf;color:#1f1810;"><div class="swatch-label">Gray-100</div><div class="swatch-hex">#f5eedf</div></div>
+      <div class="swatch" style="background:#5a7a3d;color:white;"><div class="swatch-label">Success</div><div class="swatch-hex">#5a7a3d</div></div>
+      <div class="swatch" style="background:#a83a2a;color:white;"><div class="swatch-label">Error</div><div class="swatch-hex">#a83a2a</div></div>
+    </div>
+    <div class="preview">
+      <div class="preview-card" style="background:#f5eedf;border-color:#d8cdb8;">
+        <div class="preview-hero">
+          <div class="preview-wordmark" style="color:#1f1810;">Katalogos</div>
+          <div class="preview-tagline" style="color:#5e5446;">Your menu, online — in minutes.</div>
+          <div class="preview-cta-row">
+            <button class="preview-cta" style="background:#5e4f3b;color:white;border-color:#5e4f3b;">Build your menu</button>
+            <button class="preview-cta" style="background:transparent;color:#1f1810;border-color:#d8cdb8;">Sign in</button>
+          </div>
+        </div>
+        <div class="preview-toolbar" style="border-color:#d8cdb8;background:white;color:#5e5446;">
+          <span class="preview-pill success">Saved</span>
+          <span class="preview-pill error">Sold out</span>
+          <span style="margin-left:auto;color:#1f2937;">● Live</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Palette 6: Monochrome with Saffron -->
+  <div class="palette-card" style="--p-primary:#1a1a1a; --p-accent:#e89b3a; --p-g900:#1a1a1a; --p-g700:#525252; --p-g300:#d4d4d4; --p-g100:#fafafa; --p-success:#2c7a3a; --p-error:#c63b3b;">
+    <div class="palette-header">
+      <div>
+        <div class="palette-name">Monochrome with Saffron</div>
+        <div class="palette-desc">Almost-black primary on near-white. Single saffron-orange accent for highlights. Reads "design-forward modern restaurant" or "café with attitude." More austere than charcoal, with a slightly cooler gray temperature.</div>
+      </div>
+      <div class="palette-id">P-06</div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#1a1a1a;color:white;"><div class="swatch-label">Primary</div><div class="swatch-hex">#1a1a1a</div></div>
+      <div class="swatch" style="background:#e89b3a;color:#1a1a1a;"><div class="swatch-label">Accent</div><div class="swatch-hex">#e89b3a</div></div>
+      <div class="swatch" style="background:#1a1a1a;color:white;"><div class="swatch-label">Gray-900</div><div class="swatch-hex">#1a1a1a</div></div>
+      <div class="swatch" style="background:#525252;color:white;"><div class="swatch-label">Gray-700</div><div class="swatch-hex">#525252</div></div>
+      <div class="swatch" style="background:#d4d4d4;color:#1a1a1a;"><div class="swatch-label">Gray-300</div><div class="swatch-hex">#d4d4d4</div></div>
+      <div class="swatch" style="background:#fafafa;color:#1a1a1a;"><div class="swatch-label">Gray-100</div><div class="swatch-hex">#fafafa</div></div>
+      <div class="swatch" style="background:#2c7a3a;color:white;"><div class="swatch-label">Success</div><div class="swatch-hex">#2c7a3a</div></div>
+      <div class="swatch" style="background:#c63b3b;color:white;"><div class="swatch-label">Error</div><div class="swatch-hex">#c63b3b</div></div>
+    </div>
+    <div class="preview">
+      <div class="preview-card" style="background:#fafafa;border-color:#d4d4d4;">
+        <div class="preview-hero">
+          <div class="preview-wordmark" style="color:#1a1a1a;">Katalogos</div>
+          <div class="preview-tagline" style="color:#525252;">Your menu, online — in minutes.</div>
+          <div class="preview-cta-row">
+            <button class="preview-cta" style="background:#1a1a1a;color:white;border-color:#1a1a1a;">Build your menu</button>
+            <button class="preview-cta" style="background:transparent;color:#1a1a1a;border-color:#d4d4d4;">Sign in</button>
+          </div>
+        </div>
+        <div class="preview-toolbar" style="border-color:#d4d4d4;background:white;color:#525252;">
+          <span class="preview-pill success">Saved</span>
+          <span class="preview-pill error">Sold out</span>
+          <span style="margin-left:auto;color:#e89b3a;">● Live</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

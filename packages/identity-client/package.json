@@ -1,0 +1,33 @@
+{
+  "name": "@onlinemenu/identity-client",
+  "version": "1.0.0",
+  "description": "OnlineMenu Identity Client - Embedded authentication for React Native",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "authentication",
+    "identity",
+    "onlinemenu",
+    "react-native",
+    "keycloak"
+  ],
+  "author": "OnlineMenu",
+  "license": "MIT",
+  "peerDependencies": {
+    "axios": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "axios": "^1.13.2",
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ]
+}

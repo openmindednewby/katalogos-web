@@ -1,0 +1,101 @@
+import React from 'react';
+
+import { fireEvent, render, screen } from '@testing-library/react-native';
+
+import ThemeMode from '../../../src/shared/enums/ThemeMode';
+import NotificationsScreen from './index';
+
+import type { RootState } from '../../../src/store/reduxStore';
+
+// Mock dependencies
+const mockPush = jest.fn();
+let mockTheme: ThemeMode = ThemeMode.Light;
+const mockT = (key: string, fallback?: string): string => fallback ?? key;
+
+jest.mock('expo-router', () => ({
+  useRouter: () => ({
+    push: mockPush,
+  }),
+}));
+
+jest.mock('react-redux', () => ({
+  useSelector: (selector: (s: RootState) => unknown): unknown => {
+    const state: RootState = {
+      auth: {
+        accessToken: null,
+        user: null,
+        userInfo: null,
+        loading: false,
+        refreshToken: null,
+        isLoggedIn: false,
+        refreshingUserInfo: false,
+      },
+      ui: { theme: mockTheme, locale: 'en' },
+    };
+    return selector(state);
+  },
+}));
+
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: mockT,
+  }),
+}));
+
+// Mock useTheme (new theme system)
+jest.mock('../../../src/theme/useTheme', () => ({
+  useTheme: () => ({
+    theme: {
+      colors: { text: '#001219', textSecondary: '#555555', background: '#ffffff', surface: '#f7f7f7', surfaceElevated: '#ffffff', border: '#e6e6e6', divider: '#eeeeee' },
+      palette: { primary: { '500': '#005f73' }, secondary: { '500': '#94d2bd' }, accent: { '500': '#ee9b00' } },
+      semantic: { success: { '500': '#2d6a4f' }, warning: { '500': '#ee9b00' }, error: { '500': '#ae2012' }, info: { '500': '#005f73' } },
+      typography: { fontFamily: 'System', headingScale: 1.25 },
+      mode: 'light',
+      branding: { logoUrl: null, faviconUrl: null },
+    },
+    mode: 'light',
+    toggleMode: jest.fn(),
+    setMode: jest.fn(),
+    setTenantConfig: jest.fn(),
+  }),
+}));
+
+jest.mock('../../../src/localization/helpers', () => ({
+  FM: (key: string) => key,
+}));
+
+jest.mock('@dloizides/notification-client/react', () => ({
+  useNotifications: () => ({
+    notifications: [],
+    connectionStatus: 'connected',
+    markAsRead: jest.fn(),
+    markAllAsRead: jest.fn(),
+  }),
+}));
+
+describe('NotificationsScreen', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockTheme = ThemeMode.Light;
+  });
+
+  describe('Settings Button', () => {
+    it('navigates to notification preferences when settings button is pressed', () => {
+      render(<NotificationsScreen />);
+
+      const settingsButton = screen.getByTestId('notification-settings-button');
+      fireEvent.press(settingsButton);
+
+      expect(mockPush).toHaveBeenCalledWith('/settings/notification-preferences');
+    });
+
+    it('has correct accessibility properties on settings button', () => {
+      render(<NotificationsScreen />);
+
+      const settingsButton = screen.getByTestId('notification-settings-button');
+      expect(settingsButton.props.accessibilityLabel).toBe('Notification Settings');
+      expect(settingsButton.props.accessibilityHint).toBe('Opens notification preferences settings');
+      expect(settingsButton.props.accessibilityRole).toBe('button');
+    });
+  });
+});

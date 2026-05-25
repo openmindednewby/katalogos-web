@@ -1,0 +1,46 @@
+{
+  "menu": {
+    "title": "Menu",
+    "home": "Home",
+    "tenants": "Tenants",
+    "users": "Users",
+    "quizTemplates": "Quiz Templates",
+    "quizAnswers": "Quiz Answers",
+    "quizActive": "Active Quiz",
+    "onlineMenus": "Online Menus",
+    "notifications": "Notifications",
+    "notificationPreferences": "Notification Settings",
+    "tenantThemes": "Theme Editor",
+    "management": "Management",
+    "configuration": "Configuration",
+    "marketplace": "Marketplace",
+    "resources": "Resources",
+    "navigateToHint": "Navigate to {{p1}}",
+    "collapseSection": "Collapse section",
+    "expandSection": "Expand section"
+  },
+  "topbar": {
+    "dark": "Dark",
+    "account": "Account",
+    "logout": "Logout",
+    "logoutHint": "Signs you out of the application",
+    "lang": {
+      "en": "EN"
+    }
+  },
+  "notificationBanner": {
+    "title": "Enable Notifications",
+    "body": "Get notified about important updates and activity in real-time.",
+    "later": "Later",
+    "enable": "Enable"
+  },
+  "content": {
+    "largeFileWarning": "Large file selected ({{p1}}). Upload may take a while.",
+    "cancelUpload": "Cancel"
+  },
+  "quiz": {
+    "title": "Quiz",
+    "tab": "Start Quiz",
+    "submit": "Submit"
+  }
+}

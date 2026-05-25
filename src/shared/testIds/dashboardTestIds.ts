@@ -1,0 +1,48 @@
+export const DashboardTestIds = {
+  DASHBOARD_PAGE: 'dashboard-page',
+  DASHBOARD_WELCOME_HEADER: 'dashboard-welcome-header',
+  DASHBOARD_GUIDED_ACTION_CARD: 'dashboard-guided-action-card',
+  DASHBOARD_GUIDED_ACTION_CARD_CTA: 'dashboard-guided-action-card-cta',
+  DASHBOARD_GUIDED_ACTION_CARD_CTA_MENUS: 'dashboard-guided-action-card-cta-menus',
+  DASHBOARD_GUIDED_ACTION_CARD_CTA_TEMPLATES: 'dashboard-guided-action-card-cta-templates',
+  DASHBOARD_GUIDED_ACTION_CARD_MENUS: 'dashboard-guided-action-card-menus',
+  DASHBOARD_GUIDED_ACTION_CARD_TEMPLATES: 'dashboard-guided-action-card-templates',
+  DASHBOARD_OVERVIEW_CARD: 'dashboard-overview-card',
+  DASHBOARD_OVERVIEW_CARD_CTA: 'dashboard-overview-card-cta',
+  DASHBOARD_OVERVIEW_CARD_CTA_MENUS: 'dashboard-overview-card-cta-menus',
+  DASHBOARD_OVERVIEW_CARD_CTA_TEMPLATES: 'dashboard-overview-card-cta-templates',
+  DASHBOARD_OVERVIEW_CARD_MENUS: 'dashboard-overview-card-menus',
+  DASHBOARD_OVERVIEW_CARD_TEMPLATES: 'dashboard-overview-card-templates',
+  DASHBOARD_QUICK_ACTIONS: 'dashboard-quick-actions',
+  DASHBOARD_QUICK_ACTION_MENU: 'dashboard-quick-action-menu',
+  DASHBOARD_QUICK_ACTION_SURVEY: 'dashboard-quick-action-survey',
+  DASHBOARD_TENANT_LINK: 'dashboard-tenant-link',
+  EMPTY_LIST_STATE: 'empty-list-state',
+  EMPTY_LIST_CTA: 'empty-list-cta',
+
+  // Business Profile Nudge
+  DASHBOARD_BUSINESS_PROFILE_NUDGE: 'dashboard-business-profile-nudge',
+  DASHBOARD_BUSINESS_PROFILE_NUDGE_CTA: 'dashboard-business-profile-nudge-cta',
+
+  // Welcome Wizard
+  WELCOME_WIZARD: 'welcome-wizard',
+  WELCOME_WIZARD_PROGRESS: 'welcome-wizard-progress',
+  WELCOME_WIZARD_STEP: 'welcome-wizard-step',
+  WELCOME_WIZARD_BUSINESS_NAME_INPUT: 'welcome-wizard-business-name-input',
+  WELCOME_WIZARD_LOGO_UPLOAD: 'welcome-wizard-logo-upload',
+  WELCOME_WIZARD_MENU_NAME_INPUT: 'welcome-wizard-menu-name-input',
+  WELCOME_WIZARD_MENU_DESCRIPTION_INPUT: 'welcome-wizard-menu-description-input',
+  WELCOME_WIZARD_CONTINUE_BUTTON: 'welcome-wizard-continue-button',
+  WELCOME_WIZARD_SKIP_BUTTON: 'welcome-wizard-skip-button',
+  WELCOME_WIZARD_COMPLETE_BUTTON: 'welcome-wizard-complete-button',
+
+  // Setup Checklist
+  SETUP_CHECKLIST: 'setup-checklist',
+  SETUP_CHECKLIST_PROGRESS: 'setup-checklist-progress',
+  SETUP_CHECKLIST_DISMISS: 'setup-checklist-dismiss',
+  SETUP_CHECKLIST_STEP_UPLOAD_LOGO: 'setup-checklist-step-upload-logo',
+  SETUP_CHECKLIST_STEP_CREATE_MENU: 'setup-checklist-step-create-menu',
+  SETUP_CHECKLIST_STEP_ADD_ITEMS: 'setup-checklist-step-add-items',
+  SETUP_CHECKLIST_STEP_GENERATE_QR: 'setup-checklist-step-generate-qr',
+  SETUP_CHECKLIST_STEP_SHARE_MENU: 'setup-checklist-step-share-menu',
+} as const;

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Initial load (entry + common + runtime)",
+    "path": [
+      "dist/_expo/static/js/web/entry-*.js",
+      "dist/_expo/static/js/web/__common-*.js",
+      "dist/_expo/static/js/web/__expo-metro-runtime-*.js"
+    ],
+    "limit": "750 kB",
+    "gzip": true
+  },
+  {
+    "name": "Route chunks (async pages, excludes lazy libs)",
+    "path": [
+      "dist/_expo/static/js/web/*.js",
+      "!dist/_expo/static/js/web/entry-*.js",
+      "!dist/_expo/static/js/web/__common-*.js",
+      "!dist/_expo/static/js/web/__expo-metro-runtime-*.js",
+      "!dist/_expo/static/js/web/jspdf*.js",
+      "!dist/_expo/static/js/web/html2canvas*.js",
+      "!dist/_expo/static/js/web/native-forms*.js"
+    ],
+    "limit": "900 kB",
+    "gzip": true
+  },
+  {
+    "name": "Lazy libraries (jspdf + html2canvas + native-forms)",
+    "path": [
+      "dist/_expo/static/js/web/jspdf*.js",
+      "dist/_expo/static/js/web/html2canvas*.js",
+      "dist/_expo/static/js/web/native-forms*.js"
+    ],
+    "limit": "300 kB",
+    "gzip": true
+  },
+  {
+    "name": "All JS (total)",
+    "path": "dist/_expo/static/js/web/*.js",
+    "limit": "1900 kB",
+    "gzip": true
+  }
+]

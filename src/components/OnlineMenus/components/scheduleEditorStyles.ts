@@ -1,0 +1,40 @@
+/** Shared styles for ScheduleEditor and ScheduleEditorForm. */
+import { StyleSheet } from 'react-native';
+
+import {
+  SCHEDULE_CONTAINER_MARGIN_TOP, SCHEDULE_CONTAINER_PADDING, SCHEDULE_SECTION_RADIUS,
+  SCHEDULE_TITLE_FONT_SIZE, SCHEDULE_TITLE_MARGIN_BOTTOM,
+  SCHEDULE_LABEL_FONT_SIZE, SCHEDULE_LABEL_MARGIN_TOP, SCHEDULE_LABEL_MARGIN_BOTTOM,
+  SCHEDULE_CHIP_RADIUS, SCHEDULE_CHIP_PADDING_H, SCHEDULE_CHIP_PADDING_V, SCHEDULE_CHIP_FONT_SIZE,
+  SCHEDULE_DAY_ROW_GAP, SCHEDULE_QUICK_ROW_GAP, SCHEDULE_QUICK_ROW_MARGIN_TOP,
+  SCHEDULE_QUICK_BTN_RADIUS, SCHEDULE_QUICK_BTN_FONT_SIZE,
+  SCHEDULE_TIME_ROW_GAP, SCHEDULE_TIME_ROW_MARGIN_TOP,
+  SCHEDULE_TIME_INPUT_RADIUS, SCHEDULE_TIME_INPUT_PADDING,
+  SCHEDULE_TIME_INPUT_FONT_SIZE, SCHEDULE_TIME_INPUT_WIDTH,
+  SCHEDULE_TZ_INPUT_MARGIN_TOP, SCHEDULE_PREVIEW_FONT_SIZE, SCHEDULE_PREVIEW_MARGIN_TOP,
+  SCHEDULE_BTN_ROW_GAP, SCHEDULE_BTN_ROW_MARGIN_TOP, SCHEDULE_BTN_PADDING_V,
+  SCHEDULE_BTN_FONT_SIZE, SCHEDULE_BTN_RADIUS,
+} from './scheduleConstants';
+
+const TIME_ERROR_FONT_SIZE = 11;
+const TIME_ERROR_MARGIN_TOP = 4;
+
+export const scheduleEditorStyles = StyleSheet.create({
+  container: { marginTop: SCHEDULE_CONTAINER_MARGIN_TOP, padding: SCHEDULE_CONTAINER_PADDING, borderWidth: 1, borderRadius: SCHEDULE_SECTION_RADIUS },
+  title: { fontSize: SCHEDULE_TITLE_FONT_SIZE, fontWeight: '700', marginBottom: SCHEDULE_TITLE_MARGIN_BOTTOM },
+  label: { fontSize: SCHEDULE_LABEL_FONT_SIZE, fontWeight: '600', marginTop: SCHEDULE_LABEL_MARGIN_TOP, marginBottom: SCHEDULE_LABEL_MARGIN_BOTTOM },
+  daysRow: { flexDirection: 'row', flexWrap: 'wrap', gap: SCHEDULE_DAY_ROW_GAP },
+  chip: { paddingHorizontal: SCHEDULE_CHIP_PADDING_H, paddingVertical: SCHEDULE_CHIP_PADDING_V, borderRadius: SCHEDULE_CHIP_RADIUS, borderWidth: 1 },
+  chipText: { fontSize: SCHEDULE_CHIP_FONT_SIZE, fontWeight: '600' },
+  quickRow: { flexDirection: 'row', gap: SCHEDULE_QUICK_ROW_GAP, marginTop: SCHEDULE_QUICK_ROW_MARGIN_TOP },
+  quickBtn: { paddingHorizontal: SCHEDULE_CHIP_PADDING_H, paddingVertical: SCHEDULE_CHIP_PADDING_V, borderRadius: SCHEDULE_QUICK_BTN_RADIUS, borderWidth: 1 },
+  quickBtnText: { fontSize: SCHEDULE_QUICK_BTN_FONT_SIZE, fontWeight: '600' },
+  timeRow: { flexDirection: 'row', gap: SCHEDULE_TIME_ROW_GAP, alignItems: 'center', marginTop: SCHEDULE_TIME_ROW_MARGIN_TOP },
+  timeInput: { borderWidth: 1, borderRadius: SCHEDULE_TIME_INPUT_RADIUS, padding: SCHEDULE_TIME_INPUT_PADDING, fontSize: SCHEDULE_TIME_INPUT_FONT_SIZE, width: SCHEDULE_TIME_INPUT_WIDTH, textAlign: 'center' },
+  tzInput: { borderWidth: 1, borderRadius: SCHEDULE_TIME_INPUT_RADIUS, padding: SCHEDULE_TIME_INPUT_PADDING, fontSize: SCHEDULE_TIME_INPUT_FONT_SIZE, marginTop: SCHEDULE_TZ_INPUT_MARGIN_TOP },
+  preview: { fontSize: SCHEDULE_PREVIEW_FONT_SIZE, fontStyle: 'italic', marginTop: SCHEDULE_PREVIEW_MARGIN_TOP },
+  btnRow: { flexDirection: 'row', gap: SCHEDULE_BTN_ROW_GAP, marginTop: SCHEDULE_BTN_ROW_MARGIN_TOP },
+  btn: { flex: 1, paddingVertical: SCHEDULE_BTN_PADDING_V, borderRadius: SCHEDULE_BTN_RADIUS, alignItems: 'center' },
+  btnText: { fontSize: SCHEDULE_BTN_FONT_SIZE, fontWeight: '600' },
+  timeError: { fontSize: TIME_ERROR_FONT_SIZE, marginTop: TIME_ERROR_MARGIN_TOP },
+});
