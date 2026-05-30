@@ -5,20 +5,21 @@
  * submit, displays a generic success message regardless of whether the email
  * is registered (the backend never confirms enumeration).
  *
- * Unified-auth Phase 1c: the form *logic* comes from `@dloizides/auth-web`'s
- * `useBffForgotPassword` hook (client-injected — passed the app's shared
- * `bffAuthClient`). This modal stays app-specific: it is a `ModalShell` surface
- * with app copy and is shown inline from the login screen, so it deliberately
- * does NOT adopt the package's screen-shaped `<ForgotPasswordForm>` (which would
- * change the modal into a route). The request body is extended with
- * `resetUrlTemplate` (the SPA's own host) so the backend can build the email
- * link without hardcoding any frontend URL.
+ * App-specific `ModalShell` surface shown inline from the login screen — it
+ * deliberately does NOT adopt the package's screen-shaped `<ForgotPasswordForm>`
+ * (which would turn it into a route). The request body carries `resetUrlTemplate`
+ * (the SPA's own host) so the backend builds the email link without hardcoding
+ * a frontend URL.
+ *
+ * Submits via `bffAuthClient.forgotPassword` directly (plain async + useState),
+ * NOT the react-query `useBffForgotPassword` hook: the login route keeps
+ * react-query out of its bundle (no QueryClientProvider), and the hook's
+ * `useMutation` crashes there with "No QueryClient set". The client method is
+ * the same `/bff/forgot-password` call, minus that dependency.
  */
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 
 import { ActivityIndicator, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-
-import { useBffForgotPassword } from '@dloizides/auth-web';
 
 import { bffAuthClient } from '@/auth/bffClient';
 import {
@@ -65,42 +66,38 @@ const isValidEmail = (value: string): boolean => /.+@.+\..+/.test(value);
 export const ForgotPasswordModal = ({ visible, colors, onClose }: Props): React.ReactElement => {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const mutationOptions = useMemo(
-    () => ({
-      // The shared @dloizides/auth-web hook is client-injected (no module-level
-      // singleton) — pass the app's same-origin BFF client.
-      client: bffAuthClient,
-      onSuccess: () => setSubmitted(true),
-      onError: (err: Error): void => {
-        // Network / 5xx — show a friendly retry message. 200/4xx never reach
-        // here because the backend returns 200 on every "did we find an
-        // account" branch (no enumeration).
-        setErrorMessage(err.message);
-      },
-    }),
-    [],
-  );
-  const mutation = useBffForgotPassword(mutationOptions);
-
   const trimmedEmail = email.trim();
-  const canSubmit = isValidEmail(trimmedEmail) && mutation.status !== 'pending';
+  const canSubmit = isValidEmail(trimmedEmail) && !submitting;
 
+  // Call the BFF client directly (plain async + useState) rather than the
+  // react-query `useBffForgotPassword` hook. This route deliberately keeps
+  // react-query OUT of the login bundle, and pulling it in here triggered a
+  // "No QueryClient set" crash on the provider-less login route. The client's
+  // `forgotPassword` IS the same network call the hook wrapped, minus the
+  // QueryClient dependency. Backend is anti-enumeration (always 200 for the
+  // "did we find an account" branch), so success is the only non-network path.
   const handleSubmit = (): void => {
     setErrorMessage(null);
+    setSubmitting(true);
     const request: ForgotPasswordRequestWithUrl = {
       email: trimmedEmail,
       resetUrlTemplate: buildResetUrlTemplate(),
     };
-    mutation.mutate(request);
+    bffAuthClient
+      .forgotPassword(request)
+      .then(() => setSubmitted(true))
+      .catch((err: Error) => setErrorMessage(err.message))
+      .finally(() => setSubmitting(false));
   };
 
   const handleClose = (): void => {
     setEmail('');
     setSubmitted(false);
+    setSubmitting(false);
     setErrorMessage(null);
-    mutation.reset();
     onClose();
   };
 
@@ -148,7 +145,7 @@ export const ForgotPasswordModal = ({ visible, colors, onClose }: Props): React.
                 accessibilityLabel={FM('forgotPassword.emailInputLabel')}
                 autoCapitalize="none"
                 autoCorrect={false}
-                editable={mutation.status !== 'pending'}
+                editable={!submitting}
                 keyboardType="email-address"
                 placeholder={FM('forgotPassword.emailPlaceholder')}
                 style={inputStyle}
@@ -169,7 +166,7 @@ export const ForgotPasswordModal = ({ visible, colors, onClose }: Props): React.
                 accessibilityHint={FM('forgotPassword.cancelHint')}
                 accessibilityLabel={FM('forgotPassword.cancelLabel')}
                 accessibilityRole="button"
-                disabled={mutation.status === 'pending'}
+                disabled={submitting}
                 style={cancelButtonStyle}
                 testID="forgot-password-cancel-button"
                 onPress={handleClose}
@@ -186,7 +183,7 @@ export const ForgotPasswordModal = ({ visible, colors, onClose }: Props): React.
                 testID="forgot-password-submit-button"
                 onPress={handleSubmit}
               >
-                {mutation.status === 'pending' ? (
+                {submitting ? (
                   <ActivityIndicator color={WHITE_COLOR} size="small" />
                 ) : null}
                 <Text style={submitTextStyle}>{FM('forgotPassword.submit')}</Text>

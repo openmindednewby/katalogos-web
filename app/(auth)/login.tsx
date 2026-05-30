@@ -6,12 +6,11 @@
  * Credentials are POSTed to the same-origin `bff-katalogos`, which terminates
  * auth server-side and sets the httpOnly session cookie — no Keycloak redirect.
  *
- * The shared form replaces the hand-rolled `<TextInput>` + `<SaveButton>` flow
- * the legacy screen carried, plus its `<ForgotPasswordLink>` /
- * `<ForgotPasswordModal>` / `<LoginFooterLinks>` chrome. The forgot-password
- * link is intentionally NOT wired yet — `Bff.AspNetCore` doesn't currently
- * forward `resetUrlTemplate` to TenantService (see task #23). Add the
- * `onForgotPassword` prop back once that's fixed in 1.2.3.
+ * "Forgot password?" (rendered by `<LoginForm>` via `onForgotPassword`) opens
+ * `<ForgotPasswordModal>`, which submits via `bffAuthClient.forgotPassword`
+ * directly — no react-query, so it works on this provider-less login route.
+ * The old "task #23" block is resolved: Bff.AspNetCore 1.2.5 forwards
+ * `resetUrlTemplate`.
  *
  * `LoginForm.onSuccess` fires after the BFF returns the user. Three side
  * effects must run there: (1) reflect the new session into Redux via
@@ -34,6 +33,7 @@ import { useAuth } from '../../src/auth/AuthProvider';
 import { mapAppThemeToAuthTheme } from '../../src/auth/authThemeMapping';
 import { bffAuthClient } from '../../src/auth/bffClient';
 import { resolvePostLoginDestination } from '../../src/auth/postLoginRoutes';
+import { ForgotPasswordModal } from '../../src/components/Auth/ForgotPasswordModal';
 import SaveButton from '../../src/components/Buttons/SaveButton';
 import { preloadProtectedRoutes } from '../../src/config/routePreloader';
 import { prefetchDashboardData } from '../../src/features/dashboard/utils/prefetchDashboardData';
@@ -119,6 +119,7 @@ const LoginScreen = (): React.ReactElement => {
   const { showInstallPrompt, handleInstall, isInstalled } = usePWAInstall();
 
   const [routing, setRouting] = useState<boolean>(false);
+  const [forgotVisible, setForgotVisible] = useState<boolean>(false);
 
   useClearStaleAuthStorageOnMount();
   useSessionExpiredNotice();
@@ -156,8 +157,21 @@ const LoginScreen = (): React.ReactElement => {
       <LoginForm
         client={bffAuthClient}
         theme={authTheme}
+        onForgotPassword={(): void => setForgotVisible(true)}
         onSignUp={(): void => router.push('/(auth)/register')}
         onSuccess={handleSignedIn}
+      />
+
+      <ForgotPasswordModal
+        colors={{
+          text: theme.colors.text,
+          surface: theme.colors.surface,
+          border: theme.colors.border,
+          primary: theme.palette.primary['500'],
+          textSecondary: theme.colors.textSecondary,
+        }}
+        visible={forgotVisible}
+        onClose={(): void => setForgotVisible(false)}
       />
 
       {routing ? (
