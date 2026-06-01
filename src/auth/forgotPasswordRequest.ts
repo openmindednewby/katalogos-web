@@ -1,24 +1,16 @@
 /**
- * Frontend `forgot-password` request shape for the BFF flow.
+ * Builds the SPA-supplied `resetUrlTemplate` for the BFF forgot-password flow.
  *
- * `BffAuthClient.forgotPassword` posts to `/bff/forgot-password`, which the
- * BFF proxies to TenantService. The TenantService validator REQUIRES
- * `resetUrlTemplate` — the SPA-supplied URL the backend substitutes the token
- * into when building the email link
- * (e.g. `https://katalogos.dloizides.com/reset-password?token={token}`).
- *
- * `BffForgotPasswordRequest` already declares `resetUrlTemplate` as optional;
- * we narrow it to required here so callers get type-safety.
+ * `bffAuthClient.forgotPassword` posts `{ email, resetUrlTemplate }` to
+ * `/bff/forgot-password`, which the BFF proxies to TenantService. The validator
+ * REQUIRES `resetUrlTemplate` — the URL the backend substitutes the token into
+ * when building the email link
+ * (e.g. `https://katalogos.dloizides.com/reset-password?token={token}`). The
+ * request shape itself now comes from the shared `<ForgotPasswordFields>` /
+ * `useForgotPasswordSubmit` in `@dloizides/auth-web`; this module only owns the
+ * host-specific template string.
  */
 import { isValueDefined } from '../utils/is';
-
-import type { BffForgotPasswordRequest } from '@dloizides/auth-client';
-
-
-export interface ForgotPasswordRequestWithUrl extends BffForgotPasswordRequest {
-  /** Full URL with `{token}` placeholder. Backend substitutes the real token. */
-  resetUrlTemplate: string;
-}
 
 const TOKEN_PLACEHOLDER = '{token}';
 

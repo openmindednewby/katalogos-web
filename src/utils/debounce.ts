@@ -30,7 +30,7 @@
  *   []
  * );
  */
-import { useCallback, useRef, useEffect } from 'react';
+import { useMemo, useRef, useEffect } from 'react';
 
 import { isValueDefined } from './is';
 
@@ -100,51 +100,90 @@ export interface DebouncedCallback<T extends (...args: readonly unknown[]) => un
   cancel: () => void;
 }
 
+/**
+ * Mutable bookkeeping shared by the scheduled call, `flush` and `cancel`. Held
+ * in a single ref so the helpers below can be plain module functions (keeps
+ * `useDebouncedCallback` itself small and avoids reading refs during render).
+ */
+interface DebounceState<T extends (...args: readonly unknown[]) => unknown> {
+  timeoutId: ReturnType<typeof setTimeout> | null;
+  pendingArgs: Parameters<T> | null;
+  callback: T;
+}
+
+interface DebounceStateRef<T extends (...args: readonly unknown[]) => unknown> {
+  current: DebounceState<T>;
+}
+
+/** Fire the pending call now (if any) and clear it. */
+function flushPending<T extends (...args: readonly unknown[]) => unknown>(
+  stateRef: DebounceStateRef<T>
+): void {
+  const state = stateRef.current;
+  if (!isValueDefined(state.timeoutId) || !isValueDefined(state.pendingArgs)) return;
+  clearTimeout(state.timeoutId);
+  const args = state.pendingArgs;
+  state.timeoutId = null;
+  state.pendingArgs = null;
+  state.callback(...args);
+}
+
+/** Drop the pending call (if any) without firing it. */
+function cancelPending<T extends (...args: readonly unknown[]) => unknown>(
+  stateRef: DebounceStateRef<T>
+): void {
+  const state = stateRef.current;
+  if (isValueDefined(state.timeoutId)) clearTimeout(state.timeoutId);
+  state.timeoutId = null;
+  state.pendingArgs = null;
+}
+
+/** (Re)schedule the trailing-edge call for `wait` ms from now. */
+function schedulePending<T extends (...args: readonly unknown[]) => unknown>(
+  stateRef: DebounceStateRef<T>,
+  args: Parameters<T>,
+  wait: number
+): void {
+  const state = stateRef.current;
+  if (isValueDefined(state.timeoutId)) clearTimeout(state.timeoutId);
+  state.pendingArgs = args;
+  state.timeoutId = setTimeout(() => {
+    state.callback(...args);
+    state.timeoutId = null;
+    state.pendingArgs = null;
+  }, wait);
+}
+
 export function useDebouncedCallback<T extends (...args: readonly unknown[]) => unknown>(
   callback: T,
   wait: number
 ): DebouncedCallback<T> {
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const callbackRef = useRef(callback);
-  const pendingArgsRef = useRef<Parameters<T> | null>(null);
+  const stateRef = useRef<DebounceState<T>>({ timeoutId: null, pendingArgs: null, callback });
 
   // Update callback ref when callback changes
   useEffect(() => {
-    callbackRef.current = callback;
+    stateRef.current.callback = callback;
   }, [callback]);
 
-  const flush = useCallback((): void => {
-    if (!isValueDefined(timeoutRef.current) || !isValueDefined(pendingArgsRef.current)) return;
-    clearTimeout(timeoutRef.current);
-    const args = pendingArgsRef.current;
-    timeoutRef.current = null;
-    pendingArgsRef.current = null;
-    callbackRef.current(...args);
-  }, []);
-
-  const cancel = useCallback((): void => {
-    if (isValueDefined(timeoutRef.current)) clearTimeout(timeoutRef.current);
-    timeoutRef.current = null;
-    pendingArgsRef.current = null;
-  }, []);
+  // The callable + flush/cancel are built in one expression so no value React
+  // has already memoised gets mutated afterwards (react-compiler safe), and no
+  // type assertion is needed — Object.assign yields the intersection type.
+  const result = useMemo<DebouncedCallback<T>>(
+    () =>
+      Object.assign(
+        (...args: Parameters<T>): void => { schedulePending(stateRef, args, wait); },
+        {
+          flush: (): void => { flushPending(stateRef); },
+          cancel: (): void => { cancelPending(stateRef); },
+        }
+      ),
+    [wait]
+  );
 
   // On unmount, fire any pending save synchronously so navigation away
   // doesn't drop in-flight changes (e.g., an uploaded image whose autoSave
   // debounce hadn't fired yet).
-  useEffect(() => () => { flush(); }, [flush]);
+  useEffect(() => () => { result.flush(); }, [result]);
 
-  const debounced = useCallback((...args: Parameters<T>) => {
-    if (isValueDefined(timeoutRef.current)) clearTimeout(timeoutRef.current);
-    pendingArgsRef.current = args;
-    timeoutRef.current = setTimeout(() => {
-      callbackRef.current(...args);
-      timeoutRef.current = null;
-      pendingArgsRef.current = null;
-    }, wait);
-  }, [wait]);
-
-  const result = debounced as DebouncedCallback<T>;
-  result.flush = flush;
-  result.cancel = cancel;
   return result;
 }

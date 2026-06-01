@@ -19,7 +19,7 @@ module.exports = {
     // BffAuthClient / BffUser types are one identity (see metro.config.js for
     // the bundler equivalent).
     '^@dloizides/auth-client$': '<rootDir>/node_modules/@dloizides/auth-client',
-    '^@dloizides/auth-web$': '<rootDir>/../../NpmPackages/packages/auth-web/src/index.ts',
+    '^@dloizides/auth-web$': '<rootDir>/../NpmPackages/packages/auth-web/src/index.ts',
     // Map @dloizides/notification-client subpath exports to the package's built dist files.
     // Jest's jest-expo resolver does not honor the package.json `exports` map for subpaths,
     // so each subpath needs an explicit mapping. We point at the published .js (CJS) files

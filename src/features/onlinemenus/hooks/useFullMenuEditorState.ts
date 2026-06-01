@@ -43,25 +43,15 @@ interface UseFullMenuEditorStateReturn {
   collapseAllRef: React.MutableRefObject<(() => void) | null>;
 }
 
-/** Tab, name-error, and active-category local state. */
-function useTabState(visible: boolean, item: TenantMenusDto | null, reset: (s: EditorSnapshot) => void, canUndo: boolean): {
-  activeTab: EditorTab;
-  setActiveTab: (tab: EditorTab) => void;
-  nameError: string;
-  setNameError: (error: string) => void;
-  activeCategoryId: string | null;
-  setActiveCategoryId: (id: string | null) => void;
-} {
-  const [activeTab, setActiveTab] = useState<EditorTab>(EditorTab.Metadata);
-  const [nameError, setNameError] = useState('');
-  const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
+/**
+ * Snapshot reset: replace the editor's present state from `item` when (a) the
+ * user opens a different menu (externalId changes) or (b) the user hasn't
+ * started editing yet (canUndo === false). Skipping the reset once `canUndo`
+ * is true preserves in-flight edits when a background list refetch returns a
+ * new `item` reference for the same menu.
+ */
+function useSnapshotReset(visible: boolean, item: TenantMenusDto | null, reset: (s: EditorSnapshot) => void, canUndo: boolean): void {
   const lastResetIdRef = useRef<string | undefined>();
-
-  // Snapshot reset: replace the editor's present state from `item` when (a)
-  // the user opens a different menu (externalId changes) or (b) the user hasn't
-  // started editing yet (canUndo === false). Skipping the reset once `canUndo`
-  // is true preserves in-flight edits when a background list refetch returns a
-  // new `item` reference for the same menu.
   const externalId = item?.externalId;
   useEffect(() => {
     if (!visible) {
@@ -74,6 +64,23 @@ function useTabState(visible: boolean, item: TenantMenusDto | null, reset: (s: E
       reset(buildSnapshot(item));
     }
   }, [visible, item, externalId, reset, canUndo]);
+}
+
+/** Tab, name-error, and active-category local state. */
+function useTabState(visible: boolean, item: TenantMenusDto | null, reset: (s: EditorSnapshot) => void, canUndo: boolean): {
+  activeTab: EditorTab;
+  setActiveTab: (tab: EditorTab) => void;
+  nameError: string;
+  setNameError: (error: string) => void;
+  activeCategoryId: string | null;
+  setActiveCategoryId: (id: string | null) => void;
+} {
+  const [activeTab, setActiveTab] = useState<EditorTab>(EditorTab.Metadata);
+  const [nameError, setNameError] = useState('');
+  const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
+  const externalId = item?.externalId;
+
+  useSnapshotReset(visible, item, reset, canUndo);
 
   // UI reset: only fires when the editor opens (visible false→true) or the user
   // switches to a different menu (externalId changes). Doesn't snap the user

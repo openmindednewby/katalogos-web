@@ -9,9 +9,9 @@
  * `<ResetPasswordForm>` render on-brand.
  *
  * The numeric tokens (radii / spacing / typography) deliberately mirror the
- * values hard-coded in the legacy local auth screens (`loginStyles.ts`, the
- * reset-password screen) so the unified-auth path is visually identical to the
- * legacy path — Phase 1c is a no-behaviour-change port.
+ * values hard-coded in the legacy local auth screens (since deleted) so the
+ * unified-auth path is visually identical to the legacy path — Phase 1c was a
+ * no-behaviour-change port.
  */
 import { defaultAuthTheme, type AuthTheme } from '@dloizides/auth-web';
 

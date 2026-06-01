@@ -163,13 +163,7 @@ const LoginScreen = (): React.ReactElement => {
       />
 
       <ForgotPasswordModal
-        colors={{
-          text: theme.colors.text,
-          surface: theme.colors.surface,
-          border: theme.colors.border,
-          primary: theme.palette.primary['500'],
-          textSecondary: theme.colors.textSecondary,
-        }}
+        theme={authTheme}
         visible={forgotVisible}
         onClose={(): void => setForgotVisible(false)}
       />
