@@ -1,5 +1,6 @@
+import { HttpMethod } from '@dloizides/api-client-base';
+
 import { type Endpoints } from './endpoints';
-import HttpMethod from '../shared/enums/HttpMethod';
 
 export { HttpMethod };
 

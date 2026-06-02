@@ -4,7 +4,7 @@
 
 import { MediaFit, MediaPosition, MediaSize } from '../../../../types/menuStyleTypes';
 
-import type { IconName } from '../../Icons';
+import type { IconName } from '../../../Icons';
 
 export interface PositionOption {
   id: MediaPosition;

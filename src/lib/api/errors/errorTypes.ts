@@ -5,11 +5,6 @@
  * `@dloizides/api-client-base` package. This file is kept for backward
  * compatibility with existing imports inside BaseClient.
  */
-import type HttpMethodLocal from '../../../shared/enums/HttpMethod';
-
-/** HTTP methods supported by the error handling system. */
-export type HttpMethod = HttpMethodLocal;
-
 export type {
   ApiErrorEnvelope,
   ClassifiedError,
@@ -20,4 +15,4 @@ export type {
   StatusRange,
 } from '@dloizides/api-client-base';
 
-export { ApiError, ErrorActionType, ErrorSeverity } from '@dloizides/api-client-base';
+export { ApiError, ErrorActionType, ErrorSeverity, HttpMethod } from '@dloizides/api-client-base';

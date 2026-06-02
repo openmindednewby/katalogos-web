@@ -89,7 +89,7 @@ const PresetCard = ({ preset, isSelected, disabled, onPress }: PresetCardProps):
 
   return (
     <TouchableOpacity
-      accessibilityHint={FM('settings.themeSettings.selectPresetHint', { p1: preset.name })}
+      accessibilityHint={FM('settings.themeSettings.selectPresetHint', preset.name)}
       accessibilityLabel={preset.name}
       accessibilityRole="button"
       accessibilityState={{ selected: isSelected, disabled }}

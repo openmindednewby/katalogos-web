@@ -1,7 +1,8 @@
+import { HttpMethod } from '@dloizides/api-client-base';
+
 import { matchError, matchesRule, matchesStatus, matchesPath, matchesMethod } from './errorMatcher';
 import { resetErrorRules, registerErrorRule, PRIORITY_DEFAULT, PRIORITY_ROUTE_SPECIFIC } from './errorRegistry';
 import { ErrorActionType } from './errorTypes';
-import HttpMethod from '../../../shared/enums/HttpMethod';
 
 import type { ClassifiedError, ErrorMatcher, ErrorRule } from './errorTypes';
 

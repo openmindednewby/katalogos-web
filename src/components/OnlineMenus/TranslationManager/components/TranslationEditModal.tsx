@@ -9,6 +9,7 @@ import { Modal, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View 
 import { FM } from '@/localization/helpers';
 import { MODAL_OVERLAY_COLOR } from '@/shared/constants';
 import { TestIds } from '@/shared/testIds';
+import { isValueDefined } from '@/utils/is';
 
 import type { MenuContents, TranslatedMenuContents } from '../../../../types/menuTypes';
 
@@ -81,7 +82,6 @@ interface Props {
 
 /** Extract the menu name from source contents safely. */
 function getSourceMenuName(contents: MenuContents | undefined): string {
-  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unsafe-call -- isValueDefined types from @dloizides/utils not resolved by linter
   if (!isValueDefined(contents)) return '';
   const firstCatName = contents.categories?.[0]?.name;
   return firstCatName ?? '';

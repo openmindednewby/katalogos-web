@@ -1,6 +1,6 @@
  
 
-import HttpMethod from '../../../shared/enums/HttpMethod';
+import { HttpMethod } from '@dloizides/api-client-base';
 
 import type { ClassifiedError, ErrorRule } from './errorTypes';
 

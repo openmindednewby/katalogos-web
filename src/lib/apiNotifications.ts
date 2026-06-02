@@ -7,8 +7,9 @@
  * `src/lib/api/errors/` offers a more powerful alternative with status
  * code matching, error code matching, and typed actions.
  */
+import { HttpMethod } from '@dloizides/api-client-base';
+
 import { FM } from '../localization/helpers';
-import HttpMethod from '../shared/enums/HttpMethod';
 import NotificationType from '../shared/enums/NotificationType';
 import { isValueDefined } from '../utils/is';
 

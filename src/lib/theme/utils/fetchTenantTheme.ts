@@ -158,7 +158,7 @@ interface ErrorWithResponse {
 }
 
 function isErrorWithResponse(value: unknown): value is ErrorWithResponse {
-  if (!isValueDefined(value) || typeof value !== 'object') return false;
+  if (typeof value !== 'object' || !isValueDefined(value)) return false;
   return 'response' in value;
 }
 

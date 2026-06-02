@@ -9,7 +9,8 @@
  * the error registry to determine the appropriate UI action.
  */
 
-import HttpMethod from '../../../shared/enums/HttpMethod';
+import { HttpMethod } from '@dloizides/api-client-base';
+
 import { isValueDefined } from '../../../utils/is';
 import { logger } from '../../../utils/logger';
 

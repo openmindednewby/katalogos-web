@@ -91,7 +91,6 @@ export const MenuDisplayView: React.FC<MenuDisplayViewProps> = ({
 
   return (
     <View style={isRtl ? RTL_CONTAINER_STYLE : LTR_CONTAINER_STYLE}>
-      {/* eslint-disable @typescript-eslint/no-unsafe-assignment -- External type resolution */}
       <SeoHead
         businessProfile={profileData}
         categories={categories}
@@ -101,7 +100,6 @@ export const MenuDisplayView: React.FC<MenuDisplayViewProps> = ({
         publicUrl={publicUrl}
         restaurantName={profileData?.name}
       />
-      {/* eslint-enable @typescript-eslint/no-unsafe-assignment */}
       {isOffline ? (
         <OfflineBanner
           backgroundColor={theme.colors.surface}

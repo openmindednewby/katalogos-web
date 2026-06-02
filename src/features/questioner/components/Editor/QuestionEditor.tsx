@@ -61,7 +61,7 @@ const QuestionEditor = ({ question, onChange, enableAnswerSection }: Props): Rea
 
   return (
     <Section>
-      <Heading text={FM('quizTemplates.question', { p1: questionIdLabel })} />
+      <Heading text={FM('quizTemplates.question', questionIdLabel)} />
       <TextInput
         accessibilityHint={FM('quizTemplates.questionNameInputHint')}
         accessibilityLabel={FM('quizTemplates.questionNameInputLabel')}

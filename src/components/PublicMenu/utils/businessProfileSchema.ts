@@ -12,6 +12,8 @@ const SCHEMA_DAY_NAMES: readonly string[] = [
 ];
 
 export interface BusinessProfileData {
+  name?: string | null;
+  logoUrl?: string | null;
   phone?: string | null;
   email?: string | null;
   website?: string | null;

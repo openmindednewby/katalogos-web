@@ -1,5 +1,6 @@
+import { HttpMethod } from '@dloizides/api-client-base';
+
 import { getApiNotificationMessage, registerApiNotification } from './apiNotifications';
-import HttpMethod from '../shared/enums/HttpMethod';
 
 // Mock the localization helper
 jest.mock('../localization/helpers', () => ({

@@ -13,13 +13,12 @@ module.exports = {
   ],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
-    // @dloizides/auth-web is consumed from its TypeScript source. It must
-    // resolve `@dloizides/auth-client` to THIS app's single copy — not the one
-    // nested under the symlinked package's own node_modules — so the shared
-    // BffAuthClient / BffUser types are one identity (see metro.config.js for
-    // the bundler equivalent).
-    '^@dloizides/auth-client$': '<rootDir>/node_modules/@dloizides/auth-client',
-    '^@dloizides/auth-web$': '<rootDir>/../NpmPackages/packages/auth-web/src/index.ts',
+    // @dloizides/auth-web resolves from node_modules (the published dist) —
+    // the same thing Metro bundles and prod ships. Do NOT map it to the local
+    // package source: that couples this app's tests to in-progress package
+    // work (and the source's own node_modules/react-native copy isn't set up
+    // by jest-expo, so module-level StyleSheet.create crashes). erevna-web
+    // resolves the same way.
     // Map @dloizides/notification-client subpath exports to the package's built dist files.
     // Jest's jest-expo resolver does not honor the package.json `exports` map for subpaths,
     // so each subpath needs an explicit mapping. We point at the published .js (CJS) files
