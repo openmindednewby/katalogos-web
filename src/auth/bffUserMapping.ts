@@ -65,3 +65,31 @@ export function bffUserToKeycloakUserInfo(user: BffUser): KeycloakUserInfo {
 export function bffUserToNormalizedUser(user: BffUser): NormalizedUser {
   return normalizeKeycloakUser(bffUserToKeycloakUserInfo(user));
 }
+
+/**
+ * Narrow a claim bag (`{ [claim]: unknown }`) into a typed `BffUser`.
+ *
+ * The device-PIN unlock path hands the success user back as an untyped claim
+ * record (the `/bff/me` shape) rather than a `BffUser`. This reads the known
+ * claims with `typeof` guards — no type assertion — while preserving every other
+ * claim through the index signature, producing a value the rest of the
+ * post-login flow (`applyBffSession`, `resolvePostLoginDestination`) accepts.
+ */
+export function claimBagToBffUser(claims: Record<string, unknown>): BffUser {
+  const stringRoles = Array.isArray(claims.roles)
+    ? claims.roles.filter((r): r is string => typeof r === 'string')
+    : undefined;
+  return {
+    ...claims,
+    sub: typeof claims.sub === 'string' ? claims.sub : undefined,
+    email: typeof claims.email === 'string' ? claims.email : undefined,
+    email_verified: typeof claims.email_verified === 'boolean' ? claims.email_verified : undefined,
+    name: typeof claims.name === 'string' ? claims.name : undefined,
+    given_name: typeof claims.given_name === 'string' ? claims.given_name : undefined,
+    family_name: typeof claims.family_name === 'string' ? claims.family_name : undefined,
+    preferred_username:
+      typeof claims.preferred_username === 'string' ? claims.preferred_username : undefined,
+    tenantId: typeof claims.tenantId === 'string' ? claims.tenantId : undefined,
+    roles: stringRoles,
+  };
+}

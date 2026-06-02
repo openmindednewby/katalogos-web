@@ -1,9 +1,15 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { ActivityIndicator, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { useRouter } from 'expo-router';
 
+import { DevicePinOffer, useBffLoginConfig } from '@dloizides/auth-web';
+
+import { mapAppThemeToAuthTheme } from '@/auth/authThemeMapping';
+import { bffAuthClient } from '@/auth/bffClient';
+import { BffLoginMethod } from '@/auth/BffLoginMethod';
+import { useDevicePinEnrollLabels } from '@/auth/useAuthLabels';
 import BusinessProfileNudge from '@/components/Dashboard/components/BusinessProfileNudge';
 import WelcomeHeader from '@/components/Dashboard/components/WelcomeHeader';
 import { useBusinessProfileNudge } from '@/components/Dashboard/hooks/useBusinessProfileNudge';
@@ -40,9 +46,14 @@ const BORDER_WIDTH = 1;
 const SCROLL_CONTENT_PADDING_BOTTOM = 32;
 const PHONE_CONTAINER_PADDING = 12;
 
+const PIN_OFFER_MARGIN_TOP = 16;
+
 const styles = StyleSheet.create({
   scrollContent: {
     paddingBottom: SCROLL_CONTENT_PADDING_BOTTOM,
+  },
+  pinOffer: {
+    marginTop: PIN_OFFER_MARGIN_TOP,
   },
   loadingContainer: {
     flex: 1,
@@ -104,6 +115,23 @@ const DashboardPage = (): React.ReactElement => {
   const { isPhone } = useBreakpoint();
   const { isSuperAdmin } = useGetRole();
 
+  // Post-login device-PIN offer (unified-login Increment 3 Batch 3): skippable,
+  // shown once per visit to a signed-in user when the BFF advertises the
+  // pin/passkey method AND this device has no PIN yet. Dismissed (enrolled or
+  // skipped) in local state. The shared offer component is react-query-free.
+  const authTheme = useMemo(() => mapAppThemeToAuthTheme(theme), [theme]);
+  const { config: loginConfig, loading: loginConfigLoading } = useBffLoginConfig(bffAuthClient);
+  const devicePinEnrollLabels = useDevicePinEnrollLabels();
+  const [pinOfferDismissed, setPinOfferDismissed] = useState<boolean>(false);
+  const pinMethodAdvertised =
+    loginConfig.methods.includes(BffLoginMethod.Pin)
+    || loginConfig.methods.includes(BffLoginMethod.Passkey);
+  const showPinOffer =
+    !loginConfigLoading
+    && pinMethodAdvertised
+    && !loginConfig.deviceState.hasPin
+    && !pinOfferDismissed;
+
   useEffect(() => {
     if (dashboardData.isLoading || wizard.isWizardVisible) return;
     if (!hasSeenTour(TooltipTourId.Dashboard)) startTour(TooltipTourId.Dashboard);
@@ -136,6 +164,18 @@ const DashboardPage = (): React.ReactElement => {
       testID={TestIds.DASHBOARD_PAGE}
     >
       <WelcomeHeader isEmpty={dashboardData.isEmpty} />
+
+      {showPinOffer ? (
+        <View style={styles.pinOffer}>
+          <DevicePinOffer
+            client={bffAuthClient}
+            labels={devicePinEnrollLabels}
+            testIdPrefix="katalogos"
+            theme={authTheme}
+            onDismiss={(): void => setPinOfferDismissed(true)}
+          />
+        </View>
+      ) : null}
 
       <DashboardCards dashboardData={dashboardData} />
 

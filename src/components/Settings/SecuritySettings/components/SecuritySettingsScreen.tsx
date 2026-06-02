@@ -3,14 +3,28 @@
  * Combines change-password form and active-sessions list.
  * Wired to sessions API via Orval hooks.
  */
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import {
+  DevicePinSettingsCard,
+  PasskeySettingsCard,
+  useBffLoginConfig,
+} from '@dloizides/auth-web';
 import { useQueryClient } from '@tanstack/react-query';
+
 
 import ChangePasswordForm from './ChangePasswordForm';
 import SessionItem from './SessionItem';
+import { mapAppThemeToAuthTheme } from '../../../../auth/authThemeMapping';
+import { bffAuthClient } from '../../../../auth/bffClient';
+import { BffLoginMethod } from '../../../../auth/BffLoginMethod';
+import {
+  useDevicePinSettingsLabels,
+  useDevicePinEnrollLabels,
+  usePasskeySettingsLabels,
+} from '../../../../auth/useAuthLabels';
 import { notifyError, notifySuccess } from '../../../../lib/notifications';
 import { FM } from '../../../../localization/helpers';
 import {
@@ -56,6 +70,17 @@ const SecuritySettingsScreen = (): React.ReactElement => {
   const { colors } = theme;
   const primary = theme.palette.primary['500'];
   const errorColor = theme.semantic.error['500'];
+
+  // Device-PIN + passkey settings (unified-login Increment 3 Batch 3). Seeded
+  // from `GET /bff/config`; the cards track their own state thereafter. Both
+  // shared components are react-query-free, so they're safe inside this screen.
+  const authTheme = useMemo(() => mapAppThemeToAuthTheme(theme), [theme]);
+  const { config: loginConfig, loading: loginConfigLoading } = useBffLoginConfig(bffAuthClient);
+  const devicePinSettingsLabels = useDevicePinSettingsLabels();
+  const devicePinEnrollLabels = useDevicePinEnrollLabels();
+  const passkeySettingsLabels = usePasskeySettingsLabels();
+  const showPasskeySettings =
+    !loginConfigLoading && loginConfig.methods.includes(BffLoginMethod.Passkey);
 
   const {
     data: sessionsData,
@@ -103,6 +128,33 @@ const SecuritySettingsScreen = (): React.ReactElement => {
         <Section>
           <ChangePasswordForm />
         </Section>
+
+        {!loginConfigLoading ? (
+          <View style={styles.sectionGap}>
+            <Section>
+              <DevicePinSettingsCard
+                client={bffAuthClient}
+                enrollLabels={devicePinEnrollLabels}
+                initialHasPin={loginConfig.deviceState.hasPin}
+                labels={devicePinSettingsLabels}
+                testIdPrefix="katalogos"
+                theme={authTheme}
+              />
+            </Section>
+          </View>
+        ) : null}
+
+        {showPasskeySettings ? (
+          <View style={styles.sectionGap}>
+            <Section>
+              <PasskeySettingsCard
+                labels={passkeySettingsLabels}
+                testIdPrefix="katalogos"
+                theme={authTheme}
+              />
+            </Section>
+          </View>
+        ) : null}
 
         <View style={styles.sectionGap}>
           <Section>

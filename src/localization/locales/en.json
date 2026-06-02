@@ -1,4 +1,81 @@
 {
+  "auth": {
+    "devicePin": {
+      "unlock": {
+        "title": "Welcome back, {{p1}}",
+        "titleNoName": "Welcome back",
+        "description": "Enter your {{p1}}-digit PIN to sign in on this device.",
+        "pinLabel": "PIN",
+        "pinPlaceholder": "Enter your PIN",
+        "submit": "Unlock",
+        "submitting": "Signing in...",
+        "usePasswordInstead": "Sign in with password instead",
+        "usePasswordHint": "Switch to signing in with your username and password",
+        "errorIncomplete": "Enter all {{p1}} digits of your PIN.",
+        "errorInvalid": "That PIN is incorrect. Try again.",
+        "errorLockedOut": "Too many attempts. Try again later.",
+        "errorLockedOutRetry": "Too many attempts. Try again in {{p1}} seconds.",
+        "errorRateLimited": "Too many requests. Try again later.",
+        "errorRateLimitedRetry": "Too many requests. Try again in {{p1}} seconds.",
+        "errorGeneric": "Something went wrong. Try again, or sign in with your password.",
+        "digitFilledHint": "PIN digit entered",
+        "digitEmptyHint": "PIN digit not yet entered"
+      },
+      "enroll": {
+        "offerTitle": "Set a PIN for faster sign-in?",
+        "offerDescription": "Next time, sign in on this device with a short PIN instead of your full password.",
+        "offerAccept": "Set up a PIN",
+        "offerAcceptHint": "Open the form to choose a quick sign-in PIN",
+        "offerSkip": "Not now",
+        "offerSkipHint": "Dismiss the PIN setup offer",
+        "formTitle": "Choose your PIN",
+        "formDescription": "Pick a {{p1}}-digit PIN you will remember. You will use it to sign in on this device.",
+        "lengthLabel": "PIN length",
+        "lengthOptionHint": "Use a {{p1}}-digit PIN",
+        "pinLabel": "New PIN",
+        "pinPlaceholder": "Enter a new PIN",
+        "confirmLabel": "Confirm PIN",
+        "confirmPlaceholder": "Re-enter your PIN",
+        "submit": "Save PIN",
+        "submitting": "Saving...",
+        "cancel": "Cancel",
+        "cancelHint": "Close the PIN setup form without saving",
+        "errorMismatch": "The PINs must match and be exactly {{p1}} digits.",
+        "errorUnauthorized": "Your session has expired. Sign in again to set a PIN.",
+        "errorForbidden": "A PIN is already set for this session.",
+        "errorInvalidPin": "That PIN is not allowed. Choose a different one.",
+        "errorFailed": "Could not set your PIN. Try again later."
+      },
+      "settings": {
+        "title": "Quick PIN sign-in",
+        "description": "Sign in on this device with a short PIN instead of your full password.",
+        "statusEnabled": "Quick PIN sign-in is enabled on this device.",
+        "statusDisabled": "Quick PIN sign-in is off.",
+        "enable": "Enable quick PIN sign-in",
+        "enableHint": "Set a PIN so you can sign in faster on this device",
+        "disable": "Disable",
+        "disableHint": "Remove the PIN sign-in from this device",
+        "disabling": "Disabling...",
+        "disableFailed": "Could not disable PIN sign-in. Try again later."
+      }
+    },
+    "passkey": {
+      "login": {
+        "signInButton": "Sign in with a passkey",
+        "signInHint": "Use your fingerprint, face, or security key to sign in",
+        "errorCancelled": "Passkey sign-in was cancelled. You can try again or sign in another way.",
+        "errorFailed": "Passkey sign-in didn't work. Try again, or sign in another way."
+      },
+      "settings": {
+        "title": "Passkeys",
+        "description": "Add a passkey to sign in with your fingerprint, face, or a security key instead of a password.",
+        "reauthHint": "You'll be asked to confirm your password before adding a passkey.",
+        "addButton": "Add a passkey",
+        "addHint": "Start setting up a passkey for this account",
+        "registeredSuccess": "Your passkey was added. You can now use it to sign in."
+      }
+    }
+  },
   "welcome": "Welcome",
   "close": "Close",
   "Back": "Back",
