@@ -124,18 +124,16 @@ async function parseExcelFile(file: File): Promise<ParsedFileResult> {
   catch { return { headers: [], rows: [], error: 'fileReadFailed' }; }
 }
 
-type CellValue = string | number | boolean | Date | null;
-
 async function readExcelWorkbook(file: File): Promise<ParsedFileResult> {
-  const readXlsxFile: (f: File) => Promise<CellValue[][]> = (await import('read-excel-file/browser')).default;
-  const rawData: CellValue[][] = await readXlsxFile(file);
+  const readXlsxFile = (await import('read-excel-file/browser')).default;
+  const rawData = await readXlsxFile(file);
 
   if (rawData.length === 0) return { headers: [], rows: [], error: 'emptyFile' };
 
   const headers: string[] = rawData[0].map(String);
   const dataRows: string[][] = rawData
     .slice(1)
-    .map((row: CellValue[]) => row.map((cell: CellValue) => (!isValueDefined(cell) ? '' : String(cell))))
+    .map((row) => row.map((cell) => (!isValueDefined(cell) ? '' : String(cell))))
     .filter((row: string[]) => !isEmptyRow(row));
 
   if (dataRows.length === 0) return { headers, rows: [], error: 'emptyFile' };

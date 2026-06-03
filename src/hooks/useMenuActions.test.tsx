@@ -78,7 +78,7 @@ describe('useMenuActions', () => {
       expect(result.current.isSuccess).toBe(true);
     });
 
-    it('calls onSuccess callback with correct 3-parameter signature (BUG-MENU-002)', async () => {
+    it('calls onSuccess callback with the mutation callback signature (BUG-MENU-002)', async () => {
       mockedCustomInstance.mockResolvedValueOnce(undefined);
       const onSuccessMock = jest.fn();
 
@@ -92,9 +92,9 @@ describe('useMenuActions', () => {
       await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
       expect(onSuccessMock).toHaveBeenCalledTimes(1);
-      // Verify it receives exactly 3 args: data, variables, context
+      // Verify it receives the react-query v5 args: data, variables, onMutateResult, context
       const callArgs = onSuccessMock.mock.calls[0];
-      expect(callArgs).toHaveLength(3);
+      expect(callArgs).toHaveLength(4);
       expect(callArgs[1]).toEqual({ externalId: 'test-menu-id' });
     });
 
@@ -171,7 +171,7 @@ describe('useMenuActions', () => {
       expect(result.current.isSuccess).toBe(true);
     });
 
-    it('calls onSuccess callback with correct 3-parameter signature (BUG-MENU-002)', async () => {
+    it('calls onSuccess callback with the mutation callback signature (BUG-MENU-002)', async () => {
       mockedCustomInstance.mockResolvedValueOnce(undefined);
       const onSuccessMock = jest.fn();
 
@@ -185,9 +185,9 @@ describe('useMenuActions', () => {
       await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
       expect(onSuccessMock).toHaveBeenCalledTimes(1);
-      // Verify it receives exactly 3 args: data, variables, context
+      // Verify it receives the react-query v5 args: data, variables, onMutateResult, context
       const callArgs = onSuccessMock.mock.calls[0];
-      expect(callArgs).toHaveLength(3);
+      expect(callArgs).toHaveLength(4);
       expect(callArgs[1]).toEqual({ externalId: 'test-menu-id' });
     });
 

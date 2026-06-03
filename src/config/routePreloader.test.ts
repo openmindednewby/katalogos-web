@@ -42,8 +42,8 @@ describe('preloadProtectedRoutes', () => {
     });
 
     it('schedules heavy modules with requestIdleCallback after delay fires', () => {
-      const idleCallbacks: Array<() => void> = [];
-      const mockRequestIdleCallback = jest.fn((cb: () => void) => {
+      const idleCallbacks: IdleRequestCallback[] = [];
+      const mockRequestIdleCallback = jest.fn((cb: IdleRequestCallback) => {
         idleCallbacks.push(cb);
         return idleCallbacks.length;
       });

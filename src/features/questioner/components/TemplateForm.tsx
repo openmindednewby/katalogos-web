@@ -115,12 +115,10 @@ const TemplateForm = ({
       return;
     }
 
-    const basePayload: CreateQuestionerTemplateRequest | UpdateQuestionerTemplateRequest = {
-      name: trimmedName,
-      description: descriptionRef.current.trim() === '' ? null : descriptionRef.current,
-    };
-    if (showStatus)
-      basePayload.isActive = isActive;
+    const descriptionValue = descriptionRef.current.trim() === '' ? null : descriptionRef.current;
+    const basePayload: CreateQuestionerTemplateRequest | UpdateQuestionerTemplateRequest = showStatus
+      ? { name: trimmedName, description: descriptionValue, isActive }
+      : { name: trimmedName, description: descriptionValue };
 
     onSave(basePayload);
   }

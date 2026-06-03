@@ -4,7 +4,7 @@ import type { EditorColors } from '../../types';
 
 const FALLBACK_BORDER = '#ccc';
 
-function deriveEditorColors(colors: typeof themePalette.dark): EditorColors {
+function deriveEditorColors(colors: typeof themePalette.dark | typeof themePalette.light): EditorColors {
   return {
     borderColor: String(colors.border) !== '' ? String(colors.border) : FALLBACK_BORDER,
     textColor: String(colors.text),

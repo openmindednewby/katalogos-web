@@ -25,7 +25,7 @@ import { isValueDefined } from '../../../src/utils/is';
 import { logger } from '../../../src/utils/logger';
 
 import type { PublicMenuLocation } from '../../../src/components/PublicMenu/hooks/usePublicMenuLocation';
-import type { MenuSchedule } from '../../../src/types/menuTypes';
+import type { MenuSchedule, MenuContents as LocalMenuContents } from '../../../src/types/menuTypes';
 
 const PublicMenuViewerPage = (): React.ReactElement => {
   const params = useLocalSearchParams<{ id: string; theme?: string }>();
@@ -68,8 +68,11 @@ const PublicMenuViewerPage = (): React.ReactElement => {
   const { track } = useAnalytics();
   const hasTrackedViewRef = useRef(false);
 
+  // The generated API MenuContents and the local domain MenuContents are the same runtime
+  // shape; the local types don't model API nullability yet (see the tsc-zero task doc).
   const menuContents = useMemo(
-    () => activeQuery.data?.contents ?? undefined,
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- same runtime shape; local domain types don't model API nullability yet
+    () => (activeQuery.data?.contents ?? undefined) as unknown as LocalMenuContents | undefined,
     [activeQuery.data],
   );
 

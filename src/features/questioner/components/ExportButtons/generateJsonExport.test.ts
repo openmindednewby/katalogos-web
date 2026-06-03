@@ -1,5 +1,12 @@
 import { type CompletedQuestionerWithUser } from '@/server/customHooks/useCompletedQuestionersWithUsers';
 
+/** The sanitizer walks arbitrary nested structures - model the extra fixture fields. */
+type TestRecord = CompletedQuestionerWithUser & {
+  id?: string;
+  nested?: Record<string, unknown>;
+  arr?: Array<Record<string, unknown>>;
+};
+
 jest.mock("react-native", () => ({
   Platform: { OS: "web" },
 }));
@@ -64,7 +71,7 @@ describe("generateJsonExport", () => {
 
     const { generateJsonExport } = require("./generateJsonExport") as { generateJsonExport: (p: CompletedQuestionerWithUser[]) => void };
 
-    const payload: CompletedQuestionerWithUser[] = [
+    const payload: TestRecord[] = [
       {
         id: "r1",
         contentsJson: "{shouldBeRemoved}",

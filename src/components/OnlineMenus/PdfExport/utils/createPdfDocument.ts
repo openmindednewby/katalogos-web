@@ -26,6 +26,6 @@ export async function createPdfDocument(): Promise<PdfDocumentWithSave> {
       splitTextToSize: raw.splitTextToSize.bind(raw),
       addPage: raw.addPage.bind(raw),
     },
-    save: raw.save.bind(raw),
+    save: (filename: string): void => { raw.save(filename); },
   };
 }

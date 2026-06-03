@@ -68,7 +68,8 @@ describe('matchesSearch', () => {
   });
 
   it('handles items with null name', () => {
-    expect(matchesSearch(makeItem({ name: null }), 'test')).toBe(false);
+    // The API type says name is never null; verify matchesSearch stays defensive anyway.
+    expect(matchesSearch(makeItem({ name: null as unknown as undefined }), 'test')).toBe(false);
   });
 });
 

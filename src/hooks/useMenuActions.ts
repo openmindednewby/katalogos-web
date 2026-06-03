@@ -59,7 +59,7 @@ export function useActivateMenu<TError = unknown, TContext = unknown>(
   return useMutation({
     ...restOptions,
     mutationFn: async ({ externalId }) => activateMenu(externalId),
-    onSuccess: (data, variables, context) => {
+    onSuccess: (data, variables, onMutateResult, context) => {
       // Invalidate queries to refresh the UI
       queryClient.invalidateQueries({
         queryKey: getOnlineMenuWebMenuListQueryKey(),
@@ -73,7 +73,7 @@ export function useActivateMenu<TError = unknown, TContext = unknown>(
       });
 
       if (options?.onSuccess)
-        options.onSuccess(data, variables, context);
+        options.onSuccess(data, variables, onMutateResult, context);
 
     },
   });
@@ -109,7 +109,7 @@ export function useDeactivateMenu<TError = unknown, TContext = unknown>(
   return useMutation({
     ...restOptions,
     mutationFn: async ({ externalId }) => deactivateMenu(externalId),
-    onSuccess: (data, variables, context) => {
+    onSuccess: (data, variables, onMutateResult, context) => {
       // Invalidate queries to refresh the UI
       queryClient.invalidateQueries({
         queryKey: getOnlineMenuWebMenuListQueryKey(),
@@ -123,7 +123,7 @@ export function useDeactivateMenu<TError = unknown, TContext = unknown>(
       });
 
       if (options?.onSuccess)
-        options.onSuccess(data, variables, context);
+        options.onSuccess(data, variables, onMutateResult, context);
 
     },
   });

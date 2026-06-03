@@ -42,7 +42,7 @@ export interface PdfDocument {
   setFont: (name: string, style: string) => void;
   setDrawColor: (color: number) => void;
   setLineWidth: (width: number) => void;
-  text: (text: string | string[], x: number, y: number, options?: { align?: string }) => void;
+  text: (text: string | string[], x: number, y: number, options?: { align?: 'left' | 'center' | 'right' | 'justify' }) => void;
   line: (x1: number, y1: number, x2: number, y2: number) => void;
   splitTextToSize: (text: string, maxWidth: number) => string[];
   addPage: () => void;
