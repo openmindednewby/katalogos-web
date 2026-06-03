@@ -13,6 +13,7 @@ import {
 } from '../presets';
 import { generateColorScale, generateThemePalette, isValidHex } from './palette-generator';
 import { resolveTheme } from './resolveTheme';
+import ThemeMode from '../../shared/enums/ThemeMode';
 
 import type { TenantThemeConfig, ThemeModeColors, ResolvedTheme } from '../types';
 
@@ -22,8 +23,8 @@ const SHADE_KEYS = ['50', '100', '200', '300', '400', '500', '600', '700', '800'
 const HEX_PATTERN = /^#[0-9a-f]{6}$/i;
 const MODE_SWITCH_ITERATIONS = 100;
 const EXPECTED_PRESET_COUNT = 5;
-const LIGHT_MODE = 'light' as const;
-const DARK_MODE = 'dark' as const;
+const LIGHT_MODE = ThemeMode.Light;
+const DARK_MODE = ThemeMode.Dark;
 
 const THEME_MODE_COLOR_KEYS: ReadonlyArray<keyof ThemeModeColors> = [
   'background', 'surface', 'surfaceElevated',

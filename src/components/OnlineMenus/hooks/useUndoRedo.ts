@@ -5,6 +5,7 @@
 import { useCallback, useReducer } from 'react';
 
 import { UNDO_STACK_MAX_SIZE } from './undoRedoConstants';
+import { UndoRedoActionType } from '../enums/UndoRedoActionType';
 
 import type { MenuContents } from '../../../types/menuTypes';
 
@@ -20,13 +21,6 @@ export interface UndoRedoState {
   past: EditorSnapshot[];
   present: EditorSnapshot;
   future: EditorSnapshot[];
-}
-
-const enum UndoRedoActionType {
-  Push = 'push',
-  Undo = 'undo',
-  Redo = 'redo',
-  Reset = 'reset',
 }
 
 type UndoRedoAction =

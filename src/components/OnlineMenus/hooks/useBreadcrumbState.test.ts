@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-native';
+import { renderHook, type RenderHookResult } from '@testing-library/react-native';
 
 import { useBreadcrumbState } from './useBreadcrumbState';
 
@@ -15,7 +15,9 @@ const CATEGORIES = [
   { id: 'cat-2', name: 'Main Courses' },
 ];
 
-function renderBreadcrumb(overrides: Record<string, unknown> = {}): ReturnType<typeof renderHook> {
+function renderBreadcrumb(
+  overrides: Record<string, unknown> = {},
+): RenderHookResult<ReturnType<typeof useBreadcrumbState>, unknown> {
   const defaults = {
     menuName: 'Lunch Menu',
     activeTab: 'metadata',

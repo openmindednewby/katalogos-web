@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderHook, act } from '@testing-library/react-native';
+import { renderHook, act, type RenderHookResult } from '@testing-library/react-native';
 
 import { useAnalytics } from './useAnalytics';
 import AnalyticsEventName from '../../../shared/enums/AnalyticsEventName';
@@ -12,7 +12,9 @@ function createMockClient(): jest.Mocked<AnalyticsClient> {
   return { track: jest.fn(), identify: jest.fn(), page: jest.fn(), reset: jest.fn() };
 }
 
-function renderWithClient(client: AnalyticsClient): ReturnType<typeof renderHook> {
+function renderWithClient(
+  client: AnalyticsClient,
+): RenderHookResult<ReturnType<typeof useAnalytics>, unknown> {
   const wrapper = ({ children }: { children: React.ReactNode }): React.ReactElement => (
     <AnalyticsContext.Provider value={client}>{children}</AnalyticsContext.Provider>
   );

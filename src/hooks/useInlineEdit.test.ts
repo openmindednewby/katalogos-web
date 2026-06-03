@@ -138,7 +138,7 @@ describe('useInlineEdit', () => {
   it('syncs draftValue when value prop changes while not editing', () => {
     const onCommit = jest.fn();
     const { result, rerender } = renderHook(
-      ({ value }) => useInlineEdit({ value, onCommit }),
+      ({ value }: { value: string }) => useInlineEdit({ value, onCommit }),
       { initialProps: { value: 'Original' } },
     );
     expect(result.current.draftValue).toBe('Original');
@@ -149,7 +149,7 @@ describe('useInlineEdit', () => {
   it('does not sync draftValue when value prop changes while editing', () => {
     const onCommit = jest.fn();
     const { result, rerender } = renderHook(
-      ({ value }) => useInlineEdit({ value, onCommit }),
+      ({ value }: { value: string }) => useInlineEdit({ value, onCommit }),
       { initialProps: { value: 'Original' } },
     );
     act(() => { result.current.startEditing(); });
