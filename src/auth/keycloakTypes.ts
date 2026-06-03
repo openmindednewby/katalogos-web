@@ -7,7 +7,6 @@
  * Existing imports in BaseClient continue to work unchanged via this re-export.
  */
 export {
-  isKeycloakRole,
   KeycloakRoles,
   normalizeKeycloakUser,
 } from '@dloizides/auth-client';

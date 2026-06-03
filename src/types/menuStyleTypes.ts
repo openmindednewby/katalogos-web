@@ -178,11 +178,7 @@ export interface BoxStyling {
 // =============================================================================
 
 export {
-  PricePosition,
   CurrencyPosition,
-  ItemLayoutVariant,
-  ItemImagePosition,
-  BadgePosition,
 } from './menuStyleItemTypes';
 
 export type {

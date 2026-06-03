@@ -6,7 +6,6 @@
  * compatibility with existing imports inside BaseClient.
  */
 export type {
-  ApiErrorEnvelope,
   ClassifiedError,
   ErrorAction,
   ErrorMatchResult,
@@ -15,4 +14,4 @@ export type {
   StatusRange,
 } from '@dloizides/api-client-base';
 
-export { ApiError, ErrorActionType, ErrorSeverity, HttpMethod } from '@dloizides/api-client-base';
+export { ErrorActionType, ErrorSeverity, HttpMethod } from '@dloizides/api-client-base';

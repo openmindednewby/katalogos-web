@@ -493,16 +493,6 @@ export interface MenuTranslationSummary {
 }
 
 /**
- * Full detail of a single translation (edit view).
- */
-export interface MenuTranslationDetail {
-  externalId: string;
-  languageCode: string;
-  contents: TranslatedMenuContents;
-  lastUpdatedDate: string;
-}
-
-/**
  * Type guard to check if a menu is active
  */
 export function isActiveMenu(menu: TenantMenusDto | GeneratedTenantMenusDto): menu is TenantMenusDto {

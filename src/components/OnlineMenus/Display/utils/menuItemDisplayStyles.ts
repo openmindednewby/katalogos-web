@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import type { ViewStyle, TextStyle, ImageStyle } from 'react-native';
+import type { ViewStyle } from 'react-native';
 
 import CurrencyPosition from '../../../../types/enums/CurrencyPosition';
 import MediaPosition from '../../../../types/enums/MediaPosition';
@@ -186,11 +186,3 @@ export const styles = StyleSheet.create({
     borderRadius: DEFAULT_BORDER_RADIUS,
   },
 });
-
-// =============================================================================
-// Style Type Exports
-// =============================================================================
-
-export type ContainerStyle = ViewStyle;
-export type TextStyleType = TextStyle;
-export type ImageStyleType = ImageStyle;

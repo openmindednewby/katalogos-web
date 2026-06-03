@@ -29,11 +29,6 @@ export interface MenuItemOverrideDto {
   descriptionOverride?: string | null;
 }
 
-/** Request body for batch upserting overrides. */
-export interface UpsertOverridesRequest {
-  overrides: MenuItemOverrideDto[];
-}
-
 /** Composite key for looking up an override. */
 export interface OverrideKey {
   categoryIndex: number;

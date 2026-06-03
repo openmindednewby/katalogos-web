@@ -20,8 +20,6 @@ export const SUPPORTED_LANGUAGES: readonly SupportedLanguage[] = [
   { code: 'ar', name: 'Arabic' },
 ] as const;
 
-export type SupportedLanguageCode = typeof SUPPORTED_LANGUAGES[number]['code'];
-
 /**
  * Returns the display name for a language code, or the code itself if unknown.
  */
