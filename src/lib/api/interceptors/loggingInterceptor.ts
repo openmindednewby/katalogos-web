@@ -102,4 +102,4 @@ function registerLoggingInterceptor(instance: AxiosInstance): { request: number;
   return { request: requestId, response: responseId };
 }
 
-export { registerLoggingInterceptor, logRequest, logResponse, logErrorResponse };
+export { registerLoggingInterceptor };

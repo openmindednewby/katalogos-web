@@ -134,4 +134,5 @@ function registerErrorClassifier(instance: AxiosInstance): number {
   );
 }
 
+// ts-prune-ignore-next -- classifyError/handleResponseError are unit-test surface (dynamic require)
 export { registerErrorClassifier, classifyError, handleResponseError };

@@ -67,4 +67,4 @@ function registerResponseNormalizer(instance: AxiosInstance): number {
   return instance.interceptors.response.use(handleSuccessResponse);
 }
 
-export { registerResponseNormalizer, handleSuccessResponse, extractMessageFromBody };
+export { registerResponseNormalizer };
