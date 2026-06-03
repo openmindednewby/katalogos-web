@@ -4,8 +4,6 @@
  */
 import { StyleSheet } from 'react-native';
 
-import type { ThemeModeColors } from '../types';
-
 export const sidebarStyles = StyleSheet.create({
   sidebarContainer: {
     width: 220,
@@ -54,16 +52,3 @@ export const sidebarStyles = StyleSheet.create({
     flex: 1,
   },
 });
-
-/** Theme-aware sidebar style generator for dynamic color application. */
-export function createSidebarStyles(colors: ThemeModeColors): {
-  containerColors: { backgroundColor: string; borderRightColor: string };
-  textColor: { color: string };
-  subtextColor: { color: string };
-} {
-  return {
-    containerColors: { backgroundColor: colors.surface, borderRightColor: colors.border },
-    textColor: { color: colors.text },
-    subtextColor: { color: colors.textSecondary },
-  };
-}

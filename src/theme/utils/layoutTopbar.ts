@@ -7,8 +7,6 @@
  */
 import { StyleSheet } from 'react-native';
 
-import type { ThemeModeColors } from '../types';
-
 export const topbarStyles = StyleSheet.create({
   topbarContainer: {
     height: 64,
@@ -45,16 +43,3 @@ export const topbarStyles = StyleSheet.create({
   accountBtn: { marginLeft: 8, paddingHorizontal: 10, paddingVertical: 6, borderRadius: 4 },
   accountText: { fontWeight: '600' as const },
 });
-
-/** Theme-aware topbar style generator for dynamic color application. */
-export function createTopbarStyles(colors: ThemeModeColors): {
-  containerColors: { borderBottomColor: string; backgroundColor: string };
-  textColor: { color: string };
-  subtextColor: { color: string };
-} {
-  return {
-    containerColors: { borderBottomColor: colors.border, backgroundColor: colors.background },
-    textColor: { color: colors.text },
-    subtextColor: { color: colors.textSecondary },
-  };
-}
