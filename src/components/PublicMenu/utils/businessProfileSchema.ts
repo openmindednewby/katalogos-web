@@ -50,6 +50,11 @@ interface OperatingHoursEntry {
   isClosed?: boolean;
 }
 
+/** Type guard for a plain object record. */
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && isValueDefined(value);
+}
+
 /** Check if a string value is non-empty. */
 function isNonEmpty(value: string | null | undefined): value is string {
   return isValueDefined(value) && value !== '';
@@ -57,19 +62,17 @@ function isNonEmpty(value: string | null | undefined): value is string {
 
 /** Type guard: validate an unknown value is a valid hours entry with required fields. */
 function isValidHoursEntry(value: unknown): value is OperatingHoursEntry {
-  if (typeof value !== 'object' || !isValueDefined(value)) return false;
-  const entry: Record<string, unknown> = value;
-  return typeof entry.day === 'number'
-    && typeof entry.open === 'string'
-    && typeof entry.close === 'string'
-    && entry.isClosed !== true;
+  if (!isRecord(value)) return false;
+  return typeof value.day === 'number'
+    && typeof value.open === 'string'
+    && typeof value.close === 'string'
+    && value.isClosed !== true;
 }
 
 /** Safely extract the hours array from parsed JSON. */
 function extractHoursArray(parsed: unknown): unknown[] | null {
-  if (typeof parsed !== 'object' || !isValueDefined(parsed)) return null;
-  const obj: Record<string, unknown> = parsed;
-  return Array.isArray(obj.hours) ? obj.hours : null;
+  if (!isRecord(parsed)) return null;
+  return Array.isArray(parsed.hours) ? parsed.hours : null;
 }
 
 /** Map a validated hours entry to a schema.org OpeningHoursSpecification. */

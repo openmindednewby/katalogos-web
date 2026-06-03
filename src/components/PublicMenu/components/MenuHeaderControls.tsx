@@ -3,6 +3,7 @@ import React from 'react';
 
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { LocationPicker } from './LocationPicker';
+import { isValueDefined } from '../../../utils/is';
 
 import type { PublicMenuLocation } from '../hooks/usePublicMenuLocation';
 import type { PublicMenuTheme } from '../utils/publicMenuThemeTypes';
@@ -25,9 +26,13 @@ export const MenuHeaderControls = ({
   availableLanguages, currentLanguage, onLanguageChange,
 }: MenuHeaderControlsProps): React.ReactElement | null => {
   if (!hasLocationPicker && !hasLanguageSwitcher) return null;
+  // The has* flags imply the corresponding data props are defined (caller invariant);
+  // the explicit checks below let TypeScript narrow the optional props to non-undefined.
+  const showLocationPicker = hasLocationPicker && isValueDefined(locations) && isValueDefined(onLocationChange);
+  const showLanguageSwitcher = hasLanguageSwitcher && isValueDefined(availableLanguages) && isValueDefined(onLanguageChange);
   return (
     <>
-      {hasLocationPicker ? (
+      {showLocationPicker ? (
         <LocationPicker
           accentColor={theme.colors.accent}
           borderColor={theme.colors.divider}
@@ -38,7 +43,7 @@ export const MenuHeaderControls = ({
           onLocationChange={onLocationChange}
         />
       ) : null}
-      {hasLanguageSwitcher ? (
+      {showLanguageSwitcher ? (
         <LanguageSwitcher
           accentColor={theme.colors.accent}
           availableLanguages={availableLanguages}

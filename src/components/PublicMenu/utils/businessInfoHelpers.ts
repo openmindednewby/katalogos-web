@@ -9,6 +9,11 @@ interface OperatingHoursEntry {
   isClosed?: boolean;
 }
 
+/** Type guard for a plain object record. */
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && isValueDefined(value);
+}
+
 /** Check if a string value is present and non-empty. */
 function isNonEmpty(value: string | null | undefined): value is string {
   return isValueDefined(value) && value !== '';
@@ -16,9 +21,8 @@ function isNonEmpty(value: string | null | undefined): value is string {
 
 /** Type guard for a valid hours entry. */
 function isValidEntry(value: unknown): value is OperatingHoursEntry {
-  if (typeof value !== 'object' || !isValueDefined(value)) return false;
-  const entry: Record<string, unknown> = value;
-  return typeof entry.day === 'number' && typeof entry.open === 'string' && typeof entry.close === 'string';
+  if (!isRecord(value)) return false;
+  return typeof value.day === 'number' && typeof value.open === 'string' && typeof value.close === 'string';
 }
 
 /** Format address lines into a single display string. */
@@ -46,10 +50,9 @@ export function parseOperatingHours(json: string | null | undefined): OperatingH
 
   try {
     const parsed: unknown = JSON.parse(json);
-    if (typeof parsed !== 'object' || !isValueDefined(parsed)) return [];
-    const obj: Record<string, unknown> = parsed;
-    if (!Array.isArray(obj.hours)) return [];
-    return obj.hours.filter(isValidEntry);
+    if (!isRecord(parsed)) return [];
+    if (!Array.isArray(parsed.hours)) return [];
+    return parsed.hours.filter(isValidEntry);
   } catch {
     return [];
   }

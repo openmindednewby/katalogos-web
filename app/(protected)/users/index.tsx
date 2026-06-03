@@ -11,7 +11,7 @@ import PageHeaderWithActions from '../../../src/components/Shared/PageHeaderWith
 import { PasswordResetModal } from '../../../src/components/Users/PasswordResetModal';
 import { TenantSelector } from '../../../src/components/Users/TenantSelector';
 import UserForm from '../../../src/components/Users/UserForm';
-import UserListItem from '../../../src/components/Users/UserListItem';
+import UserListItem, { type UserItem } from '../../../src/components/Users/UserListItem';
 import {
   useUserQueries, useUsersList, useCreateUser,
   useDeleteUser, useToggleUserEnabled, usePasswordSubmit,
@@ -41,7 +41,7 @@ interface ThemeColors {
 
 interface UserListContentOptions {
   isLoading: boolean;
-  users: Array<{ id: string; [key: string]: unknown }>;
+  users: UserItem[];
   selectedTenantId: string | null;
   colors: ThemeColors;
   btnStyle: StyleProp<ViewStyle>;
@@ -170,7 +170,7 @@ const UsersPage = (): React.ReactElement => {
   if (usersQuery.isError === true) return renderErrorState({ containerStyle, colors, btnStyle, onRefresh: handleRefresh });
 
   const defaultTenantId = selectedTenantId ?? tenants[0]?.tenantId ?? '';
-  const selectorColors = { text: colors.text, subtext: colors.subtext, primary: colors.primary, surface: colors.surface, border: colors.border };
+  const selectorColors = { text: colors.text, textSecondary: colors.subtext, primary: colors.primary, surface: colors.surface, border: colors.border };
   const pwColors = { text: colors.text, surface: colors.surface, border: colors.border, primary: colors.primary };
   const openCreateModal = (): void => { setShowCreateModal(true); };
 
