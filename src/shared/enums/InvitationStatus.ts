@@ -1,10 +1,3 @@
-/** Status of a team invitation. */
-const enum InvitationStatus {
-  Pending = 'pending',
-  Accepted = 'accepted',
-  Expired = 'expired',
-}
-
 const PENDING_VALUE = 'pending';
 const ACCEPTED_VALUE = 'accepted';
 
@@ -17,5 +10,3 @@ export function isPendingStatus(status: string): boolean {
 export function isAcceptedStatus(status: string): boolean {
   return status.toLowerCase() === ACCEPTED_VALUE;
 }
-
-export default InvitationStatus;

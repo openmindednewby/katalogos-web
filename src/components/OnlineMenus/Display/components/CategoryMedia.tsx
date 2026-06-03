@@ -227,5 +227,3 @@ export const CategoryMedia: React.FC<Props> = ({
     </View>
   );
 };
-
-export default CategoryMedia;

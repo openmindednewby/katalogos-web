@@ -235,5 +235,3 @@ export const CategorySection: React.FC<Props> = ({
     </View>
   );
 };
-
-export default CategorySection;

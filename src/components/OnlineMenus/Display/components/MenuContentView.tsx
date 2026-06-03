@@ -142,5 +142,3 @@ export const MenuContentView: React.FC<MenuContentViewProps> = ({
     </ScrollView>
   );
 };
-
-export default MenuContentView;

@@ -74,7 +74,8 @@ export const TranslationManager: React.FC<Props> = ({ menuExternalId }) => {
   }, [translateMenu]);
 
   const handleEdit = useCallback((_languageCode: string) => {
-    // TODO: Wire up TranslationEditModal when backend is ready
+    // TODO: build an inline edit modal when the backend is ready (the unused
+    // TranslationEditModal stub was removed as dead code; recover from git history if useful)
   }, []);
 
   const handleDelete = useCallback((languageCode: string) => {

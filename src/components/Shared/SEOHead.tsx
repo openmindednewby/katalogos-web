@@ -84,5 +84,3 @@ export const SEOHead = ({
     </Head>
   );
 };
-
-export default SEOHead;

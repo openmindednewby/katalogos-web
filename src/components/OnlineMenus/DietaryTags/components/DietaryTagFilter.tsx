@@ -178,5 +178,3 @@ export const DietaryTagFilter: React.FC<DietaryTagFilterProps> = ({
     </View>
   );
 };
-
-export default DietaryTagFilter;

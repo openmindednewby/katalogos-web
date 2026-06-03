@@ -46,5 +46,3 @@ export const DietaryTagBadge: React.FC<DietaryTagBadgeProps> = ({
     </View>
   );
 };
-
-export default DietaryTagBadge;

@@ -180,5 +180,3 @@ export const MenuItemDisplay: React.FC<MenuItemDisplayProps> = ({
     </WrapperComponent>
   );
 };
-
-export default MenuItemDisplay;

@@ -143,5 +143,3 @@ export const DietaryTagSelector: React.FC<DietaryTagSelectorProps> = ({
     </View>
   );
 };
-
-export default DietaryTagSelector;
