@@ -2,8 +2,6 @@
  * Constants for the BoxStyleEditor component.
  */
 
-import type { BoxStyling } from '../../../../types/menuStyleTypes';
-
 const HEX_COLOR_REGEX = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
 
 // =============================================================================
@@ -14,22 +12,16 @@ const HEX_COLOR_REGEX = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
 export const MIN_BORDER_WIDTH = 0;
 /** Maximum border width in pixels */
 export const MAX_BORDER_WIDTH = 4;
-/** Step increment for border width slider */
-export const BORDER_WIDTH_STEP = 1;
 
 /** Minimum border radius in pixels */
 export const MIN_BORDER_RADIUS = 0;
 /** Maximum border radius in pixels */
 export const MAX_BORDER_RADIUS = 24;
-/** Step increment for border radius slider */
-export const BORDER_RADIUS_STEP = 2;
 
 /** Minimum padding in pixels */
 export const MIN_PADDING = 0;
 /** Maximum padding in pixels */
 export const MAX_PADDING = 32;
-/** Step increment for padding slider */
-export const PADDING_STEP = 4;
 
 // =============================================================================
 // UI Constants
@@ -70,23 +62,3 @@ export const INVALID_COLOR_SWATCH = '#CCCCCC';
 export function isValidHexColor(color: string): boolean {
   return HEX_COLOR_REGEX.test(color);
 }
-
-// =============================================================================
-// Property Keys for Iteration
-// =============================================================================
-
-export type BoxStyleColorKey = 'borderColor';
-
-export const BOX_STYLE_COLOR_KEYS: BoxStyleColorKey[] = ['borderColor'];
-
-// =============================================================================
-// Default Values
-// =============================================================================
-
-export const DEFAULT_BOX_STYLING: Required<Omit<BoxStyling, 'margin' | 'shadowColor' | 'shadowBlur'>> = {
-  padding: 16,
-  borderWidth: 0,
-  borderColor: '#E0E0E0',
-  borderRadius: 8,
-  shadowEnabled: false,
-};

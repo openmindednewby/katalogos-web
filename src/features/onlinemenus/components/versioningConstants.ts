@@ -135,9 +135,6 @@ export const SNAPSHOT_RADIUS = 8;
 /** Snapshot font size. */
 export const SNAPSHOT_FONT_SIZE = 13;
 
-/** Max snapshot display lines. */
-export const MAX_SNAPSHOT_LINES = 20;
-
 /** Snapshot title font size. */
 export const SNAPSHOT_TITLE_SIZE = 16;
 

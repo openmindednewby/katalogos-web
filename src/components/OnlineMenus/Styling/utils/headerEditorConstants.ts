@@ -36,15 +36,6 @@ export const LOGO_SIZE_OPTIONS: LogoSizeOption[] = [
 ];
 
 // =============================================================================
-// Banner Height Settings
-// =============================================================================
-
-export const MIN_BANNER_HEIGHT = 100;
-export const MAX_BANNER_HEIGHT = 400;
-export const BANNER_HEIGHT_STEP = 20;
-export const DEFAULT_BANNER_HEIGHT = 200;
-
-// =============================================================================
 // Preview Settings
 // =============================================================================
 

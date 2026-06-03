@@ -10,20 +10,8 @@ import { StyleSheet } from 'react-native';
 /** Maximum number of rows allowed in a single import file */
 export const MAX_IMPORT_ROWS = 500;
 
-/** Minimum columns required for a valid import */
-export const MIN_REQUIRED_COLUMNS = 2;
-
 /** Accepted file extensions for import */
 export const ACCEPTED_FILE_TYPES = '.csv,.xlsx';
-
-/** Accepted MIME types for import */
-export const ACCEPTED_MIME_TYPES = [
-  'text/csv',
-  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-];
-
-/** Default price when price column is missing or invalid */
-export const DEFAULT_PRICE = 0;
 
 /** Number of sample rows to show for column mapping */
 export const SAMPLE_ROW_COUNT = 3;
@@ -66,11 +54,6 @@ export const ERROR_TEXT_COLOR = '#C62828';
 export const WARNING_ROW_COLOR = '#FFF3E0';
 export const WARNING_TEXT_COLOR = '#E65100';
 export const VALID_ROW_COLOR = '#E8F5E9';
-export const STEP_INDICATOR_SIZE = 28;
-export const ICON_UPLOAD = '\u2191';
-export const ICON_CHECK = '\u2713';
-export const ICON_WARNING = '\u26A0';
-export const ICON_ERROR = '\u2717';
 
 // =============================================================================
 // Shared Styles

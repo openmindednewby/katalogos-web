@@ -19,9 +19,6 @@ export const TEMPLATE_DIMENSIONS: Record<TemplateType, TemplateDimensions> = {
   [TemplateType.Poster]: { width: POSTER_WIDTH, height: POSTER_HEIGHT },
 };
 
-/** DOM ID for the designer preview container. */
-export const DESIGNER_PREVIEW_ID = 'qr-designer-preview';
-
 /** DOM ID for the hidden QR code source element. */
 export const DESIGNER_QR_SOURCE_ID = 'qr-designer-source';
 
