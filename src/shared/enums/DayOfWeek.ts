@@ -9,7 +9,4 @@ const enum DayOfWeek {
   Sunday = 6,
 }
 
-/** Total number of days in a week. */
-export const DAYS_IN_WEEK = 7;
-
 export default DayOfWeek;

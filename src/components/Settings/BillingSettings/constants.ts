@@ -22,18 +22,6 @@ export const PRICE_LABEL_FONT_SIZE = 14;
 /** Font size for feature list items. */
 export const FEATURE_FONT_SIZE = 14;
 
-/** Font size for status badge text. */
-export const BADGE_FONT_SIZE = 12;
-
-/** Padding inside status badges. */
-export const BADGE_PADDING_H = 10;
-
-/** Vertical padding for badges. */
-export const BADGE_PADDING_V = 4;
-
-/** Border radius for status badges. */
-export const BADGE_BORDER_RADIUS = 12;
-
 /** Font size for billing history table cells. */
 export const TABLE_CELL_FONT_SIZE = 13;
 

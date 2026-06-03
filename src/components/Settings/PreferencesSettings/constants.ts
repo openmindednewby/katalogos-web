@@ -1,25 +1,11 @@
 /** Style constants and data for Preferences Settings components. */
 export {
   SECTION_SPACING,
-  SMALL_SPACING,
   MEDIUM_SPACING,
-  TITLE_FONT_SIZE,
   BODY_FONT_SIZE,
   DESCRIPTION_FONT_SIZE,
   ERROR_TEXT_MARGIN_TOP,
 } from '../constants';
-
-/** Border radius for dropdown fields. */
-export const DROPDOWN_BORDER_RADIUS = 6;
-
-/** Padding inside dropdown fields. */
-export const DROPDOWN_PADDING = 10;
-
-/** Standard border width for dropdown fields. */
-export const DROPDOWN_BORDER_WIDTH = 1;
-
-/** Height for dropdown fields. */
-export const DROPDOWN_HEIGHT = 40;
 
 /** Available language value codes. Labels are resolved via FM() at render time. */
 export const LANGUAGE_CODES = ['en'] as const;

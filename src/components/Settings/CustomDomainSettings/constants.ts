@@ -9,21 +9,6 @@ export const CNAME_TARGET = 'public.yoursaas.com';
 /** Prefix for the TXT verification record. */
 export const TXT_RECORD_PREFIX = '_saas-verify.';
 
-/** Font size for DNS record instruction text. */
-export const INSTRUCTION_FONT_SIZE = 13;
-
-/** Font size for status badge text. */
-export const BADGE_FONT_SIZE = 12;
-
-/** Padding inside status badges. */
-export const BADGE_PADDING_H = 10;
-
-/** Vertical padding for badges. */
-export const BADGE_PADDING_V = 4;
-
-/** Border radius for status badges. */
-export const BADGE_BORDER_RADIUS = 12;
-
 /** Padding for copy buttons. */
 export const COPY_BUTTON_PADDING = 6;
 
