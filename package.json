@@ -13,6 +13,7 @@
     "ios": "expo run:ios",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit",
     "lint:strict": "eslint . --max-warnings 0",
     "yagni": "ts-prune --ignore \"\\\\app\\\\|index.ts|index.tsx|__tests__|.test.|.spec.|\\\\server\\\\|\\\\generated\\\\|\\\\shared\\\\testIds|\\\\shared\\\\types|\\\\packages\\\\|\\\\dist\\\\|.config.\"",
     "yagni:ci": "ts-prune --error --ignore \"\\\\app\\\\|index.ts|index.tsx|__tests__|.test.|.spec.|\\\\server\\\\|\\\\generated\\\\|\\\\shared\\\\testIds|\\\\shared\\\\types|\\\\packages\\\\|\\\\dist\\\\|.config.\"",
