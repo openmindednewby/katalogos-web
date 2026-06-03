@@ -74,6 +74,15 @@ export interface MenuDisplayViewProps {
   onLocationChange: (locationId: string) => void;
 }
 
+/**
+ * API profile fields are `string | null` while SeoHead props want
+ * `string | undefined` — module-level so the null-coalescing doesn't count
+ * toward the component's complexity budget.
+ */
+function orUndefined<T>(value: T | null | undefined): T | undefined {
+  return value ?? undefined;
+}
+
 export const MenuDisplayView: React.FC<MenuDisplayViewProps> = ({
   menu, menuContents, theme, menuId, availableLanguages,
   currentLanguage, isRtl, isOffline, isTranslationLoading,
@@ -94,11 +103,11 @@ export const MenuDisplayView: React.FC<MenuDisplayViewProps> = ({
       <SeoHead
         businessProfile={profileData}
         categories={categories}
-        logoUrl={whiteLabel.customLogoUrl ?? profileData?.logoUrl ?? undefined}
+        logoUrl={whiteLabel.customLogoUrl ?? orUndefined(profileData?.logoUrl)}
         menuDescription={menuDescription}
         menuName={menuName}
         publicUrl={publicUrl}
-        restaurantName={profileData?.name}
+        restaurantName={orUndefined(profileData?.name)}
       />
       {isOffline ? (
         <OfflineBanner

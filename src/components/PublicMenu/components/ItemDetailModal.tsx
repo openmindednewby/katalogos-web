@@ -218,7 +218,7 @@ export const ItemDetailModal: React.FC<ItemDetailModalProps> = ({
           matchedTags={matchedTags}
           priceText={priceText}
           responsive={responsive}
-          staffNote={staffNote}
+          staffNote={staffNote ?? undefined}
           theme={theme}
         />
       </View>

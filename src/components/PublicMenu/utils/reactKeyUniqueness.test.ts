@@ -3,7 +3,7 @@
  * Verifies that category and item key generation produces unique keys,
  * even when names/prices are duplicated.
  */
-import type { Category, MenuItem } from '../../../../types/menuTypes';
+import type { Category, MenuItem } from '../../../types/menuTypes';
 
 /**
  * Generates a category key matching the fixed MenuContentView logic.

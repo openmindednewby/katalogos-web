@@ -3,6 +3,14 @@
  * These types define the comprehensive styling tokens
  * applied to the public-facing menu viewer.
  */
+import type { TextStyle } from 'react-native';
+
+/**
+ * React Native's fontWeight literal union — using it for the weight tokens
+ * (instead of plain `string`) lets the presets' values flow into TextStyle
+ * without casts and catches invalid weights at compile time.
+ */
+type FontWeight = NonNullable<TextStyle['fontWeight']>;
 
 /** Typography tokens for a public menu theme. */
 export interface PublicMenuTypography {
@@ -11,13 +19,13 @@ export interface PublicMenuTypography {
   /** Font family for body text (descriptions, prices) */
   readonly bodyFont: string;
   /** Font weight for the menu title */
-  readonly titleWeight: string;
+  readonly titleWeight: FontWeight;
   /** Font weight for category headings */
-  readonly categoryWeight: string;
+  readonly categoryWeight: FontWeight;
   /** Font weight for item names */
-  readonly itemNameWeight: string;
+  readonly itemNameWeight: FontWeight;
   /** Font weight for prices */
-  readonly priceWeight: string;
+  readonly priceWeight: FontWeight;
   /** Letter spacing for headings (pixels) */
   readonly headingLetterSpacing: number;
   /** Letter spacing for body text (pixels) */
