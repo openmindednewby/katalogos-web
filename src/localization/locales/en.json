@@ -74,6 +74,23 @@
         "addHint": "Start setting up a passkey for this account",
         "registeredSuccess": "Your passkey was added. You can now use it to sign in."
       }
+    },
+    "preferredMethod": {
+      "settings": {
+        "title": "Preferred sign-in method",
+        "description": "Pick how you usually sign in. We'll show this method first on your devices.",
+        "noPreference": "No preference",
+        "methodPassword": "Password",
+        "methodPin": "Quick PIN",
+        "methodPasskey": "Passkey",
+        "saving": "Saving...",
+        "saveFailed": "Could not save your preference. Try again later."
+      },
+      "hint": {
+        "password": "You usually sign in with your password.",
+        "pin": "You usually sign in with your quick PIN on this account.",
+        "passkey": "You usually sign in with a passkey."
+      }
     }
   },
   "welcome": "Welcome",

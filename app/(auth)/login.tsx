@@ -39,7 +39,10 @@ import { useRouter } from 'expo-router';
 import {
   LoginForm,
   PasskeyLoginButton,
+  PreferredMethodHint,
   useBffLoginConfig,
+  readCachedPreferredMethod,
+  syncPreferredMethodFromServer,
   DEVICE_PIN_DEFAULT_DIGITS,
 } from '@dloizides/auth-web';
 
@@ -50,9 +53,11 @@ import { bffAuthClient } from '../../src/auth/bffClient';
 import { BffLoginMethod } from '../../src/auth/BffLoginMethod';
 import { claimBagToBffUser } from '../../src/auth/bffUserMapping';
 import { resolvePostLoginDestination } from '../../src/auth/postLoginRoutes';
+import { preferencesClient } from '../../src/auth/preferencesClient';
 import {
   useDevicePinUnlockLabels,
   usePasskeyLoginLabels,
+  usePreferredMethodHintLabels,
 } from '../../src/auth/useAuthLabels';
 import { DevicePinUnlockGate } from '../../src/components/Auth/DevicePinUnlockGate';
 import { ForgotPasswordModal } from '../../src/components/Auth/ForgotPasswordModal';
@@ -152,9 +157,13 @@ const LoginScreen = (): React.ReactElement => {
   const { config, loading: configLoading } = useBffLoginConfig(bffAuthClient);
   const unlockLabels = useDevicePinUnlockLabels();
   const passkeyLabels = usePasskeyLoginLabels();
+  const preferredMethodHintLabels = usePreferredMethodHintLabels();
 
   const [routing, setRouting] = useState<boolean>(false);
   const [forgotVisible, setForgotVisible] = useState<boolean>(false);
+  // The device-local cached preferred method (seeded after a prior login).
+  // Read once on mount; drives the login-screen "you usually sign in with…" hint.
+  const preferredMethod = useMemo<string | null>(() => readCachedPreferredMethod(), []);
   // When the returning user taps "sign in with password instead", drop the
   // device-PIN unlock gate for the rest of this visit and show the form.
   const [bypassDevicePin, setBypassDevicePin] = useState<boolean>(false);
@@ -180,6 +189,10 @@ const LoginScreen = (): React.ReactElement => {
       // Bridge the new session into Redux so other components see isLoggedIn=true
       // immediately — see {@link AuthContextType.applyBffSession}.
       applyBffSession(user);
+      // Seed the device-local preferred-method cache from the server so the NEXT
+      // visit's login hint reflects the user's cross-device choice. Fire-and-
+      // forget — `syncPreferredMethodFromServer` never rejects (D5).
+      syncPreferredMethodFromServer(preferencesClient).catch(() => undefined);
       // Warm the dashboard data cache; fire-and-forget — failures are OK because
       // the dashboard will refetch on mount anyway.
       prefetchDashboardData();
@@ -229,6 +242,13 @@ const LoginScreen = (): React.ReactElement => {
 
   return (
     <View style={[styles.root, { backgroundColor: theme.colors.background }]} testID="katalogos-login-page">
+      <PreferredMethodHint
+        labels={preferredMethodHintLabels}
+        method={preferredMethod}
+        testIdPrefix="katalogos"
+        theme={authTheme}
+      />
+
       <LoginForm
         client={bffAuthClient}
         theme={authTheme}

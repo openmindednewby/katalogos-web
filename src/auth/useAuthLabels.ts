@@ -19,6 +19,8 @@ import type {
   DevicePinSettingsLabels,
   PasskeyLoginLabels,
   PasskeySettingsLabels,
+  PreferredMethodSettingsLabels,
+  PreferredMethodHintLabels,
 } from '@dloizides/auth-web';
 
 /**
@@ -144,6 +146,35 @@ export function usePasskeySettingsLabels(): PasskeySettingsLabels {
       addButton: FM('auth.passkey.settings.addButton'),
       addHint: FM('auth.passkey.settings.addHint'),
       registeredSuccess: FM('auth.passkey.settings.registeredSuccess'),
+    }),
+    [],
+  );
+}
+
+/** Localised copy for `<PreferredMethodSettingsCard>` (unified-login D5). */
+export function usePreferredMethodSettingsLabels(): PreferredMethodSettingsLabels {
+  return useMemo(
+    () => ({
+      title: FM('auth.preferredMethod.settings.title'),
+      description: FM('auth.preferredMethod.settings.description'),
+      noPreference: FM('auth.preferredMethod.settings.noPreference'),
+      methodPassword: FM('auth.preferredMethod.settings.methodPassword'),
+      methodPin: FM('auth.preferredMethod.settings.methodPin'),
+      methodPasskey: FM('auth.preferredMethod.settings.methodPasskey'),
+      saving: FM('auth.preferredMethod.settings.saving'),
+      saveFailed: FM('auth.preferredMethod.settings.saveFailed'),
+    }),
+    [],
+  );
+}
+
+/** Localised copy for `<PreferredMethodHint>` (unified-login D5). */
+export function usePreferredMethodHintLabels(): PreferredMethodHintLabels {
+  return useMemo(
+    () => ({
+      password: FM('auth.preferredMethod.hint.password'),
+      pin: FM('auth.preferredMethod.hint.pin'),
+      passkey: FM('auth.preferredMethod.hint.passkey'),
     }),
     [],
   );
