@@ -68,10 +68,12 @@ const PublicMenuViewerPage = (): React.ReactElement => {
   const { track } = useAnalytics();
   const hasTrackedViewRef = useRef(false);
 
-  // The generated API MenuContents and the local domain MenuContents are the same runtime
-  // shape; the local types don't model API nullability yet (see the tsc-zero task doc).
+  // Trust boundary: the local domain MenuContents refines the loose wire types (e.g. the API's
+  // `position?: string | null` becomes the MediaPosition enum). The cast asserts that API data
+  // conforms to those refinements; replacing it requires a runtime validation layer (see the
+  // tsc-zero task doc, follow-up 2).
   const menuContents = useMemo(
-    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- same runtime shape; local domain types don't model API nullability yet
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- documented domain trust boundary (wire types -> refined domain types)
     () => (activeQuery.data?.contents ?? undefined) as unknown as LocalMenuContents | undefined,
     [activeQuery.data],
   );
