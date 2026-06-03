@@ -2,7 +2,7 @@
  * Tests for useLocationOverrides hook.
  * Focuses on logic: override CRUD, dirty tracking, and location switching.
  */
-import { renderHook, act } from '@testing-library/react-native';
+import { renderHook, act, type RenderHookResult } from '@testing-library/react-native';
 
 import { useLocationOverrides, overrideKey } from './useLocationOverrides';
 
@@ -34,7 +34,7 @@ describe('overrideKey', () => {
 describe('useLocationOverrides', () => {
   const MENU_ID = 'menu-abc-123';
 
-  function renderOverridesHook(): ReturnType<typeof renderHook<ReturnType<typeof useLocationOverrides>>> {
+  function renderOverridesHook(): RenderHookResult<ReturnType<typeof useLocationOverrides>, unknown> {
     return renderHook(() => useLocationOverrides({ menuExternalId: MENU_ID }));
   }
 

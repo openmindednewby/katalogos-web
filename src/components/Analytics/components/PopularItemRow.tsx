@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, type DimensionValue } from 'react-native';
 
 import { FM } from '@/localization/helpers';
 import { TestIds } from '@/shared/testIds';
@@ -75,7 +75,7 @@ const PopularItemRow = memo(({
 
   const ctr = computeClickThroughRate(item.viewCount, item.clickCount);
   const PERCENT_MULTIPLIER = 100;
-  const barWidth = maxViewCount > 0
+  const barWidth: DimensionValue = maxViewCount > 0
     ? `${(item.viewCount / maxViewCount) * MAX_BAR_WIDTH_FRACTION * PERCENT_MULTIPLIER}%`
     : '0%';
   return (

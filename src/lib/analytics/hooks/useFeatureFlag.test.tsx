@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderHook } from '@testing-library/react-native';
+import { renderHook, type RenderHookResult } from '@testing-library/react-native';
 
 import { useFeatureFlag, useFeatureFlagValue } from './useFeatureFlag';
 import { AnalyticsContext } from '../components/AnalyticsProvider';
@@ -22,7 +22,7 @@ function createMockClient(
 function renderWithClient<T>(
   client: AnalyticsClient,
   hook: () => T,
-): ReturnType<typeof renderHook<T>> {
+): RenderHookResult<T, unknown> {
   const wrapper = ({ children }: { children: React.ReactNode }): React.ReactElement => (
     <AnalyticsContext.Provider value={client}>{children}</AnalyticsContext.Provider>
   );

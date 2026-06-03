@@ -76,7 +76,7 @@ const SetupChecklist = ({ checklist }: Props): React.ReactElement | null => {
             {FM('dashboard.setupChecklist.progress', String(checklist.completedCount), String(checklist.totalSteps))}
           </Text>
           <View style={[checklistStyles.progressBarTrack, { backgroundColor: colors.border }]}>
-            <View style={[checklistStyles.progressBarFill, { backgroundColor: successColor, width: `${String(progressPercent)}%` }]} />
+            <View style={[checklistStyles.progressBarFill, { backgroundColor: successColor, width: `${progressPercent}%` }]} />
           </View>
         </View>
         <TouchableOpacity

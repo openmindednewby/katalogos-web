@@ -3,7 +3,7 @@
  */
 import React from 'react';
 
-import { Text, View } from 'react-native';
+import { Text, View, type DimensionValue } from 'react-native';
 
 import { calculateSignificance, formatMetricPercentage } from '../../../lib/experiments/utils/significance';
 import { FM } from '../../../localization/helpers';
@@ -20,7 +20,7 @@ interface Props {
 
 const FULL_WIDTH_PERCENT = 100;
 
-function getBarWidth(views: number, total: number): string {
+function getBarWidth(views: number, total: number): DimensionValue {
   if (total === 0) return '0%';
   return `${Math.round((views / total) * FULL_WIDTH_PERCENT)}%`;
 }

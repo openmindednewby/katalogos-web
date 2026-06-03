@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, type DimensionValue } from 'react-native';
 
 import { FM } from '../../../localization/helpers';
 import { TestIds } from '../../../shared/testIds';
@@ -60,7 +60,7 @@ const WizardProgressBar = ({ step }: Props): React.ReactElement => {
   const { colors } = theme;
   const primary = theme.palette.primary['500'];
   const displayStepNumber = Math.min(step, TOTAL_STEPS);
-  const progressPercent = `${String((displayStepNumber / TOTAL_STEPS) * PERCENT_MULTIPLIER)}%`;
+  const progressPercent: DimensionValue = `${(displayStepNumber / TOTAL_STEPS) * PERCENT_MULTIPLIER}%`;
 
   return (
     <View

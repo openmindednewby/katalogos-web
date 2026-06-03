@@ -23,8 +23,8 @@ import type { PublicMenuTheme } from './publicMenuThemeTypes';
 interface ThemeableContents {
   backgroundColor?: string | null;
   textColor?: string | null;
-  themePresetId?: string;
-  colorScheme?: { background?: string; text?: string } | null;
+  themePresetId?: string | null;
+  colorScheme?: { background?: string | null; text?: string | null } | null;
 }
 
 /** Finds a theme preset by its ID, or returns null. */

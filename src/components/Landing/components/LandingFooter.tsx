@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StyleSheet, Text, TouchableOpacity, View, useWindowDimensions } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type DimensionValue } from 'react-native';
 
 import { useRouter } from 'expo-router';
 
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   copyright: { fontSize: COPYRIGHT_FONT_SIZE, textAlign: 'center' },
 });
 
-function resolveColumnWidth(isMobile: boolean, isDesktop: boolean): string {
+function resolveColumnWidth(isMobile: boolean, isDesktop: boolean): DimensionValue {
   if (isMobile) return '100%';
   if (isDesktop) return 'auto';
   return '45%';

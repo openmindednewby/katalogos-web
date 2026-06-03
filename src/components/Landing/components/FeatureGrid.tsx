@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react';
 
-import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { StyleSheet, Text, View, useWindowDimensions, type DimensionValue } from 'react-native';
 
 import FeatureItem from './FeatureItem';
 import { FM } from '../../../localization/helpers';
@@ -50,13 +50,13 @@ const FeatureGrid = ({ sectionTitleKey, features }: Props): ReactElement => {
   const isMobile = width <= TABLET_BREAKPOINT_PX;
   const isDesktop = width > DESKTOP_BREAKPOINT_PX;
 
-  function getItemWidth(): string {
+  function getItemWidth(): DimensionValue {
     if (isMobile) return '100%';
     const columns = isDesktop ? COLUMNS_DESKTOP : COLUMNS_TABLET;
     const columnsMinusOne = columns - 1;
     const totalGap = FEATURE_GRID_GAP * columnsMinusOne;
     const containerWidth = width > LANDING_MAX_WIDTH ? LANDING_MAX_WIDTH : width;
-    return `${(containerWidth - LANDING_SECTION_PADDING_HORIZONTAL * 2 - totalGap) / columns}px`;
+    return (containerWidth - LANDING_SECTION_PADDING_HORIZONTAL * 2 - totalGap) / columns;
   }
 
   return (

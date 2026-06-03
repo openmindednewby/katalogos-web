@@ -5,7 +5,7 @@
  */
 import React, { useCallback, useMemo } from 'react';
 
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, type StyleProp, type TextStyle } from 'react-native';
 
 import { useRouter } from 'expo-router';
 
@@ -58,8 +58,8 @@ const ParentCrumb = ({
   onPress,
 }: {
   crumb: BreadcrumbItem;
-  parentStyle: ReadonlyArray<Record<string, unknown>>;
-  separatorStyle: ReadonlyArray<Record<string, unknown>>;
+  parentStyle: StyleProp<TextStyle>;
+  separatorStyle: StyleProp<TextStyle>;
   onPress: (route: Routes) => void;
 }): React.ReactElement => {
   const handlePress = useCallback(() => {
@@ -100,13 +100,13 @@ const Breadcrumb = ({ dynamicLabel, testID }: Props): React.ReactElement | null 
     [router],
   );
 
-  const parentStyle = useMemo(
-    () => [styles.parentText, { color: colors.textSecondary }] as const,
+  const parentStyle = useMemo<StyleProp<TextStyle>>(
+    () => [styles.parentText, { color: colors.textSecondary }],
     [colors.textSecondary],
   );
 
-  const separatorStyle = useMemo(
-    () => [styles.separator, { color: colors.textSecondary }] as const,
+  const separatorStyle = useMemo<StyleProp<TextStyle>>(
+    () => [styles.separator, { color: colors.textSecondary }],
     [colors.textSecondary],
   );
 
