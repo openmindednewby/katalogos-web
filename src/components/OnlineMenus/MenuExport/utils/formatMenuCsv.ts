@@ -4,6 +4,7 @@
  * Category, Item Name, Description, Price
  */
 import { sortCategoriesByDisplayOrder, sortMenuItemsByDisplayOrder } from '../../../../types/menuTypes';
+import { isValueDefined } from '../../../../utils/is';
 
 import type { MenuContents } from '../../../../types/menuTypes';
 
@@ -31,7 +32,7 @@ export function escapeCsvField(value: string): string {
  * Returns empty string if there are no categories or items.
  */
 export function formatMenuCsv(contents: MenuContents | null | undefined): string {
-  if ((contents?.categories?.length ?? 0) === 0) return '';
+  if (!isValueDefined(contents) || (contents.categories?.length ?? 0) === 0) return '';
 
   const sortedCategories = sortCategoriesByDisplayOrder(contents.categories);
   const rows: string[] = [CSV_HEADERS.join(',')];

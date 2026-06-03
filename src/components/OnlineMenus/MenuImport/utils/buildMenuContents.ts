@@ -64,7 +64,7 @@ function groupRowsByCategory(rows: ValidatedRow[]): Map<string, ValidatedRow[]> 
 function buildExistingCategoryMap(categories: Category[]): Map<string, boolean> {
   const map = new Map<string, boolean>();
   for (const cat of categories)
-    map.set(cat.name.toLowerCase(), true);
+    map.set((cat.name ?? '').toLowerCase(), true);
 
   return map;
 }

@@ -146,7 +146,7 @@ function performUpdate(args: PerformUpdateArgs): void {
     updateMutation,
     () => {
       onSuccess('onlineMenus.messages.updateSuccess');
-      analyticsTrack?.(AnalyticsEventName.MenuUpdated, { menuId: editingItem.externalId });
+      analyticsTrack?.(AnalyticsEventName.MenuUpdated, { menuId: editingItem.externalId ?? '' });
     },
     (err) => onError(err, 'Update error:'),
   );

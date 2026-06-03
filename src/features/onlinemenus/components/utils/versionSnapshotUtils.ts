@@ -19,7 +19,7 @@ function toRecord(obj: object): Record<string, unknown> {
 function countItems(categories: unknown[]): number {
   return categories.reduce(
     (sum: number, cat: unknown) => {
-      if (!isValueDefined(cat) || typeof cat !== 'object') return sum;
+      if (typeof cat !== 'object' || !isValueDefined(cat)) return sum;
       const record = toRecord(cat);
       return sum + (Array.isArray(record.items) ? record.items.length : 0);
     },
@@ -31,7 +31,7 @@ function countItems(categories: unknown[]): number {
 export function parseSnapshotSummary(snapshot: string): SnapshotSummary | null {
   try {
     const parsed: unknown = JSON.parse(snapshot);
-    if (!isValueDefined(parsed) || typeof parsed !== 'object') return null;
+    if (typeof parsed !== 'object' || !isValueDefined(parsed)) return null;
     const obj = toRecord(parsed);
     const rawCategories = obj.categories;
     const categories = Array.isArray(rawCategories) ? rawCategories : [];

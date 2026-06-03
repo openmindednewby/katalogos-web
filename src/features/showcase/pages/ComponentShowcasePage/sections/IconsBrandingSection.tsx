@@ -8,7 +8,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { FM } from '@/localization/helpers';
 
-import TenantLogo from '../../../../../components/core/TenantLogo';
+import { TenantLogo } from '../../../../../components/core/TenantLogo';
 import SvgIcon from '../../../../../components/Icons/SvgIcon';
 import { useTheme } from '../../../../../theme/hooks/useTheme';
 import ComponentCard from '../ComponentCard';

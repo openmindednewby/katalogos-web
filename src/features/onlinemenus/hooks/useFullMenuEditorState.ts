@@ -51,7 +51,7 @@ interface UseFullMenuEditorStateReturn {
  * new `item` reference for the same menu.
  */
 function useSnapshotReset(visible: boolean, item: TenantMenusDto | null, reset: (s: EditorSnapshot) => void, canUndo: boolean): void {
-  const lastResetIdRef = useRef<string | undefined>();
+  const lastResetIdRef = useRef<string | undefined>(undefined);
   const externalId = item?.externalId;
   useEffect(() => {
     if (!visible) {

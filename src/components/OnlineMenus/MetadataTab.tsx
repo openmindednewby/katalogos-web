@@ -89,6 +89,10 @@ const MetadataTab: React.FC<MetadataTabProps> = ({
   onRemoveSchedule,
   isScheduleSaving,
 }) => {
+  // ScheduleEditor needs the schedule callbacks AND the optional color props;
+  // the aliased checks let TypeScript narrow all four to non-undefined.
+  const showScheduleEditor = isValueDefined(onSaveSchedule) && isValueDefined(onRemoveSchedule)
+    && isValueDefined(primaryColor) && isValueDefined(textOnPrimary);
   return (
     <View>
       {/* Menu Name */}
@@ -162,8 +166,7 @@ const MetadataTab: React.FC<MetadataTabProps> = ({
       />
 
       {/* Menu Schedule */}
-      {isValueDefined(onSaveSchedule) && isValueDefined(onRemoveSchedule) && (
-        <ScheduleEditor
+      {showScheduleEditor ? <ScheduleEditor
           backgroundColor={backgroundColor}
           borderColor={borderColor}
           errorColor={errorColor}
@@ -175,8 +178,7 @@ const MetadataTab: React.FC<MetadataTabProps> = ({
           textSecondary={textSecondary}
           onRemove={onRemoveSchedule}
           onSave={onSaveSchedule}
-        />
-      )}
+        /> : null}
     </View>
   );
 };
