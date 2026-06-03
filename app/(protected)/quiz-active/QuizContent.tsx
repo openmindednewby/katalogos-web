@@ -22,7 +22,6 @@ interface QuizContentProps {
   submitting: boolean;
   pageOpacity: Animated.Value;
   scrollRef: RefObject<ScrollView | null>;
-  t: (key: string, defaultValue?: string) => string;
   shouldSkip: (question: UiQuestion) => boolean;
   updateAnswer: (questionId: string, value: Answer) => void;
   handleBack: () => void;
@@ -39,7 +38,6 @@ const QuizContent: React.FC<QuizContentProps> = ({
   submitting,
   pageOpacity,
   scrollRef,
-  t,
   shouldSkip,
   updateAnswer,
   handleBack,
@@ -66,7 +64,6 @@ const QuizContent: React.FC<QuizContentProps> = ({
               question={q}
               shouldSkip={shouldSkip}
               styles={styles}
-              t={t}
               updateAnswer={updateAnswer}
               value={q.answer ?? ''}
             />
@@ -80,11 +77,10 @@ const QuizContent: React.FC<QuizContentProps> = ({
           isLastPage={isLastPage}
           loading={submitting}
           styles={styles}
-          t={t}
           totalPages={totalPages}
         />
 
-        <ProgressIndicator currentPage={currentPage} styles={styles} t={t} totalPages={totalPages} />
+        <ProgressIndicator currentPage={currentPage} styles={styles} totalPages={totalPages} />
       </Animated.View>
     </ScrollView>
   );

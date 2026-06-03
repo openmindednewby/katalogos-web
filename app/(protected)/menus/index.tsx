@@ -189,7 +189,6 @@ const OnlineMenusPage = (): React.ReactElement => {
         activeTab={activeTab}
         borderColor={String(colors.border)}
         primaryColor={String(colors.primary)}
-        t={FM}
         textColor={String(colors.text)}
         onTabChange={setActiveTab}
       />

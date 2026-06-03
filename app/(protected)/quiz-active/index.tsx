@@ -86,7 +86,6 @@ const QuizActivePage = (): React.ReactElement => {
           shouldSkip={quizForm.shouldSkip}
           styles={styles}
           submitting={quizForm.submitting}
-          t={FM}
           totalPages={quizForm.totalPages}
           updateAnswer={quizForm.updateAnswer}
         />
