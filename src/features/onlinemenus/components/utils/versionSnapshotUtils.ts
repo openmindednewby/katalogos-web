@@ -61,5 +61,3 @@ export function formatSnapshot(snapshot: string): string {
     return snapshot;
   }
 }
-
-export type { SnapshotSummary };

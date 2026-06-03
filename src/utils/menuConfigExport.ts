@@ -163,4 +163,4 @@ export function createMenuConfigBlob(contents: MenuContents): Blob {
   return new Blob([jsonString], { type: JSON_MIME_TYPE });
 }
 
-export { EXPORT_FORMAT_VERSION, APP_VERSION, DEFAULT_EXPORT_FILENAME, EXPORT_FILE_EXTENSION };
+export { EXPORT_FORMAT_VERSION, APP_VERSION };

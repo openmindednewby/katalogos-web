@@ -77,11 +77,3 @@ export const globalStylingTabStyles = StyleSheet.create({
     fontSize: ICON_SIZE,
   },
 });
-
-export {
-  SECTION_MARGIN,
-  SECTION_HEADER_PADDING,
-  SECTION_CONTENT_PADDING,
-  BORDER_RADIUS,
-  BORDER_WIDTH,
-};

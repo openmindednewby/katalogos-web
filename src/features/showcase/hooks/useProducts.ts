@@ -75,4 +75,4 @@ function useProducts(): UseProductsResult {
 }
 
 export { useProducts };
-export type { Product, UseProductsResult };
+export type { Product };

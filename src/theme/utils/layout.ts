@@ -13,8 +13,6 @@ import { formStyles } from './layoutForms';
 import { sidebarStyles } from './layoutSidebar';
 import { topbarStyles } from './layoutTopbar';
 
-import type { ThemeModeColors } from '../types';
-
 const LIGHT_BORDER_COLOR = '#ddd';
 
 // Core layout styles that tie everything together
@@ -78,20 +76,3 @@ export const layoutStyles = StyleSheet.create({
     borderColor: LIGHT_BORDER_COLOR,
   },
 });
-
-// Re-export individual style modules for modular imports
-export { sidebarStyles, createSidebarStyles } from './layoutSidebar';
-export { topbarStyles, createTopbarStyles } from './layoutTopbar';
-export { formStyles } from './layoutForms';
-export { drawerStyles } from './layoutDrawer';
-
-/** Theme-aware core layout style generator. */
-export function createCoreLayoutStyles(colors: ThemeModeColors): {
-  wrapperBackground: { backgroundColor: string };
-  listItemBorder: { borderColor: string };
-} {
-  return {
-    wrapperBackground: { backgroundColor: colors.background },
-    listItemBorder: { borderColor: colors.border },
-  };
-}

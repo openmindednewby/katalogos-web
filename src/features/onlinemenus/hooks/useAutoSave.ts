@@ -10,6 +10,9 @@ import type { MenuContents } from '@/types/menuTypes';
 import { useDebouncedCallback } from '@/utils/debounce';
 import { isValueDefined } from '@/utils/is';
 
+/** How long the "Saved" status displays before resetting to idle (ms). */
+const SAVED_DISPLAY_MS = 3000;
+
 /** Delay before auto-save triggers after the last change (ms).
  * Kept short so an upload that completes just before the user navigates away
  * still gets persisted — the previous 1500ms window meant the PUT often hadn't
@@ -18,9 +21,6 @@ export const AUTO_SAVE_DEBOUNCE_MS = 250;
 
 /** How long the error status persists before resetting to idle (ms). */
 export const ERROR_CLEAR_DELAY_MS = 5000;
-
-/** How long the "Saved" status displays before resetting to idle (ms). */
-const SAVED_DISPLAY_MS = 3000;
 
 interface UseAutoSaveParams {
   externalId: string | undefined;

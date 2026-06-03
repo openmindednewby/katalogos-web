@@ -155,35 +155,3 @@ export function normalizeTimeInput(text: string): string {
   const clampedMinutes = Math.max(0, Math.min(minutes, MAX_MINUTES));
   return `${clampedHours}:${String(clampedMinutes).padStart(MINUTE_PAD_LENGTH, '0')}`;
 }
-
-/** Common IANA timezone options for the timezone picker. */
-export const TIMEZONE_OPTIONS: readonly string[] = [
-  'UTC',
-  'America/New_York',
-  'America/Chicago',
-  'America/Denver',
-  'America/Los_Angeles',
-  'America/Anchorage',
-  'Pacific/Honolulu',
-  'America/Toronto',
-  'America/Vancouver',
-  'Europe/London',
-  'Europe/Paris',
-  'Europe/Berlin',
-  'Europe/Rome',
-  'Europe/Madrid',
-  'Europe/Amsterdam',
-  'Europe/Athens',
-  'Europe/Moscow',
-  'Asia/Dubai',
-  'Asia/Kolkata',
-  'Asia/Bangkok',
-  'Asia/Shanghai',
-  'Asia/Tokyo',
-  'Asia/Seoul',
-  'Australia/Sydney',
-  'Australia/Melbourne',
-  'Pacific/Auckland',
-] as const;
-
- 

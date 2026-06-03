@@ -68,6 +68,7 @@ export async function saveSliceToLocal(key: string, value: unknown): Promise<voi
   }
 }
 
+// ts-prune-ignore-next -- exercised by persist.test.ts via dynamic require
 export function saveSliceToSession(key: string, value: unknown): void {
   try {
     if (isWeb) 

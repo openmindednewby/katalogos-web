@@ -7,15 +7,15 @@
  * @see BaseClient/docs/Tasks/TODO/menu-customization-feature.md
  */
 
-import BadgePosition from './enums/BadgePosition';
 import CurrencyPosition from './enums/CurrencyPosition';
-import ItemImagePosition from './enums/ItemImagePosition';
-import ItemLayoutVariant from './enums/ItemLayoutVariant';
-import PricePosition from './enums/PricePosition';
 
+import type BadgePosition from './enums/BadgePosition';
+import type ItemImagePosition from './enums/ItemImagePosition';
+import type ItemLayoutVariant from './enums/ItemLayoutVariant';
+import type PricePosition from './enums/PricePosition';
 import type { FontWeight, ContentAlignment } from './menuStyleTypes';
 
-export { BadgePosition, CurrencyPosition, ItemImagePosition, ItemLayoutVariant, PricePosition };
+export { CurrencyPosition };
 
 // =============================================================================
 // Item Styling

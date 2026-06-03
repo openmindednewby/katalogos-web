@@ -44,6 +44,5 @@ export default styles;
 // Re-export all theme modules for backward compatibility
 export { themePalette } from './palette';
 export { layoutStyles } from './layout';
-export { buttonStyles } from './buttons';
 export { typography } from './typography';
 export { useDynamicFormStyles, type FormStyles } from './forms';

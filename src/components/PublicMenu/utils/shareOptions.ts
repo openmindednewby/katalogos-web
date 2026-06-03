@@ -33,5 +33,3 @@ export const SHARE_OPTIONS: ShareOption[] = [
     testId: TestIds.PUBLIC_MENU_SHARE_TWITTER,
   },
 ];
-
-export type { ShareOption };

@@ -55,7 +55,6 @@ import type { Category, MenuItem } from '../types/menuTypes';
 
 // Re-export types and generateMediaStyles for backward compatibility
 export { generateMediaStyles } from './menuStyleGeneratorHelpers';
-export type { CategoryStyles, ItemStyles, TypographyStyles } from './menuStyleGeneratorHelpers';
 
 // =============================================================================
 // Main Generator Functions

@@ -2,6 +2,9 @@
  * Constants for the AI menu import feature.
  */
 
+/** Number of wizard steps */
+const AI_IMPORT_STEP_COUNT = 4;
+
 /** Maximum file size in bytes (10 MB) */
 export const MAX_FILE_SIZE_BYTES = 10_485_760;
 
@@ -18,9 +21,6 @@ export const AI_IMPORT_ACCEPTED_MIME_TYPES = [
 
 /** Default price for items without a detected price */
 export const DEFAULT_ITEM_PRICE = 0;
-
-/** Number of wizard steps */
-const AI_IMPORT_STEP_COUNT = 4;
 
 /** Step dot indices for the progress indicator */
 export const AI_IMPORT_STEP_INDICES = Array.from({ length: AI_IMPORT_STEP_COUNT }, (_, i) => i);

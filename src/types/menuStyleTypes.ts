@@ -28,17 +28,12 @@ import type MediaSize from './enums/MediaSize';
 import type TitlePosition from './enums/TitlePosition';
 
 export { default as FontWeight } from './enums/FontWeight';
-export { default as LayoutTemplate } from './enums/LayoutTemplate';
-export { default as CategoryLayoutType } from './enums/CategoryLayoutType';
-export { default as ItemLayoutType } from './enums/ItemLayoutType';
 export { default as HorizontalPosition } from './enums/HorizontalPosition';
 export { default as LogoSize } from './enums/LogoSize';
 export { default as MediaPosition } from './enums/MediaPosition';
 export { default as MediaSize } from './enums/MediaSize';
 export { default as MediaFit } from './enums/MediaFit';
-export { default as TitlePosition } from './enums/TitlePosition';
 export { default as ContentAlignment } from './enums/ContentAlignment';
-export { default as CategoryItemLayout } from './enums/CategoryItemLayout';
 
 // =============================================================================
 // Global Typography

@@ -23,8 +23,6 @@ const PREVIEW_IMAGE_SIZE = 40;
 const PREVIEW_CONTENT_SIZE = 60;
 const TOGGLE_ROW_GAP = 12;
 const SLIDER_HEIGHT = 40;
-const SLIDER_TRACK_HEIGHT = 4;
-const SLIDER_THUMB_SIZE = 20;
 
 export const mediaPositionEditorStyles = StyleSheet.create({
   container: {
@@ -148,10 +146,3 @@ export const mediaPositionEditorStyles = StyleSheet.create({
     opacity: DISABLED_OPACITY,
   },
 });
-
-export {
-  DISABLED_OPACITY,
-  PREVIEW_SIZE,
-  SLIDER_TRACK_HEIGHT,
-  SLIDER_THUMB_SIZE,
-};

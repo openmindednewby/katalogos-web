@@ -87,5 +87,3 @@ export const MenuTabBar = ({
     </View>
   );
 };
-
-export { MenuTabFilter };

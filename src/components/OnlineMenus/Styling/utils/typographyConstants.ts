@@ -25,7 +25,6 @@ const FONT_WEIGHT_MAP: Record<FontWeight, NumericFontWeight> = {
 };
 
 export { default as TypographySectionKey } from '../../../../shared/enums/TypographySectionKey';
-export { default as NumericFontWeight } from '../../../../shared/enums/NumericFontWeight';
 
 /**
  * Font family options available in the typography editor.

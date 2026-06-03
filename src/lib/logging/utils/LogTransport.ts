@@ -4,7 +4,7 @@ import type { LogEntry } from '../types';
 
 const CONTENT_TYPE_JSON = 'application/json';
 
-export interface TransportConfig {
+interface TransportConfig {
   remoteUrl: string;
   offlineQueue: OfflineQueue;
 }

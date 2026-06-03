@@ -10,8 +10,6 @@ import { SvgIcon } from '../Icons';
 import type { TenantListItemActionsProps } from './TenantListItemActionsTypes';
 import type { IconName } from '../Icons';
 
-export type { TenantListItemActionsProps } from './TenantListItemActionsTypes';
-
 const ACTION_ICON_SIZE = 14;
 const ACTION_BUTTON_MARGIN_RIGHT = 12;
 const ICON_SPACING_MARGIN_RIGHT = 4;

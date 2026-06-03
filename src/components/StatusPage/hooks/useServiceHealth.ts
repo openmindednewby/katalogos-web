@@ -113,7 +113,6 @@ function useServiceHealth(): OverallHealthState & { refresh: () => void } {
 export {
   useServiceHealth,
   checkServiceHealth,
-  fetchAllServiceHealth,
   POLL_INTERVAL_MS,
   HEALTH_QUERY_KEY,
   REQUEST_TIMEOUT_MS,

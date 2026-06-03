@@ -25,8 +25,6 @@ import {
 } from './constants';
 import { DISABLED_OPACITY } from '../../../shared/constants';
 
-export { DISABLED_OPACITY };
-
 export const whiteLabelStyles = StyleSheet.create({
   container: { flex: 1 },
   scrollContent: { padding: SECTION_SPACING },

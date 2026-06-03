@@ -5,7 +5,6 @@ import type { BusinessProfileData, SchemaOpeningHours, SchemaPostalAddress } fro
 import type { Category } from '../../../types/menuTypes';
 
 export type { BusinessProfileData } from './businessProfileSchema';
-export { buildOpeningHours, buildPostalAddress } from './businessProfileSchema';
 
 const SCHEMA_CONTEXT = 'https://schema.org';
 const PRICE_DECIMALS = 2;
