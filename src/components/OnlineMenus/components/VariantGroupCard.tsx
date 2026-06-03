@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   toggleRow: { flexDirection: 'row', alignItems: 'center', gap: INNER_GAP, marginBottom: INNER_GAP },
 });
 
-export interface VariantGroupCardProps {
+interface VariantGroupCardProps {
   group: VariantGroup;
   groupIndex: number;
   borderColor: string;

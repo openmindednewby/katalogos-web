@@ -23,10 +23,10 @@ import type { BffUser } from '@dloizides/auth-client';
 import type { RoleRouteTable } from '@dloizides/auth-web';
 
 /** The protected-area landing route every signed-in user reaches today. */
-export const PROTECTED_HOME_ROUTE = '/(protected)';
+const PROTECTED_HOME_ROUTE = '/(protected)';
 
 /** katalogos-web role → route table consumed by `resolvePostLoginRoute`. */
-export const postLoginRouteTable: RoleRouteTable = {
+const postLoginRouteTable: RoleRouteTable = {
   routes: [
     { role: KeycloakRoles.SuperUser, route: PROTECTED_HOME_ROUTE },
     { role: KeycloakRoles.Admin, route: PROTECTED_HOME_ROUTE },

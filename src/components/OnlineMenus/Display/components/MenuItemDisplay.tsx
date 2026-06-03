@@ -29,7 +29,7 @@ import {
 
 import type { MenuItem, MenuContents } from '../../../../types/menuTypes';
 
-export interface MenuItemDisplayProps {
+interface MenuItemDisplayProps {
   item: MenuItem;
   globalStyles?: MenuContents;
   onPress?: () => void;

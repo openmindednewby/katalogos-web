@@ -13,7 +13,7 @@ import { useActivateMenu, useDeactivateMenu } from '../useMenuActions';
 /** Delay in ms before second refetch to ensure cache refresh */
 const REFETCH_DELAY_MS = 250;
 
-export interface MenuQueries {
+interface MenuQueries {
   listQuery: ReturnType<typeof useOnlineMenuWebMenuList>;
   createMutation: ReturnType<typeof useOnlineMenuWebTenantMenusCreate>;
   updateMutation: ReturnType<typeof useOnlineMenuWebMenuUpdate>;

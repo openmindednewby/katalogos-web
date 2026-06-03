@@ -17,7 +17,7 @@ interface UseComboboxParams {
   onBlur: () => void;
 }
 
-export interface UseComboboxReturn {
+interface UseComboboxReturn {
   isOpen: boolean;
   searchText: string;
   highlightedIndex: number;

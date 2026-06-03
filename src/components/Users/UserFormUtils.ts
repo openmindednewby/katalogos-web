@@ -14,7 +14,7 @@ export interface UserFormPayload {
   roles: string[];
 }
 
-export interface TrimmedFormValues {
+interface TrimmedFormValues {
   username: string;
   email: string;
   phoneNumber: string;
@@ -52,7 +52,7 @@ export function trimFormValues(values: FormValuesInput): TrimmedFormValues {
 /**
  * Converts a trimmed string to undefined if empty.
  */
-export function toOptional(value: string): string | undefined {
+function toOptional(value: string): string | undefined {
   return value.length > 0 ? value : undefined;
 }
 

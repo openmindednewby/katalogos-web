@@ -51,7 +51,7 @@ const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * ONE_MB;
 /**
  * Result of a menu configuration import attempt.
  */
-export interface ImportResult {
+interface ImportResult {
   /** Whether the import was successful */
   success: boolean;
   /** The imported and validated menu contents (if successful) */
@@ -65,7 +65,7 @@ export interface ImportResult {
 /**
  * Validation error details.
  */
-export interface ValidationError {
+interface ValidationError {
   field: string;
   message: string;
 }

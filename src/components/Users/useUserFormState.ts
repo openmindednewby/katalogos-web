@@ -12,7 +12,7 @@ export interface InitialValues {
   roles: string[];
 }
 
-export interface FormState {
+interface FormState {
   username: string;
   email: string;
   phoneNumber: string;
@@ -24,7 +24,7 @@ export interface FormState {
   selectedTenantId: string;
 }
 
-export interface FormStateSetters {
+interface FormStateSetters {
   setUsername: (value: string) => void;
   setEmail: (value: string) => void;
   setPhoneNumber: (value: string) => void;
@@ -36,7 +36,7 @@ export interface FormStateSetters {
   setSelectedTenantId: (value: string) => void;
 }
 
-export type FormStateAndSetters = FormState & FormStateSetters;
+type FormStateAndSetters = FormState & FormStateSetters;
 
 
 function useFormStateValues(initialValues: InitialValues, tenantId: string): [FormState, FormStateSetters] {

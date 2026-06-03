@@ -38,7 +38,7 @@ export interface RegisterFormState {
  * account so the screen can route by role; on failure `errorMessage` holds the
  * localized message to surface.
  */
-export interface RegisterSubmitResult {
+interface RegisterSubmitResult {
   ok: boolean;
   errorMessage?: string;
   user?: BffUser;

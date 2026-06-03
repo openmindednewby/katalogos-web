@@ -19,13 +19,13 @@ import type { PixelCrop } from '../utils/cropImageUtils';
 // Types
 // ---------------------------------------------------------------------------
 
-export interface CropModalState {
+interface CropModalState {
   isVisible: boolean;
   imageUri: string;
   originalFile: FileInfo | null;
 }
 
-export interface UseImageCropResult {
+interface UseImageCropResult {
   /** Current modal state. */
   modalState: CropModalState;
   /** Current aspect ratio preset. */

@@ -17,7 +17,7 @@ import {
 
 import type { PreferencesInput } from './useWelcomeWizard';
 
-export interface ChecklistItem {
+interface ChecklistItem {
   step: SetupChecklistStep;
   completed: boolean;
 }

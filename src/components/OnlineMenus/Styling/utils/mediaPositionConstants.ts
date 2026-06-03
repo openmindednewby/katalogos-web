@@ -6,18 +6,18 @@ import { MediaFit, MediaPosition, MediaSize } from '../../../../types/menuStyleT
 
 import type { IconName } from '../../../Icons';
 
-export interface PositionOption {
+interface PositionOption {
   id: MediaPosition;
   labelKey: string;
   icon: IconName;
 }
 
-export interface SizeOption {
+interface SizeOption {
   id: MediaSize;
   labelKey: string;
 }
 
-export interface FitOption {
+interface FitOption {
   id: MediaFit;
   labelKey: string;
 }

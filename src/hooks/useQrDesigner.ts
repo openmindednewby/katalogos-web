@@ -5,7 +5,7 @@ import { isValueDefined } from '../utils/is';
 
 import type { TenantMenusDto } from '../types/menuTypes';
 
-export interface QrDesignerState {
+interface QrDesignerState {
   menuName: string;
   publicUrl: string;
 }

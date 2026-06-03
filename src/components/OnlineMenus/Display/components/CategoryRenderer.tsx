@@ -145,7 +145,7 @@ interface CategoryItemsProps {
   onItemPress?: (category: Category, item: MenuItem) => void;
 }
 
-export const CategoryItems: React.FC<CategoryItemsProps> = ({
+const CategoryItems: React.FC<CategoryItemsProps> = ({
   category,
   categoryIndex,
   contents,

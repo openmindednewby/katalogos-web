@@ -92,7 +92,7 @@ export function throttle<T extends (...args: readonly unknown[]) => unknown>(
   };
 }
 
-export interface DebouncedCallback<T extends (...args: readonly unknown[]) => unknown> {
+interface DebouncedCallback<T extends (...args: readonly unknown[]) => unknown> {
   (...args: Parameters<T>): void;
   /** Fire the pending call now (if any) and clear it. No-op if nothing pending. */
   flush: () => void;

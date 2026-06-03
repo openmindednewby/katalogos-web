@@ -20,7 +20,7 @@ export const AUTO_SAVE_DEBOUNCE_MS = 250;
 export const ERROR_CLEAR_DELAY_MS = 5000;
 
 /** How long the "Saved" status displays before resetting to idle (ms). */
-export const SAVED_DISPLAY_MS = 3000;
+const SAVED_DISPLAY_MS = 3000;
 
 interface UseAutoSaveParams {
   externalId: string | undefined;

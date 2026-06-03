@@ -56,7 +56,7 @@ async function removeTranslation(menuExternalId: string, languageCode: string): 
   return undefined;
 }
 
-export interface UseMenuTranslationsReturn {
+interface UseMenuTranslationsReturn {
   translations: MenuTranslationSummary[];
   isLoading: boolean;
   translateMenu: (languageCodes: string[]) => void;

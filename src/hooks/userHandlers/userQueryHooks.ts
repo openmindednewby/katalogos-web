@@ -25,7 +25,7 @@ function parseCreatedTimestamp(value: unknown): number | undefined {
   return Number.isFinite(parsed) ? parsed : undefined;
 }
 
-export interface UserQueries {
+interface UserQueries {
   tenantsQuery: ReturnType<typeof useIdentityServiceAPITenantsListTenants>;
   usersQuery: ReturnType<typeof useIdentityServiceAPIUsersListUsers>;
   createMutation: ReturnType<typeof useIdentityServiceAPIUsersCreateUser>;

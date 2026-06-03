@@ -16,7 +16,7 @@ const WHITE_COLOR = '#ffffff';
 /** CSS custom properties style record compatible with React's style prop. */
 type CssVarStyle = CSSProperties & Record<`--${string}`, string>;
 
-export interface FormThemeVars {
+interface FormThemeVars {
   /** CSS custom properties to spread on the wrapper element */
   style: CssVarStyle;
 }

@@ -7,12 +7,12 @@ const enum FillRule {
   EvenOdd = 'evenodd',
 }
 
-export interface IconPath {
+interface IconPath {
   d: string;
   fillRule?: FillRule;
 }
 
-export interface IconDefinition {
+interface IconDefinition {
   paths: IconPath[];
 }
 

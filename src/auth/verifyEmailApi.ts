@@ -17,7 +17,7 @@ import { buildVerifyUrlTemplate } from './verifyEmailRequest';
 import { isValueDefined } from '../utils/is';
 
 /** Result of a verify-email POST — `success: true` or a localized errorCode. */
-export type VerifyEmailResult =
+type VerifyEmailResult =
   | { success: true }
   | { success: false; errorCode: VerifyEmailErrorCode };
 

@@ -31,14 +31,14 @@ import type {
 // =============================================================================
 
 /** Map content alignment to React Native flexbox alignment */
-export const ALIGNMENT_MAP: Record<ContentAlignment, TextStyle['textAlign']> = {
+const ALIGNMENT_MAP: Record<ContentAlignment, TextStyle['textAlign']> = {
   left: 'left',
   center: 'center',
   right: 'right',
 };
 
 /** Map media fit to React Native resizeMode */
-export const RESIZE_MODE_MAP: Record<MediaFit, ImageStyle['resizeMode']> = {
+const RESIZE_MODE_MAP: Record<MediaFit, ImageStyle['resizeMode']> = {
   cover: 'cover',
   contain: 'contain',
   fill: 'stretch',
@@ -46,7 +46,7 @@ export const RESIZE_MODE_MAP: Record<MediaFit, ImageStyle['resizeMode']> = {
 };
 
 /** Map media size to pixel dimensions */
-export const SIZE_DIMENSION_MAP: Record<Exclude<MediaSize, 'custom' | 'full'>, number> = {
+const SIZE_DIMENSION_MAP: Record<Exclude<MediaSize, 'custom' | 'full'>, number> = {
   thumbnail: 48,
   small: 80,
   medium: 120,
@@ -54,11 +54,11 @@ export const SIZE_DIMENSION_MAP: Record<Exclude<MediaSize, 'custom' | 'full'>, n
 };
 
 /** Default shadow values for iOS and Android */
-export const DEFAULT_SHADOW_OFFSET = { width: 0, height: 2 };
-export const DEFAULT_SHADOW_OPACITY = 0.25;
-export const DEFAULT_SHADOW_RADIUS = 4;
-export const DEFAULT_ELEVATION = 4;
-export const DEFAULT_SHADOW_COLOR = 'rgba(0, 0, 0, 0.25)';
+const DEFAULT_SHADOW_OFFSET = { width: 0, height: 2 };
+const DEFAULT_SHADOW_OPACITY = 0.25;
+const DEFAULT_SHADOW_RADIUS = 4;
+const DEFAULT_ELEVATION = 4;
+const DEFAULT_SHADOW_COLOR = 'rgba(0, 0, 0, 0.25)';
 
 // =============================================================================
 // Type Definitions for Generated Styles
@@ -93,7 +93,7 @@ export interface TypographyStyles {
 // =============================================================================
 
 /** Safely get a value or its default */
-export function getValueOrDefault<T>(value: T | undefined, defaultValue: T): T {
+function getValueOrDefault<T>(value: T | undefined, defaultValue: T): T {
   if (isValueDefined(value)) return value;
   return defaultValue;
 }
@@ -105,7 +105,7 @@ export function getColorWithFallback(color: string | undefined, fallback: string
 }
 
 /** Build shadow styles for ViewStyle (cross-platform) */
-export function buildShadowStyles(
+function buildShadowStyles(
   shadowEnabled: boolean | undefined,
   shadowColor: string | undefined,
   shadowBlur: number | undefined
@@ -132,7 +132,7 @@ export function buildShadowStyles(
 }
 
 /** Calculate image dimensions based on size preset */
-export function calculateImageDimensions(
+function calculateImageDimensions(
   size: MediaSize | undefined,
   customWidth: number | undefined,
   customHeight: number | undefined

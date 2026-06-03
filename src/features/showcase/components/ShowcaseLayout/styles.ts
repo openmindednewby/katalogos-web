@@ -5,7 +5,7 @@
 
 import { isValueDefined } from '../../../../shared/utils/validators';
 
-export const showcaseLayoutStyles = `
+const showcaseLayoutStyles = `
   .showcase-layout {
     display: flex;
     flex-direction: row;

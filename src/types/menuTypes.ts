@@ -464,7 +464,7 @@ export interface TranslatedMenuContents {
 /**
  * Translated content for a single category.
  */
-export interface TranslatedCategory {
+interface TranslatedCategory {
   originalIndex: number;
   name?: string | null;
   description?: string | null;
@@ -474,7 +474,7 @@ export interface TranslatedCategory {
 /**
  * Translated content for a single menu item.
  */
-export interface TranslatedMenuItem {
+interface TranslatedMenuItem {
   originalIndex: number;
   name?: string | null;
   description?: string | null;

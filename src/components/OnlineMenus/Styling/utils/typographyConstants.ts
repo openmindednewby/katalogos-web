@@ -30,7 +30,7 @@ export { default as NumericFontWeight } from '../../../../shared/enums/NumericFo
 /**
  * Font family options available in the typography editor.
  */
-export interface FontFamilyOption {
+interface FontFamilyOption {
   label: string;
   value: string;
   /** CSS font-family value for preview */
@@ -40,7 +40,7 @@ export interface FontFamilyOption {
 /**
  * Font weight options available in the typography editor.
  */
-export interface FontWeightOption {
+interface FontWeightOption {
   label: string;
   value: FontWeight;
 }
@@ -102,7 +102,7 @@ export const FONT_SIZE_LIMITS = {
 /**
  * Typography section configuration without type assertions.
  */
-export interface TypographySectionConfig {
+interface TypographySectionConfig {
   fontKey: 'titleFont' | 'bodyFont' | 'priceFont';
   sizeKey: 'titleFontSize' | 'bodyFontSize' | 'priceFontSize';
   weightKey: 'titleFontWeight' | 'bodyFontWeight' | 'priceFontWeight';

@@ -9,7 +9,7 @@ const DRAWER_WIDTH_PX = 320;
 const SWATCH_HEIGHT_PX = 32;
 const TOGGLE_SIZE_PX = 40;
 
-export const themeDrawerStyles = `
+const themeDrawerStyles = `
   .theme-drawer {
     position: fixed;
     top: 0;

@@ -27,7 +27,7 @@ interface MutationCallbacks {
   onError?: (error: Error) => void;
 }
 
-export interface UseWhiteLabelMutationReturn {
+interface UseWhiteLabelMutationReturn {
   saveWhiteLabel: (form: WhiteLabelFormState) => void;
   isPending: boolean;
   isError: boolean;

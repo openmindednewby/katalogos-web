@@ -9,18 +9,18 @@ import MediaPosition from '../../../../types/enums/MediaPosition';
 // Style Constants
 // =============================================================================
 
-export const ITEM_MIN_HEIGHT = 80;
+const ITEM_MIN_HEIGHT = 80;
 export const ITEM_IMAGE_SIZE_SMALL = 60;
 export const ITEM_IMAGE_SIZE_MEDIUM = 100;
 export const ITEM_IMAGE_SIZE_LARGE = 150;
 export const DEFAULT_BORDER_RADIUS = 8;
 export const DEFAULT_PADDING = 12;
 export const DEFAULT_PRICE_FONT_SIZE = 16;
-export const BADGE_PADDING_HORIZONTAL = 8;
-export const BADGE_PADDING_VERTICAL = 4;
-export const BADGE_BORDER_RADIUS = 4;
-export const BADGE_FONT_SIZE = 12;
-export const UNAVAILABLE_OVERLAY_COLOR = 'rgba(0, 0, 0, 0.4)';
+const BADGE_PADDING_HORIZONTAL = 8;
+const BADGE_PADDING_VERTICAL = 4;
+const BADGE_BORDER_RADIUS = 4;
+const BADGE_FONT_SIZE = 12;
+const UNAVAILABLE_OVERLAY_COLOR = 'rgba(0, 0, 0, 0.4)';
 export const CURRENCY_SYMBOL = '$';
 export const DEFAULT_NAME_FONT_SIZE = 16;
 export const DEFAULT_DESCRIPTION_FONT_SIZE = 14;
@@ -43,7 +43,7 @@ export function getFlexDirection(position: MediaPosition): ViewStyle['flexDirect
 /**
  * Options for formatting a price.
  */
-export interface FormatPriceOptions {
+interface FormatPriceOptions {
   price: number;
   showCurrency: boolean;
   currencyPosition: CurrencyPosition;

@@ -17,7 +17,7 @@ import { typographyEditorStyles as styles } from '../utils/typographyEditorStyle
 
 import type { GlobalTypography } from '../../../../types/menuStyleTypes';
 
-export interface TypographyPreviewProps {
+interface TypographyPreviewProps {
   value: GlobalTypography;
   textColor: string;
   textSecondary: string;

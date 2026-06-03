@@ -6,7 +6,7 @@
 
 import type { PdfDocument } from './menuPdfRenderer';
 
-export interface PdfDocumentWithSave {
+interface PdfDocumentWithSave {
   doc: PdfDocument;
   save: (filename: string) => Promise<void> | void;
 }

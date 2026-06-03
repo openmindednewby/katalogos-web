@@ -35,7 +35,7 @@ const CLASSIC_HEIGHT = 3;
 const CLASSIC_RATIO = CLASSIC_WIDTH / CLASSIC_HEIGHT;
 
 /** JPEG output quality for cropped images (0-1). */
-export const CROP_OUTPUT_QUALITY = 0.85;
+const CROP_OUTPUT_QUALITY = 0.85;
 
 /** Minimum zoom level for the cropper. */
 export const MIN_ZOOM = 1;

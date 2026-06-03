@@ -24,7 +24,7 @@ import type { ValidationResult } from '../utils/validateMenuRows';
 // Types
 // =============================================================================
 
-export interface UseMenuImportReturn {
+interface UseMenuImportReturn {
   step: ImportStep;
   isLoading: boolean;
   error: string | null;

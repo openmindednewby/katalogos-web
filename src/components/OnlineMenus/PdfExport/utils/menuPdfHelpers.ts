@@ -31,7 +31,7 @@ export interface PdfItemRow {
 }
 
 /** A variant row for an item. */
-export interface PdfVariantRow {
+interface PdfVariantRow {
   groupName: string;
   options: string;
 }

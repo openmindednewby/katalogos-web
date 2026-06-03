@@ -82,7 +82,7 @@ const ANCHOR_LIGHTNESS = SHADE_CONFIG['500'].lightness;
 
 // -- Result type --------------------------------------------------------------
 
-export interface ThemePaletteResult {
+interface ThemePaletteResult {
   primary: ColorScale;
   secondary: ColorScale;
   accent: ColorScale;

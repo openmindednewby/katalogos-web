@@ -80,7 +80,7 @@ export const StatusDisplay = ({ useGenericBadge, numericStatus, statusBadgeTestI
   return <StatusBadge status={numericStatus} />;
 };
 
-export interface ActionLabels {
+interface ActionLabels {
   viewLabel: string;
   viewHint: string;
   editLabel: string;

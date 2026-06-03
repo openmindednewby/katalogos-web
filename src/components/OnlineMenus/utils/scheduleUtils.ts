@@ -59,7 +59,7 @@ export function getSelectedDayLabels(days: number): string[] {
 }
 
 /** Format selected days into a readable summary string. */
-export function formatDaysSummary(days: number): string {
+function formatDaysSummary(days: number): string {
   const everyDay: number = ScheduledDays.EveryDay;
   if (days === everyDay)
     return FM('onlineMenus.schedule.previewEveryDay');

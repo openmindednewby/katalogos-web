@@ -74,7 +74,7 @@ export function validateFile(
 }
 
 /** Arguments for `proxyUploadContent`. */
-export interface ProxyUploadArgs {
+interface ProxyUploadArgs {
   file: FileInfo;
   category: ContentCategory;
   isPublic: boolean;

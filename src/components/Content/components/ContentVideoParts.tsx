@@ -68,7 +68,7 @@ interface WebVideoProps {
   accessibilityHint?: string;
 }
 
-export const WebVideo = ({
+const WebVideo = ({
   url,
   width,
   height,
@@ -115,7 +115,7 @@ interface NativePlaceholderProps {
   primaryColor: string;
 }
 
-export const NativePlaceholder = ({
+const NativePlaceholder = ({
   textColor,
   primaryColor,
 }: NativePlaceholderProps): React.ReactElement => (

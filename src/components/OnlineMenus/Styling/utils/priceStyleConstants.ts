@@ -10,10 +10,10 @@ import FontWeight from '../../../../types/enums/FontWeight';
 export const MIN_FONT_SIZE = 12;
 export const MAX_FONT_SIZE = 32;
 export const DEFAULT_FONT_SIZE = 18;
-export const SAMPLE_PRICE = 12.99;
-export const SAMPLE_CURRENCY = '$';
+const SAMPLE_PRICE = 12.99;
+const SAMPLE_CURRENCY = '$';
 
-export interface FontWeightOption {
+interface FontWeightOption {
   value: FontWeight;
   label: string;
 }

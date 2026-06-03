@@ -6,7 +6,7 @@ import { isValueDefined } from '../utils/is';
 
 import type { TenantMenusDto } from '../types/menuTypes';
 
-export interface EmbedState {
+interface EmbedState {
   menuName: string;
   publicUrl: string;
   menuId: string;

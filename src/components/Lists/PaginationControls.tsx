@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export interface PaginationControlsProps {
+interface PaginationControlsProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;

@@ -6,7 +6,7 @@
 
 import { nativeFormControlStyles } from './controlStyles';
 
-export const nativeFormBaseInputStyles = `
+const nativeFormBaseInputStyles = `
 /* CSS Variables for theming - references SyncfusionThemeStudio CSS vars */
 /* Mode vars (--color-background etc.) use RGB triplets, e.g. '255 255 255' */
 /* Component vars (--component-input-*) are injected as full rgb() values  */

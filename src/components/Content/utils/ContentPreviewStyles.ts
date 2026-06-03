@@ -4,7 +4,7 @@ import type { TextStyle, ViewStyle } from 'react-native';
 import { DISABLED_OPACITY } from '../../../shared/constants';
 
 export { DISABLED_OPACITY };
-export const DELETE_TEXT_COLOR = '#ffffff';
+const DELETE_TEXT_COLOR = '#ffffff';
 
 export const styles = StyleSheet.create({
   container: {

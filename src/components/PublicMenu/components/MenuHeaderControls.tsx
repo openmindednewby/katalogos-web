@@ -8,7 +8,7 @@ import { isValueDefined } from '../../../utils/is';
 import type { PublicMenuLocation } from '../hooks/usePublicMenuLocation';
 import type { PublicMenuTheme } from '../utils/publicMenuThemeTypes';
 
-export interface MenuHeaderControlsProps {
+interface MenuHeaderControlsProps {
   theme: PublicMenuTheme;
   hasLocationPicker: boolean;
   hasLanguageSwitcher: boolean;

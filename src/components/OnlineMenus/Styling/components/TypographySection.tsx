@@ -22,7 +22,7 @@ import type { TypographySectionKey } from '../utils/typographyConstants';
 // Props Interface
 // =============================================================================
 
-export interface TypographySectionProps {
+interface TypographySectionProps {
   sectionKey: TypographySectionKey;
   value: GlobalTypography;
   onChange: (value: GlobalTypography) => void;

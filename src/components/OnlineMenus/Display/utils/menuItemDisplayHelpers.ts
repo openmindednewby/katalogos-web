@@ -43,7 +43,7 @@ export function getBackgroundColor(item: MenuItem, globalStyles?: MenuContents):
   return itemBgColor ?? globalBgColor ?? DEFAULT_COLOR_SCHEME.background;
 }
 
-export interface ResolvedItemDisplayProps {
+interface ResolvedItemDisplayProps {
   itemName: string;
   itemDescription: string | undefined;
   itemPrice: number;

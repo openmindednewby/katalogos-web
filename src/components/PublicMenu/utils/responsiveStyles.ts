@@ -50,7 +50,7 @@ const MENU_MAX_WIDTH = 720;
 // ---------------------------------------------------------------------------
 
 /** Responsive font sizes for the menu. */
-export interface ResponsiveFontSizes {
+interface ResponsiveFontSizes {
   readonly title: number;
   readonly category: number;
   readonly itemName: number;

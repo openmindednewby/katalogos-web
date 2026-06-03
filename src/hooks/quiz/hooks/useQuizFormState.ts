@@ -19,7 +19,7 @@ const ANIMATION_OFF = false;
 
 interface TemplateData { externalId?: string | null; name?: string | null; description?: string | null; contents?: { questions?: ApiQuestionModel[] } | null; }
 
-export interface QuizFormState {
+interface QuizFormState {
   form: DynamicQuiz | null;
   errors: Record<string, string>;
   currentPage: number;

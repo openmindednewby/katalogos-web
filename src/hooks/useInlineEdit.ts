@@ -8,7 +8,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { TextInput } from 'react-native';
 
-export interface UseInlineEditOptions {
+interface UseInlineEditOptions {
   value: string;
   onCommit: (newValue: string) => void;
   validate?: (newValue: string) => boolean;

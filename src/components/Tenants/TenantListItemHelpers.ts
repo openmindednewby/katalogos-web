@@ -21,7 +21,7 @@ function hasUserField(item: unknown): item is ItemWithUser {
   return typeof item === 'object' && isValueDefined(item) && 'user' in item;
 }
 
-export interface ItemData {
+interface ItemData {
   title: string;
   rawStatus: unknown;
   itemID: string;
@@ -62,7 +62,7 @@ export function extractItemData(
   return { title, rawStatus, itemID, numericStatus, userDisplay, showUser };
 }
 
-export interface ActivateState {
+interface ActivateState {
   isCurrentlyActive: boolean;
   activateToggleTestID: string | undefined;
 }

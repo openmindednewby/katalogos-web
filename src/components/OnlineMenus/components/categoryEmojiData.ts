@@ -5,7 +5,7 @@
 import { isValueDefined } from '../../../utils/is';
 
 /** A single emoji entry with its character and descriptive label. */
-export interface EmojiEntry {
+interface EmojiEntry {
   /** The emoji character (e.g., "🍕") */
   emoji: string;
   /** Descriptive label for accessibility (e.g., "pizza") */
@@ -13,7 +13,7 @@ export interface EmojiEntry {
 }
 
 /** A group of emojis under a named category. */
-export interface EmojiGroup {
+interface EmojiGroup {
   /** Translation key suffix for the group label (e.g., "categoryFood") */
   labelKey: string;
   /** Emoji entries in this group */

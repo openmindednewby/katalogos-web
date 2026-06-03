@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export interface DevicePinUnlockGateProps {
+interface DevicePinUnlockGateProps {
   /** Enrolled PIN length (4/6/8). */
   digits: number;
   /** Remembered username, shown in the greeting. */

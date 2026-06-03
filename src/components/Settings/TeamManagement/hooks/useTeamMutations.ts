@@ -10,7 +10,7 @@ import { useRemoveMember } from '../../../../server/customHooks/team/useRemoveMe
 import { useRevokeInvitation } from '../../../../server/customHooks/team/useRevokeInvitation';
 import { useUpdateMemberRole } from '../../../../server/customHooks/team/useUpdateMemberRole';
 
-export interface TeamMutations {
+interface TeamMutations {
   invite: (email: string, role: number, onDone: () => void) => void;
   remove: (memberId: number, onDone: () => void) => void;
   revoke: (invitationId: number, onDone: () => void) => void;

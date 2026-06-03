@@ -22,7 +22,7 @@ interface ItemMeta {
   categoryName: string;
 }
 
-export interface MenuContentBodyProps {
+interface MenuContentBodyProps {
   categories: Category[];
   filteredCategories: Category[];
   hasActiveFilters: boolean;

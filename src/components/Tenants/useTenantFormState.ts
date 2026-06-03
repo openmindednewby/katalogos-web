@@ -35,7 +35,7 @@ interface AuthConfigPayload {
   requireSmsVerification: boolean;
 }
 
-export interface TenantFormAuthState {
+interface TenantFormAuthState {
   primaryAuthMethod: number;
   setPrimaryAuthMethod: (v: number) => void;
   allowPhoneAuth: boolean;
@@ -151,7 +151,7 @@ interface UseTenantFormStateParams {
   onSave: (payload: TenantFormPayload) => void;
 }
 
-export interface TenantFormState {
+interface TenantFormState {
   name: string;
   setName: (name: string) => void;
   status: TenantStatusEnum;

@@ -28,12 +28,13 @@ const REALM_QUESTIONER = 'questioner';
  *
  * Exported for unit testing.
  */
+// ts-prune-ignore-next -- exported only for unit tests (loaded via dynamic require)
 export function resolveWizardRealmKey(): 'questioner' | 'onlinemenu' {
   if (keycloakRealm === REALM_QUESTIONER) return 'questioner';
   return 'onlinemenu';
 }
 
-export type WizardState = WelcomeWizardState;
+type WizardState = WelcomeWizardState;
 
 interface ContinueButtonProps {
   label: string;
@@ -45,7 +46,7 @@ interface ContinueButtonProps {
   disabled?: boolean;
 }
 
-export const ContinueButton = (props: ContinueButtonProps): React.ReactElement => {
+const ContinueButton = (props: ContinueButtonProps): React.ReactElement => {
   const { label, hint, onPress, loading, colors, primary, disabled = false } = props;
   return (
     <TouchableOpacity
@@ -68,7 +69,7 @@ interface SkipButtonProps {
   colors: ThemeModeColors;
 }
 
-export const SkipButton = ({ onPress, colors }: SkipButtonProps): React.ReactElement => {
+const SkipButton = ({ onPress, colors }: SkipButtonProps): React.ReactElement => {
   return (
     <TouchableOpacity
       accessibilityHint={FM('dashboard.wizard.skipStepHint')}

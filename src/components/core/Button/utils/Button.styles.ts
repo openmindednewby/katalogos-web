@@ -48,7 +48,7 @@ const TRANSPARENT = 'transparent';
 // Types
 // ---------------------------------------------------------------------------
 
-export interface ButtonStyleSet {
+interface ButtonStyleSet {
   container: ViewStyle;
   text: TextStyle;
   iconColor: string;

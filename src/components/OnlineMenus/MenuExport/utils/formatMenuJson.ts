@@ -7,7 +7,7 @@ import { sortCategoriesByDisplayOrder, sortMenuItemsByDisplayOrder } from '../..
 import type { Category, MenuContents } from '../../../../types/menuTypes';
 
 /** Exported item shape for JSON output. */
-export interface ExportedItem {
+interface ExportedItem {
   name: string;
   description: string;
   price: number;
@@ -16,7 +16,7 @@ export interface ExportedItem {
 }
 
 /** Exported category shape for JSON output. */
-export interface ExportedCategory {
+interface ExportedCategory {
   name: string;
   description: string;
   displayOrder: number;

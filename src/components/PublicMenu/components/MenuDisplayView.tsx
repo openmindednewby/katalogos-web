@@ -54,7 +54,7 @@ function buildSortedCategories(menuContents: MenuContents | undefined): Category
   })) as Category[];
 }
 
-export interface MenuDisplayViewProps {
+interface MenuDisplayViewProps {
   menu: PublicMenuData;
   menuContents: MenuContents | undefined;
   theme: PublicMenuTheme;

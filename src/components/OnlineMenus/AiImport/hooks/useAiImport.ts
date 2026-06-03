@@ -19,14 +19,14 @@ import type { ImportedCategory, ImportedItem, ImportedMenuData } from '../../../
 // Types
 // =============================================================================
 
-export interface AiImportState {
+interface AiImportState {
   step: AiImportStep;
   error: string | null;
   importedData: ImportedMenuData | null;
   mergeStrategy: AiImportMergeStrategy;
 }
 
-export interface UseAiImportReturn {
+interface UseAiImportReturn {
   state: AiImportState;
   handleFileValidation: (file: File) => string | null;
   handleExtractionSuccess: (data: ImportedMenuData) => void;
