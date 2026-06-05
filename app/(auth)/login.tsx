@@ -37,7 +37,6 @@ import { Platform, StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 
 import {
-  LoginForm,
   PasskeyLoginButton,
   PreferredMethodHint,
   useBffLoginConfig,
@@ -61,6 +60,7 @@ import {
 } from '../../src/auth/useAuthLabels';
 import { DevicePinUnlockGate } from '../../src/components/Auth/DevicePinUnlockGate';
 import { ForgotPasswordModal } from '../../src/components/Auth/ForgotPasswordModal';
+import { LoginCredentialForms } from '../../src/components/Auth/LoginCredentialForms';
 import SaveButton from '../../src/components/Buttons/SaveButton';
 import { preloadProtectedRoutes } from '../../src/config/routePreloader';
 import { prefetchDashboardData } from '../../src/features/dashboard/utils/prefetchDashboardData';
@@ -249,8 +249,8 @@ const LoginScreen = (): React.ReactElement => {
         theme={authTheme}
       />
 
-      <LoginForm
-        client={bffAuthClient}
+      <LoginCredentialForms
+        methods={config.methods}
         theme={authTheme}
         onForgotPassword={(): void => setForgotVisible(true)}
         onSignUp={(): void => router.push('/(auth)/register')}

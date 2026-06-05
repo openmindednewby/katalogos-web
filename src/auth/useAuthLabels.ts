@@ -17,6 +17,7 @@ import type {
   DevicePinUnlockLabels,
   DevicePinEnrollLabels,
   DevicePinSettingsLabels,
+  OtpFormLabels,
   PasskeyLoginLabels,
   PasskeySettingsLabels,
   PreferredMethodSettingsLabels,
@@ -43,6 +44,38 @@ function toCountToken(translated: string): string {
 /** Rewrite the FM `{{p1}}` placeholder to the package's `{name}` token. */
 function toNameToken(translated: string): string {
   return translated.replace(FM_PARAM_TOKEN, '{name}');
+}
+
+/** Rewrite the FM `{{p1}}` placeholder to the `<OtpForm>` `{identifier}` token. */
+function toIdentifierToken(translated: string): string {
+  return translated.replace(FM_PARAM_TOKEN, '{identifier}');
+}
+
+/** Localised copy for `<OtpForm>` — the two-step email-OTP login form. */
+export function useOtpLabels(): OtpFormLabels {
+  return useMemo(
+    () => ({
+      requestTitle: FM('auth.otp.requestTitle'),
+      requestDescription: FM('auth.otp.requestDescription'),
+      emailLabel: FM('auth.otp.emailLabel'),
+      emailPlaceholder: FM('auth.otp.emailPlaceholder'),
+      requestSubmit: FM('auth.otp.requestSubmit'),
+      requesting: FM('auth.otp.requesting'),
+      invalidEmail: FM('auth.otp.invalidEmail'),
+      verifyTitle: FM('auth.otp.verifyTitle'),
+      verifyDescription: toIdentifierToken(FM('auth.otp.verifyDescription')),
+      codeLabel: FM('auth.otp.codeLabel'),
+      codePlaceholder: FM('auth.otp.codePlaceholder'),
+      verifySubmit: FM('auth.otp.verifySubmit'),
+      verifying: FM('auth.otp.verifying'),
+      missingCode: FM('auth.otp.missingCode'),
+      invalidCode: FM('auth.otp.invalidCode'),
+      resend: FM('auth.otp.resend'),
+      resending: FM('auth.otp.resending'),
+      changeEmail: FM('auth.otp.changeEmail'),
+    }),
+    [],
+  );
 }
 
 /** Localised copy for `<DevicePinUnlockScreen>`. */

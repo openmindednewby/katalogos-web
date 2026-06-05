@@ -1,5 +1,31 @@
 {
   "auth": {
+    "methods": {
+      "passwordTab": "Password",
+      "passwordHint": "Sign in with your username and password",
+      "otpTab": "Email code",
+      "otpHint": "Sign in by entering a one-time code we email you"
+    },
+    "otp": {
+      "requestTitle": "Sign in with a code",
+      "requestDescription": "Enter your email and we will send you a one-time code.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "Enter your email",
+      "requestSubmit": "Send code",
+      "requesting": "Sending…",
+      "invalidEmail": "Enter a valid email address.",
+      "verifyTitle": "Enter your code",
+      "verifyDescription": "We sent a one-time code to {{p1}}.",
+      "codeLabel": "One-time code",
+      "codePlaceholder": "Enter the code",
+      "verifySubmit": "Verify",
+      "verifying": "Verifying…",
+      "missingCode": "Enter the code we emailed you.",
+      "invalidCode": "That code is incorrect or has expired.",
+      "resend": "Resend code",
+      "resending": "Resending…",
+      "changeEmail": "Use a different email"
+    },
     "devicePin": {
       "unlock": {
         "title": "Welcome back, {{p1}}",
