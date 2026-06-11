@@ -2,19 +2,23 @@
  * Service Worker for public menu offline support.
  *
  * Caching strategies:
- * - Public menu API responses: stale-while-revalidate with 24h max age
- * - Static assets (JS, CSS, images): cache-first
- * - Admin API calls: network-only (never cached)
+ * - Public menu API responses: NETWORK-FIRST (always fetch fresh when online;
+ *   the cached copy is only an offline fallback). This guarantees a menu edit /
+ *   activation is reflected on the next load for every visitor — the previous
+ *   stale-while-revalidate(24h) served up to a day-old menu.
+ * - Static assets (JS, CSS, images): cache-first.
+ * - Admin API calls: network-only (never cached).
  *
- * Cache names are versioned so old caches are cleaned up on activation.
+ * The editor can also push a `{ type: 'PURGE_PUBLIC_MENU', externalId? }` message
+ * to evict cached menus immediately (so its own preview refreshes mid-session).
+ *
+ * Cache names are versioned so old caches are cleaned up on activation. The menu
+ * cache is v2 so the old 24h-stale entries are evicted on deploy.
  */
 
-var MENU_API_CACHE = 'public-menu-api-v1';
+var MENU_API_CACHE = 'public-menu-api-v2';
 var STATIC_CACHE = 'static-assets-v1';
 var MANAGED_CACHES = [MENU_API_CACHE, STATIC_CACHE];
-
-/** 24 hours in milliseconds. */
-var MAX_CACHE_AGE_MS = 24 * 60 * 60 * 1000;
 
 /**
  * Static asset file extensions eligible for cache-first strategy.
@@ -54,62 +58,32 @@ function isStaticAsset(url) {
 }
 
 /**
- * Check if a cached response is still fresh (within 24h).
+ * Network-first strategy for public menu API.
+ * Always tries the network so edits are reflected immediately; on success the
+ * response is cached (for offline). Only when the network fails do we serve the
+ * cached copy, so a returning visitor never sees a stale menu while online.
  */
-function isCacheFresh(response) {
-  var dateHeader = response.headers.get('date') || response.headers.get('sw-cached-at');
-  if (!dateHeader) return false;
-
-  var cachedTime = new Date(dateHeader).getTime();
-  if (isNaN(cachedTime)) return false;
-
-  return (Date.now() - cachedTime) < MAX_CACHE_AGE_MS;
-}
-
-/**
- * Stale-while-revalidate strategy for public menu API.
- * Returns cached response immediately (if available and fresh),
- * then fetches fresh data in the background to update the cache.
- */
-function staleWhileRevalidate(event) {
+function networkFirst(event) {
   event.respondWith(
     caches.open(MENU_API_CACHE).then(function(cache) {
-      return cache.match(event.request).then(function(cachedResponse) {
-        var fetchPromise = fetch(event.request).then(function(networkResponse) {
-          // Only cache successful responses
-          if (networkResponse && networkResponse.ok) {
-            // Clone the response and add a timestamp header
-            var responseToCache = networkResponse.clone();
-            var headers = new Headers(responseToCache.headers);
-            headers.set('sw-cached-at', new Date().toISOString());
-
-            return responseToCache.blob().then(function(body) {
-              var cachedResp = new Response(body, {
-                status: responseToCache.status,
-                statusText: responseToCache.statusText,
-                headers: headers,
-              });
-              cache.put(event.request, cachedResp);
-              return networkResponse;
-            });
-          }
-          return networkResponse;
-        }).catch(function() {
-          // Network failed — return cached response or undefined
-          return cachedResponse;
-        });
-
-        // Return cached response if fresh, otherwise wait for network
-        if (cachedResponse && isCacheFresh(cachedResponse)) {
-          // Still revalidate in the background
-          fetchPromise.catch(function() { /* background revalidation failed, ignore */ });
-          return cachedResponse;
+      return fetch(event.request).then(function(networkResponse) {
+        if (networkResponse && networkResponse.ok) {
+          var responseToCache = networkResponse.clone();
+          var headers = new Headers(responseToCache.headers);
+          headers.set('sw-cached-at', new Date().toISOString());
+          return responseToCache.blob().then(function(body) {
+            cache.put(event.request, new Response(body, {
+              status: responseToCache.status,
+              statusText: responseToCache.statusText,
+              headers: headers,
+            }));
+            return networkResponse;
+          });
         }
-
-        // No fresh cache — wait for network, fall back to stale cache
-        return fetchPromise.then(function(response) {
-          return response || cachedResponse;
-        });
+        return networkResponse;
+      }).catch(function() {
+        // Offline / network error — fall back to the cached copy if present.
+        return cache.match(event.request);
       });
     })
   );
@@ -134,6 +108,25 @@ function cacheFirst(event) {
       });
     })
   );
+}
+
+/**
+ * Evict cached public-menu responses. With no externalId, clears the whole menu
+ * cache; with one, only entries whose URL contains that id.
+ */
+function purgePublicMenu(externalId) {
+  return caches.open(MENU_API_CACHE).then(function(cache) {
+    if (!externalId) {
+      return caches.delete(MENU_API_CACHE);
+    }
+    return cache.keys().then(function(requests) {
+      return Promise.all(
+        requests
+          .filter(function(request) { return request.url.indexOf(externalId) !== -1; })
+          .map(function(request) { return cache.delete(request); })
+      );
+    });
+  });
 }
 
 // --- Lifecycle Events ---
@@ -163,6 +156,13 @@ self.addEventListener('activate', function(event) {
   );
 });
 
+self.addEventListener('message', function(event) {
+  var data = event.data || {};
+  if (data.type === 'PURGE_PUBLIC_MENU') {
+    event.waitUntil(purgePublicMenu(data.externalId));
+  }
+});
+
 self.addEventListener('fetch', function(event) {
   var request = event.request;
 
@@ -172,9 +172,9 @@ self.addEventListener('fetch', function(event) {
   // Skip admin/protected API calls
   if (isAdminApiRequest(request.url)) return;
 
-  // Public menu API: stale-while-revalidate
+  // Public menu API: network-first (fresh when online, cache as offline fallback)
   if (isPublicMenuApiRequest(request.url)) {
-    staleWhileRevalidate(event);
+    networkFirst(event);
     return;
   }
 
