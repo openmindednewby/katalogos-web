@@ -20,6 +20,7 @@ import { featureFlags } from '../src/config/featureFlags';
 import TooltipOverlay from '../src/features/tooltipTour/components/TooltipOverlay';
 import { TooltipProvider } from '../src/features/tooltipTour/components/TooltipProvider';
 import { AnalyticsProvider, useAnalyticsIdentify, usePageTracking } from '../src/lib/analytics';
+import { useCustomDomainRedirect } from '../src/lib/customDomain/useCustomDomainRedirect';
 import { initSentry, useSentryUser } from '../src/lib/monitoring';
 import { setRedirectHandler } from '../src/lib/navigation';
 import { setupTestNotificationApi } from '../src/lib/notifications';
@@ -83,6 +84,9 @@ const InnerApp = (): ReactElement => {
 
   // Register service worker on web; the hook internally guards by platform and flag
   useServiceWorker();
+
+  // Custom-domain resolve-glue: on a tenant's bring-your-own host, resolve → public menu.
+  useCustomDomainRedirect(router);
 
   // Install prompts
   const { showInstallPrompt, handleInstall, closePrompt } = usePWAInstall();
