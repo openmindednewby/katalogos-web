@@ -12,8 +12,9 @@
  */
 
 // --- Core Axios instance and interceptor registration ---
-export { apiClient } from './axiosInstance';
-export { registerInterceptors } from './interceptors';
+// The axios factory + interceptor chain live in @dloizides/bff-web-client;
+// apiClient.ts supplies the app-owned ports (csrf, session-expiry, logger, toast).
+export { apiClient, registerAllInterceptors } from './apiClient';
 
 // --- Error system ---
 export {

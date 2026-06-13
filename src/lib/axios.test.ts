@@ -11,13 +11,9 @@ describe("axios wrapper (deffHttp)", () => {
       request: jest.fn(async (cfg: unknown) => ({ data: cfg })),
     };
 
-    jest.doMock("axios", () => ({
-      __esModule: true,
-      default: { create: jest.fn(() => mockAxiosInstance) },
-      create: jest.fn(() => mockAxiosInstance),
-    }));
-    jest.doMock("./api/interceptors", () => ({
-      registerInterceptors: mockRegisterInterceptors,
+    jest.doMock("./api/apiClient", () => ({
+      apiClient: mockAxiosInstance,
+      registerAllInterceptors: mockRegisterInterceptors,
     }));
 
     require("./axios");
@@ -33,13 +29,9 @@ describe("axios wrapper (deffHttp)", () => {
       request: jest.fn(async (cfg: Record<string, unknown>) => ({ data: cfg })),
     };
 
-    jest.doMock("axios", () => ({
-      __esModule: true,
-      default: { create: jest.fn(() => mockAxiosInstance) },
-      create: jest.fn(() => mockAxiosInstance),
-    }));
-    jest.doMock("./api/interceptors", () => ({
-      registerInterceptors: mockRegisterInterceptors,
+    jest.doMock("./api/apiClient", () => ({
+      apiClient: mockAxiosInstance,
+      registerAllInterceptors: mockRegisterInterceptors,
     }));
 
     const { deffHttp } = require("./axios");
@@ -56,13 +48,9 @@ describe("axios wrapper (deffHttp)", () => {
       request: jest.fn(async (cfg: Record<string, unknown>) => ({ data: cfg })),
     };
 
-    jest.doMock("axios", () => ({
-      __esModule: true,
-      default: { create: jest.fn(() => mockAxiosInstance) },
-      create: jest.fn(() => mockAxiosInstance),
-    }));
-    jest.doMock("./api/interceptors", () => ({
-      registerInterceptors: mockRegisterInterceptors,
+    jest.doMock("./api/apiClient", () => ({
+      apiClient: mockAxiosInstance,
+      registerAllInterceptors: mockRegisterInterceptors,
     }));
 
     const { deffHttp } = require("./axios");
@@ -79,13 +67,9 @@ describe("axios wrapper (deffHttp)", () => {
       request: jest.fn(async (cfg: Record<string, unknown>) => ({ data: cfg })),
     };
 
-    jest.doMock("axios", () => ({
-      __esModule: true,
-      default: { create: jest.fn(() => mockAxiosInstance) },
-      create: jest.fn(() => mockAxiosInstance),
-    }));
-    jest.doMock("./api/interceptors", () => ({
-      registerInterceptors: mockRegisterInterceptors,
+    jest.doMock("./api/apiClient", () => ({
+      apiClient: mockAxiosInstance,
+      registerAllInterceptors: mockRegisterInterceptors,
     }));
 
     const { deffHttp } = require("./axios");
@@ -104,13 +88,9 @@ describe("axios wrapper (deffHttp)", () => {
       request: jest.fn(async (cfg: Record<string, unknown>) => ({ data: cfg })),
     };
 
-    jest.doMock("axios", () => ({
-      __esModule: true,
-      default: { create: jest.fn(() => mockAxiosInstance) },
-      create: jest.fn(() => mockAxiosInstance),
-    }));
-    jest.doMock("./api/interceptors", () => ({
-      registerInterceptors: mockRegisterInterceptors,
+    jest.doMock("./api/apiClient", () => ({
+      apiClient: mockAxiosInstance,
+      registerAllInterceptors: mockRegisterInterceptors,
     }));
 
     const { deffHttp } = require("./axios");
@@ -127,13 +107,9 @@ describe("axios wrapper (deffHttp)", () => {
       request: jest.fn(async (cfg: Record<string, unknown>) => ({ data: cfg })),
     };
 
-    jest.doMock("axios", () => ({
-      __esModule: true,
-      default: { create: jest.fn(() => mockAxiosInstance) },
-      create: jest.fn(() => mockAxiosInstance),
-    }));
-    jest.doMock("./api/interceptors", () => ({
-      registerInterceptors: mockRegisterInterceptors,
+    jest.doMock("./api/apiClient", () => ({
+      apiClient: mockAxiosInstance,
+      registerAllInterceptors: mockRegisterInterceptors,
     }));
 
     const { deffHttp } = require("./axios");

@@ -3,7 +3,7 @@
  *
  * This module provides the legacy `deffHttp` wrapper used by
  * `src/lib/http/methods.ts`. It delegates to the shared `apiClient` instance
- * from the modular API architecture (`src/lib/api/axiosInstance.ts`).
+ * from the modular API architecture (`src/lib/api/apiClient.ts`).
  *
  * Existing imports of `deffHttp` and `RequestOptions` continue to work
  * unchanged.
@@ -17,8 +17,7 @@
  *   NEW: import { apiClient } from '../lib/api';
  */
 
-import { apiClient } from './api/axiosInstance';
-import { registerInterceptors } from './api/interceptors';
+import { apiClient, registerAllInterceptors } from './api/apiClient';
 
 import type { AxiosRequestConfig } from 'axios';
 
@@ -35,7 +34,7 @@ export interface RequestOptions {
 // Register all interceptors once at module load time. The modular
 // interceptors handle the X-BFF-Csrf header, success notifications,
 // session-expiry (401) handling, error classification, and logging.
-registerInterceptors(apiClient);
+registerAllInterceptors(apiClient);
 
 async function request<T = unknown>(config: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
   const withCredentials = options?.withCredentials ?? true;
@@ -74,5 +73,3 @@ export const deffHttp: {
   patch: async <T = unknown>(config: AxiosRequestConfig, options?: RequestOptions): Promise<T> =>
     request<T>({ ...config, method: 'PATCH' }, options),
 };
-
-export default deffHttp;

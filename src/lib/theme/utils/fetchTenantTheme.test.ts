@@ -15,7 +15,7 @@ const MOCK_ETAG = '"etag-abc"';
 
 const mockRequest = jest.fn();
 
-jest.mock('../../api/axiosInstance', () => ({
+jest.mock('../../api/apiClient', () => ({
   apiClient: { request: (...args: unknown[]) => mockRequest(...args) },
 }));
 

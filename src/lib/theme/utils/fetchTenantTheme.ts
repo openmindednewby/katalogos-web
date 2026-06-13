@@ -15,7 +15,7 @@ import env from '../../../config/environment';
 import { isNotEmptyString } from '../../../shared/utils/validators';
 import { DEFAULT_THEME_CONFIG } from '../../../theme/presets';
 import { isValueDefined } from '../../../utils/is';
-import { apiClient } from '../../api/axiosInstance';
+import { apiClient } from '../../api/apiClient';
 
 import type { TenantThemeConfig, ThemeModeColors } from '../../../theme/types';
 import type { AxiosResponse } from 'axios';
