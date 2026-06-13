@@ -315,6 +315,7 @@
     "settingsGroup": "Settings",
     "adminGroup": "Admin",
     "analytics": "Analytics",
+    "experiments": "A/B Experiments",
     "team": "Team"
   },
   "darkModeToggle": {

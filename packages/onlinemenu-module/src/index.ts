@@ -32,6 +32,14 @@ export const onlinemenuModule: Module = {
       requiredRoles: ['admin', 'superUser'],
       order: 65,
     },
+    {
+      key: 'nav-experiments',
+      labelKey: 'menu.experiments',
+      route: '/experiments',
+      icon: 'target',
+      requiredRoles: ['admin', 'superUser'],
+      order: 67,
+    },
   ],
   routes: [],
 };
