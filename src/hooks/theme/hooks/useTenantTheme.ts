@@ -3,7 +3,8 @@
  *
  * - Reads tenantId from Redux auth state (userInfo.tenantId)
  * - Loads cached theme from localStorage on mount (prevents flash)
- * - Fetches fresh theme from the Identity API via React Query
+ * - Fetches fresh theme via the shared `@dloizides/tenant-theme-web` package
+ *   (transport + fallback palette wired in `lib/theme/themeTransport`)
  * - Sends If-None-Match header with cached ETag for conditional requests
  * - On 304 Not Modified, keeps using cached data without re-writing
  * - Writes successful 200 responses to localStorage cache
@@ -11,23 +12,30 @@
  */
 import { useEffect, useMemo } from 'react';
 
+import {
+  fetchTenantTheme,
+  readThemeCache,
+  writeThemeCache,
+  clearAllThemeCaches,
+} from '@dloizides/tenant-theme-web';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
 
 import { QUERY_CACHE, queryKeys } from '../../../lib/queryClient';
-import { fetchTenantTheme } from '../../../lib/theme/utils/fetchTenantTheme';
 import {
-  readThemeCache,
-  writeThemeCache,
-  clearAllThemeCaches,
-} from '../../../lib/theme/utils/themeCacheStorage';
+  defaultThemeConfig,
+  getIdentityBaseUrl,
+  httpGet,
+} from '../../../lib/theme/themeTransport';
 import { isValueDefined } from '../../../utils/is';
 import { logger } from '../../../utils/logger';
 
-import type { CachedThemeData } from '../../../lib/theme/themeCacheTypes';
-import type { TenantThemeResponse } from '../../../lib/theme/utils/fetchTenantTheme';
 import type { RootState } from '../../../store/reduxStore';
-import type { TenantThemeConfig } from '../../../theme/types';
+import type {
+  CachedThemeData,
+  TenantThemeConfig,
+  TenantThemeResponse,
+} from '@dloizides/tenant-theme-web';
 import type { QueryClient } from '@tanstack/react-query';
 
 const EMPTY_ETAG = '';
@@ -49,7 +57,13 @@ export function useTenantTheme(): UseTenantThemeReturn {
   const { data, isLoading, isFetched, error } = useQuery<TenantThemeResponse>({
     queryKey: queryKeys.tenantTheme.byTenant(tenantId ?? EMPTY_ETAG),
     queryFn: async ({ signal }) =>
-      fetchTenantTheme(tenantId ?? EMPTY_ETAG, { signal, cachedEtag }),
+      fetchTenantTheme(tenantId ?? EMPTY_ETAG, {
+        signal,
+        cachedEtag,
+        httpGet,
+        defaultThemeConfig,
+        baseURL: getIdentityBaseUrl(),
+      }),
     enabled: isEnabled,
     staleTime: QUERY_CACHE.STALE_TIME_LONG_MS,
   });

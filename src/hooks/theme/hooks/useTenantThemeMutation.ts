@@ -1,27 +1,23 @@
-
-
-/**
- * Hook that returns a mutation for saving tenant theme configuration.
- * Invalidates the theme query cache on success.
- */
 /**
  * React Query mutation hook for saving tenant theme configuration.
  *
- * Uses PUT /api/tenants/{tenantId}/theme via identityInstance.
- * Invalidates the tenant theme query cache on success so useTenantTheme
- * picks up the new config immediately.
+ * Uses PUT /api/tenants/{tenantId}/theme via the shared
+ * `@dloizides/tenant-theme-web` package (transport wired in
+ * `lib/theme/themeTransport`). Invalidates the tenant theme query cache on
+ * success so useTenantTheme picks up the new config immediately.
  */
 import { useMemo } from 'react';
 
+import { saveTenantTheme } from '@dloizides/tenant-theme-web';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
 
 import { queryKeys } from '../../../lib/queryClient';
-import { identityInstance } from '../../../server/mutators/identityMutator';
+import { httpPut } from '../../../lib/theme/themeTransport';
 import { isValueDefined } from '../../../utils/is';
 
 import type { RootState } from '../../../store/reduxStore';
-import type { TenantThemeConfig } from '../../../theme/types';
+import type { SaveThemeResponse, TenantThemeConfig } from '@dloizides/tenant-theme-web';
 import type { QueryClient, UseMutationResult } from '@tanstack/react-query';
 
 export function useTenantThemeMutation(
@@ -34,30 +30,6 @@ export function useTenantThemeMutation(
   const mutation = useMutation<SaveThemeResponse, Error, TenantThemeConfig>(config);
 
   return useMemo(() => buildReturn(mutation), [mutation]);
-}
-
-/** Response shape from PUT /api/tenants/{tenantId}/theme */
-interface SaveThemeResponse {
-  success: boolean;
-}
-
-interface ApiThemeColors {
-  primary: string;
-  secondary: string;
-  background: string;
-  surface: string;
-  error: string | null;
-  onBackground: string;
-  onSurface: string;
-}
-
-interface ApiThemeRequest {
-  presetId: string | null;
-  colors: ApiThemeColors;
-  darkColors: ApiThemeColors;
-  typography: { fontFamily: string | null; headerScale: number | null } | null;
-  logoContentId: string | null;
-  faviconContentId: string | null;
 }
 
 interface MutationCallbacks {
@@ -80,48 +52,6 @@ function extractTenantId(state: RootState): string | undefined {
   return undefined;
 }
 
-/** Maps frontend TenantThemeConfig to the API's UpdateTenantThemeRequest shape. */
-function toApiRequest(config: TenantThemeConfig): ApiThemeRequest {
-  return {
-    presetId: config.branding.presetId ?? null,
-    colors: {
-      primary: config.primary,
-      secondary: config.secondary,
-      background: config.light.background,
-      surface: config.light.surface,
-      error: config.semantic?.error ?? null,
-      onBackground: config.light.text,
-      onSurface: config.light.textSecondary,
-    },
-    darkColors: {
-      primary: config.primary,
-      secondary: config.secondary,
-      background: config.dark.background,
-      surface: config.dark.surface,
-      error: config.semantic?.error ?? null,
-      onBackground: config.dark.text,
-      onSurface: config.dark.textSecondary,
-    },
-    typography: config.typography
-      ? { fontFamily: config.typography.fontFamily ?? null, headerScale: config.typography.headingScale ?? null }
-      : null,
-    logoContentId: config.branding.logoContentId ?? null,
-    faviconContentId: config.branding.faviconContentId ?? null,
-  };
-}
-
-async function saveTenantTheme(
-  tenantId: string,
-  config: TenantThemeConfig,
-): Promise<SaveThemeResponse> {
-  return identityInstance<SaveThemeResponse>({
-    url: `/api/tenants/${tenantId}/theme`,
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    data: toApiRequest(config),
-  });
-}
-
 function buildMutationConfig(
   tenantId: string | undefined,
   queryClient: QueryClient,
@@ -135,7 +65,7 @@ function buildMutationConfig(
     mutationFn: async (config: TenantThemeConfig) => {
       if (!isValueDefined(tenantId))
         return Promise.reject(new Error('No tenant ID available'));
-      return saveTenantTheme(tenantId, config);
+      return saveTenantTheme(tenantId, config, httpPut);
     },
     onSuccess: () => {
       if (isValueDefined(tenantId))

@@ -6,7 +6,7 @@ import { renderHook, act } from '@testing-library/react-native';
 
 import { useTenantThemeMutation } from './useTenantThemeMutation';
 
-import type { TenantThemeConfig } from '../../../theme/types';
+import type { TenantThemeConfig } from '@dloizides/tenant-theme-web';
 
 // Mock queryClient module to prevent QueryCache constructor error
 jest.mock('../../../lib/queryClient', () => ({
@@ -44,8 +44,14 @@ jest.mock('@tanstack/react-query', () => ({
   },
 }));
 
-jest.mock('../../../server/mutators/identityMutator', () => ({
-  identityInstance: jest.fn().mockResolvedValue({ success: true }),
+jest.mock('@dloizides/tenant-theme-web', () => ({
+  saveTenantTheme: jest.fn().mockResolvedValue({ success: true }),
+}));
+jest.mock('../../../lib/theme/themeTransport', () => ({
+  httpGet: jest.fn(),
+  httpPut: jest.fn(),
+  defaultThemeConfig: {},
+  getIdentityBaseUrl: () => 'http://test-identity:5002',
 }));
 
 const mockConfig: TenantThemeConfig = {

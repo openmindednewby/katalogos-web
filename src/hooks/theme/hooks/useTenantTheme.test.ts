@@ -5,14 +5,17 @@
  * 304 Not Modified handling, fallback behavior, and logout cleanup.
  * Does NOT test rendering.
  */
+import * as tenantThemeWeb from '@dloizides/tenant-theme-web';
 import { renderHook } from '@testing-library/react-native';
 
-import { useTenantTheme } from './useTenantTheme';
-import * as themeCacheStorage from '../../../lib/theme/utils/themeCacheStorage';
 
-import type { CachedThemeData } from '../../../lib/theme/themeCacheTypes';
-import type { TenantThemeResponse } from '../../../lib/theme/utils/fetchTenantTheme';
-import type { TenantThemeConfig } from '../../../theme/types';
+import { useTenantTheme } from './useTenantTheme';
+
+import type {
+  CachedThemeData,
+  TenantThemeConfig,
+  TenantThemeResponse,
+} from '@dloizides/tenant-theme-web';
 
 // -- Mocks -------------------------------------------------------------------
 
@@ -49,8 +52,18 @@ jest.mock('@tanstack/react-query', () => {
   };
 });
 
-jest.mock('../../../lib/theme/utils/themeCacheStorage');
-jest.mock('../../../lib/theme/utils/fetchTenantTheme');
+jest.mock('@dloizides/tenant-theme-web', () => ({
+  readThemeCache: jest.fn(),
+  writeThemeCache: jest.fn(),
+  clearAllThemeCaches: jest.fn(),
+  fetchTenantTheme: jest.fn(),
+}));
+jest.mock('../../../lib/theme/themeTransport', () => ({
+  httpGet: jest.fn(),
+  httpPut: jest.fn(),
+  defaultThemeConfig: {},
+  getIdentityBaseUrl: () => 'http://test-identity:5002',
+}));
 jest.mock('../../../utils/logger', () => ({
   logger: { warn: jest.fn(), debug: jest.fn(), error: jest.fn() },
 }));
@@ -95,9 +108,9 @@ const MOCK_CACHED: CachedThemeData = {
 // -- Tests -------------------------------------------------------------------
 
 describe('useTenantTheme', () => {
-  const mockReadCache = themeCacheStorage.readThemeCache as jest.Mock;
-  const _mockWriteCache = themeCacheStorage.writeThemeCache as jest.Mock;
-  const mockClearAll = themeCacheStorage.clearAllThemeCaches as jest.Mock;
+  const mockReadCache = tenantThemeWeb.readThemeCache as jest.Mock;
+  const _mockWriteCache = tenantThemeWeb.writeThemeCache as jest.Mock;
+  const mockClearAll = tenantThemeWeb.clearAllThemeCaches as jest.Mock;
   const { useQuery: mockUseQuery } = jest.requireMock('@tanstack/react-query');
 
   beforeEach(() => {

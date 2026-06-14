@@ -2,7 +2,7 @@
  * Storage cleanup utilities for authentication logout flow.
  * Extracted from AuthProvider to maintain file size limits.
  */
-import { clearAllThemeCaches } from '../lib/theme/utils/themeCacheStorage';
+import { clearAllThemeCaches } from '../lib/theme';
 import { STORAGE_KEYS } from '../shared/constants';
 import { clearSession, setUser, setUserInfo } from '../store/slices/authSlice';
 import { logger } from '../utils/logger';
