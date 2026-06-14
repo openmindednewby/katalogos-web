@@ -50,6 +50,7 @@
     "@dloizides/auth-client": "^3.4.0",
     "@dloizides/auth-web": "^1.5.0",
     "@dloizides/bff-web-client": "^1.0.1",
+    "@dloizides/frontend-devtools": "^1.0.2",
     "@dloizides/notification-client": "^1.0.5",
     "@dloizides/orval-preset": "^1.0.1",
     "@dloizides/tenant-theme-web": "^1.0.1",

@@ -1,22 +1,12 @@
 import * as Localization from 'expo-localization';
 
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
+import { initI18n } from '@dloizides/frontend-devtools';
 
 import en from './locales/en.json';
 
-i18n
-  .use(initReactI18next)
-  .init({
-    lng: Localization.getLocales()[0]?.languageCode ?? 'en',
-    fallbackLng: 'en',
-    resources: {
-      en: { translation: en },
-    },
-    interpolation: {
-      escapeValue: false,
-    },
-  })
-  .catch(() => {});
+const i18n = initI18n({
+  resources: { en: { translation: en } },
+  lng: Localization.getLocales()[0]?.languageCode ?? 'en',
+});
 
 export default i18n;
