@@ -4,10 +4,6 @@ WORKDIR /app
 
 # Install dependencies
 COPY package.json package-lock.json ./
-# Local tarball-bridged packages (e.g. @dloizides/bff-web-client) are referenced
-# from package.json as file:./local-packages/*.tgz, so they MUST be present in
-# the build context BEFORE npm ci or the install fails inside Docker.
-COPY local-packages ./local-packages
 # Use npm ci when possible; fall back to legacy peer dep resolution if needed
 RUN npm ci --no-audit --prefer-offline || npm install --no-audit --prefer-offline --legacy-peer-deps
 
