@@ -51,6 +51,7 @@
     "@dloizides/auth-web": "^1.5.0",
     "@dloizides/bff-web-client": "file:./local-packages/dloizides-bff-web-client-1.0.0.tgz",
     "@dloizides/notification-client": "^1.0.5",
+    "@dloizides/orval-preset": "file:./local-packages/dloizides-orval-preset-1.0.0.tgz",
     "@dloizides/tenant-theme-web": "file:./local-packages/dloizides-tenant-theme-web-1.0.0.tgz",
     "@dloizides/ui-primitives": "^1.0.1",
     "@dloizides/utils": "^1.0.2",

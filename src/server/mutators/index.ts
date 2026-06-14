@@ -1,15 +1,14 @@
 /**
- * Orval mutators index.
+ * Orval mutators index — re-exports from `@dloizides/orval-preset`.
  *
- * These mutators are used by Orval-generated hooks. They have no Expo
- * dependencies at the module level, allowing Orval to load them during
- * code generation in Node.js. At runtime, they retrieve the real HTTP
- * client implementations from the registry.
+ * The shared package owns the registry + the six mutators. This local index is
+ * kept for backward compatibility with existing in-app imports (e.g. the
+ * `registerMutators` call at app startup).
  */
 
 // Registry - call registerMutators() at app startup
-export { registerMutators, getMutator } from './registry';
-export type { OrvalRequest, OrvalMutator } from './registry';
+export { registerMutators, getMutator } from '@dloizides/orval-preset';
+export type { OrvalRequest, OrvalMutator } from '@dloizides/orval-preset';
 
 // Mutators - used by Orval-generated hooks
 export { customInstance } from './onlineMenuMutator';

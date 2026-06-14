@@ -1,18 +1,21 @@
 /**
- * OnlineMenu API mutator for Orval code generation.
+ * OnlineMenu API mutator — thin local wrapper over `@dloizides/orval-preset`.
  *
- * This file has no Expo dependencies at the module level, allowing Orval
- * to load it in Node.js during code generation. At runtime, it retrieves
- * the real HTTP client from the registry.
+ * The shared package owns the mutator logic (delegating to the runtime
+ * registry). This file is a local wrapper so the Orval-generated hooks keep
+ * importing from the stable path `../../../mutators/onlineMenuMutator` AND so
+ * Orval's static mutator parser sees a locally-declared `customInstance`
+ * function with the expected single parameter.
  */
-import { getMutator, type OrvalRequest, type OrvalMutator } from './registry';
+import {
+  customInstance as sharedCustomInstance,
+  type OrvalRequest,
+  type OrvalMutator,
+} from '@dloizides/orval-preset';
 
 export type { OrvalRequest, OrvalMutator };
 
-/**
- * HTTP client for OnlineMenu API.
- * At runtime, delegates to the real implementation registered via registerMutators().
- */
+/** HTTP client for OnlineMenu API; delegates to the shared registry mutator. */
 export async function customInstance<
   TResp = unknown,
   TReq = unknown,
@@ -20,8 +23,7 @@ export async function customInstance<
 >(
   opts: OrvalRequest<TReq, TQry>,
 ): Promise<TResp> {
-  const realMutator = getMutator('customInstance');
-  return realMutator<TResp, TReq, TQry>(opts);
+  return sharedCustomInstance<TResp, TReq, TQry>(opts);
 }
 
 export default customInstance;

@@ -1,18 +1,21 @@
 /**
- * Questioner API mutator for Orval code generation.
+ * Questioner API mutator — thin local wrapper over `@dloizides/orval-preset`.
  *
- * This file has no Expo dependencies at the module level, allowing Orval
- * to load it in Node.js during code generation. At runtime, it retrieves
- * the real HTTP client from the registry.
+ * The shared package owns the mutator logic (delegating to the runtime
+ * registry). This file is a local wrapper so the Orval-generated hooks keep
+ * importing from the stable path `../../../mutators/questionerMutator` AND so
+ * Orval's static mutator parser sees a locally-declared `questionerInstance`
+ * function with the expected single parameter.
  */
-import { getMutator, type OrvalRequest, type OrvalMutator } from './registry';
+import {
+  questionerInstance as sharedQuestionerInstance,
+  type OrvalRequest,
+  type OrvalMutator,
+} from '@dloizides/orval-preset';
 
 export type { OrvalRequest, OrvalMutator };
 
-/**
- * HTTP client for Questioner API.
- * At runtime, delegates to the real implementation registered via registerMutators().
- */
+/** HTTP client for Questioner API; delegates to the shared registry mutator. */
 export async function questionerInstance<
   TResp = unknown,
   TReq = unknown,
@@ -20,8 +23,7 @@ export async function questionerInstance<
 >(
   opts: OrvalRequest<TReq, TQry>,
 ): Promise<TResp> {
-  const realMutator = getMutator('questionerInstance');
-  return realMutator<TResp, TReq, TQry>(opts);
+  return sharedQuestionerInstance<TResp, TReq, TQry>(opts);
 }
 
 export default questionerInstance;

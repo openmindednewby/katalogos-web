@@ -1,159 +1,76 @@
+import {
+  createHttpClient as createHttpClientWithTransport,
+  type HttpRequestOptions,
+  type HttpServicePort,
+  type OrvalMutator,
+  type OrvalRequest,
+} from '@dloizides/orval-preset';
+
 import * as httpService from '../lib/httpService';
 
-import type { AxiosRequestConfig } from 'axios';
-
-/**
- * Orval mutator adapter interface for HTTP requests.
- */
-export interface OrvalRequest<Req = unknown, Qry = unknown> {
-  url: string;
-  method?: string;
-  data?: Req | FormData;
-  params?: Qry;
-  signal?: AbortSignal;
-  headers?: Record<string, string>;
-  config?: AxiosRequestConfig;
-}
-
-export type OrvalMutator = <TResp = unknown, TReq = unknown, TQry = unknown>(
-  opts: OrvalRequest<TReq, TQry>,
-) => Promise<TResp>;
+// Re-export types for backward compatibility with existing imports.
+export type { OrvalRequest, OrvalMutator };
 
 interface HttpClientOptions {
   baseURL?: string;
   withCredentials?: boolean;
 }
 
-/**
- * Request options passed to httpService methods.
- */
-interface HttpRequestOptions {
+interface AppRequestOptions {
   withCredentials?: boolean;
   baseURL?: string;
   signal?: AbortSignal;
   headers?: Record<string, string>;
-  config?: AxiosRequestConfig;
 }
 
 /**
- * Creates request options with common defaults.
- *
- * `withCredentials` is always on — the BFF session cookie must travel with
- * every same-origin API call. There is no `withToken`: the SPA holds no
- * token, the BFF attaches the `Bearer` server-side.
+ * Maps the package's base request options onto the app's `httpService` option
+ * shape. Every field the Orval-generated hooks ever set (`withCredentials`,
+ * `baseURL`, `signal`, `headers`) is forwarded verbatim. `config` is left off:
+ * the generated hooks never populate it, so this is behaviour-identical and
+ * avoids a type assertion (the app's `config` is a concrete `AxiosRequestConfig`
+ * while the port's options do not carry one).
  */
-function createRequestOptions(
-  opts: OrvalRequest,
-  clientOptions: HttpClientOptions,
-): HttpRequestOptions {
+function toAppOptions(opts: HttpRequestOptions): AppRequestOptions {
   return {
-    withCredentials: clientOptions.withCredentials ?? true,
-    baseURL: clientOptions.baseURL,
+    withCredentials: opts.withCredentials,
+    baseURL: opts.baseURL,
     signal: opts.signal,
     headers: opts.headers,
-    config: opts.config,
   };
 }
 
 /**
- * Handles GET requests.
+ * Adapter binding this app's `httpService` to the package's `HttpServicePort`.
+ *
+ * The shared factory takes the transport as a port (it imports no product);
+ * this adapter maps the app's axios bridge onto the port without any type
+ * assertions. The mutator http client stays SEPARATE from the UI axios by
+ * design — sharing the instance is a future optimization.
  */
-async function handleGet<TResp, TQry>(
-  endpoint: string,
-  params: TQry,
-  reqOpts: HttpRequestOptions,
-): Promise<TResp> {
-  return httpService.get<TQry, TResp>(endpoint, params, reqOpts);
+function buildHttpServicePort(): HttpServicePort {
+  return {
+    get: async <TQry, TResp>(endpoint: string, params: TQry, opts: HttpRequestOptions): Promise<TResp> =>
+      httpService.get<TQry, TResp>(endpoint, params, toAppOptions(opts)),
+    post: async <TReq, TResp>(endpoint: string, data: TReq, opts: HttpRequestOptions): Promise<TResp> =>
+      httpService.post<TReq, TResp>(endpoint, data, toAppOptions(opts)),
+    postForm: async <TResp>(endpoint: string, data: FormData, opts: HttpRequestOptions): Promise<TResp> =>
+      httpService.postForm<TResp>(endpoint, data, toAppOptions(opts)),
+    put: async <TReq, TResp>(endpoint: string, data: TReq, opts: HttpRequestOptions): Promise<TResp> =>
+      httpService.put<TReq, TResp>(endpoint, data, toAppOptions(opts)),
+    patch: async <TReq, TResp>(endpoint: string, data: TReq, opts: HttpRequestOptions): Promise<TResp> =>
+      httpService.patch<TReq, TResp>(endpoint, data, toAppOptions(opts)),
+    deleteMethod: async <TReq, TResp>(endpoint: string, data: TReq, opts: HttpRequestOptions): Promise<TResp> =>
+      httpService.deleteMethod<TReq, TResp>(endpoint, data, toAppOptions(opts)),
+  };
 }
 
 /**
- * Handles POST requests, including FormData.
- */
-async function handlePost<TResp, TReq>(
-  endpoint: string,
-  data: TReq | FormData | undefined,
-  reqOpts: HttpRequestOptions,
-): Promise<TResp> {
-  if (typeof FormData !== 'undefined' && data instanceof FormData) 
-    return httpService.postForm<TResp>(endpoint, data, reqOpts);
-  
-  // data is TReq | undefined here since FormData case is handled above
-  const payload: TReq | undefined = data instanceof FormData ? undefined : data;
-  return httpService.post<TReq | undefined, TResp>(endpoint, payload, reqOpts);
-}
-
-/**
- * Handles PUT requests.
- */
-async function handlePut<TResp, TReq>(
-  endpoint: string,
-  data: TReq | undefined,
-  reqOpts: HttpRequestOptions,
-): Promise<TResp> {
-  return httpService.put<TReq | undefined, TResp>(endpoint, data, reqOpts);
-}
-
-/**
- * Handles PATCH requests.
- */
-async function handlePatch<TResp, TReq>(
-  endpoint: string,
-  data: TReq | undefined,
-  reqOpts: HttpRequestOptions,
-): Promise<TResp> {
-  return httpService.patch<TReq | undefined, TResp>(endpoint, data, reqOpts);
-}
-
-/**
- * Handles DELETE requests.
- */
-async function handleDelete<TResp, TReq>(
-  endpoint: string,
-  data: TReq | undefined,
-  reqOpts: HttpRequestOptions,
-): Promise<TResp> {
-  return httpService.deleteMethod<TReq | undefined, TResp>(endpoint, data, reqOpts);
-}
-
-/**
- * Creates an HTTP client instance for Orval-generated hooks.
- * @param clientOptions - Configuration options for the client (baseURL, auth settings)
- * @returns An async function that handles HTTP requests
+ * Thin local binding of `@dloizides/orval-preset`'s `createHttpClient` to this
+ * app's `httpService` transport. Keeps the existing
+ * `createHttpClient({ baseURL, withCredentials })` call shape used by the six
+ * per-service `httpClient*.ts` files.
  */
 export function createHttpClient(clientOptions: HttpClientOptions = {}): OrvalMutator {
-  return async <TResp = unknown, TReq = unknown, TQry = unknown>(
-    opts: OrvalRequest<TReq, TQry>,
-  ): Promise<TResp> => {
-    const { url, method = 'GET', data, params } = opts;
-    const m = method.toUpperCase();
-    const endpoint = url;
-    const reqOpts = createRequestOptions(opts, clientOptions);
-
-    if (m === 'GET') 
-      return handleGet<TResp, TQry | undefined>(endpoint, params, reqOpts);
-    
-
-    if (m === 'POST') 
-      return handlePost<TResp, TReq>(endpoint, data, reqOpts);
-    
-
-    if (m === 'PUT') {
-      // data could be TReq | FormData | undefined, but PUT doesn't use FormData
-      const putData: TReq | undefined = data instanceof FormData ? undefined : data;
-      return handlePut<TResp, TReq>(endpoint, putData, reqOpts);
-    }
-
-    if (m === 'PATCH') {
-      const patchData: TReq | undefined = data instanceof FormData ? undefined : data;
-      return handlePatch<TResp, TReq>(endpoint, patchData, reqOpts);
-    }
-
-    if (m === 'DELETE') {
-      const deleteData: TReq | undefined = data instanceof FormData ? undefined : data;
-      return handleDelete<TResp, TReq>(endpoint, deleteData, reqOpts);
-    }
-
-    // Fallback to POST for unsupported methods
-    return handlePost<TResp, TReq>(endpoint, data, reqOpts);
-  };
+  return createHttpClientWithTransport(buildHttpServicePort(), clientOptions);
 }
