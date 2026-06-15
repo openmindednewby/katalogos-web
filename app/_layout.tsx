@@ -13,6 +13,7 @@ import { Provider, useSelector } from 'react-redux';
 import { AuthProvider } from '../src/auth/AuthProvider';
 import { AnalyticsErrorBoundary, ErrorBoundary } from '../src/components/ErrorBoundary';
 import Notifier from '../src/components/Notifications/Notifier';
+import FeedbackUiAdapter from '../src/components/Providers/FeedbackUiAdapter';
 import LazyQueryProvider from '../src/components/Providers/LazyQueryProvider';
 import TenantThemeConnector from '../src/components/Providers/TenantThemeConnector';
 import { SEOHead } from '../src/components/Shared/SEOHead';
@@ -131,7 +132,8 @@ const InnerApp = (): ReactElement => {
   }, []);
 
   return (
-    <LazyQueryProvider>
+    <FeedbackUiAdapter>
+      <LazyQueryProvider>
       <TenantThemeConnector />
       <AuthProvider>
         <AnalyticsProvider>
@@ -156,7 +158,8 @@ const InnerApp = (): ReactElement => {
           </AnalyticsErrorBoundary>
         </AnalyticsProvider>
       </AuthProvider>
-    </LazyQueryProvider>
+      </LazyQueryProvider>
+    </FeedbackUiAdapter>
   );
 };
 
