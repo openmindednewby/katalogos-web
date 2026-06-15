@@ -52,3 +52,6 @@ lighthouse-reports/
 nul
 CdesktopContentsprojectsSaaStsc_output.txt
 Ctemptsc_output.txt
+
+# EAS-built APK (staged by manage.sh publish-apk before deploy; not tracked)
+public/download/*.apk
