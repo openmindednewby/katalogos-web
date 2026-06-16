@@ -58,6 +58,7 @@
     "@dloizides/ui-feedback": "^1.1.0",
     "@dloizides/ui-forms": "^1.0.1",
     "@dloizides/ui-icons": "^1.0.1",
+    "@dloizides/ui-layout": "^1.0.1",
     "@dloizides/ui-primitives": "^1.0.1",
     "@dloizides/ui-tables": "^1.0.1",
     "@dloizides/utils": "^1.0.2",
