@@ -1,3 +1,5 @@
+import { formatDate } from '@dloizides/utils';
+
 import i18n from './i18n';
 import { isValueDefined } from '../utils/is';
 
@@ -72,16 +74,5 @@ export function FM(id: string, p1?: string, p2?: string, p3?: string): string {
  * FD(null) // Returns: ""
  */
 export function FD(date?: Date | null, options?: FormatDateOptions): string {
-  if (!isValueDefined(date) || !isValueDefined(date)) 
-    return '';
-  
-
-  const locale = i18n.language !== '' ? i18n.language : 'en';
-
-  try {
-    return new Intl.DateTimeFormat(locale, options).format(date);
-  } catch {
-    // Fallback to ISO string if formatting fails
-    return date.toISOString().split('T')[0];
-  }
+  return formatDate(date, i18n.language, options);
 }
