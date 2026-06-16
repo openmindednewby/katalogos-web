@@ -1,13 +1,43 @@
 /**
  * Service Worker for handling OS notifications.
- * Receives messages from the main app and displays native OS notifications.
  *
- * IMPORTANT: This is NOT Web Push. This Service Worker only displays notifications.
- * All notification delivery comes through SignalR WebSocket from the main app.
+ * Two delivery paths:
+ *  1. In-app (SignalR): the main app posts a SHOW_NOTIFICATION message → showNotification.
+ *  2. Web Push (VAPID): the server pushes while the app/tab is closed → the 'push' handler below
+ *     (payload from NotificationService's Push.WebPush provider: { title, body, icon?, url?, data? }).
+ * Both share the notificationclick navigation (via data.actionUrl).
  */
 
 const DEFAULT_NOTIFICATION_ICON = '/icons/logo-192.png';
 const DEFAULT_NOTIFICATION_BADGE = '/icons/logo-50-no-background.png';
+
+/**
+ * Handle Web Push messages from the server (Push.WebPush / VAPID).
+ */
+self.addEventListener('push', (event) => {
+  let payload = {};
+  try {
+    payload = event.data ? event.data.json() : {};
+  } catch (err) {
+    payload = { title: 'Notification', body: event.data ? event.data.text() : '' };
+  }
+
+  const title = payload.title || 'Notification';
+  const data = Object.assign({}, payload.data || {}, payload.url ? { actionUrl: payload.url } : {});
+
+  event.waitUntil(
+    self.registration.showNotification(title, {
+      body: payload.body || '',
+      icon: payload.icon || DEFAULT_NOTIFICATION_ICON,
+      badge: DEFAULT_NOTIFICATION_BADGE,
+      data,
+      actions: [
+        { action: 'view', title: 'View' },
+        { action: 'dismiss', title: 'Dismiss' },
+      ],
+    })
+  );
+});
 
 /**
  * Handle messages from the main thread to show notifications

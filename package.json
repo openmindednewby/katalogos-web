@@ -52,7 +52,7 @@
     "@dloizides/bff-web-client": "^1.0.1",
     "@dloizides/frontend-devtools": "^1.0.3",
     "@dloizides/legal-ui": "^1.0.1",
-    "@dloizides/notification-client": "^1.0.5",
+    "@dloizides/notification-client": "^1.2.0",
     "@dloizides/orval-preset": "^1.0.1",
     "@dloizides/tenant-theme-web": "^1.0.1",
     "@dloizides/ui-feedback": "^1.1.0",

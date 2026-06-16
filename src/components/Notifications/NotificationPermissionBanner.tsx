@@ -6,6 +6,7 @@ import { osNotificationService } from '@dloizides/notification-client/workers';
 
 import { FM } from '@/localization/helpers';
 
+import { enableWebPush } from '../../lib/notifications/webPush';
 import { TestIds } from '../../shared/testIds';
 import { useTheme } from '../../theme/hooks/useTheme';
 import { logger } from '../../utils/logger';
@@ -105,11 +106,16 @@ const NotificationPermissionBanner = (): React.ReactElement | null => {
       const result = await osNotificationService.requestPermission();
       logger.info('NotificationPermissionBanner', 'Permission request result', { result });
 
-      if (result === 'granted') 
+      if (result === 'granted') {
         setPermissionState(PermissionState.Granted);
-       else if (result === 'denied') 
+        // Permission is now granted — also subscribe this browser to server Web Push
+        // (no second prompt). enableWebPush is fail-safe (never throws).
+        const subscribed = await enableWebPush();
+        logger.info('NotificationPermissionBanner', 'web push subscribe', { subscribed });
+      } else if (result === 'denied') 
         setPermissionState(PermissionState.Denied);
       
+
     } catch (error) {
       logger.error('NotificationPermissionBanner', 'Failed to request permission', { error });
       setPermissionState(PermissionState.Denied);
