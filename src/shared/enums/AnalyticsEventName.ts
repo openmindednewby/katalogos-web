@@ -24,6 +24,8 @@ const enum AnalyticsEventName {
   SearchPerformed = 'search_performed',
   ErrorEncountered = 'error_encountered',
   ThemeChanged = 'theme_changed',
+  // Performance (Core Web Vitals)
+  WebVital = 'web_vital',
 }
 
 export default AnalyticsEventName;

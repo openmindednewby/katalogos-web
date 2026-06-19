@@ -3,6 +3,7 @@ export { useAnalytics } from './hooks/useAnalytics';
 export { useFeatureFlag, useFeatureFlagValue } from './hooks/useFeatureFlag';
 export { usePageTracking } from './hooks/usePageTracking';
 export { useAnalyticsIdentify } from './hooks/useAnalyticsIdentify';
+export { useWebVitalsTracking } from './hooks/useWebVitalsTracking';
 export { DevClient } from './utils/DevClient';
 export { MultiProviderClient } from './utils/MultiProviderClient';
 export { NoOpClient } from './utils/NoOpClient';

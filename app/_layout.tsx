@@ -20,7 +20,7 @@ import { SEOHead } from '../src/components/Shared/SEOHead';
 import { featureFlags } from '../src/config/featureFlags';
 import TooltipOverlay from '../src/features/tooltipTour/components/TooltipOverlay';
 import { TooltipProvider } from '../src/features/tooltipTour/components/TooltipProvider';
-import { AnalyticsProvider, useAnalyticsIdentify, usePageTracking } from '../src/lib/analytics';
+import { AnalyticsProvider, useAnalyticsIdentify, usePageTracking, useWebVitalsTracking } from '../src/lib/analytics';
 import { useCustomDomainRedirect } from '../src/lib/customDomain/useCustomDomainRedirect';
 import { initSentry, useSentryUser } from '../src/lib/monitoring';
 import { setRedirectHandler } from '../src/lib/navigation';
@@ -68,6 +68,7 @@ initSentry();
 const AnalyticsEffects = (): null => {
   usePageTracking();
   useAnalyticsIdentify();
+  useWebVitalsTracking();
   return null;
 };
 
