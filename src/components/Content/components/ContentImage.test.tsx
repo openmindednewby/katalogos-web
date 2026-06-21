@@ -1,6 +1,9 @@
 /**
  * Unit tests for ContentImage component.
- * Focus on logic: conditional rendering based on contentId, loading states, error handling.
+ *
+ * Focus on logic: conditional rendering based on contentId, and that the image
+ * URI is the same-origin BFF streaming path (Option B, #238B) — authenticated
+ * `/download` vs public `/public-download` — instead of a resolved S3 URL.
  */
 import React from 'react';
 
@@ -26,210 +29,71 @@ jest.mock('../../../theme/hooks/useTheme', () => ({
   }),
 }));
 
-// Mock the content URL hooks
-const mockUseContentUrl = jest.fn();
-const mockUsePublicContentUrl = jest.fn();
-jest.mock('../../../lib/hooks/content', () => ({
-  useContentUrl: (contentId: string | undefined) => mockUseContentUrl(contentId),
-  usePublicContentUrl: (contentId: string | undefined) => mockUsePublicContentUrl(contentId),
-}));
+const CONTENT_BASE = '/bff/api/content/api/v1/content';
+
+/**
+ * Extracts the Image source uri from a rendered ContentImage tree.
+ */
+function getImageUri(json: ReturnType<ReturnType<typeof render>['toJSON']>): string | undefined {
+  // The tree is View > Image; find the first node whose props carry a source.uri.
+  const stack = Array.isArray(json) ? [...json] : [json];
+  while (stack.length > 0) {
+    const node = stack.pop();
+    if (typeof node !== 'object' || node === null) continue;
+    const source = (node.props as { source?: { uri?: string } } | undefined)?.source;
+    const uri = source?.uri;
+    if (typeof uri === 'string') return uri;
+    if (Array.isArray(node.children)) stack.push(...node.children);
+  }
+  return undefined;
+}
 
 describe('ContentImage', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-    // Default mock returns successful URL data for authenticated hook
-    mockUseContentUrl.mockReturnValue({
-      data: { url: 'https://example.com/image.jpg' },
-      isLoading: false,
-      isError: false,
-    });
-    // Default mock returns successful URL data for public hook
-    mockUsePublicContentUrl.mockReturnValue({
-      data: { url: 'https://example.com/public-image.jpg' },
-      isLoading: false,
-      isError: false,
-    });
-  });
-
   describe('conditional rendering based on contentId', () => {
     it('returns null when contentId is null', () => {
-      const { toJSON } = render(
-        <ContentImage contentId={null} testID="test-image" />,
-      );
-
+      const { toJSON } = render(<ContentImage contentId={null} testID="test-image" />);
       expect(toJSON()).toBeNull();
-      // Hook should not be called with null
-      expect(mockUseContentUrl).toHaveBeenCalledWith(undefined);
     });
 
     it('returns null when contentId is undefined', () => {
-      const { toJSON } = render(
-        <ContentImage contentId={undefined} testID="test-image" />,
-      );
-
+      const { toJSON } = render(<ContentImage contentId={undefined} testID="test-image" />);
       expect(toJSON()).toBeNull();
-      expect(mockUseContentUrl).toHaveBeenCalledWith(undefined);
     });
 
     it('returns null when contentId is empty string', () => {
-      const { toJSON } = render(
-        <ContentImage contentId="" testID="test-image" />,
-      );
-
-      expect(toJSON()).toBeNull();
-      expect(mockUseContentUrl).toHaveBeenCalledWith(undefined);
-    });
-
-    it('calls useContentUrl with contentId when valid', () => {
-      render(<ContentImage contentId="content-123" testID="test-image" />);
-
-      expect(mockUseContentUrl).toHaveBeenCalledWith('content-123');
-    });
-  });
-
-  describe('loading state', () => {
-    it('renders loading indicator when isLoading is true', () => {
-      mockUseContentUrl.mockReturnValue({
-        data: undefined,
-        isLoading: true,
-        isError: false,
-      });
-
-      const { getByTestId } = render(
-        <ContentImage contentId="content-123" testID="test-image" />,
-      );
-
-      // Should render a container with testID
-      const container = getByTestId('test-image');
-      expect(container).toBeTruthy();
-    });
-  });
-
-  describe('error handling', () => {
-    it('returns null when isError is true', () => {
-      mockUseContentUrl.mockReturnValue({
-        data: undefined,
-        isLoading: false,
-        isError: true,
-      });
-
-      const { toJSON } = render(
-        <ContentImage contentId="content-123" testID="test-image" />,
-      );
-
-      expect(toJSON()).toBeNull();
-    });
-
-    it('returns null when url is undefined', () => {
-      mockUseContentUrl.mockReturnValue({
-        data: { url: undefined },
-        isLoading: false,
-        isError: false,
-      });
-
-      const { toJSON } = render(
-        <ContentImage contentId="content-123" testID="test-image" />,
-      );
-
-      expect(toJSON()).toBeNull();
-    });
-
-    it('returns null when url is empty string', () => {
-      mockUseContentUrl.mockReturnValue({
-        data: { url: '' },
-        isLoading: false,
-        isError: false,
-      });
-
-      const { toJSON } = render(
-        <ContentImage contentId="content-123" testID="test-image" />,
-      );
-
+      const { toJSON } = render(<ContentImage contentId="" testID="test-image" />);
       expect(toJSON()).toBeNull();
     });
   });
 
   describe('successful render', () => {
-    it('renders image container when url data is available', () => {
-      mockUseContentUrl.mockReturnValue({
-        data: { url: 'https://example.com/image.jpg' },
-        isLoading: false,
-        isError: false,
-      });
-
+    it('renders image container when contentId is valid', () => {
       const { getByTestId } = render(
         <ContentImage contentId="content-123" testID="test-image" />,
       );
-
-      const container = getByTestId('test-image');
-      expect(container).toBeTruthy();
+      expect(getByTestId('test-image')).toBeTruthy();
     });
   });
 
-  describe('hook call behavior', () => {
-    it('does not make hook call for invalid contentId', () => {
-      render(<ContentImage contentId={null} />);
-      render(<ContentImage contentId={undefined} />);
-      render(<ContentImage contentId="" />);
-
-      // All three should call with undefined (disabled query)
-      expect(mockUseContentUrl).toHaveBeenCalledTimes(3);
-      expect(mockUseContentUrl).toHaveBeenNthCalledWith(1, undefined);
-      expect(mockUseContentUrl).toHaveBeenNthCalledWith(2, undefined);
-      expect(mockUseContentUrl).toHaveBeenNthCalledWith(3, undefined);
-    });
-  });
-
-  describe('public mode (isPublic prop)', () => {
-    it('uses usePublicContentUrl when isPublic is true', () => {
-      render(
-        <ContentImage isPublic contentId="content-123" testID="test-image" />,
-      );
-
-      // Public hook should be called with the contentId
-      expect(mockUsePublicContentUrl).toHaveBeenCalledWith('content-123');
-      // Authenticated hook should be called with undefined (disabled)
-      expect(mockUseContentUrl).toHaveBeenCalledWith(undefined);
+  describe('same-origin BFF streaming URI', () => {
+    it('uses the authenticated /download path by default', () => {
+      const { toJSON } = render(<ContentImage contentId="content-123" testID="test-image" />);
+      expect(getImageUri(toJSON())).toBe(`${CONTENT_BASE}/content-123/download`);
     });
 
-    it('uses useContentUrl when isPublic is false (default)', () => {
-      render(
-        <ContentImage contentId="content-123" testID="test-image" />,
-      );
-
-      // Authenticated hook should be called with the contentId
-      expect(mockUseContentUrl).toHaveBeenCalledWith('content-123');
-      // Public hook should be called with undefined (disabled)
-      expect(mockUsePublicContentUrl).toHaveBeenCalledWith(undefined);
-    });
-
-    it('renders image from public URL when isPublic is true', () => {
-      mockUsePublicContentUrl.mockReturnValue({
-        data: { url: 'https://example.com/public-image.jpg' },
-        isLoading: false,
-        isError: false,
-      });
-
-      const { getByTestId } = render(
-        <ContentImage isPublic contentId="content-123" testID="test-image" />,
-      );
-
-      const container = getByTestId('test-image');
-      expect(container).toBeTruthy();
-    });
-
-    it('returns null when public URL fetch fails', () => {
-      mockUsePublicContentUrl.mockReturnValue({
-        data: undefined,
-        isLoading: false,
-        isError: true,
-      });
-
+    it('uses the /public-download path when isPublic is true', () => {
       const { toJSON } = render(
         <ContentImage isPublic contentId="content-123" testID="test-image" />,
       );
+      expect(getImageUri(toJSON())).toBe(`${CONTENT_BASE}/content-123/public-download`);
+    });
 
-      expect(toJSON()).toBeNull();
+    it('never points the browser at an S3 host', () => {
+      const { toJSON } = render(<ContentImage contentId="content-123" testID="test-image" />);
+      const uri = getImageUri(toJSON()) ?? '';
+      expect(uri.startsWith('/bff/api/content')).toBe(true);
+      expect(uri).not.toContain('seaweedfs');
+      expect(uri).not.toContain('8333');
     });
   });
 });

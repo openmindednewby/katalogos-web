@@ -1,32 +1,27 @@
-
-
-
-/**
- * Displays an image from the Content Service.
- * Fetches the content URL using the provided content ID.
- */
 /**
  * Content Image component.
  *
  * Fetches and displays an image from the Content Service using its content ID.
- * Handles loading states, errors, and provides a consistent display for content images.
+ *
+ * Option B (#238B): the image bytes are served same-origin THROUGH the BFF
+ * (`/bff/api/content/.../download`) rather than via a resolved S3 URL. The old
+ * `/url` + `/public-url` endpoints returned a presigned/public S3 URL on the
+ * INTERNAL host (`http://seaweedfs-s3:8333`) that the browser cannot reach, so
+ * images were blank after reload. A same-origin GET carries the BFF session
+ * cookie, which the BFF swaps for a bearer before proxying to content-api.
  */
 import React, { useMemo } from 'react';
 
 import {
-  ActivityIndicator,
   Image,
   StyleSheet,
   View,
 } from 'react-native';
 import type { DimensionValue, ImageStyle, StyleProp, ViewStyle } from 'react-native';
 
-import { useContentUrl, usePublicContentUrl } from '../../../lib/hooks/content';
+import { BFF_API_BASE } from '../../../server/bffRoutes';
 import { useTheme } from '../../../theme/hooks/useTheme';
 import { isValueDefined } from '../../../utils/is';
-
-import type { ContentUrlResponse } from '../../../lib/hooks/content';
-import type { UseQueryResult } from '@tanstack/react-query';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -34,6 +29,10 @@ import type { UseQueryResult } from '@tanstack/react-query';
 
 const DEFAULT_HEIGHT = 150;
 const DEFAULT_BORDER_RADIUS = 8;
+
+// ContentService is reached same-origin through the BFF (`/bff/api/content`),
+// which does segment passthrough to content-api and attaches the bearer.
+const CONTENT_API_BASE = BFF_API_BASE.content;
 
 const styles = StyleSheet.create({
   container: {
@@ -44,10 +43,6 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: '100%',
-  },
-  loadingContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
 
@@ -106,23 +101,11 @@ interface Props {
   borderRadius?: number;
 
   /**
-   * Whether to use public (unauthenticated) URL fetching.
+   * Whether to use the public (unauthenticated) streaming endpoint.
    * Set to true for public pages where users may not be logged in.
    * Defaults to false (authenticated).
    */
   isPublic?: boolean;
-}
-
-interface UseContentImageUrlParams {
-  contentId: string | undefined;
-  isPublic: boolean;
-}
-
-interface LoadingStateProps {
-  containerStyle: ViewStyle;
-  style?: StyleProp<ViewStyle>;
-  testID?: string;
-  primaryColor: string;
 }
 
 interface ImageContentProps {
@@ -148,47 +131,17 @@ function isValidContentId(contentId: string | null | undefined): contentId is st
 }
 
 /**
- * Checks if the URL data contains a valid URL.
+ * Builds the same-origin BFF streaming URI for a content image.
+ * Authenticated callers hit `/download`; public pages hit `/public-download`.
  */
-function hasValidUrl(urlData: ContentUrlResponse | undefined): urlData is ContentUrlResponse & { url: string } {
-  return isValueDefined(urlData?.url) && urlData.url !== '';
-}
-
-/**
- * Hook to get content URL, selecting between public and authenticated endpoints.
- */
-function useContentImageUrl(params: UseContentImageUrlParams): UseQueryResult<ContentUrlResponse> {
-  const { contentId, isPublic } = params;
-  const publicQuery = usePublicContentUrl(isPublic ? contentId : undefined);
-  const authenticatedQuery = useContentUrl(isPublic ? undefined : contentId);
-  return isPublic ? publicQuery : authenticatedQuery;
-}
-
-/**
- * Logs debug information for public content fetch failures.
- */
-function logPublicContentError(isPublic: boolean, isError: boolean, contentId: string | undefined, error: unknown): void {
-  const shouldLog = isPublic && isError;
-  if (!shouldLog) return;
-  const errorMessage = error instanceof Error ? error.message : String(error);
-  console.warn('[ContentImage] Public URL fetch failed:', { contentId, error: errorMessage });
+function buildStreamUri(contentId: string, isPublic: boolean): string {
+  const path = isPublic ? 'public-download' : 'download';
+  return `${CONTENT_API_BASE}/api/v1/content/${contentId}/${path}`;
 }
 
 // ---------------------------------------------------------------------------
 // Sub-components
 // ---------------------------------------------------------------------------
-
-/**
- * Renders the loading state for the image.
- */
-const LoadingState = ({ containerStyle, style, testID, primaryColor }: LoadingStateProps): React.ReactElement => (
-  <View
-    style={[styles.container, styles.loadingContainer, containerStyle, style]}
-    testID={testID}
-  >
-    <ActivityIndicator color={primaryColor} size="small" />
-  </View>
-);
 
 /**
  * Renders the actual image content.
@@ -233,15 +186,7 @@ export const ContentImage = ({
 }: Props): React.ReactElement | null => {
   const { theme } = useTheme();
   const surfaceColor = theme.colors.surface;
-  const primary = theme.palette.primary['500'];
   const hasContentId = isValidContentId(contentId);
-  const contentIdForQuery = hasContentId ? contentId : undefined;
-
-  const imageUrlParams = useMemo(() => ({ contentId: contentIdForQuery, isPublic }), [contentIdForQuery, isPublic]);
-  const queryResult = useContentImageUrl(imageUrlParams);
-  const { data: urlData, isLoading, isError, error } = queryResult;
-
-  logPublicContentError(isPublic, isError, contentIdForQuery, error);
 
   const containerStyle = useMemo<ViewStyle>(() => ({
     width: width ?? '100%',
@@ -250,16 +195,12 @@ export const ContentImage = ({
     backgroundColor: surfaceColor,
   }), [width, height, borderRadius, surfaceColor]);
 
+  const url = useMemo(
+    () => (hasContentId ? buildStreamUri(contentId, isPublic) : ''),
+    [hasContentId, contentId, isPublic],
+  );
+
   if (!hasContentId) return null;
-
-  if (isLoading)
-    return <LoadingState containerStyle={containerStyle} primaryColor={primary} style={style} testID={testID} />;
-
-  const shouldNotRender = isError || !hasValidUrl(urlData);
-  if (shouldNotRender) {
-    if (isPublic) console.warn('[ContentImage] Not rendering:', { contentId, isError, urlData });
-    return null;
-  }
 
   return (
     <ImageContent
@@ -270,7 +211,7 @@ export const ContentImage = ({
       imageStyle={imageStyle}
       style={style}
       testID={testID}
-      url={urlData.url}
+      url={url}
     />
   );
 };
