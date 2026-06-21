@@ -77,25 +77,29 @@ async function fetchContent(contentId: string): Promise<ContentDto> {
 }
 
 /**
- * Fetches a content access URL (authenticated).
+ * Returns the authenticated content access URL.
+ *
+ * Resolves to the same-origin BFF *streaming* path (`/content/{id}/download`)
+ * rather than the backend `/url` endpoint's presigned S3 URL. S3 is internal-
+ * only (no public ingress), so a presigned URL points at an unreachable host
+ * and the browser can't load the image. The streaming path proxies the bytes
+ * through content-api (public via the BFF); the BFF session cookie carries auth.
  */
 async function fetchContentUrl(contentId: string): Promise<ContentUrlResponse> {
-  return get<undefined, ContentUrlResponse>(`/api/v1/content/${contentId}/url`, undefined, {
-    withToken: false,
-    withCredentials: true, // BFF session cookie — token attached server-side
-    baseURL: CONTENT_API_BASE,
+  return Promise.resolve({
+    url: `${CONTENT_API_BASE}/api/v1/content/${contentId}/download`,
+    expiresAt: '',
   });
 }
 
 /**
- * Fetches a public content access URL (no authentication required).
- * Used for public pages where users may not be logged in.
+ * Returns the public (unauthenticated) content access URL — the same-origin BFF
+ * `/content/{id}/public-download` streaming path (see {@link fetchContentUrl}).
  */
 async function fetchPublicContentUrl(contentId: string): Promise<ContentUrlResponse> {
-  return get<undefined, ContentUrlResponse>(`/api/v1/content/${contentId}/public-url`, undefined, {
-    withToken: false,
-    withCredentials: true,
-    baseURL: CONTENT_API_BASE,
+  return Promise.resolve({
+    url: `${CONTENT_API_BASE}/api/v1/content/${contentId}/public-download`,
+    expiresAt: '',
   });
 }
 
