@@ -1980,6 +1980,7 @@
     "aiGenerateHint": "Generate a professional description using AI",
     "aiGenerateSuccess": "Description generated. Review and save to keep it.",
     "aiGenerateFailed": "Failed to generate description",
+    "aiUpgradeRequired": "AI features require a paid plan. Please upgrade to continue.",
     "editorSections": {
       "basic": "Basic Information",
       "nutrition": "Nutrition",
@@ -3523,6 +3524,7 @@
     "errors": {
       "uploadFailed": "Failed to upload file. Please try again.",
       "extractionFailed": "AI could not extract menu data. Try a clearer image.",
+      "upgradeRequired": "AI import requires a paid plan. Please upgrade to continue.",
       "applyFailed": "Failed to apply import. Please try again.",
       "fileTooLarge": "File is too large. Maximum size is 10 MB.",
       "unsupportedFormat": "Unsupported file format. Use JPEG, PNG, WebP, or PDF."

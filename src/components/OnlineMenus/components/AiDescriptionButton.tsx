@@ -8,6 +8,7 @@ import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'rea
 import { FM } from '@/localization/helpers';
 
 import { useGenerateMenuItemDescription } from '../../../hooks/useGenerateMenuItemDescription';
+import { isPaidFeatureError } from '../../../lib/api/utils/isPaidFeatureError';
 import { DISABLED_OPACITY } from '../../../shared/constants';
 import { TestIds } from '../../../shared/testIds';
 import { isValueDefined } from '../../../utils/is';
@@ -111,7 +112,7 @@ const AiDescriptionButton: React.FC<AiDescriptionButtonProps> = ({
           style={[styles.errorText, { color: errorColor }]}
           testID={TestIds.MENU_ITEM_AI_ERROR}
         >
-          {FM('onlineMenus.aiGenerateFailed')}
+          {isPaidFeatureError(error) ? FM('onlineMenus.aiUpgradeRequired') : FM('onlineMenus.aiGenerateFailed')}
         </Text>
       ) : null}
     </View>

@@ -6,6 +6,7 @@ import { useCallback, useState } from 'react';
 
 import { isValueDefined } from '@dloizides/utils';
 
+import { isPaidFeatureError } from '../../../../lib/api/utils/isPaidFeatureError';
 import AiImportMergeStrategy from '../../../../shared/enums/AiImportMergeStrategy';
 import AiImportStep from '../../../../shared/enums/AiImportStep';
 import {
@@ -30,7 +31,7 @@ interface UseAiImportReturn {
   state: AiImportState;
   handleFileValidation: (file: File) => string | null;
   handleExtractionSuccess: (data: ImportedMenuData) => void;
-  handleExtractionError: () => void;
+  handleExtractionError: (error?: unknown) => void;
   handleUpdateCategory: (catIndex: number, name: string) => void;
   handleUpdateItem: (catIndex: number, itemIndex: number, updates: Partial<ImportedItem>) => void;
   handleDeleteItem: (catIndex: number, itemIndex: number) => void;
@@ -105,7 +106,7 @@ function addItemInData(data: ImportedMenuData, catIndex: number): ImportedMenuDa
 function useFileHandlers(setState: SetState): {
   handleFileValidation: (file: File) => string | null;
   handleExtractionSuccess: (data: ImportedMenuData) => void;
-  handleExtractionError: () => void;
+  handleExtractionError: (error?: unknown) => void;
 } {
   const handleFileValidation = useCallback((file: File): string | null => {
     const error = validateFile(file);
@@ -121,8 +122,9 @@ function useFileHandlers(setState: SetState): {
     setState((prev) => ({ ...prev, importedData: data, step: AiImportStep.Review, error: null }));
   }, [setState]);
 
-  const handleExtractionError = useCallback(() => {
-    setState((prev) => ({ ...prev, error: 'aiImport.errors.extractionFailed', step: AiImportStep.Upload }));
+  const handleExtractionError = useCallback((error?: unknown) => {
+    const errorKey = isPaidFeatureError(error) ? 'aiImport.errors.upgradeRequired' : 'aiImport.errors.extractionFailed';
+    setState((prev) => ({ ...prev, error: errorKey, step: AiImportStep.Upload }));
   }, [setState]);
 
   return { handleFileValidation, handleExtractionSuccess, handleExtractionError };

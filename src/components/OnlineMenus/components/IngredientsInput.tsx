@@ -9,6 +9,7 @@ import { ActivityIndicator, StyleSheet, Text, TextInput, TouchableOpacity, View 
 import { FM } from '@/localization/helpers';
 
 import { useGenerateNutrition } from '../../../hooks/useGenerateNutrition';
+import { isPaidFeatureError } from '../../../lib/api/utils/isPaidFeatureError';
 import { useSubscription } from '../../../lib/subscription/hooks/useSubscription';
 import { DISABLED_OPACITY } from '../../../shared/constants';
 import { TestIds } from '../../../shared/testIds';
@@ -148,7 +149,7 @@ const IngredientsInput: React.FC<IngredientsInputProps> = ({
             style={[styles.errorText, { color: errorColor }]}
             testID={TestIds.NUTRITION_AUTO_FILL_ERROR}
           >
-            {FM('onlineMenus.nutrition.autoFillFailed')}
+            {isPaidFeatureError(error) ? FM('onlineMenus.aiUpgradeRequired') : FM('onlineMenus.nutrition.autoFillFailed')}
           </Text>
         ) : null}
       </View>
