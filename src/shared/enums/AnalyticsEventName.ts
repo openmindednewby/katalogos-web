@@ -4,6 +4,7 @@ const enum AnalyticsEventName {
   MenuCreated = 'menu_created',
   MenuUpdated = 'menu_updated',
   MenuDeleted = 'menu_deleted',
+  MenuDuplicated = 'menu_duplicated',
   MenuActivated = 'menu_activated',
   MenuDeactivated = 'menu_deactivated',
   MenuPublished = 'menu_published',

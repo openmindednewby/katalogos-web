@@ -91,6 +91,8 @@ interface ActionLabels {
   activateHint: string;
   previewLabel: string;
   previewHint: string;
+  duplicateLabel: string;
+  duplicateHint: string;
   openExternalLabel: string;
   openExternalHint: string;
   openExternalDisabledHint: string;
@@ -114,6 +116,8 @@ export function getActionLabels(ns: string): ActionLabels {
     activateHint: FM(`${ns}.activateHint`),
     previewLabel: FM(`${ns}.preview`),
     previewHint: FM(`${ns}.previewHint`),
+    duplicateLabel: FM(`${ns}.duplicate`),
+    duplicateHint: FM(`${ns}.duplicateHint`),
     openExternalLabel: FM(`${ns}.openExternal`),
     openExternalHint: FM(`${ns}.openExternalHint`),
     openExternalDisabledHint: FM(`${ns}.openExternalDisabledHint`),

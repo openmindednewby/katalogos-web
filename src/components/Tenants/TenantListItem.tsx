@@ -17,6 +17,7 @@ interface Props<T> {
   onDelete: (id: string) => void;
   onView?: (id: string) => void;
   onPreview?: (id: string) => void;
+  onDuplicate?: (id: string) => void;
   onOpenExternal?: (id: string) => void;
   onQrCode?: (id: string) => void;
   onEmbed?: (id: string) => void;
@@ -32,6 +33,7 @@ interface Props<T> {
   activateButtonTestID?: string;
   deactivateButtonTestID?: string;
   previewButtonTestID?: string;
+  duplicateButtonTestID?: string;
   openExternalButtonTestID?: string;
   qrCodeButtonTestID?: string;
   embedButtonTestID?: string;
@@ -46,6 +48,7 @@ const TenantListItem = <T,>({
   onDelete,
   onView,
   onPreview,
+  onDuplicate,
   onOpenExternal,
   onQrCode,
   onEmbed,
@@ -61,6 +64,7 @@ const TenantListItem = <T,>({
   activateButtonTestID,
   deactivateButtonTestID,
   previewButtonTestID,
+  duplicateButtonTestID,
   openExternalButtonTestID,
   qrCodeButtonTestID,
   embedButtonTestID,
@@ -101,6 +105,9 @@ const TenantListItem = <T,>({
         deleteButtonTestID={deleteButtonTestID}
         deleteHint={labels.deleteHint}
         deleteLabel={labels.deleteLabel}
+        duplicateButtonTestID={duplicateButtonTestID}
+        duplicateHint={labels.duplicateHint}
+        duplicateLabel={labels.duplicateLabel}
         editButtonTestID={editButtonTestID}
         editHint={labels.editHint}
         editLabel={labels.editLabel}
@@ -123,6 +130,7 @@ const TenantListItem = <T,>({
         qrCodeLabel={labels.qrCodeLabel}
         rawStatus={deriveRawStatusForActions(rawStatus)}
         shouldShowActivate={typeof onActivate === 'function'}
+        shouldShowDuplicate={typeof onDuplicate === 'function'}
         shouldShowEmbed={typeof onEmbed === 'function'}
         shouldShowOpenExternal={typeof onOpenExternal === 'function'}
         shouldShowPreview={typeof onPreview === 'function'}
@@ -133,6 +141,7 @@ const TenantListItem = <T,>({
         viewLabel={labels.viewLabel}
         onActivate={onActivate}
         onDelete={onDelete}
+        onDuplicate={onDuplicate}
         onEdit={onEdit}
         onEmbed={onEmbed}
         onOpenExternal={onOpenExternal}

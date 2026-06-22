@@ -61,19 +61,44 @@ const StatusAwareButton = ({
   );
 };
 
+/**
+ * The three status-aware actions (open-external / QR / embed), extracted so the
+ * main actions row stays under the cyclomatic-complexity budget.
+ */
+const StatusAwareActions = (props: TenantListItemActionsProps): React.ReactElement => {
+  const {
+    itemID, colors, isCurrentlyActive,
+    openExternalLabel, qrCodeLabel, embedLabel,
+    openExternalHint, openExternalDisabledHint, qrCodeHint, qrCodeDisabledHint, embedHint, embedDisabledHint,
+    shouldShowOpenExternal, shouldShowQrCode, shouldShowEmbed,
+    openExternalButtonTestID, qrCodeButtonTestID, embedButtonTestID,
+    onOpenExternal, onQrCode, onEmbed,
+  } = props;
+  return (
+    <>
+      {shouldShowOpenExternal && onOpenExternal ? (
+        <StatusAwareButton activeColor={colors.primary} activeHint={openExternalHint} disabledHint={openExternalDisabledHint} iconName="link" inactiveColor={colors.textSecondary} isActive={isCurrentlyActive} label={openExternalLabel} testID={openExternalButtonTestID} onPress={() => onOpenExternal(itemID)} />
+      ) : null}
+      {shouldShowQrCode && onQrCode ? (
+        <StatusAwareButton activeColor={colors.primary} activeHint={qrCodeHint} disabledHint={qrCodeDisabledHint} iconName="qrCode" inactiveColor={colors.textSecondary} isActive={isCurrentlyActive} label={qrCodeLabel} testID={qrCodeButtonTestID} onPress={() => onQrCode(itemID)} />
+      ) : null}
+      {shouldShowEmbed && onEmbed ? (
+        <StatusAwareButton activeColor={colors.primary} activeHint={embedHint} disabledHint={embedDisabledHint} iconName="code" inactiveColor={colors.textSecondary} isActive={isCurrentlyActive} label={embedLabel} testID={embedButtonTestID} onPress={() => onEmbed(itemID)} />
+      ) : null}
+    </>
+  );
+};
+
 const TenantListItemActions = (props: TenantListItemActionsProps): React.ReactElement => {
   const {
     itemID, title, colors,
-    viewLabel, editLabel, deleteLabel, activateLabel, previewLabel,
-    openExternalLabel, qrCodeLabel, embedLabel,
-    viewHint, editHint, deleteHint, activateHint, previewHint,
-    openExternalHint, openExternalDisabledHint, qrCodeHint, qrCodeDisabledHint,
-    embedHint, embedDisabledHint,
-    shouldShowView, shouldShowActivate, shouldShowPreview, shouldShowOpenExternal, shouldShowQrCode, shouldShowEmbed,
+    viewLabel, editLabel, deleteLabel, activateLabel, previewLabel, duplicateLabel,
+    viewHint, editHint, deleteHint, activateHint, previewHint, duplicateHint,
+    shouldShowView, shouldShowActivate, shouldShowPreview, shouldShowDuplicate,
     isCurrentlyActive, rawStatus,
     viewButtonTestID, editButtonTestID, deleteButtonTestID, activateToggleTestID,
-    previewButtonTestID, openExternalButtonTestID, qrCodeButtonTestID, embedButtonTestID,
-    onView, onEdit, onDelete, onActivate, onPreview, onOpenExternal, onQrCode, onEmbed,
+    previewButtonTestID, duplicateButtonTestID,
+    onView, onEdit, onDelete, onActivate, onPreview, onDuplicate,
   } = props;
   const { isPhone } = useBreakpoint();
 
@@ -101,15 +126,13 @@ const TenantListItemActions = (props: TenantListItemActionsProps): React.ReactEl
           <Text style={{ color: colors.primary }}>{previewLabel}</Text>
         </TouchableOpacity>
       ) : null}
-      {shouldShowOpenExternal && onOpenExternal ? (
-        <StatusAwareButton activeColor={colors.primary} activeHint={openExternalHint} disabledHint={openExternalDisabledHint} iconName="link" inactiveColor={colors.textSecondary} isActive={isCurrentlyActive} label={openExternalLabel} testID={openExternalButtonTestID} onPress={() => onOpenExternal(itemID)} />
+      {shouldShowDuplicate && onDuplicate ? (
+        <TouchableOpacity accessibilityHint={duplicateHint} accessibilityLabel={duplicateLabel} accessibilityRole="button" style={styles.actionButton} testID={duplicateButtonTestID} onPress={() => onDuplicate(itemID)}>
+          <View style={styles.iconSpacing}><SvgIcon color={colors.primary} name="copy" size={ACTION_ICON_SIZE} /></View>
+          <Text style={{ color: colors.primary }}>{duplicateLabel}</Text>
+        </TouchableOpacity>
       ) : null}
-      {shouldShowQrCode && onQrCode ? (
-        <StatusAwareButton activeColor={colors.primary} activeHint={qrCodeHint} disabledHint={qrCodeDisabledHint} iconName="qrCode" inactiveColor={colors.textSecondary} isActive={isCurrentlyActive} label={qrCodeLabel} testID={qrCodeButtonTestID} onPress={() => onQrCode(itemID)} />
-      ) : null}
-      {shouldShowEmbed && onEmbed ? (
-        <StatusAwareButton activeColor={colors.primary} activeHint={embedHint} disabledHint={embedDisabledHint} iconName="code" inactiveColor={colors.textSecondary} isActive={isCurrentlyActive} label={embedLabel} testID={embedButtonTestID} onPress={() => onEmbed(itemID)} />
-      ) : null}
+      <StatusAwareActions {...props} />
       <TouchableOpacity accessibilityHint={deleteHint} accessibilityLabel={deleteLabel} accessibilityRole="button" style={styles.actionButton} testID={deleteButtonTestID} onPress={() => onDelete(itemID)}>
         <View style={styles.iconSpacing}><SvgIcon color={colors.error} name="trash" size={ACTION_ICON_SIZE} /></View>
         <Text style={{ color: colors.error }}>{deleteLabel}</Text>

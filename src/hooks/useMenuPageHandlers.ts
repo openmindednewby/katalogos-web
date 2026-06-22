@@ -5,6 +5,7 @@
 export {
   useMenuQueries,
   useMenuDelete,
+  useMenuDuplicate,
   useMenuActivateToggle,
   useMenuSave,
   useMenuOpenExternal,

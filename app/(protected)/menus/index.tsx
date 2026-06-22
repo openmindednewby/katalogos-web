@@ -14,10 +14,12 @@ import PageHeaderWithActions from '../../../src/components/Shared/PageHeaderWith
 import TenantListItem from '../../../src/components/Tenants/TenantListItem';
 import FullMenuEditor from '../../../src/features/onlinemenus/components/FullMenuEditor';
 import { useTooltipTourContext } from '../../../src/features/tooltipTour/components/TooltipProvider';
+import { useDuplicateMenu } from '../../../src/hooks/useDuplicateMenu';
 import { useMenuEmbed } from '../../../src/hooks/useMenuEmbed';
 import {
   useMenuQueries,
   useMenuDelete,
+  useMenuDuplicate,
   useMenuActivateToggle,
   useMenuSave,
   useMenuOpenExternal,
@@ -88,6 +90,8 @@ const OnlineMenusPage = (): React.ReactElement => {
 
   const handleCloseModal = useCallback(() => { setIsModalVisible(false); setEditingItemId(null); }, []);
   const handleDelete = useMenuDelete(useMemo(() => ({ deleteMutation: queries.deleteMutation, refetchMenusSoon, t: FM, analyticsTrack: track }), [queries.deleteMutation, refetchMenusSoon, track]));
+  const duplicateMutation = useDuplicateMenu();
+  const handleDuplicate = useMenuDuplicate(useMemo(() => ({ duplicateMutation, refetchMenusSoon, t: FM, analyticsTrack: track }), [duplicateMutation, refetchMenusSoon, track]));
   const handleActivateToggle = useMenuActivateToggle(useMemo(() => ({ activateMutation, deactivateMutation, refetchMenusSoon, t: FM, analyticsTrack: track }), [activateMutation, deactivateMutation, refetchMenusSoon, track]));
   const saveCallbacks = useMemo(() => ({ onCloseModal: handleCloseModal, refetchMenusSoon }), [handleCloseModal, refetchMenusSoon]);
   const handleSave = useMenuSave(useMemo(() => ({ editingItem, createMutation, updateMutation, callbacks: saveCallbacks, t: FM, analyticsTrack: track }), [editingItem, createMutation, updateMutation, saveCallbacks, track]));
@@ -134,19 +138,19 @@ const OnlineMenusPage = (): React.ReactElement => {
         <TenantListItem
           showId
           activateButtonTestID={TestIds.MENU_CARD_ACTIVATE_BUTTON} deactivateButtonTestID={TestIds.MENU_CARD_DEACTIVATE_BUTTON}
-          deleteButtonTestID={TestIds.MENU_CARD_DELETE_BUTTON} editButtonTestID={TestIds.MENU_CARD_EDIT_BUTTON}
+          deleteButtonTestID={TestIds.MENU_CARD_DELETE_BUTTON} duplicateButtonTestID={TestIds.MENU_CARD_DUPLICATE_BUTTON} editButtonTestID={TestIds.MENU_CARD_EDIT_BUTTON}
           embedButtonTestID={TestIds.MENU_CARD_EMBED_BUTTON} idTestID={TestIds.MENU_CARD_ID}
           item={item} nameTestID={TestIds.MENU_CARD_NAME}
           openExternalButtonTestID={TestIds.MENU_CARD_OPEN_EXTERNAL_BUTTON} previewButtonTestID={TestIds.MENU_CARD_PREVIEW_BUTTON}
           qrCodeButtonTestID={TestIds.MENU_CARD_QR_CODE_BUTTON} statusBadgeTestID={TestIds.MENU_CARD_STATUS_BADGE}
           statusKey="isActive" testID={TestIds.MENU_CARD} translationNs="onlineMenus"
-          onActivate={handleActivateToggle} onDelete={() => handleDelete(item)} onEdit={() => handleEdit(item)}
+          onActivate={handleActivateToggle} onDelete={() => handleDelete(item)} onDuplicate={() => handleDuplicate(item)} onEdit={() => handleEdit(item)}
           onEmbed={() => handleEmbed(itemId)} onOpenExternal={() => handleOpenExternal(itemId)}
           onPreview={() => handlePreview(itemId)} onQrCode={() => handleQrCode(itemId)}
         />
       );
     },
-    [handleEdit, handleDelete, handleActivateToggle, handlePreview, handleOpenExternal, handleQrCode, handleEmbed],
+    [handleEdit, handleDelete, handleDuplicate, handleActivateToggle, handlePreview, handleOpenExternal, handleQrCode, handleEmbed],
   );
 
   const pageHeader = (

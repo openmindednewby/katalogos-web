@@ -17,6 +17,7 @@ export interface TenantListItemActionsProps {
   deleteLabel: string;
   activateLabel: string;
   previewLabel: string;
+  duplicateLabel: string;
   openExternalLabel: string;
   qrCodeLabel: string;
   embedLabel: string;
@@ -25,6 +26,7 @@ export interface TenantListItemActionsProps {
   deleteHint: string;
   activateHint: string;
   previewHint: string;
+  duplicateHint: string;
   openExternalHint: string;
   openExternalDisabledHint: string;
   qrCodeHint: string;
@@ -34,6 +36,7 @@ export interface TenantListItemActionsProps {
   shouldShowView: boolean;
   shouldShowActivate: boolean;
   shouldShowPreview: boolean;
+  shouldShowDuplicate: boolean;
   shouldShowOpenExternal: boolean;
   shouldShowQrCode: boolean;
   shouldShowEmbed: boolean;
@@ -44,6 +47,7 @@ export interface TenantListItemActionsProps {
   deleteButtonTestID?: string;
   activateToggleTestID?: string;
   previewButtonTestID?: string;
+  duplicateButtonTestID?: string;
   openExternalButtonTestID?: string;
   qrCodeButtonTestID?: string;
   embedButtonTestID?: string;
@@ -52,6 +56,7 @@ export interface TenantListItemActionsProps {
   onDelete: (id: string) => void;
   onActivate?: (id: string, current?: boolean | number) => void;
   onPreview?: (id: string) => void;
+  onDuplicate?: (id: string) => void;
   onOpenExternal?: (id: string) => void;
   onQrCode?: (id: string) => void;
   onEmbed?: (id: string) => void;
