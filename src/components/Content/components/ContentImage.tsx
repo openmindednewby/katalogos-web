@@ -14,6 +14,7 @@ import React, { useMemo } from 'react';
 
 import {
   Image,
+  Platform,
   StyleSheet,
   View,
 } from 'react-native';
@@ -143,6 +144,11 @@ function buildStreamUri(contentId: string, isPublic: boolean): string {
 // Sub-components
 // ---------------------------------------------------------------------------
 
+/** CSS for the web lazy <img> — fills the sized container and keeps cover crop. */
+function webImageStyle(borderRadius: number): React.CSSProperties {
+  return { width: '100%', height: '100%', objectFit: 'cover', borderRadius };
+}
+
 /**
  * Renders the actual image content.
  */
@@ -157,14 +163,26 @@ const ImageContent = ({
   borderRadius,
 }: ImageContentProps): React.ReactElement => (
   <View style={[styles.container, containerStyle, style]} testID={testID}>
-    <Image
-      accessibilityIgnoresInvertColors
-      accessibilityHint={accessibilityHint ?? 'Displays content image'}
-      accessibilityLabel={accessibilityLabel ?? 'Content image'}
-      resizeMode="cover"
-      source={{ uri: url }}
-      style={[styles.image, { borderRadius }, imageStyle]}
-    />
+    {Platform.OS === 'web' ? (
+      // Native lazy-loading on web: RN-web's Image cannot emit loading/decoding,
+      // so a real <img> defers off-screen menu images (Lighthouse + bandwidth win).
+      <img
+        alt={accessibilityLabel ?? 'Content image'}
+        decoding="async"
+        loading="lazy"
+        src={url}
+        style={webImageStyle(borderRadius)}
+      />
+    ) : (
+      <Image
+        accessibilityIgnoresInvertColors
+        accessibilityHint={accessibilityHint ?? 'Displays content image'}
+        accessibilityLabel={accessibilityLabel ?? 'Content image'}
+        resizeMode="cover"
+        source={{ uri: url }}
+        style={[styles.image, { borderRadius }, imageStyle]}
+      />
+    )}
   </View>
 );
 

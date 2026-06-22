@@ -1,15 +1,16 @@
 User-agent: *
 Allow: /
-Allow: /menus
-Allow: /questionnaires
 Allow: /pricing
 Allow: /public/
 
-Disallow: /(protected)/
-Disallow: /(auth)/
-
-# Allow public menu pages for SEO
+# Public menu pages should be indexed for SEO
 Allow: /public/menu/
 Allow: /public/menus/
 
-Sitemap: https://app.menuflow.com/sitemap.xml
+# App-internal areas should not be indexed
+Disallow: /(protected)/
+Disallow: /(auth)/
+# Embed/iframe variants are canonicalised to the non-embed menu page
+Disallow: /public/menu/embed/
+
+Sitemap: https://katalogos.dloizides.com/sitemap.xml

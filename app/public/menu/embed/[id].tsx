@@ -10,6 +10,7 @@ import {
   MenuContentView,
   MenuLoadingState,
 } from '../../../../src/components/PublicMenu';
+import { EmbedSeoHead } from '../../../../src/components/PublicMenu/components/EmbedSeoHead';
 import { WhiteLabelFooter } from '../../../../src/components/PublicMenu/components/WhiteLabelFooter';
 import { WhiteLabelHeader } from '../../../../src/components/PublicMenu/components/WhiteLabelHeader';
 import { resolvePublicMenuTheme } from '../../../../src/components/PublicMenu/utils/resolvePublicMenuTheme';
@@ -96,6 +97,7 @@ const EmbedMenuPage = (): React.ReactElement => {
 
   return (
     <View onLayout={handleLayout}>
+      <EmbedSeoHead menuId={menuId} menuName={menuName} />
       <WhiteLabelHeader html={whiteLabel.headerHtml} />
       <MenuContentView
         businessProfile={profileQuery.data}

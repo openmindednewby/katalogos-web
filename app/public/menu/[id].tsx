@@ -94,8 +94,12 @@ const PublicMenuViewerPage = (): React.ReactElement => {
   useEffect(() => {
     if (!activeQuery.isSuccess || hasTrackedViewRef.current) return;
     hasTrackedViewRef.current = true;
-    track(AnalyticsEventName.MenuViewedPublic, { menuId });
-  }, [activeQuery.isSuccess, menuId, track]);
+    track(AnalyticsEventName.MenuViewedPublic, {
+      menuId,
+      language: currentLanguage === '' ? 'default' : currentLanguage,
+      ...(isValueDefined(tenantId) ? { tenantId } : {}),
+    });
+  }, [activeQuery.isSuccess, menuId, currentLanguage, tenantId, track]);
 
   if (activeQuery.isLoading)
     return (
