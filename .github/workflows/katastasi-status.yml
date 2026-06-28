@@ -1,0 +1,47 @@
+name: Katastasi status report
+
+# Runs the unit suite and posts a TraceReport to the Katastasi status hub
+# (https://status.dloizides.com) so this repo gets a live coverage/pass-fail row.
+# Inactive until the org/repo secret KATASTASI_STATUS_TOKEN is set (the post
+# step skips cleanly while the token is absent).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test-and-report:
+    name: Test & report to status hub
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install dependencies
+        run: npm ci
+      - name: Run Jest (JUnit reporter)
+        id: jest
+        continue-on-error: true
+        env:
+          JEST_JUNIT_OUTPUT_DIR: reports
+          JEST_JUNIT_OUTPUT_NAME: junit.xml
+        run: |
+          npm i -D jest-junit --no-save
+          npx jest --ci --maxWorkers=2 --reporters=default --reporters=jest-junit
+      - name: Report test results to status hub
+        if: always()
+        env:
+          KATASTASI_STATUS_TOKEN: ${{ secrets.KATASTASI_STATUS_TOKEN }}
+        run: |
+          node .katastasi/junit-to-report.mjs --project katalogos-tests --out .katastasi/report.json reports/junit.xml
+          if [ -z "${KATASTASI_STATUS_TOKEN}" ]; then
+            echo "KATASTASI_STATUS_TOKEN not set - skipping post (workflow committed-but-inactive)."
+            exit 0
+          fi
+          curl -sS --fail-with-body -X POST https://status.dloizides.com/ingest \
+            -H "Authorization: Bearer ${KATASTASI_STATUS_TOKEN}" \
+            -H "Content-Type: application/json" \
+            --data-binary @.katastasi/report.json
