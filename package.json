@@ -111,6 +111,7 @@
     "@typescript-eslint/eslint-plugin": "^8.54.0",
     "@typescript-eslint/parser": "^8.54.0",
     "ajv-formats": "^3.0.1",
+    "babel-plugin-const-enum": "^1.2.0",
     "babel-plugin-module-resolver": "^5.0.2",
     "babel-plugin-transform-import-meta": "^2.3.3",
     "depcheck": "^1.4.7",

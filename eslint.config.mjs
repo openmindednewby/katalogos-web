@@ -22,6 +22,7 @@ export default [
     ignores: [
       'node_modules/**',
       '.expo/**',
+      '.katastasi/**',
       'dist/**',
       '**/dist/**',
       'build/**',
