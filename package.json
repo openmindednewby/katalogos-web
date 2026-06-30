@@ -48,7 +48,7 @@
     "@baseclient/tenant-theme-editor-module": "file:./packages/tenant-theme-editor-module",
     "@dloizides/api-client-base": "^1.0.0",
     "@dloizides/auth-client": "^3.4.0",
-    "@dloizides/auth-web": "^1.5.0",
+    "@dloizides/auth-web": "^1.5.1",
     "@dloizides/bff-web-client": "^1.0.1",
     "@dloizides/frontend-devtools": "^1.0.3",
     "@dloizides/legal-ui": "^1.0.1",
