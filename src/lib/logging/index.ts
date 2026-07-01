@@ -1,12 +1,22 @@
-import { LoggingService } from './utils/LoggingService';
+/**
+ * Re-export shim. The implementation now lives in the shared
+ * `@dloizides/logging-web` package (extracted from the byte-identical
+ * `lib/logging` modules in katalogos-web + erevna-web).
+ */
+export {
+  LoggingService,
+  sanitizeData,
+  LogTransport,
+  OfflineQueue,
+  enrichWithDevice,
+  generateSessionId,
+  loggingService,
+} from '@dloizides/logging-web';
 
-export { LoggingService, sanitizeData } from './utils/LoggingService';
-export { LogTransport } from './utils/LogTransport';
-export { OfflineQueue } from './utils/OfflineQueue';
-export type { LogEntry, LogEntryDevice, LogEntryError, LoggingConfig } from './types';
-export type { QueueStorage } from './utils/OfflineQueue';
-export { enrichWithDevice } from './enrichers/DeviceEnricher';
-export { generateSessionId } from './enrichers/SessionEnricher';
-
-/** Default singleton instance for application-wide use. */
-export const loggingService = new LoggingService();
+export type {
+  LogEntry,
+  LogEntryDevice,
+  LogEntryError,
+  LoggingConfig,
+  QueueStorage,
+} from '@dloizides/logging-web';
