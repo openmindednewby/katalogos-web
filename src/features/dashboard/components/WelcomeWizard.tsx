@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { StyleSheet, View } from 'react-native';
+
+import { useRouter } from 'expo-router';
 
 import WizardProgressBar from '@/components/Dashboard/components/WizardProgressBar';
 import type { WelcomeWizardState } from '@/features/dashboard/hooks/useWelcomeWizard';
@@ -47,6 +49,16 @@ const WelcomeWizard = ({ wizard }: Props): React.ReactElement => {
   const primary = theme.palette.primary['500'];
   const { isPhone } = useBreakpoint();
   const phoneWrapperStyle = isPhone ? { padding: PHONE_PADDING } : undefined;
+  const router = useRouter();
+
+  // P1-08: finishing the first-run wizard drops the new owner straight into the
+  // menu editor (with their starter menu), not the empty-ish dashboard. Wrapping
+  // handleComplete here keeps the navigation side-effect in the container (the
+  // wizard hook is at its line budget and owns state/logic, not routing).
+  const wizardWithExit = useMemo<WizardState>(
+    () => ({ ...wizard, handleComplete: () => { wizard.handleComplete(); router.push('/menus'); } }),
+    [wizard, router],
+  );
 
   return (
     <View
@@ -57,10 +69,10 @@ const WelcomeWizard = ({ wizard }: Props): React.ReactElement => {
         {wizard.step !== WizardStep.Completed && <WizardProgressBar step={wizard.step} />}
 
         <View testID={TestIds.WELCOME_WIZARD_STEP}>
-          {wizard.step === WizardStep.BusinessName && <Step1Content colors={colors} primary={primary} wizard={wizard} />}
-          {wizard.step === WizardStep.Logo && <Step2Content colors={colors} primary={primary} wizard={wizard} />}
-          {wizard.step === WizardStep.CreateMenu && <Step3Content colors={colors} primary={primary} wizard={wizard} />}
-          {wizard.step === WizardStep.Completed && <CompletedContent colors={colors} primary={primary} wizard={wizard} />}
+          {wizard.step === WizardStep.BusinessName && <Step1Content colors={colors} primary={primary} wizard={wizardWithExit} />}
+          {wizard.step === WizardStep.Logo && <Step2Content colors={colors} primary={primary} wizard={wizardWithExit} />}
+          {wizard.step === WizardStep.CreateMenu && <Step3Content colors={colors} primary={primary} wizard={wizardWithExit} />}
+          {wizard.step === WizardStep.Completed && <CompletedContent colors={colors} primary={primary} wizard={wizardWithExit} />}
         </View>
       </View>
     </View>

@@ -31,6 +31,15 @@ export interface RegisterFormState {
   password: string;
   confirmPassword: string;
   tenantName: string;
+  /**
+   * Honeypot (P1-08 bot protection, no external captcha). Rendered as a
+   * visually-hidden, aria-hidden, non-tab-focusable input that a human never
+   * sees or fills, but naive form-filling bots populate. Any non-empty value =
+   * a bot: the client silently refuses and the shared BFF also rejects it
+   * server-side (for bots that POST directly, bypassing the form). MUST stay out
+   * of the required-field checks so a legit empty submit passes.
+   */
+  website: string;
 }
 
 /**
@@ -59,6 +68,7 @@ const INITIAL_STATE: RegisterFormState = {
   password: '',
   confirmPassword: '',
   tenantName: '',
+  website: '',
 };
 
 function isPasswordStrong(password: string): boolean {
@@ -78,6 +88,7 @@ function trimState(state: RegisterFormState): RegisterFormState {
     password: state.password,
     confirmPassword: state.confirmPassword,
     tenantName: state.tenantName.trim(),
+    website: state.website.trim(),
   };
 }
 
@@ -127,6 +138,9 @@ function buildRequest(trimmed: RegisterFormState): BffRegisterRequest {
     password: trimmed.password,
     tenantName: trimmed.tenantName,
     verifyUrlTemplate: buildVerifyUrlTemplate(),
+    // Honeypot — always sent (empty for real users). The shared BFF rejects a
+    // non-empty value. BffRegisterRequest's open index signature carries it.
+    website: trimmed.website,
   };
 }
 
@@ -151,6 +165,12 @@ export function useRegisterForm(): RegisterFormApi {
 
   const submit = useCallback(async (): Promise<RegisterSubmitResult> => {
     const trimmed = trimState(state);
+
+    // Honeypot: a filled hidden field means a bot. Refuse silently with the
+    // generic failure message (never reveal it was the trap) and don't spend a
+    // network call. The shared BFF is the backstop for direct-POST bots.
+    if (trimmed.website !== '') return { ok: false, errorMessage: FM('register.failed') };
+
     const validationError = validateClientSide(trimmed);
     if (typeof validationError === 'string') return { ok: false, errorMessage: validationError };
 

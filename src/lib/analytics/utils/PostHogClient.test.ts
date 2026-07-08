@@ -1,29 +1,29 @@
-import posthog from 'posthog-js';
-
 import AnalyticsEventName from '../../../shared/enums/AnalyticsEventName';
 import { REDACTED_VALUE } from '../constants';
+import { loadPostHog } from './loadPostHog';
 import { PostHogClient } from './PostHogClient';
 
-jest.mock('posthog-js', () => ({
-  __esModule: true,
-  default: {
-    init: jest.fn(),
-    capture: jest.fn(),
-    identify: jest.fn(),
-    reset: jest.fn(),
-    getFeatureFlag: jest.fn(),
-  },
-}));
+jest.mock('./loadPostHog', () => ({ loadPostHog: jest.fn() }));
 
-const mockPosthog = posthog as jest.Mocked<typeof posthog>;
+const mockPosthog = {
+  init: jest.fn(),
+  capture: jest.fn(),
+  identify: jest.fn(),
+  reset: jest.fn(),
+  getFeatureFlag: jest.fn(),
+};
+
+const mockLoadPostHog = loadPostHog as jest.MockedFunction<typeof loadPostHog>;
 
 describe('PostHogClient', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockLoadPostHog.mockResolvedValue(mockPosthog as unknown as Awaited<ReturnType<typeof loadPostHog>>);
   });
 
-  it('calls posthog.init with correct config on construction', () => {
-    new PostHogClient('phc_test_key', 'https://app.posthog.com');
+  it('calls posthog.init with correct config on construction', async () => {
+    const client = new PostHogClient('phc_test_key', 'https://app.posthog.com');
+    await client.ready;
 
     expect(mockPosthog.init).toHaveBeenCalledWith('phc_test_key', {
       api_host: 'https://app.posthog.com',
@@ -33,8 +33,9 @@ describe('PostHogClient', () => {
     });
   });
 
-  it('track calls posthog.capture with event name and sanitized properties', () => {
+  it('track calls posthog.capture with event name and sanitized properties', async () => {
     const client = new PostHogClient('phc_key', 'https://ph.example.com');
+    await client.ready;
 
     client.track(AnalyticsEventName.MenuCreated, { menuType: 'cafe' });
 
@@ -44,8 +45,9 @@ describe('PostHogClient', () => {
     );
   });
 
-  it('track calls posthog.capture with undefined when no properties given', () => {
+  it('track calls posthog.capture with undefined when no properties given', async () => {
     const client = new PostHogClient('phc_key', 'https://ph.example.com');
+    await client.ready;
 
     client.track(AnalyticsEventName.PageViewed);
 
@@ -55,8 +57,24 @@ describe('PostHogClient', () => {
     );
   });
 
-  it('track redacts sensitive properties before sending', () => {
+  it('queues calls made before the SDK finishes loading and flushes them on ready', async () => {
     const client = new PostHogClient('phc_key', 'https://ph.example.com');
+
+    // Called synchronously before the lazy loader resolves.
+    client.track(AnalyticsEventName.MenuCreated, { menuType: 'cafe' });
+    expect(mockPosthog.capture).not.toHaveBeenCalled();
+
+    await client.ready;
+
+    expect(mockPosthog.capture).toHaveBeenCalledWith(
+      AnalyticsEventName.MenuCreated,
+      { menuType: 'cafe' },
+    );
+  });
+
+  it('track redacts sensitive properties before sending', async () => {
+    const client = new PostHogClient('phc_key', 'https://ph.example.com');
+    await client.ready;
 
     client.track(AnalyticsEventName.FeatureUsed, {
       feature: 'login',
@@ -74,16 +92,18 @@ describe('PostHogClient', () => {
     );
   });
 
-  it('identify calls posthog.identify with distinctId and sanitized traits', () => {
+  it('identify calls posthog.identify with distinctId and sanitized traits', async () => {
     const client = new PostHogClient('phc_key', 'https://ph.example.com');
+    await client.ready;
 
     client.identify('user-123', { tenantId: 't-1' });
 
     expect(mockPosthog.identify).toHaveBeenCalledWith('user-123', { tenantId: 't-1' });
   });
 
-  it('identify redacts sensitive traits', () => {
+  it('identify redacts sensitive traits', async () => {
     const client = new PostHogClient('phc_key', 'https://ph.example.com');
+    await client.ready;
 
     client.identify('user-123', { email: 'user@test.com', role: 'admin' });
 
@@ -93,33 +113,37 @@ describe('PostHogClient', () => {
     });
   });
 
-  it('identify calls posthog.identify with undefined when no traits given', () => {
+  it('identify calls posthog.identify with undefined when no traits given', async () => {
     const client = new PostHogClient('phc_key', 'https://ph.example.com');
+    await client.ready;
 
     client.identify('user-123');
 
     expect(mockPosthog.identify).toHaveBeenCalledWith('user-123', undefined);
   });
 
-  it('page calls posthog.capture with $pageview event and path', () => {
+  it('page calls posthog.capture with $pageview event and path', async () => {
     const client = new PostHogClient('phc_key', 'https://ph.example.com');
+    await client.ready;
 
     client.page('/menus');
 
     expect(mockPosthog.capture).toHaveBeenCalledWith('$pageview', { $current_url: '/menus' });
   });
 
-  it('reset calls posthog.reset', () => {
+  it('reset calls posthog.reset', async () => {
     const client = new PostHogClient('phc_key', 'https://ph.example.com');
+    await client.ready;
 
     client.reset();
 
     expect(mockPosthog.reset).toHaveBeenCalled();
   });
 
-  it('getFeatureFlag delegates to posthog.getFeatureFlag', () => {
+  it('getFeatureFlag delegates to posthog.getFeatureFlag', async () => {
     const client = new PostHogClient('phc_key', 'https://ph.example.com');
-    (mockPosthog.getFeatureFlag as jest.Mock).mockReturnValue(true);
+    await client.ready;
+    mockPosthog.getFeatureFlag.mockReturnValue(true);
 
     const result = client.getFeatureFlag('beta-feature');
 
@@ -127,27 +151,39 @@ describe('PostHogClient', () => {
     expect(result).toBe(true);
   });
 
-  it('getFeatureFlag returns string variant for multivariate flags', () => {
+  it('getFeatureFlag returns string variant for multivariate flags', async () => {
     const client = new PostHogClient('phc_key', 'https://ph.example.com');
-    (mockPosthog.getFeatureFlag as jest.Mock).mockReturnValue('variant-a');
+    await client.ready;
+    mockPosthog.getFeatureFlag.mockReturnValue('variant-a');
 
     const result = client.getFeatureFlag('button-color');
 
     expect(result).toBe('variant-a');
   });
 
-  it('getFeatureFlag returns undefined when posthog returns undefined', () => {
+  it('getFeatureFlag returns undefined before the SDK loads', () => {
     const client = new PostHogClient('phc_key', 'https://ph.example.com');
-    (mockPosthog.getFeatureFlag as jest.Mock).mockReturnValue(undefined);
+
+    const result = client.getFeatureFlag('beta-feature');
+
+    expect(result).toBeUndefined();
+    expect(mockPosthog.getFeatureFlag).not.toHaveBeenCalled();
+  });
+
+  it('getFeatureFlag returns undefined when posthog returns undefined', async () => {
+    const client = new PostHogClient('phc_key', 'https://ph.example.com');
+    await client.ready;
+    mockPosthog.getFeatureFlag.mockReturnValue(undefined);
 
     const result = client.getFeatureFlag('unknown-flag');
 
     expect(result).toBeUndefined();
   });
 
-  it('getFeatureFlag returns undefined when posthog returns null', () => {
+  it('getFeatureFlag returns undefined when posthog returns null', async () => {
     const client = new PostHogClient('phc_key', 'https://ph.example.com');
-    (mockPosthog.getFeatureFlag as jest.Mock).mockReturnValue(null);
+    await client.ready;
+    mockPosthog.getFeatureFlag.mockReturnValue(null);
 
     const result = client.getFeatureFlag('unknown-flag');
 

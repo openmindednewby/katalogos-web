@@ -13,6 +13,7 @@ import type { LandingFeature } from '../src/components/Landing/types';
 
 const PROTECTED_ROUTE = '/(protected)';
 const LOGIN_ROUTE = '/(auth)/login';
+const REGISTER_ROUTE = '/(auth)/register';
 
 const FEATURES: readonly LandingFeature[] = [
   { titleKey: 'landing.features.f1Title', descriptionKey: 'landing.features.f1Description' },
@@ -65,7 +66,12 @@ const RootPage = (): React.ReactElement | null => {
       <BrandedHero
         primaryCtaHintKey="landing.hero.primaryCtaHint"
         primaryCtaKey="landing.hero.primaryCta"
-        primaryCtaRoute={LOGIN_ROUTE}
+        // Auth-aware: a signed-in visitor lands in the product; an anonymous
+        // visitor tapping "Build your menu free" goes to SIGN-UP (self-serve,
+        // P1-08) — not /login. The navbar exposes Login + Dashboard separately.
+        // (P1-07: the "stranded on marketing" symptom was a P0-01 side effect —
+        // the authed layout crashed on a 404 chunk; fixed by Recreate.)
+        primaryCtaRoute={isLoggedIn ? PROTECTED_ROUTE : REGISTER_ROUTE}
         secondaryCtaHintKey="landing.hero.secondaryCtaHint"
         secondaryCtaKey="landing.hero.secondaryCta"
         secondaryCtaRoute="/pricing"

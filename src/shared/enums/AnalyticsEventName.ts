@@ -19,6 +19,11 @@ const enum AnalyticsEventName {
   // Item popularity
   MenuItemViewed = 'menu_item_viewed',
   MenuItemClicked = 'menu_item_clicked',
+  // Conversion funnel (UX Move 5) — consistent names + { product } across erevna/kefi/katalogos
+  SignupStarted = 'signup_started',
+  SignupCompleted = 'signup_completed',
+  FirstValue = 'first_value',
+  UpgradeViewed = 'upgrade_viewed',
   // Engagement
   PageViewed = 'page_viewed',
   FeatureUsed = 'feature_used',

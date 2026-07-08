@@ -1,5 +1,5 @@
 /**
- * DTO for menu template data returned from GET /api/menu-templates.
+ * DTO for menu template data returned from GET /api/v1/menu-templates.
  * Matches the backend MenuTemplateDto record.
  */
 export interface MenuTemplateDto {

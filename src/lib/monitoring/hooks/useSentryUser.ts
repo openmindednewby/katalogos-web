@@ -10,10 +10,10 @@ import { useEffect, useRef } from 'react';
 
 import { useSelector } from 'react-redux';
 
-import { clearSentryUser, setSentryUser } from './sentry';
-import { isValueDefined } from '../../utils/is';
+import { isValueDefined } from '../../../utils/is';
+import { clearSentryUser, setSentryUser } from '../utils/sentry';
 
-import type { RootState } from '../../store/reduxStore';
+import type { RootState } from '../../../store/reduxStore';
 
 export function useSentryUser(): void {
   const user = useSelector((s: RootState) => s.auth.user);

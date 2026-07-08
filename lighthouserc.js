@@ -7,7 +7,18 @@ module.exports = {
       startServerCommand: 'npx serve dist -p 8099 --single',
       startServerReadyPattern: 'Accepting connections at',
       startServerReadyTimeout: 30000,
-      url: ['http://localhost:8099/'],
+      // Authed entry points (UX Move 6 "speed as a feature"). The LOGIN screen
+      // renders fully client-side, so it is measured here against the static
+      // production build — this enforces the perf/a11y budget on the auth entry
+      // chunk. The post-login DASHBOARD needs an authenticated session (backend
+      // + login) that `serve dist` cannot provide; it is measured at DEPLOY time
+      // against the deployed app with a seeded session — see the
+      // "Authed dashboard Lighthouse" note in docs/ and the katalogos-web-lighthouse
+      // Tilt resource (run post-deploy with LHCI_URL pointing at the live login+dashboard).
+      url: [
+        'http://localhost:8099/',       // marketing / home
+        'http://localhost:8099/login',  // auth entry point (client-rendered)
+      ],
       numberOfRuns: 3,
       settings: {
         preset: 'desktop',

@@ -4,6 +4,7 @@ import { ActivityIndicator, ScrollView, StyleSheet, Text, TouchableOpacity, View
 
 import { useRouter } from 'expo-router';
 
+import { useBreakpoint } from '@/hooks/useBreakpoint';
 import { FM } from '@/localization/helpers';
 import { Routes } from '@/navigation/routes';
 import { TestIds } from '@/shared/testIds';
@@ -50,6 +51,11 @@ const styles = StyleSheet.create({
     flexBasis: '48%',
     flexGrow: 1,
   },
+  // UX Move 4: on wide desktops the four stat cards form a single dense row
+  // instead of a sparse 2x2 grid. Phone/tablet keep the 48% two-column layout.
+  statItemWide: {
+    flexBasis: '22%',
+  },
   topMenusSection: {
     marginTop: SECTION_MARGIN_TOP,
   },
@@ -82,6 +88,9 @@ const AnalyticsDashboardScreen = (): React.ReactElement => {
   const primary = theme.palette.primary['500'];
   const errorColor = theme.semantic.error['500'];
   const router = useRouter();
+  // UX Move 4: relax the stat grid to a single dense row on wide desktops.
+  const { isDesktop } = useBreakpoint();
+  const statItemStyle = isDesktop ? [styles.statItem, styles.statItemWide] : styles.statItem;
 
   const handleRetry = useCallback((): void => {
     refetch().catch(() => {});
@@ -154,28 +163,28 @@ const AnalyticsDashboardScreen = (): React.ReactElement => {
       </Text>
 
       <View style={styles.statsGrid}>
-        <View style={styles.statItem}>
+        <View style={statItemStyle}>
           <StatCard
             label={FM('analytics.totalMenus')}
             testID={TestIds.ANALYTICS_STAT_TOTAL_MENUS}
             value={totalMenus}
           />
         </View>
-        <View style={styles.statItem}>
+        <View style={statItemStyle}>
           <StatCard
             label={FM('analytics.activeMenus')}
             testID={TestIds.ANALYTICS_STAT_ACTIVE_MENUS}
             value={activeMenus}
           />
         </View>
-        <View style={styles.statItem}>
+        <View style={statItemStyle}>
           <StatCard
             label={FM('analytics.qrScansToday')}
             testID={TestIds.ANALYTICS_STAT_SCANS_TODAY}
             value={scansToday}
           />
         </View>
-        <View style={styles.statItem}>
+        <View style={statItemStyle}>
           <StatCard
             label={FM('analytics.qrScansTotal')}
             testID={TestIds.ANALYTICS_STAT_SCANS_TOTAL}

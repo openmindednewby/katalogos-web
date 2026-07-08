@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 
@@ -10,8 +10,10 @@ import {
 } from '../src/components/Landing/constants';
 import { MARKETING_PALETTE } from '../src/components/Landing/utils/brand';
 import { SEOHead } from '../src/components/Shared/SEOHead';
+import { useAnalytics } from '../src/lib/analytics';
 import { FM } from '../src/localization/helpers';
 import { TABLET_BREAKPOINT_PX, DESKTOP_BREAKPOINT_PX } from '../src/shared/constants';
+import AnalyticsEventName from '../src/shared/enums/AnalyticsEventName';
 import { TestIds } from '../src/shared/testIds';
 
 const PRICING_CARD_GAP = 20;
@@ -79,6 +81,11 @@ const ENTERPRISE_FEATURE_KEYS = [
  */
 const PricingPage = (): React.ReactElement => {
   const { width } = useWindowDimensions();
+  const { track } = useAnalytics();
+
+  useEffect(() => {
+    track(AnalyticsEventName.UpgradeViewed, { product: 'katalogos' });
+  }, [track]);
 
   const isDesktop = width > DESKTOP_BREAKPOINT_PX;
   const isMobile = width <= TABLET_BREAKPOINT_PX;

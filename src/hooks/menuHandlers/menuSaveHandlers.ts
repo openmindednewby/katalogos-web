@@ -172,6 +172,7 @@ export function useMenuSave(args: UseMenuSaveArgs): (data: MenuSaveData) => void
           onSuccess: () => {
             onSuccess('onlineMenus.messages.createSuccess');
             analyticsTrack?.(AnalyticsEventName.MenuCreated);
+            analyticsTrack?.(AnalyticsEventName.FirstValue, { product: 'katalogos' });
           },
           onError: (err) => onError(err, 'Create error:'),
         });

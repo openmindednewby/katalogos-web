@@ -9,7 +9,7 @@ import { useSentryUser } from './useSentryUser';
 const mockSetSentryUser = jest.fn().mockResolvedValue(undefined);
 const mockClearSentryUser = jest.fn().mockResolvedValue(undefined);
 
-jest.mock('./sentry', () => ({
+jest.mock('../utils/sentry', () => ({
   setSentryUser: (...args: unknown[]) => mockSetSentryUser(...args),
   clearSentryUser: (...args: unknown[]) => mockClearSentryUser(...args),
 }));

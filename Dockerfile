@@ -14,7 +14,11 @@ COPY . .
 # Allow selecting environment at build time (dev|test|prod)
 ARG APP_ENV=prod
 ENV EXPO_PUBLIC_ENV=$APP_ENV
-RUN echo "Building Katalogos Web for ENV=$EXPO_PUBLIC_ENV" && npx expo export --platform web
+# Cap build memory so the export fits a resource-tight Docker VM (~4 GB) — see
+# erevna-web/Dockerfile for the full rationale (Metro workers OOM-killed buildkit
+# and took down Docker Desktop on 2026-07-05). --max-workers 2 + heap cap.
+ENV NODE_OPTIONS=--max-old-space-size=2048
+RUN echo "Building Katalogos Web for ENV=$EXPO_PUBLIC_ENV" && npx expo export --platform web --max-workers 2
 
 # Inject the Umami analytics tag into every exported HTML page.
 # Expo's static export strips <script> elements from app/+html.tsx, so the

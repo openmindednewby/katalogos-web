@@ -104,6 +104,8 @@ export const CommonTestIds = {
 
   // Error / Loading States
   ERROR_BOUNDARY_RETRY_BUTTON: 'error-boundary-retry-button',
+  ERROR_BOUNDARY_RELOAD_BUTTON: 'error-boundary-reload-button',
+  ERROR_BOUNDARY_UPDATING: 'error-boundary-updating',
   ERROR_STATE: 'error-state',
   ERROR_STATE_RETRY: 'error-state-retry',
   LOADING_FALLBACK: 'loading-fallback',

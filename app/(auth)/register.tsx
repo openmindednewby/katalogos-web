@@ -10,7 +10,9 @@ import { useRegisterForm, type RegisterFormState } from '../../src/auth/useRegis
 import { AuthFooterMode } from '../../src/components/Auth/AuthFooterMode';
 import LoginFooterLinks from '../../src/components/Auth/LoginFooterLinks';
 import SaveButton from '../../src/components/Buttons/SaveButton';
+import { useAnalytics } from '../../src/lib/analytics';
 import { FM } from '../../src/localization/helpers';
+import AnalyticsEventName from '../../src/shared/enums/AnalyticsEventName';
 import { TestIds } from '../../src/shared/testIds';
 import { useTheme } from '../../src/theme/hooks/useTheme';
 import { showAlert } from '../../src/utils/showAlert';
@@ -27,6 +29,9 @@ const styles = StyleSheet.create({
   label: { fontSize: 14, fontWeight: '600', marginBottom: 8 },
   input: { borderWidth: 1, borderRadius: 8, padding: 12, fontSize: 16 },
   buttonContainer: { marginTop: 8, marginBottom: 16 },
+  // Honeypot (P1-08): present in the DOM so naive bots fill it, but pushed
+  // off-screen + zero-size + transparent so a human never sees or tabs to it.
+  honeypot: { position: 'absolute', left: -9999, top: -9999, width: 1, height: 1, opacity: 0 },
 });
 
 interface FieldDef {
@@ -99,13 +104,16 @@ const RegisterScreen = (): React.ReactElement => {
   const { colors } = theme;
   const primaryColor = theme.palette.primary['500'];
 
+  const { track } = useAnalytics();
   const { state, isSubmitting, setField, submit } = useRegisterForm();
   const tenantNameLabel = resolveTenantNameLabel();
   const fieldDefs = buildFieldDefs(tenantNameLabel);
 
   const handleSubmit = async (): Promise<void> => {
+    track(AnalyticsEventName.SignupStarted, { product: 'katalogos' });
     const result = await submit();
     if (result.ok) {
+      track(AnalyticsEventName.SignupCompleted, { product: 'katalogos' });
       router.replace(resolvePostLoginDestination(result.user));
       return;
     }
@@ -128,6 +136,20 @@ const RegisterScreen = (): React.ReactElement => {
             onChangeText={(text) => setField(def.key, text)}
           />
         ))}
+
+        {/* Honeypot — hidden from humans; a filled value marks a bot (P1-08). */}
+        <TextInput
+          accessibilityElementsHidden
+          accessibilityRole="none"
+          autoComplete="off"
+          focusable={false}
+          importantForAccessibility="no-hide-descendants"
+          placeholder="Website"
+          style={styles.honeypot}
+          testID="register-website"
+          value={state.website}
+          onChangeText={(text) => setField('website', text)}
+        />
 
         <View style={styles.buttonContainer}>
           {isSubmitting ? (

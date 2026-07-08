@@ -1,114 +1,22 @@
-jest.mock("react-native", () => ({
-  Platform: { OS: "web", Version: "1.0" },
-}));
+import { logger as sharedLogger } from '@dloizides/logging-web';
 
-describe("logger (deprecated wrapper)", () => {
-  const mockDebug = jest.fn();
-  const mockInfo = jest.fn();
-  const mockWarn = jest.fn();
-  const mockError = jest.fn();
+import { logger } from './logger';
 
-  beforeEach(() => {
-    jest.resetModules();
-    mockDebug.mockClear();
-    mockInfo.mockClear();
-    mockWarn.mockClear();
-    mockError.mockClear();
+// `./logger` is a deprecated re-export SHIM over `@dloizides/logging-web`
+// (see logger.ts) — it no longer wraps the local `loggingService`. The old
+// delegation tests here asserted that dead implementation and failed after the
+// refactor to the shared package. The shim's only contract now is that it
+// re-exports the shared logger unchanged; the logging behaviour itself is owned
+// and tested by `@dloizides/logging-web`.
+describe('logger (deprecated re-export shim)', () => {
+  it('re-exports the shared @dloizides/logging-web logger', () => {
+    expect(logger).toBe(sharedLogger);
   });
 
-  it("delegates debug() to loggingService.debug()", () => {
-    jest.doMock("../lib/logging", () => ({
-      loggingService: {
-        debug: mockDebug,
-        info: mockInfo,
-        warn: mockWarn,
-        error: mockError,
-      },
-    }));
-
-    const { logger } = require("./logger") as {
-      logger: { debug: (c: string, m: string, d?: unknown) => void };
-    };
-
-    logger.debug("Auth", "test", { a: 1 });
-
-    expect(mockDebug).toHaveBeenCalledWith("Auth", "test", { a: 1 });
-  });
-
-  it("delegates info() to loggingService.info()", () => {
-    jest.doMock("../lib/logging", () => ({
-      loggingService: {
-        debug: mockDebug,
-        info: mockInfo,
-        warn: mockWarn,
-        error: mockError,
-      },
-    }));
-
-    const { logger } = require("./logger") as {
-      logger: { info: (c: string, m: string, d?: unknown) => void };
-    };
-
-    logger.info("Export", "Done");
-
-    expect(mockInfo).toHaveBeenCalledWith("Export", "Done", undefined);
-  });
-
-  it("delegates warn() to loggingService.warn()", () => {
-    jest.doMock("../lib/logging", () => ({
-      loggingService: {
-        debug: mockDebug,
-        info: mockInfo,
-        warn: mockWarn,
-        error: mockError,
-      },
-    }));
-
-    const { logger } = require("./logger") as {
-      logger: { warn: (c: string, m: string, d?: unknown) => void };
-    };
-
-    logger.warn("Cache", "miss");
-
-    expect(mockWarn).toHaveBeenCalledWith("Cache", "miss", undefined);
-  });
-
-  it("delegates error() with Error instance to loggingService.error()", () => {
-    jest.doMock("../lib/logging", () => ({
-      loggingService: {
-        debug: mockDebug,
-        info: mockInfo,
-        warn: mockWarn,
-        error: mockError,
-      },
-    }));
-
-    const { logger } = require("./logger") as {
-      logger: { error: (c: string, m: string, e?: unknown) => void };
-    };
-
-    const err = new Error("boom");
-    logger.error("Auth", "Failed", err);
-
-    expect(mockError).toHaveBeenCalledWith("Auth", "Failed", err);
-  });
-
-  it("passes undefined when error is not an Error instance", () => {
-    jest.doMock("../lib/logging", () => ({
-      loggingService: {
-        debug: mockDebug,
-        info: mockInfo,
-        warn: mockWarn,
-        error: mockError,
-      },
-    }));
-
-    const { logger } = require("./logger") as {
-      logger: { error: (c: string, m: string, e?: unknown) => void };
-    };
-
-    logger.error("Auth", "Failed", "string-error");
-
-    expect(mockError).toHaveBeenCalledWith("Auth", "Failed", undefined);
+  it('exposes the debug/info/warn/error surface', () => {
+    expect(typeof logger.debug).toBe('function');
+    expect(typeof logger.info).toBe('function');
+    expect(typeof logger.warn).toBe('function');
+    expect(typeof logger.error).toBe('function');
   });
 });

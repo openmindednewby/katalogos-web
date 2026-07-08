@@ -1365,7 +1365,12 @@
     "message": "An unexpected error occurred. Please try again.",
     "errorDetails": "Error Details:",
     "tryAgain": "Try Again",
-    "tryAgainHint": "Reloads the component that crashed"
+    "tryAgainHint": "Reloads the component that crashed",
+    "reload": "Reload",
+    "reloadHint": "Reloads the page to get the latest version",
+    "updating": "A new version is available — updating…",
+    "updateTitle": "Update available",
+    "updateMessage": "The app was updated. Reload to get the latest version."
   },
   "notificationBanner": {
     "title": "Enable Notifications",

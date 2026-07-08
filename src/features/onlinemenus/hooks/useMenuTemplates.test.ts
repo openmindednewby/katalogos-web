@@ -62,14 +62,26 @@ describe('useMenuTemplates', () => {
     expect(result.current.templates).toEqual([]);
   });
 
-  it('passes correct query key and function to useQuery', () => {
+  it('degrades to an empty array when data is a non-array (e.g. SPA HTML)', () => {
+    // Regression for the P1-08 wizard crash: a 308 redirect out of the BFF
+    // returned the SPA's index.html as a string; `templates.map` then threw
+    // "x.map is not a function". The hook must never expose a non-array.
+    useQuery.mockReturnValue({ data: '<!DOCTYPE html>...', isLoading: false, error: null });
+
+    const { result } = renderHook(() => useMenuTemplates());
+
+    expect(result.current.templates).toEqual([]);
+    expect(Array.isArray(result.current.templates)).toBe(true);
+  });
+
+  it('passes the versioned query key and function to useQuery', () => {
     useQuery.mockReturnValue({ data: [], isLoading: false, error: null });
 
     renderHook(() => useMenuTemplates());
 
     expect(useQuery).toHaveBeenCalledWith(
       expect.objectContaining({
-        queryKey: ['/api/menu-templates'],
+        queryKey: ['/api/v1/menu-templates'],
         queryFn: expect.any(Function),
       }),
     );

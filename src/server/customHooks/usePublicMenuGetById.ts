@@ -65,8 +65,13 @@ async function fetchPublicMenu(
 
   const hasParams = Object.keys(queryParams).length > 0;
 
+  // MUST be the VERSIONED path. The OnlineMenu API applies a global FastEndpoints
+  // `RoutePrefix = "api/v1"`, so the AllowAnonymous public endpoint registers at
+  // `/api/v1/public/menus/{id}`. The unversioned `/public/menus/{id}` matches no
+  // route → the fallback auth policy 401s it (the diner "Failed to load menu"
+  // bug). Keep in sync with the generated `onlineMenuWebPublicMenusGetById` path.
   return get<PublicMenuQueryParams | undefined, PublicMenuDto>(
-    `/public/menus/${externalId}`,
+    `/api/v1/public/menus/${externalId}`,
     hasParams ? queryParams : undefined,
     {
       withToken: false,

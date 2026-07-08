@@ -28,7 +28,10 @@ async function fetchDietaryTags(): Promise<DietaryTagDto[]> {
 }
 
 async function fetchPublicDietaryTags(): Promise<DietaryTagDto[]> {
-  return get<undefined, DietaryTagDto[]>('/public/dietary-tags', undefined, {
+  // VERSIONED path: the OnlineMenu API's global `api/v1` FastEndpoints prefix
+  // registers this AllowAnonymous endpoint at `/api/v1/public/dietary-tags`; the
+  // unversioned path matches no route and is 401'd by the fallback policy.
+  return get<undefined, DietaryTagDto[]>('/api/v1/public/dietary-tags', undefined, {
     withToken: false,
     withCredentials: false,
     baseURL: API_URL,
