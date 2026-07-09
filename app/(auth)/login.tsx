@@ -37,6 +37,7 @@ import { Platform, StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 
 import {
+  AuthScreen,
   PasskeyLoginButton,
   PreferredMethodHint,
   useBffLoginConfig,
@@ -80,24 +81,24 @@ const PWA_PROMPTS_FLAG = (process.env.EXPO_PUBLIC_ENABLE_PWA_PROMPTS ?? 'false')
 /** App root — the passkey ceremony returns here and routes onward to dashboard. */
 const PASSKEY_RETURN_URL = '/';
 
+// Login card max width (dp) — matches Kefi's auth card. Passed to the shared
+// `<AuthScreen>` composition, which owns the single card the auth controls share.
+const LOGIN_CARD_MAX_WIDTH = 460;
+
 // Styles declared up front so they're in scope for the component below — the
 // ESLint config flags use-before-define for module-level constants.
+//
+// The card GROUPING that once had to be hand-rolled here (P1-04) is now provided
+// by the shared `<AuthScreen>` from `@dloizides/auth-web`: it owns the centered,
+// auto-height card surface (border/radius/padding/maxWidth) and the forms render
+// `chromeless` INTO it. The only local styles left are the vertical spacing for
+// the passkey / PWA / routing rows that sit below the credential form on the card.
 const styles = StyleSheet.create({
   passkey: {
     marginTop: 16,
-    width: '100%',
-    maxWidth: 460,
   },
   pwa: {
     marginTop: 16,
-    width: '100%',
-    maxWidth: 460,
-  },
-  root: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-    padding: 24,
   },
   routing: {
     marginTop: 16,
@@ -241,51 +242,58 @@ const LoginScreen = (): React.ReactElement => {
   const showPasskey = !configLoading && config.methods.includes(BffLoginMethod.Passkey);
 
   return (
-    <View style={[styles.root, { backgroundColor: theme.colors.background }]} testID="katalogos-login-page">
-      <PreferredMethodHint
-        labels={preferredMethodHintLabels}
-        method={preferredMethod}
-        testIdPrefix="katalogos"
+    <>
+      <AuthScreen
+        cardTestID="katalogos-login-card"
+        maxWidth={LOGIN_CARD_MAX_WIDTH}
+        testID="katalogos-login-page"
         theme={authTheme}
-      />
+      >
+        <PreferredMethodHint
+          labels={preferredMethodHintLabels}
+          method={preferredMethod}
+          testIdPrefix="katalogos"
+          theme={authTheme}
+        />
 
-      <LoginCredentialForms
-        methods={config.methods}
-        theme={authTheme}
-        onForgotPassword={(): void => setForgotVisible(true)}
-        onSignUp={(): void => router.push('/(auth)/register')}
-        onSuccess={handleSignedIn}
-      />
+        <LoginCredentialForms
+          methods={config.methods}
+          theme={authTheme}
+          onForgotPassword={(): void => setForgotVisible(true)}
+          onSignUp={(): void => router.push('/(auth)/register')}
+          onSuccess={handleSignedIn}
+        />
 
-      {showPasskey ? (
-        <View style={styles.passkey}>
-          <PasskeyLoginButton
-            labels={passkeyLabels}
-            returnUrl={PASSKEY_RETURN_URL}
-            testIdPrefix="katalogos"
-            theme={authTheme}
-          />
-        </View>
-      ) : null}
+        {showPasskey ? (
+          <View style={styles.passkey}>
+            <PasskeyLoginButton
+              labels={passkeyLabels}
+              returnUrl={PASSKEY_RETURN_URL}
+              testIdPrefix="katalogos"
+              theme={authTheme}
+            />
+          </View>
+        ) : null}
+
+        {routing ? (
+          <Text style={[themeStyles.loadingText, styles.routing]} testID="katalogos-login-routing">
+            {FM('loading')}
+          </Text>
+        ) : null}
+
+        {showPwaInstallPrompt ? (
+          <View style={styles.pwa}>
+            <SaveButton title={FM('pwa.install')} onPress={handleInstall} />
+          </View>
+        ) : null}
+      </AuthScreen>
 
       <ForgotPasswordModal
         theme={authTheme}
         visible={forgotVisible}
         onClose={(): void => setForgotVisible(false)}
       />
-
-      {routing ? (
-        <Text style={[themeStyles.loadingText, styles.routing]} testID="katalogos-login-routing">
-          {FM('loading')}
-        </Text>
-      ) : null}
-
-      {showPwaInstallPrompt ? (
-        <View style={styles.pwa}>
-          <SaveButton title={FM('pwa.install')} onPress={handleInstall} />
-        </View>
-      ) : null}
-    </View>
+    </>
   );
 };
 
