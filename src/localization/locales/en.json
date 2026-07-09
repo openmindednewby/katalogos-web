@@ -552,6 +552,11 @@
     "answerInputLabel": "Answer input"
   },
   "common": {
+    "warming": {
+      "title": "Warming up…",
+      "subtitle": "This only takes a moment.",
+      "accessibilityLabel": "Warming up, please wait"
+    },
     "refresh": "Refresh",
     "refreshHint": "Reload current data",
     "addHint": "Opens form to create new item",

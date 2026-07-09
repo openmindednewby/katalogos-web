@@ -11,6 +11,7 @@
  */
 
 import { createBffAxiosClient, registerInterceptors } from '@dloizides/bff-web-client';
+import { notifyWarming } from '@dloizides/ui-feedback';
 
 import { apiEventBus } from './events/apiEventBus';
 import { registerCsrfInterceptor } from './interceptors/csrfInterceptor';
@@ -34,6 +35,7 @@ function registerAllInterceptors(instance: AxiosInstance): void {
       apiEventBus.emit({ type: 'toast', severity, message }),
     csrf: registerCsrfInterceptor,
     onSessionExpiry: registerSessionExpiryInterceptor,
+    warmupRetry: { onWarmupRetry: (info) => notifyWarming(info) },
   });
 }
 
