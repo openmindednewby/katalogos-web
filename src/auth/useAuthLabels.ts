@@ -164,6 +164,7 @@ export function usePasskeyLoginLabels(): PasskeyLoginLabels {
       signInHint: FM('auth.passkey.login.signInHint'),
       errorCancelled: FM('auth.passkey.login.errorCancelled'),
       errorFailed: FM('auth.passkey.login.errorFailed'),
+      tryAnotherWay: FM('auth.passkey.login.tryAnotherWay'),
     }),
     [],
   );

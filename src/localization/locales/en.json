@@ -90,7 +90,8 @@
         "signInButton": "Sign in with a passkey",
         "signInHint": "Use your fingerprint, face, or security key to sign in",
         "errorCancelled": "Passkey sign-in was cancelled. You can try again or sign in another way.",
-        "errorFailed": "Passkey sign-in didn't work. Try again, or sign in another way."
+        "errorFailed": "Passkey sign-in didn't work. Try again, or sign in another way.",
+        "tryAnotherWay": "Sign in another way"
       },
       "settings": {
         "title": "Passkeys",
