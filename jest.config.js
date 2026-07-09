@@ -29,6 +29,17 @@ module.exports = {
     '^@dloizides/notification-client/react/hooks$': '<rootDir>/node_modules/@dloizides/notification-client/dist/react/hooks.js',
     '^@dloizides/notification-client/react$': '<rootDir>/node_modules/@dloizides/notification-client/dist/react/index.js',
     '^@dloizides/notification-client/(components|workers|react)$': '<rootDir>/node_modules/@dloizides/notification-client/dist/$1/index.js',
+    // ui-buttons / ui-nav / ui-feedback are installed from local tarballs; pin
+    // to their built CJS dist (same rationale as notification-client) so the
+    // jest-expo resolver never loads their TS source.
+    '^@dloizides/ui-feedback$': '<rootDir>/node_modules/@dloizides/ui-feedback/dist/index.js',
+    '^@dloizides/ui-buttons$': '<rootDir>/node_modules/@dloizides/ui-buttons/dist/index.js',
+    '^@dloizides/ui-nav$': '<rootDir>/node_modules/@dloizides/ui-nav/dist/index.js',
+    // Force a single React / react-native (the app's) so the packaged dist
+    // bundles share React identity (hooks) and the jest-expo-transformed RN.
+    '^react$': '<rootDir>/node_modules/react',
+    '^react/jsx-runtime$': '<rootDir>/node_modules/react/jsx-runtime',
+    '^react-native$': '<rootDir>/node_modules/react-native',
   },
   collectCoverageFrom: [
     // Include utilities, hooks, and logic files

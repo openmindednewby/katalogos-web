@@ -1,41 +1,26 @@
-
-
-
 /**
- * Core Button component consuming the tenant theme system.
+ * Core Button — thin adapter over the shared `@dloizides/ui-buttons` Button.
  *
- * Supports five variants (primary, secondary, outline, ghost, danger),
- * three sizes (sm/md/lg), and loading/disabled states.
- * All colors are derived from useTheme() -- no direct Redux access.
+ * Keeps the app-local `ButtonVariant`/`ButtonSize` enums and `icon: IconName`
+ * API so the existing call sites stay unchanged; it maps them to the shared
+ * string props and an icon render slot. Colours still come from the app theme
+ * (the shared Button reads it through the FeedbackUiProvider bridge), so the
+ * rendered result is identical to the previous local implementation.
  */
-import React, { useMemo } from 'react';
+import React from 'react';
 
-import {
-  ActivityIndicator,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+import { Button as SharedButton } from '@dloizides/ui-buttons';
 
-import { useTheme } from '../../../../theme/hooks/useTheme';
 import { isValueDefined } from '../../../../utils/is';
 import SvgIcon from '../../../Icons/SvgIcon';
-import { buildButtonStyles, DISABLED_OPACITY } from '../utils/Button.styles';
 import ButtonSize from '../utils/ButtonSize';
 import ButtonVariant from '../utils/ButtonVariant';
 
 import type { IconName } from '../../../Icons/iconPaths';
-
-// ---------------------------------------------------------------------------
-// Constants
-// ---------------------------------------------------------------------------
-
-const ACTIVE_OPACITY = 0.7;
-const SPINNER_SIZE_SMALL = 16;
-const SPINNER_SIZE_DEFAULT = 20;
-
-// ---------------------------------------------------------------------------
-// Props
-// ---------------------------------------------------------------------------
+import type {
+  ButtonSize as SharedButtonSize,
+  ButtonVariant as SharedButtonVariant,
+} from '@dloizides/ui-buttons';
 
 interface Props {
   variant?: ButtonVariant;
@@ -51,18 +36,26 @@ interface Props {
   accessibilityHint: string;
 }
 
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
+const VARIANT_MAP: Record<ButtonVariant, SharedButtonVariant> = {
+  [ButtonVariant.Primary]: 'primary',
+  [ButtonVariant.Secondary]: 'secondary',
+  [ButtonVariant.Outline]: 'outline',
+  [ButtonVariant.Ghost]: 'ghost',
+  [ButtonVariant.Danger]: 'danger',
+};
 
-function getSpinnerSize(size: ButtonSize): number {
-  if (size === ButtonSize.Small) return SPINNER_SIZE_SMALL;
-  return SPINNER_SIZE_DEFAULT;
+const SIZE_MAP: Record<ButtonSize, SharedButtonSize> = {
+  [ButtonSize.Small]: 'sm',
+  [ButtonSize.Medium]: 'md',
+  [ButtonSize.Large]: 'lg',
+};
+
+function buildIconRenderer(icon: IconName | undefined): ((color: string) => React.ReactNode) | undefined {
+  if (!isValueDefined(icon)) return undefined;
+  return function renderButtonIcon(color: string): React.ReactNode {
+    return <SvgIcon color={color} name={icon} />;
+  };
 }
-
-// ---------------------------------------------------------------------------
-// Component
-// ---------------------------------------------------------------------------
 
 const Button = ({
   variant = ButtonVariant.Primary,
@@ -76,48 +69,20 @@ const Button = ({
   testID,
   accessibilityLabel,
   accessibilityHint,
-}: Props): React.ReactElement => {
-  const { theme } = useTheme();
-
-  const styles = useMemo(
-    () => buildButtonStyles(theme, variant, size),
-    [theme, variant, size],
-  );
-
-  const isDisabled = disabled || loading;
-
-  const containerStyle = useMemo(
-    () => [
-      styles.container,
-      fullWidth ? { width: '100%' as const } : undefined,
-      isDisabled ? { opacity: DISABLED_OPACITY } : undefined,
-    ],
-    [styles.container, fullWidth, isDisabled],
-  );
-
-  return (
-    <TouchableOpacity
-      accessible
-      accessibilityHint={accessibilityHint}
-      accessibilityLabel={accessibilityLabel}
-      accessibilityRole="button"
-      accessibilityState={{ disabled: isDisabled, busy: loading }}
-      activeOpacity={ACTIVE_OPACITY}
-      disabled={isDisabled}
-      style={containerStyle}
-      testID={testID}
-      onPress={onPress}
-    >
-      {loading ? <ActivityIndicator
-          color={styles.iconColor}
-          size={getSpinnerSize(size)}
-        /> : null}
-      {!loading && isValueDefined(icon) && (
-        <SvgIcon color={styles.iconColor} name={icon} />
-      )}
-      {!loading && <Text style={styles.text}>{label}</Text>}
-    </TouchableOpacity>
-  );
-};
+}: Props): React.ReactElement => (
+  <SharedButton
+    accessibilityHint={accessibilityHint}
+    accessibilityLabel={accessibilityLabel}
+    disabled={disabled}
+    fullWidth={fullWidth}
+    label={label}
+    loading={loading}
+    renderIcon={buildIconRenderer(icon)}
+    size={SIZE_MAP[size]}
+    testID={testID}
+    variant={VARIANT_MAP[variant]}
+    onPress={onPress}
+  />
+);
 
 export default Button;
