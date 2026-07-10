@@ -132,6 +132,13 @@ export const TABLET_BREAKPOINT_PX = 768;
 export const DESKTOP_BREAKPOINT_PX = 1024;
 
 /**
+ * Breakpoint at/above which the menu editor renders its desktop two-pane
+ * layout (editor controls left, live preview right). Below this width the
+ * editor stays single-column and byte-identical to the pre-two-pane layout.
+ */
+export const EDITOR_TWO_PANE_BREAKPOINT_PX = 1280;
+
+/**
  * Duration for toast notifications in milliseconds.
  */
 export const TOAST_DURATION_MS = TOAST_DURATION_SECONDS * MS_PER_SECOND;

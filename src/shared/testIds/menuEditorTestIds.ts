@@ -79,6 +79,9 @@ export const MenuEditorTestIds = {
   ITEM_SECTION_VARIANTS_MODIFIERS: 'item-section-variants-modifiers',
   ITEM_SECTION_ADVANCED: 'item-section-advanced',
 
+  // Desktop two-pane editor
+  MENU_EDITOR_LIVE_PANE: 'menu-editor-live-pane',
+
   // Category Overflow Menu
   CATEGORY_OVERFLOW_BUTTON: 'category-overflow-button',
   CATEGORY_OVERFLOW_MENU: 'category-overflow-menu',
