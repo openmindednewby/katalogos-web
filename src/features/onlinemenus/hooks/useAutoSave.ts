@@ -43,7 +43,6 @@ function buildRequest(id: string, name: string, desc: string, contents: MenuCont
   return { data: { externalId: id, name, description: trimmed !== '' ? trimmed : undefined, contents } };
 }
 
-// eslint-disable-next-line smart-max-lines/smart-max-lines -- hook manages multiple effects that must share local refs
 export function useAutoSave(params: UseAutoSaveParams): UseAutoSaveReturn {
   const { externalId, name, description, menuContents, updateMutation } = params;
   const [saveStatus, setSaveStatus] = useState<SaveStatus>(SaveStatus.Idle);

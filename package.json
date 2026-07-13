@@ -50,7 +50,7 @@
     "@dloizides/auth-client": "^4.0.0",
     "@dloizides/auth-web": "^1.9.1",
     "@dloizides/bff-web-client": "^1.2.0",
-    "@dloizides/frontend-devtools": "^1.0.3",
+    "@dloizides/frontend-devtools": "^1.1.1",
     "@dloizides/legal-ui": "^1.0.1",
     "@dloizides/logging-web": "^1.0.2",
     "@dloizides/notification-client": "^1.2.0",

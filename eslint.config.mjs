@@ -470,11 +470,15 @@ export default [
       }],
       // Smart function line limits:
       // - React components (returning JSX): max 200 lines
-      // - Regular functions: max 50 lines (error), warning above 30 lines
+      // - Regular functions: max 50 lines
+      //
+      // NOTE: no `functionWarn`. ESLint has no per-report severity, so a
+      // `functionWarn` report is emitted at THIS rule's severity ('error') —
+      // setting `functionWarn: 30` silently made the real limit 30, not the
+      // documented 50. The limit enforced here is the one the docs promise.
       'smart-max-lines/smart-max-lines': ['error', {
         componentMax: 200,
         functionMax: 50,
-        functionWarn: 30,
         skipBlankLines: true,
         skipComments: true,
       }],
