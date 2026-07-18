@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { FM } from '@/localization/helpers';
 
 import { useTheme } from '../../theme/hooks/useTheme';
-import { ChipSelector } from '../Forms';
+import { ChipSelector, Field } from '../Forms';
 
 interface TenantOption {
   id: string;
@@ -13,9 +13,10 @@ interface TenantOption {
 }
 
 const styles = StyleSheet.create({
-  tenantSection: { marginBottom: 16 },
-  tenantLabel: { marginBottom: 4, fontWeight: '600' },
   tenantSelectorCard: { borderRadius: 8, borderWidth: 1, padding: 8 },
+  // The card's own 8px padding supplies the spacing under the chips, so the ChipSelector must not
+  // add `Field`'s container margin a second time INSIDE the card.
+  chipsInCard: { marginBottom: 0 },
 });
 
 interface UserFormTenantSelectorProps {
@@ -33,19 +34,24 @@ const UserFormTenantSelector: React.FC<UserFormTenantSelectorProps> = ({
 }) => {
   const { theme } = useTheme();
   const colors = theme.colors;
-  const errorColor = theme.semantic.error['500'];
 
   const tenantOptions = tenants.map((tenant) => ({ value: tenant.id, label: tenant.name }));
 
   return (
-    <View style={styles.tenantSection}>
-      <Text style={[styles.tenantLabel, { color: colors.text }]}>
-        {FM('common.tenant')} <Text style={{ color: errorColor }}>{FM('common.required')}</Text>
-      </Text>
+    // Was a hand-rolled `<Text>` label + required asterisk in a `marginBottom: 16` View. `Field`
+    // renders the identical structure with the kit's label metrics, and marks the asterisk
+    // decorative so a screen reader announces "required" rather than "star" (UX-7f).
+    <Field required label={FM('common.tenant')}>
       <View style={[styles.tenantSelectorCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-        <ChipSelector disabled={disabled} options={tenantOptions} value={selectedTenantId} onChange={onSelectTenant} />
+        <ChipSelector
+          containerStyle={styles.chipsInCard}
+          disabled={disabled}
+          options={tenantOptions}
+          value={selectedTenantId}
+          onChange={onSelectTenant}
+        />
       </View>
-    </View>
+    </Field>
   );
 };
 

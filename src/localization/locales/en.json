@@ -12,7 +12,39 @@
       "lastHint": "Go to the last page",
       "rows": "Rows",
       "rowsOptionHint": "Set the number of rows per page",
-      "rowsTriggerHint": "Change the number of rows per page"
+      "rowsTriggerHint": "Change the number of rows per page",
+      "rowsTriggerLabel": "Rows per page, currently {{p1}}",
+      "rowsOptionLabel": "Show {{p1}} rows per page"
+    },
+    "empty": "No results found",
+    "loading": "Loading results",
+    "results": "results",
+    "rowLabel": "Table row",
+    "rowHint": "Activate to view this row",
+    "rowDetail": "Row details",
+    "filters": {
+      "apply": "Apply",
+      "applyHint": "Apply the selected filters",
+      "clear": "Clear",
+      "clearHint": "Clear all selected filters",
+      "dropdownHint": "Open the filter options",
+      "optionHint": "Select this filter option",
+      "selectPlaceholder": "All",
+      "selectTriggerLabel": "{{p1}}: {{p2}}",
+      "from": "From",
+      "to": "To"
+    },
+    "select": {
+      "all": "Select all",
+      "allHint": "Select every row on this page",
+      "row": "Select row",
+      "rowHint": "Select this row",
+      "allMatching": "Select all {{p1}} matching",
+      "allMatchingHint": "Select every row matching the current filters",
+      "clear": "Clear selection",
+      "clearHint": "Clear the current selection",
+      "matchingSelected": "{{p1}} matching rows selected",
+      "pageSelected": "{{p1}} rows on this page selected"
     }
   },
   "auth": {
@@ -437,15 +469,12 @@
     "type.MultipleChoice": "Multiple Choice",
     "type.Checkbox": "Checkbox",
     "type.Radio": "Radio",
-    "type.Dropdown": "Dropdown"
-    ,
+    "type.Dropdown": "Dropdown",
     "tab": {
       "form": "Form",
       "json": "JSON"
-    }
-    ,
-    "questions": "Questions"
-    ,
+    },
+    "questions": "Questions",
     "label": {
       "name": "Name",
       "description": "Description",
@@ -549,7 +578,7 @@
       "status": "Status"
     },
     "questionsLabelHelp": "Manage answers and their associated question values",
-  "view": "View",
+    "view": "View",
     "export": "Export",
     "exportJson": "Export JSON",
     "exportCsv": "Export CSV",
@@ -632,7 +661,8 @@
     "saveHint": "Save the current changes",
     "discardHint": "Discard unsaved changes",
     "statusBadgeHint": "Displays the current status",
-    "textInputLabel": "Text input field"
+    "textInputLabel": "Text input field",
+    "accordionToggleHint": "Expand or collapse this section"
   },
   "layout": {
     "closeSidebar": "Close sidebar",
@@ -1305,7 +1335,7 @@
   "breadcrumb": {
     "navigateToHint": "Go back to {{p1}}",
     "currentPageHint": "Current page: {{p1}}",
-    "separator": "\u203a"
+    "separator": "›"
   },
   "users": {
     "selectTenant": "Select Tenant",
@@ -1564,7 +1594,10 @@
     "cancelUploadHint": "Cancels the current file upload",
     "previewLoadError": "Failed to load preview",
     "retryPreview": "Retry",
-    "retryPreviewHint": "Reload the preview image"
+    "retryPreviewHint": "Reload the preview image",
+    "uploadDefaultHint": "Tap to select a {{p1}}",
+    "uploadButtonLabel": "Upload {{p1}}",
+    "uploadButtonHint": "Opens file picker to select a {{p1}} to upload"
   },
   "cookieConsent": {
     "message": "We use cookies to improve your experience. You can customize your preferences or accept/reject all cookies.",
@@ -1744,7 +1777,6 @@
     "modalClose": "Close",
     "modalDismiss": "Dismiss"
   },
- 
   "topbar": {
     "dark": "Dark",
     "menu": "Menu",
@@ -1983,8 +2015,8 @@
     "categoryDescriptionLabel": "Category description input",
     "categoryDescriptionInputHint": "Enter an optional description for this category",
     "addItemHint": "Add a new menu item to this category",
-    "moveUpArrow": "\u25B2",
-    "moveDownArrow": "\u25BC",
+    "moveUpArrow": "▲",
+    "moveDownArrow": "▼",
     "moveCategoryUpHint": "Move this category up in the list",
     "moveCategoryDownHint": "Move this category down in the list",
     "moveCategoryUpLabel": "Move category {{p1}} up",
@@ -2249,7 +2281,7 @@
       "menuNameHint": "Go to menu details",
       "contentHint": "Go back to content overview",
       "currentPageHint": "Current page: {{p1}}",
-      "ellipsis": "\u2026"
+      "ellipsis": "…"
     },
     "categoryIcon": {
       "label": "Category Icon",
@@ -2626,7 +2658,7 @@
     "pricing": {
       "title": "Simple, transparent pricing",
       "subtitle": "Start free, upgrade when you outgrow it.",
-      "seoTitle": "Katalogos \u2014 Pricing",
+      "seoTitle": "Katalogos — Pricing",
       "seoDescription": "Pricing for Katalogos digital menus. Free tier with one menu. Paid plans from €14/month with custom typography, multi-language, and unlimited items.",
       "trial": {
         "name": "Trial",
@@ -2698,17 +2730,17 @@
       "pricingLinkHint": "Navigate to pricing",
       "faqLink": "FAQ",
       "faqLinkHint": "Jump to frequently asked questions",
-      "copyright": "\u00a9 2026 Katalogos. All rights reserved."
+      "copyright": "© 2026 Katalogos. All rights reserved."
     }
   },
   "dashboard": {
     "welcomeBack": "Welcome back, {{p1}}",
     "welcomeNew": "Welcome to MenuFlow",
     "subtitleActive": "Here's what's happening with your business",
-    "subtitleEmpty": "Let's get you started \u2014 create your first menu or survey in minutes",
+    "subtitleEmpty": "Let's get you started — create your first menu or survey in minutes",
     "menus": {
       "guidedTitle": "Create Your First Menu",
-      "guidedDescription": "Build a beautiful digital menu for your restaurant. Add categories, items, and prices \u2014 then share it with a QR code.",
+      "guidedDescription": "Build a beautiful digital menu for your restaurant. Add categories, items, and prices — then share it with a QR code.",
       "guidedCta": "Create Menu",
       "guidedCtaHint": "Navigate to create your first menu",
       "overviewTitle": "Online Menus",
@@ -2720,7 +2752,7 @@
     },
     "templates": {
       "guidedTitle": "Create Your First Survey",
-      "guidedDescription": "Build a customer feedback form or quiz. Choose from templates or start from scratch \u2014 share via link or QR code.",
+      "guidedDescription": "Build a customer feedback form or quiz. Choose from templates or start from scratch — share via link or QR code.",
       "guidedCta": "Create Survey",
       "guidedCtaHint": "Navigate to create your first survey template",
       "overviewTitle": "Questionnaires",

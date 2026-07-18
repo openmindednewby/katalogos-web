@@ -8,13 +8,14 @@
  */
 import React from 'react';
 
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import type { TextStyle, ViewStyle } from 'react-native';
 
 import { ContentPreview } from './ContentPreview';
 import { UploadProgress } from './UploadProgress';
 import { TestIds } from '../../../shared/testIds';
 import { isValueDefined } from '../../../utils/is';
+import { Field } from '../../Forms';
 
 import type { ContentCategory, ContentDto } from '../../../lib/hooks/content/types';
 
@@ -23,13 +24,6 @@ import type { ContentCategory, ContentDto } from '../../../lib/hooks/content/typ
 // ---------------------------------------------------------------------------
 
 const styles = StyleSheet.create({
-  container: {
-    marginBottom: 16,
-  },
-  label: {
-    marginBottom: 8,
-    fontWeight: '600',
-  },
   errorText: {
     fontSize: 12,
     marginTop: 8,
@@ -41,23 +35,15 @@ const styles = StyleSheet.create({
 // ---------------------------------------------------------------------------
 
 export interface ThemeStyles {
-  label: TextStyle;
   uploadButton: ViewStyle;
   uploadText: TextStyle;
   uploadHint: TextStyle;
   errorText: TextStyle;
 }
 
-interface LabelProps {
-  label: string | undefined;
-  required: boolean;
-  themeStyles: ThemeStyles;
-}
-
 interface UploadProgressViewProps {
   label: string | undefined;
   required: boolean;
-  themeStyles: ThemeStyles;
   disabled: boolean;
   uploadedFileName: string;
   progress: number;
@@ -67,7 +53,6 @@ interface UploadProgressViewProps {
 interface ContentPreviewViewProps {
   label: string | undefined;
   required: boolean;
-  themeStyles: ThemeStyles;
   category: ContentCategory;
   content?: ContentDto;
   disabled: boolean;
@@ -91,35 +76,19 @@ interface ErrorDisplayProps {
 // ---------------------------------------------------------------------------
 
 /**
- * Renders the optional label.
- */
-export const UploaderLabel = ({ label, required, themeStyles }: LabelProps): React.ReactNode => {
-  if (!isValueDefined(label))
-    return null;
-
-  return (
-    <Text style={[styles.label, themeStyles.label]}>
-      {label} {required ? '*' : ''}
-    </Text>
-  );
-};
-
-/**
  * Renders the upload progress view.
  */
 export const UploadProgressView = ({
   label,
   required,
-  themeStyles,
   disabled,
   uploadedFileName,
   progress,
   onCancel,
 }: UploadProgressViewProps): React.ReactElement => (
-  <View style={styles.container} testID={TestIds.CONTENT_UPLOADER}>
-    <UploaderLabel label={label} required={required} themeStyles={themeStyles} />
+  <Field label={label} required={required} testID={TestIds.CONTENT_UPLOADER}>
     <UploadProgress disabled={disabled} fileName={uploadedFileName} progress={progress} onCancel={onCancel} />
-  </View>
+  </Field>
 );
 
 /**
@@ -128,7 +97,6 @@ export const UploadProgressView = ({
 export const ContentPreviewView = ({
   label,
   required,
-  themeStyles,
   category,
   content,
   disabled,
@@ -140,8 +108,7 @@ export const ContentPreviewView = ({
   onDelete,
   onPreviewRetry,
 }: ContentPreviewViewProps): React.ReactElement => (
-  <View style={styles.container} testID={TestIds.CONTENT_UPLOADER}>
-    <UploaderLabel label={label} required={required} themeStyles={themeStyles} />
+  <Field label={label} required={required} testID={TestIds.CONTENT_UPLOADER}>
     <ContentPreview
       category={category}
       content={content}
@@ -154,7 +121,7 @@ export const ContentPreviewView = ({
       onDelete={onDelete}
       onRetry={onPreviewRetry}
     />
-  </View>
+  </Field>
 );
 
 /**

@@ -9,25 +9,23 @@
  */
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import type { ViewStyle } from 'react-native';
 
 import { FM } from '@/localization/helpers';
 
-import { ContentPreviewView, ErrorDisplay, type ThemeStyles, UploaderLabel, UploadProgressView } from './ContentUploaderViews';
+import { ContentPreviewView, ErrorDisplay, type ThemeStyles, UploadProgressView } from './ContentUploaderViews';
 import { useUploadContent } from '../../../lib/hooks/content';
 import { DISABLED_OPACITY } from '../../../shared/constants';
 import { TestIds } from '../../../shared/testIds';
 import { useTheme } from '../../../theme/hooks/useTheme';
 import { isValueDefined } from '../../../utils/is';
+import { Field } from '../../Forms';
 
 import type { ContentCategory, ContentDto, FileInfo } from '../../../lib/hooks/content/types';
 
 
 const styles = StyleSheet.create({
-  container: {
-    marginBottom: 16,
-  },
   uploadButton: {
     padding: 16,
     borderRadius: 8,
@@ -101,7 +99,6 @@ interface UploaderColors {
  */
 function createUploaderThemeStyles(colors: UploaderColors, disabled: boolean): ThemeStyles {
   return {
-    label: { color: colors.text },
     uploadButton: {
       backgroundColor: colors.surface,
       borderColor: disabled ? colors.border : colors.primary,
@@ -205,7 +202,6 @@ export const ContentUploader = ({
         label={label}
         progress={state.progress}
         required={required}
-        themeStyles={themeStyles}
         uploadedFileName={uploadedFileName}
         onCancel={handleCancel}
       />
@@ -226,7 +222,6 @@ export const ContentUploader = ({
         previewIsError={previewIsError}
         previewUrl={previewUrl}
         required={required}
-        themeStyles={themeStyles}
         uploadedFileName={uploadedFileName}
         onDelete={handleDelete}
         onPreviewRetry={onPreviewRetry}
@@ -235,16 +230,16 @@ export const ContentUploader = ({
 
 
   // Show upload button
-  const defaultHint = `Tap to select a ${category.toLowerCase()}`;
+  const categoryWord = category.toLowerCase();
+  const defaultHint = FM('content.uploadDefaultHint', categoryWord);
   const displayHint = hint ?? defaultHint;
   const buttonStyle: ViewStyle[] = [styles.uploadButton, themeStyles.uploadButton];
 
   return (
-    <View style={styles.container} testID={TestIds.CONTENT_UPLOADER}>
-      <UploaderLabel label={label} required={required} themeStyles={themeStyles} />
+    <Field label={label} required={required} testID={TestIds.CONTENT_UPLOADER}>
       <TouchableOpacity
-        accessibilityHint={`Opens file picker to select a ${category.toLowerCase()} to upload`}
-        accessibilityLabel={`Upload ${category.toLowerCase()}`}
+        accessibilityHint={FM('content.uploadButtonHint', categoryWord)}
+        accessibilityLabel={FM('content.uploadButtonLabel', categoryWord)}
         accessibilityRole="button"
         disabled={disabled}
         style={buttonStyle}
@@ -255,6 +250,6 @@ export const ContentUploader = ({
         <Text style={[styles.uploadHint, themeStyles.uploadHint]}>{displayHint}</Text>
       </TouchableOpacity>
       <ErrorDisplay stateError={state.error} themeStyles={themeStyles} uploadError={uploadError} />
-    </View>
+    </Field>
   );
 };
