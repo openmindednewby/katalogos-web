@@ -14,6 +14,8 @@ import {
   View,
 } from 'react-native';
 
+import { badgeColors } from '@dloizides/theme-web';
+
 import { FM } from '../../../../localization/helpers';
 import { MODAL_OVERLAY_COLOR } from '../../../../shared/constants';
 import TeamRole from '../../../../shared/enums/TeamRole';
@@ -59,6 +61,11 @@ const styles = StyleSheet.create({
 const InviteTeamMemberModal = ({ visible, loading, onSubmit, onClose }: Props): React.ReactElement | null => {
   const { theme } = useTheme();
   const { colors } = theme;
+  // The selected role tile is a text-on-tint pair. It shipped `primary['700']` on
+  // `primary['100']`, which clears AA on all five bundled presets but only because
+  // their seeds are dark — `700`-on-`100` bottoms out at 1.09:1 across the seed
+  // space, and a tenant supplies this palette. `badgeColors` measures per seed.
+  const selectedRoleColors = useMemo(() => badgeColors(theme.palette.primary), [theme.palette.primary]);
 
   const [email, setEmail] = useState('');
   const [selectedRole, setSelectedRole] = useState<number>(STAFF_ROLE_VALUE);
@@ -123,12 +130,12 @@ const InviteTeamMemberModal = ({ visible, loading, onSubmit, onClose }: Props): 
               accessibilityRole="button"
               accessibilityState={{ selected: isManagerSelected }}
               style={[styles.roleOption, {
-                borderColor: isManagerSelected ? theme.palette.primary['500'] : colors.border,
-                backgroundColor: isManagerSelected ? theme.palette.primary['100'] : colors.surface,
+                borderColor: isManagerSelected ? selectedRoleColors.color : colors.border,
+                backgroundColor: isManagerSelected ? selectedRoleColors.backgroundColor : colors.surface,
               }]}
               onPress={() => setSelectedRole(MANAGER_ROLE_VALUE)}
             >
-              <Text style={[styles.roleText, { color: isManagerSelected ? theme.palette.primary['700'] : colors.text }]}>
+              <Text style={[styles.roleText, { color: isManagerSelected ? selectedRoleColors.color : colors.text }]}>
                 {FM('settings.team.roleManager')}
               </Text>
             </TouchableOpacity>
@@ -138,12 +145,12 @@ const InviteTeamMemberModal = ({ visible, loading, onSubmit, onClose }: Props): 
               accessibilityRole="button"
               accessibilityState={{ selected: isStaffSelected }}
               style={[styles.roleOption, {
-                borderColor: isStaffSelected ? theme.palette.primary['500'] : colors.border,
-                backgroundColor: isStaffSelected ? theme.palette.primary['100'] : colors.surface,
+                borderColor: isStaffSelected ? selectedRoleColors.color : colors.border,
+                backgroundColor: isStaffSelected ? selectedRoleColors.backgroundColor : colors.surface,
               }]}
               onPress={() => setSelectedRole(STAFF_ROLE_VALUE)}
             >
-              <Text style={[styles.roleText, { color: isStaffSelected ? theme.palette.primary['700'] : colors.text }]}>
+              <Text style={[styles.roleText, { color: isStaffSelected ? selectedRoleColors.color : colors.text }]}>
                 {FM('settings.team.roleStaff')}
               </Text>
             </TouchableOpacity>

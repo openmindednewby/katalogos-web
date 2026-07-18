@@ -5,6 +5,8 @@ import React, { useMemo } from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
+import { badgeColors } from '@dloizides/theme-web';
+
 import { FD, FM } from '../../../../localization/helpers';
 import { isOwnerRole, teamRoleToLabelKey, teamRoleToSemanticColor } from '../../../../shared/enums/TeamRole';
 import { TestIds } from '../../../../shared/testIds';
@@ -65,8 +67,10 @@ const TeamMemberRow = ({ member, isAdmin, onRemove, onChangeRole }: Props): Reac
   const roleLabel = FM(teamRoleToLabelKey(member.role));
   const semanticColor = teamRoleToSemanticColor(member.role);
   const badgeScale = theme.semantic[semanticColor];
-  const badgeBg = badgeScale['100'];
-  const badgeFg = badgeScale['700'];
+  // MEASURED per seed — see `PendingInvitationRow` for why a fixed shade is not safe.
+  const badgePair = badgeColors(badgeScale);
+  const badgeBg = badgePair.backgroundColor;
+  const badgeFg = badgePair.color;
 
   const joinedDate = useMemo(() => {
     const date = new Date(member.joinedAt);
