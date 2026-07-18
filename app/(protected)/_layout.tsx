@@ -5,6 +5,7 @@ import { View, ActivityIndicator } from 'react-native';
 import { Stack } from 'expo-router';
 
 import { useAuth } from '../../src/auth/AuthProvider';
+import { shouldRedirectToLogin } from '../../src/auth/logoutNavigationGuard';
 import KeyboardShortcutsProvider from '../../src/components/KeyboardShortcuts/KeyboardShortcutsProvider';
 import ProtectedLayoutWrapper from '../../src/components/Layout/ProtectedLayout';
 import ApiEventsProvider from '../../src/lib/api/events/ApiEventsProvider';
@@ -20,8 +21,14 @@ const ProtectedLayout = (): React.ReactElement => {
   // `GET /bff/me`), not a client-side token — the SPA holds no token.
   const { isLoggedIn, loading } = useAuth();
   useEffect(() => {
-    const shouldRedirectToLogin = !loading && !isLoggedIn;
-    if (shouldRedirectToLogin)
+    // A deliberate sign-out clears `isLoggedIn` BEFORE `POST /bff/logout` has
+    // settled, which would trip this guard mid-flight. `redirectTo` schedules a
+    // `window.location.replace()` 150 ms later, and that document unload cancels
+    // the in-flight logout — leaving the server-side session ALIVE while the UI
+    // claims the user signed out. `performBffLogout` navigates for us once the
+    // BFF answers, so standing down here loses nothing. The decision lives in
+    // `logoutNavigationGuard` so it is unit-pinned rather than only implied.
+    if (shouldRedirectToLogin(loading, isLoggedIn))
       // use cross-platform safe redirect (may be queued until root mounts)
       redirectTo('/(auth)/login');
 

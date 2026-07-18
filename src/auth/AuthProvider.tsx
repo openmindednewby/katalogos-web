@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useCallback, useEffect } from 'react';
 
 import { type BffRegisterRequest, type BffUser } from '@dloizides/auth-client';
+import { performBffLogout } from '@dloizides/auth-web';
 import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -8,6 +9,7 @@ import { clearClientAuthState, scheduleLogoutCleanup } from './authStorageCleanu
 import { bffAuthClient } from './bffClient';
 import { bffUserToKeycloakUserInfo, bffUserToNormalizedUser } from './bffUserMapping';
 import { type KeycloakUserInfo, type NormalizedUser } from './keycloakTypes';
+import { withLogoutInFlight } from './logoutNavigationGuard';
 import { useAuthOperations } from './useAuthOperations';
 import { redirectTo } from '../lib/navigation';
 import { TestIds } from '../shared/testIds';
@@ -127,24 +129,44 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }): React
 
   useSessionBootstrap(dispatch);
 
-  const logout = useCallback(async (): Promise<void> => {
-    clearClientAuthState(dispatch);
-    scheduleLogoutCleanup(dispatch);
-
-    try {
-      redirectTo('/(auth)/login');
-    } catch (redirectError) {
-      logger.warn('AuthProvider', 'Failed to redirect to login during logout', redirectError);
-    }
-
-    // Tell the BFF to end the KC session and clear the cookie. Non-fatal —
-    // the client-side session view is already cleared above.
-    try {
-      await bffAuthClient.logout();
-    } catch (error) {
-      logger.warn('AuthProvider', 'BFF logout call failed (non-fatal)', error);
-    }
-  }, [dispatch]);
+  /**
+   * End the session via the shared `performBffLogout` sequencer.
+   *
+   * This used to redirect BEFORE awaiting `bffAuthClient.logout()`. `redirectTo`
+   * ends in `window.location.replace()`, and a document navigation cancels
+   * in-flight fetches — so `POST /bff/logout` was frequently never sent. The
+   * httpOnly session cookie SURVIVED: the UI looked signed out while the server
+   * still considered the user authenticated, so navigating back signed them
+   * straight in. On a shared machine that is account takeover, and the `catch`
+   * logged it "non-fatal", so it never surfaced.
+   *
+   * It also discarded the return value. `logout()` resolves to the IdP's
+   * RP-initiated logout URL (`Promise<string | null>`, not `void`) — dropping it
+   * left the Keycloak SSO session alive, the documented "sign out and get signed
+   * straight back in" bug.
+   *
+   * The sequencer owns the ordering (clear local → AWAIT the BFF → navigate
+   * exactly once, last). `withLogoutInFlight` closes the second hole the
+   * sequencer cannot see on its own: clearing local state re-renders
+   * `ProtectedLayout`, whose guard would otherwise fire its own `redirectTo` and
+   * unload the document out from under the in-flight POST. See
+   * `logoutNavigationGuard.ts`.
+   */
+  const logout = useCallback(
+    async (): Promise<void> =>
+      withLogoutInFlight(async () =>
+        performBffLogout({
+          client: bffAuthClient,
+          onClearSession: () => {
+            clearClientAuthState(dispatch);
+            scheduleLogoutCleanup(dispatch);
+          },
+          onRedirect: () => redirectTo('/(auth)/login'),
+          onError: (error) => logger.warn('AuthProvider', 'Logout step failed (non-fatal)', error),
+        }),
+      ),
+    [dispatch],
+  );
 
   useLogoutButtonEffect(logout);
 
