@@ -1,12 +1,21 @@
-import React, { useState, useCallback, useMemo } from 'react';
+/**
+ * PaginatedList — a FlatList with client-side paging, an empty state and a loading state.
+ *
+ * The paging *maths* lives in `usePagedRows` from `@dloizides/ui-tables` (promoted in
+ * de-fork wave W1.1). This component stays app-side on purpose: it binds a `FlatList`
+ * plus this app's `EmptyListState` / `LoadingFallback`, none of which belong in a
+ * brand-agnostic package.
+ */
+import React, { useCallback, useMemo } from 'react';
 
 import { View, FlatList, StyleSheet } from 'react-native';
+
+import { usePagedRows } from '@dloizides/ui-tables';
 
 import { PaginationControls } from './PaginationControls';
 import { DEFAULT_PAGE_SIZE } from '../../shared/constants';
 import EmptyListState from '../Shared/EmptyListState';
 import LoadingFallback from '../Shared/Fallbacks/LoadingFallback';
-
 
 const styles = StyleSheet.create({
   container: {
@@ -41,27 +50,9 @@ const PaginatedList = <T,>({
   contentContainerStyle,
   testID = 'paginated-list',
 }: Props<T>): React.ReactElement => {
-  const [currentPage, setCurrentPage] = useState(0);
-
-  const totalPages = Math.ceil(data.length / pageSize);
-
-  // Reset to first page when data changes significantly
-  React.useEffect(() => {
-    const shouldReset = currentPage >= totalPages && totalPages > 0;
-    if (shouldReset)
-      setCurrentPage(totalPages - 1);
-
-  }, [data.length, totalPages, currentPage]);
-
-  const paginatedData = useMemo(() => {
-    const start = currentPage * pageSize;
-    const end = start + pageSize;
-    return data.slice(start, end);
-  }, [data, currentPage, pageSize]);
-
-  const handlePageChange = useCallback((page: number): void => {
-    setCurrentPage(page);
-  }, []);
+  // Memoised: an inline options object would be a new reference every render.
+  const pagingOptions = useMemo(() => ({ pageSize }), [pageSize]);
+  const { pageRows, currentPage, totalPages, setPage, hasPages } = usePagedRows(data, pagingOptions);
 
   const renderListItem = useCallback(
     ({ item, index }: { item: T; index: number }): React.ReactElement => renderItem(item, index),
@@ -81,14 +72,14 @@ const PaginatedList = <T,>({
     );
 
 
-  const shouldShowPagination = showPagination && totalPages > 1;
+  const shouldShowPagination = showPagination && hasPages;
 
   return (
     <View style={styles.container}>
       <FlatList
         showsVerticalScrollIndicator
         contentContainerStyle={contentContainerStyle}
-        data={paginatedData}
+        data={pageRows}
         keyExtractor={keyExtractor}
         ListFooterComponent={listFooterComponent}
         ListHeaderComponent={listHeaderComponent}
@@ -101,7 +92,7 @@ const PaginatedList = <T,>({
           pageSize={pageSize}
           totalItems={data.length}
           totalPages={totalPages}
-          onPageChange={handlePageChange}
+          onPageChange={setPage}
         />
       ) : null}
     </View>
