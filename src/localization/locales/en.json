@@ -1,4 +1,20 @@
 {
+  "uiTables": {
+    "pager": {
+      "info": "of",
+      "first": "First",
+      "prev": "Previous",
+      "next": "Next",
+      "last": "Last",
+      "firstHint": "Go to the first page",
+      "prevHint": "Go to the previous page",
+      "nextHint": "Go to the next page",
+      "lastHint": "Go to the last page",
+      "rows": "Rows",
+      "rowsOptionHint": "Set the number of rows per page",
+      "rowsTriggerHint": "Change the number of rows per page"
+    }
+  },
   "auth": {
     "methods": {
       "passwordTab": "Password",

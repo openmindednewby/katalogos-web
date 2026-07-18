@@ -1,132 +1,131 @@
-import React, { useMemo, useRef, useState } from 'react';
+/**
+ * ProtectedLayout — the authenticated app shell. Thin wiring over the shared
+ * `@dloizides/ui-nav` `NavShell` (`layout="side"`): a persistent left rail on
+ * desktop, the icon-only `CollapsedRail` on tablet, and the overlay drawer on
+ * phone are all owned by NavShell/AppShell. This app supplies only DATA + STYLE:
+ * the role-gated `NavItem[]`, the existing `Topbar` (header slot), the Home
+ * shortcut + appearance/logout footer (rail slots), and the theme.
+ *
+ * Replaces the bespoke Animated overlay drawer + tablet rail + Mobile* files and
+ * `layoutStyles`. testIDs the E2E drives (`logout-button`, `nav-home`,
+ * `main-content-region`) and the `Main navigation` landmark name are preserved;
+ * the phone drawer's "Menu" toggle keeps an accessible name the logout flow finds.
+ */
+import React, { useMemo } from 'react';
 
-import { Animated, Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { useBreakpoint } from '../../hooks/useBreakpoint';
-import { useGetRole } from '../../hooks/useGetRole';
+import { usePathname, useRouter } from 'expo-router';
+
+import { NavShell, isRouteActive, type NavItem } from '@dloizides/ui-nav';
+import { useSelector } from 'react-redux';
+
+import { SidebarFooter, SidebarHomeLink } from './sidebarChrome';
+import { useAuth } from '../../auth/AuthProvider';
 import { FM } from '../../localization/helpers';
+import { moduleRegistry } from '../../modules';
+import { Routes } from '../../navigation/routes';
+import { PHONE_BREAKPOINT_PX, TABLET_BREAKPOINT_PX } from '../../shared/constants';
 import { TestIds } from '../../shared/testIds';
 import { useTheme } from '../../theme/hooks/useTheme';
-import { layoutStyles } from '../../theme/utils/styles';
 import VerificationPendingBanner from '../Auth/VerificationPendingBanner';
+import { SvgIcon } from '../Icons';
 import SkipNavLink from '../Shared/SkipNavLink';
-import MobileSidebarCollapsed from '../Sidebar/MobileSidebarCollapsed';
-import Sidebar from '../Sidebar/Sidebar';
-import MobileTopbar from '../Topbar/MobileTopbar';
+import { groupSidebarItems } from '../Sidebar/utils/groupSidebarItems';
+import { toNavItems } from '../Sidebar/utils/toNavItems';
 import Topbar from '../Topbar/Topbar';
+
+import type { RootState } from '../../store/reduxStore';
 
 interface Props {
   children?: React.ReactNode;
 }
 
+const LAYOUT_TEST_ID = 'protected-layout';
+const MAIN_CONTENT_ID = 'main-content';
+
 /**
- * Overlay backdrop uses a fixed black color because the theme system
- * (ThemeModeColors) does not include an overlay/scrim token.
- * A semi-transparent black overlay is standard UX regardless of theme mode.
+ * Tablet band for the icon-only collapsed rail: full rail above the tablet
+ * breakpoint (desktop), collapsed rail across the tablet band, overlay drawer at
+ * phone width — reproducing the app's phone(≤480)/tablet/desktop(>768) scheme.
  */
-const OVERLAY_BACKDROP_COLOR = '#000';
-const SIDEBAR_BACKDROP_OPACITY = 0.5;
-const SIDEBAR_SLIDE_OFFSET = -40;
+const COLLAPSED_RAIL_RANGE = { min: PHONE_BREAKPOINT_PX + 1, max: TABLET_BREAKPOINT_PX + 1 };
 
 const styles = StyleSheet.create({
-  overlayBackdropBackground: { backgroundColor: OVERLAY_BACKDROP_COLOR },
-  sidebarContainer: { width: '100%' },
-  touchToCloseArea: { position: 'absolute', left: '80%', top: 0, right: 0, bottom: 0 },
+  root: { flex: 1 },
+  content: { flex: 1 },
 });
 
 const ProtectedLayout = ({ children }: Props): React.ReactElement => {
-  const { isPhone, isDesktop } = useBreakpoint();
-  const { theme } = useTheme();
-  const colors = theme.colors;
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const sidebarAnim = useRef(new Animated.Value(0)).current;
-  const { isUser } = useGetRole();
+  const router = useRouter();
+  const pathname = usePathname();
+  const { logout } = useAuth();
+  const { darkModePreference, setDarkModePreference } = useTheme();
+  const userInfo = useSelector((s: RootState) => s.auth.userInfo);
 
-  const layoutWrapperStyle = useMemo(
-    () => [layoutStyles.layoutWrapper, { backgroundColor: colors.background }],
-    [colors.background],
+  const roles = userInfo?.roles;
+  const navItems = useMemo<NavItem[]>(
+    () => toNavItems(groupSidebarItems(moduleRegistry.getSidebarItemsForRoles(roles ?? []))),
+    [roles],
   );
 
-  const backdropStyle = useMemo(
-    () => ({ opacity: sidebarAnim.interpolate({ inputRange: [0, 1], outputRange: [0, SIDEBAR_BACKDROP_OPACITY] }) }),
-    [sidebarAnim],
-  );
-  const panelTransform = useMemo(
-    () => [{ translateX: sidebarAnim.interpolate({ inputRange: [0, 1], outputRange: [SIDEBAR_SLIDE_OFFSET, 0] }) }],
-    [sidebarAnim],
-  );
+  const isHomeActive = isRouteActive(pathname, Routes.DASHBOARD);
 
-  const overlayBackdropStyle = useMemo(
-    () => [layoutStyles.overlayBackdrop, styles.overlayBackdropBackground, backdropStyle],
-    [backdropStyle],
-  );
-
-  const drawerPanelStyle = useMemo(
-    () => [
-      layoutStyles.drawerPanelLeft,
-      { backgroundColor: colors.surface, borderRightColor: colors.border, transform: panelTransform },
-    ],
-    [colors.border, colors.surface, panelTransform],
-  );
-
-  const showCollapsedSidebar = !isDesktop && !isPhone && !isUser;
-  const showSidebarOverlay = !isDesktop && sidebarOpen;
-
-  function openSidebar(): void {
-    setSidebarOpen(true);
-    Animated.timing(sidebarAnim, { toValue: 1, duration: 220, useNativeDriver: Platform.OS !== 'web' }).start();
+  function handleNavigate(route: string): void {
+    router.push(route);
+  }
+  function handleHome(): void {
+    router.push(Routes.DASHBOARD);
+  }
+  function handleLogout(): void {
+    logout().catch(() => {});
   }
 
-  function closeSidebar(): void {
-    Animated.timing(sidebarAnim, { toValue: 0, duration: 200, useNativeDriver: Platform.OS !== 'web' }).start(({ finished }) => {
-      if (finished) setSidebarOpen(false);
-    });
-  }
+  const renderChevron = (expanded: boolean, color: string, size: number): React.ReactElement => (
+    <SvgIcon color={color} name={expanded ? 'chevronUp' : 'chevronDown'} size={size} />
+  );
 
-  const topbar = isDesktop
-    ? <Topbar showAccountButton={false} />
-    : <MobileTopbar showAccountButton={false} />;
+  const footerProps = { darkModePreference, onDarkModeChange: setDarkModePreference, onLogout: handleLogout };
 
   return (
-    <View style={layoutWrapperStyle}>
-      <SkipNavLink targetId="main-content" />
-
-      {/* Sidebar section — collapsed bar on tablet only, hidden on phone */}
-      {showCollapsedSidebar ? <MobileSidebarCollapsed onMenuPress={openSidebar} /> : null}
-      {isDesktop ? <Sidebar /> : null}
-
-      {/* Main content */}
-      <View style={layoutStyles.mainArea}>
-        {topbar}
-        {/*
-          The verification-pending banner sits between the topbar and the page
-          outlet so it's visible on every authenticated route. It renders
-          `null` when `email_verified === true` (or claim missing), so it adds
-          zero layout overhead for verified users.
-        */}
-        <VerificationPendingBanner />
-        <View nativeID="main-content" style={layoutStyles.content} testID={TestIds.MAIN_CONTENT_REGION}>{children}</View>
-      </View>
-
-      {/* Sidebar overlay on phone and tablet screens */}
-      {showSidebarOverlay ? <View style={layoutStyles.overlayBackdrop}>
-          {/* Backdrop */}
-          <Animated.View style={overlayBackdropStyle} />
-          {/* Sliding panel */}
-          <Animated.View
-            style={drawerPanelStyle}
-          >
-            <Sidebar containerStyle={styles.sidebarContainer} onItemPress={closeSidebar} />
-          </Animated.View>
-          <TouchableOpacity
-            accessibilityHint={FM('layout.closeSidebarHint')}
-            accessibilityLabel={FM('layout.closeSidebar')}
-            accessibilityRole="button"
-            style={styles.touchToCloseArea}
-            testID={TestIds.LAYOUT_CLOSE_SIDEBAR_OVERLAY}
-            onPress={closeSidebar}
-          />
-        </View> : null}
+    <View style={styles.root}>
+      <SkipNavLink targetId={MAIN_CONTENT_ID} />
+      <NavShell
+        banner={<VerificationPendingBanner />}
+        contentPadding={0}
+        header={<Topbar showAccountButton={false} />}
+        layout="side"
+        mobileMenu={{
+          openLabel: FM('topbar.menu'),
+          openHint: FM('topbar.menuHint'),
+          closeLabel: FM('layout.closeSidebar'),
+          closeHint: FM('layout.closeSidebarHint'),
+        }}
+        navigateHint={(label) => FM('menu.navigateToHint', label)}
+        pathname={pathname}
+        regionLabel={FM('accessibility.navigationRegion')}
+        sideRail={{
+          items: navItems,
+          title: FM('menu.title'),
+          header: <SidebarHomeLink active={isHomeActive} onPress={handleHome} />,
+          footer: <SidebarFooter {...footerProps} />,
+          expandHint: FM('menu.expandSection'),
+          collapseHint: FM('menu.collapseSection'),
+          renderChevron,
+          collapsed: {
+            items: navItems,
+            header: <SidebarHomeLink collapsed active={isHomeActive} onPress={handleHome} />,
+            footer: <SidebarFooter collapsed {...footerProps} />,
+            range: COLLAPSED_RAIL_RANGE,
+          },
+        }}
+        testID={LAYOUT_TEST_ID}
+        onNavigate={handleNavigate}
+      >
+        <View nativeID={MAIN_CONTENT_ID} style={styles.content} testID={TestIds.MAIN_CONTENT_REGION}>
+          {children}
+        </View>
+      </NavShell>
     </View>
   );
 };

@@ -17,19 +17,6 @@ const LIGHT_BORDER_COLOR = '#ddd';
 
 // Core layout styles that tie everything together
 const coreLayoutStyles = StyleSheet.create({
-  // Main layout
-  layoutWrapper: {
-    flexDirection: 'row',
-    flex: 1,
-  },
-  mainArea: {
-    flex: 1,
-    minHeight: '100%',
-  },
-  content: {
-    flex: 1,
-  },
-
   // Page helpers
   container: {
     flex: 1,
