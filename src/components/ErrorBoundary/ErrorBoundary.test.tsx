@@ -19,8 +19,8 @@ import { ErrorBoundary } from './ErrorBoundary';
 const mockAttemptChunkRecovery = jest.fn();
 const mockReloadPage = jest.fn();
 const mockClearFlag = jest.fn();
-jest.mock('../../utils/chunkLoadRecovery', () => {
-  const actual = jest.requireActual('../../utils/chunkLoadRecovery');
+jest.mock('@dloizides/utils', () => {
+  const actual = jest.requireActual('@dloizides/utils');
   return {
     __esModule: true,
     ...actual,
