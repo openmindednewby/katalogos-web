@@ -6,7 +6,13 @@ const { defineOrvalConfig } = require('@dloizides/orval-preset');
  * payment / notification) lives in `@dloizides/orval-preset`. This app supplies
  * only its own paths:
  *  - `swaggerDir`  : per-app OpenAPI inputs (API versions differ per app).
- *  - `outDir`      : generated client dirs (per-app, gitignored).
+ *  - `outDir`      : generated client dirs. NOTE: these ARE COMMITTED, deliberately.
+ *                    Generation needs PowerShell + six running local services
+ *                    (localhost:5002/5004/5006/5009/5015) to download the specs, so a
+ *                    fresh clone or Linux CI cannot regenerate them. Committing the
+ *                    output keeps builds hermetic and offline-capable. The specs in
+ *                    `swaggerDir` are committed too, so the inputs are pinned.
+ *                    Do NOT gitignore this directory — the apps will not compile.
  *  - `mutatorPath` : local mutator shims that re-export from the package, so the
  *                    generated hooks keep a stable import path.
  */
