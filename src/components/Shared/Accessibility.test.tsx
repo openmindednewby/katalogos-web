@@ -191,6 +191,7 @@ describe('FormActions accessibility', () => {
     render(
       <FormActions
         cancelLabel="Discard"
+        saveLabel="Submit"
         onCancel={jest.fn()}
         onSave={jest.fn()}
       />,
@@ -200,16 +201,28 @@ describe('FormActions accessibility', () => {
     expect(cancelButton.props.accessibilityLabel).toBe('Discard');
   });
 
-  it('uses default labels when none provided', () => {
+  it('threads pre-localized hints through to both buttons', () => {
     render(
-      <FormActions onCancel={jest.fn()} onSave={jest.fn()} />,
+      <FormActions
+        cancelHint="Discard unsaved changes"
+        cancelLabel="Cancel"
+        saveHint="Save the current changes"
+        saveLabel="Save"
+        onCancel={jest.fn()}
+        onSave={jest.fn()}
+      />,
     );
 
-    const saveButton = screen.getByTestId('save-button');
-    expect(saveButton.props.accessibilityLabel).toBe('Save');
+    expect(screen.getByTestId('save-button').props.accessibilityHint).toBe('Save the current changes');
+    expect(screen.getByTestId('cancel-button').props.accessibilityHint).toBe('Discard unsaved changes');
+  });
 
-    const cancelButton = screen.getByTestId('cancel-button');
-    expect(cancelButton.props.accessibilityLabel).toBe('Cancel');
+  it('renders a save-only row when no onCancel is supplied', () => {
+    render(
+      <FormActions saveLabel="Submit" onSave={jest.fn()} />,
+    );
+
+    expect(screen.queryByTestId('cancel-button')).toBeNull();
   });
 });
 

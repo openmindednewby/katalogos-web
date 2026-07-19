@@ -6,6 +6,7 @@ import UserFormFields from './UserFormFields';
 import UserFormTenantSelector from './UserFormTenantSelector';
 import { buildSavePayload, trimFormValues } from './UserFormUtils';
 import { useUserFormState } from './useUserFormState';
+import { FM } from '../../localization/helpers';
 import { logger } from '../../utils/logger';
 import { FormActions } from '../Forms';
 
@@ -123,7 +124,16 @@ const UserForm = (props: Props): React.ReactElement => {
           onUsernameChange={formState.setUsername}
         />
 
-        <FormActions saveDisabled={saveDisabled} saveLabel={saveLabel} saving={saving} onCancel={onCancel} onSave={handleSave} />
+        <FormActions
+          cancelHint={FM('common.discardHint')}
+          cancelLabel={FM('common.cancel')}
+          saveDisabled={saveDisabled}
+          saveHint={FM('common.saveHint')}
+          saveLabel={saveLabel}
+          saving={saving}
+          onCancel={onCancel}
+          onSave={handleSave}
+        />
       </View>
     </ScrollView>
   );

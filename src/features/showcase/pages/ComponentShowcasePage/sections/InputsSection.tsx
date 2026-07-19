@@ -145,7 +145,9 @@ const InputsSection = (): ReactElement => {
         nameKey="showcase.componentFormActions"
       >
         <FormActions
+          cancelHint={FM('common.discardHint')}
           cancelLabel={FM('common.cancel')}
+          saveHint={FM('common.saveHint')}
           saveLabel={FM('common.save')}
           onCancel={handleNoOp}
           onSave={handleNoOp}

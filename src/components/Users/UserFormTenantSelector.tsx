@@ -14,9 +14,6 @@ interface TenantOption {
 
 const styles = StyleSheet.create({
   tenantSelectorCard: { borderRadius: 8, borderWidth: 1, padding: 8 },
-  // The card's own 8px padding supplies the spacing under the chips, so the ChipSelector must not
-  // add `Field`'s container margin a second time INSIDE the card.
-  chipsInCard: { marginBottom: 0 },
 });
 
 interface UserFormTenantSelectorProps {
@@ -43,10 +40,16 @@ const UserFormTenantSelector: React.FC<UserFormTenantSelectorProps> = ({
     // decorative so a screen reader announces "required" rather than "star" (UX-7f).
     <Field required label={FM('common.tenant')}>
       <View style={[styles.tenantSelectorCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+        {/*
+          The enclosing card's own 8px padding owns the rhythm under the chips, so the field speaks
+          the `gap` model — it contributes no container margin of its own. This replaces an
+          anonymous `containerStyle={{ marginBottom: 0 }}` cancel with the named prop ui-forms@1.9.0
+          added for exactly this case.
+        */}
         <ChipSelector
-          containerStyle={styles.chipsInCard}
           disabled={disabled}
           options={tenantOptions}
+          spacing="gap"
           value={selectedTenantId}
           onChange={onSelectTenant}
         />
