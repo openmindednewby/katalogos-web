@@ -1,24 +1,11 @@
 /** Type definitions for the keyboard shortcuts system. */
 
-/** A single keyboard shortcut binding. */
-export interface KeyboardShortcut {
-  /** Unique identifier for the shortcut. */
-  id: string;
-  /** Translation key for the shortcut description. */
-  labelKey: string;
-  /** Primary key to match (e.g. 's', '1', '?', '/'). */
-  key: string;
-  /** Whether Ctrl (or Cmd on Mac) is required. */
-  ctrlOrMeta?: boolean;
-  /** Whether Alt is required. */
-  alt?: boolean;
-  /** Whether Shift is required. */
-  shift?: boolean;
-  /** Callback when the shortcut fires. */
-  handler: () => void;
-  /** Whether the shortcut should be suppressed when a text input is focused. */
-  suppressInInput?: boolean;
-}
+/**
+ * `KeyboardShortcut` is the CONTRACT of `useKeyboardShortcuts`, so it lives with the
+ * hook in `@dloizides/rn-web-hooks` and is re-exported here. One definition, not two —
+ * a second local copy is exactly how erevna and katalogos drifted apart.
+ */
+export type { KeyboardShortcut } from '@dloizides/rn-web-hooks';
 
 /** A category grouping shortcuts for display in the help modal. */
 export interface ShortcutCategory {
