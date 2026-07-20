@@ -65,7 +65,7 @@
     "@dloizides/ui-layout": "^1.13.0",
     "@dloizides/ui-nav": "^1.10.0",
     "@dloizides/ui-primitives": "^1.0.1",
-    "@dloizides/ui-tables": "^1.14.0",
+    "@dloizides/ui-tables": "^1.15.0",
     "@dloizides/utils": "^1.4.0",
     "@hookform/resolvers": "^5.2.2",
     "@onlinemenu/identity-client": "file:./packages/identity-client",
