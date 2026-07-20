@@ -37,9 +37,13 @@ import type {
 import type { UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 // ContentService is reached same-origin through the BFF (`/bff/api/content`).
-// See uploadUtils.ts / server/httpClientContent.ts — a direct call to
-// content-api.dloizides.com is cross-origin from the deployed app host and
-// CORS-blocked, and post-BFF-cutover the SPA holds no token to send.
+// See uploadUtils.ts / server/httpClientContent.ts — post-BFF-cutover the SPA
+// holds no token to send (`withToken` is a no-op), so a direct cross-origin
+// call to content-api.dloizides.com arrives unauthenticated.
+// NOTE: CORS is *not* the blocker — content-api does return
+// `Access-Control-Allow-Origin` for the deployed app hosts (verified
+// 2026-07-20). An earlier version of this comment claimed otherwise and led a
+// follow-up investigation to the wrong root cause.
 const CONTENT_API_BASE = BFF_API_BASE.content;
 
 /**
