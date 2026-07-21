@@ -597,6 +597,10 @@
     "answerInputLabel": "Answer input"
   },
   "common": {
+    "copyHint": "Copy the full value to the clipboard",
+    "copied": "Copied!",
+    "copyFailed": "Copy failed",
+    "copyableIdHint": "Shortened for display — the full value is copied",
     "warming": {
       "title": "Warming up…",
       "subtitle": "This only takes a moment.",
