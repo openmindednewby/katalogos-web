@@ -666,7 +666,8 @@
     "discardHint": "Discard unsaved changes",
     "statusBadgeHint": "Displays the current status",
     "textInputLabel": "Text input field",
-    "accordionToggleHint": "Expand or collapse this section"
+    "accordionToggleHint": "Expand or collapse this section",
+    "tabsMenuHint": "Open the menu to switch sections"
   },
   "layout": {
     "closeSidebar": "Close sidebar",
