@@ -17,11 +17,13 @@ import { StyleSheet, View } from 'react-native';
 
 import { usePathname, useRouter } from 'expo-router';
 
+import { BuildInfoFooter } from '@dloizides/ui-layout';
 import { NavShell, isRouteActive, type NavItem } from '@dloizides/ui-nav';
 import { useSelector } from 'react-redux';
 
 import { SidebarFooter, SidebarHomeLink } from './sidebarChrome';
 import { useAuth } from '../../auth/AuthProvider';
+import { buildVersion } from '../../config/buildVersion';
 import { FM } from '../../localization/helpers';
 import { moduleRegistry } from '../../modules';
 import { Routes } from '../../navigation/routes';
@@ -126,6 +128,7 @@ const ProtectedLayout = ({ children }: Props): React.ReactElement => {
           {children}
         </View>
       </NavShell>
+      <BuildInfoFooter buildVersion={buildVersion()} />
     </View>
   );
 };
