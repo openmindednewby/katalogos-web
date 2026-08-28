@@ -14,11 +14,28 @@ COPY . .
 # Allow selecting environment at build time (dev|test|prod)
 ARG APP_ENV=prod
 ENV EXPO_PUBLIC_ENV=$APP_ENV
+# Build id stamped into BOTH the client bundle AND the PWA service-worker cache
+# key (pwa-sw.config.js). manage.sh passes the short git sha as --build-arg
+# BUILD_SHA; a plain local build falls back to `dev`. One id, both places.
+ARG BUILD_SHA=dev
+ARG EXPO_PUBLIC_BUILD_VERSION=$BUILD_SHA
+ENV EXPO_PUBLIC_BUILD_VERSION=$EXPO_PUBLIC_BUILD_VERSION
 # Cap build memory so the export fits a resource-tight Docker VM (~4 GB) — see
 # erevna-web/Dockerfile for the full rationale (Metro workers OOM-killed buildkit
 # and took down Docker Desktop on 2026-07-05). --max-workers 2 + heap cap.
 ENV NODE_OPTIONS=--max-old-space-size=2048
+# Regenerate the PWA service worker + auto-update registration BEFORE the export so
+# `public/service-worker.js` + `public/sw-register.js` land in dist/. @dloizides/pwa-sw
+# stamps a UNIQUE per-build BUILD_VERSION into the worker, so every deploy ships a
+# byte-different SW → the browser installs it → its `activate` evicts the previous
+# build's caches (kills the zombie stale-SW that stranded returning visitors).
+RUN npm run generate:sw
 RUN echo "Building Katalogos Web for ENV=$EXPO_PUBLIC_ENV" && npx expo export --platform web --max-workers 2
+
+# Inject the auto-updating service-worker registration (generated /sw-register.js).
+# Expo's static export strips <script> from app/+html.tsx, so — like Umami below —
+# the tag is added here as a post-export step.
+RUN find dist -name '*.html' -exec sed -i 's#</head>#<script defer src="/sw-register.js"></script></head>#' {} +
 
 # Inject the Umami analytics tag into every exported HTML page.
 # Expo's static export strips <script> elements from app/+html.tsx, so the

@@ -1,14 +1,18 @@
 {
-  "name": "Tag Heuer Quiz",
-  "short_name": "THQuiz",
-  "description": "Install Tag Heuer Quiz to create, manage, and answer quizzes even when offline.",
-  "categories": ["productivity", "utilities"],
+  "name": "Katalogos",
+  "short_name": "Katalogos",
+  "description": "Install Katalogos to build and manage digital menus with QR codes and real-time updates.",
+  "categories": [
+    "business",
+    "food",
+    "productivity"
+  ],
   "start_url": "/?source=pwa",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#ffffff",
-  "theme_color": "#008d5c",
+  "background_color": "#f4ede2",
+  "theme_color": "#b04632",
   "icons": [
     {
       "src": "/icons/logo-192.png",
@@ -23,20 +27,7 @@
       "purpose": "any"
     }
   ],
-  "screenshots": [
-    {
-      "src": "/pwa-screenshot-wide.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide"
-    },
-    {
-      "src": "/pwa-screenshot-mobile.png",
-      "sizes": "720x1280",
-      "type": "image/png",
-      "form_factor": "narrow"
-    }
-  ],
+  "screenshots": [],
   "lang": "en-US",
   "dir": "ltr",
   "id": "/"
