@@ -15,7 +15,9 @@
  *  - `retryable`   → Try Again is HIDDEN for a chunk error; re-rendering re-hits the same 404
  *  - `labelsFor`   → "Update available" wording instead of "Something went wrong"
  *  - `showDetails` → dev-only, and suppressed for chunk errors (a hashed filename is noise)
- *  - `onMount`     → releases the one-shot guard on a clean mount, so a FUTURE deploy can recover
+ *  - `onMount`     → clears the reload guard on a clean mount ONLY once its 60s cooldown has
+ *                    elapsed. A clean mount is not proof the route loaded: a lazy chunk can 404
+ *                    AFTER the boundary commits, so releasing on mount alone reloads forever
  *  - `reloadIsPrimary` → Reload gets the filled emphasis; for a stale chunk it is the action
  *                        that actually works
  *
