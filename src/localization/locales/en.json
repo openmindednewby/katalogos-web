@@ -275,6 +275,7 @@
     "tenantNameInputLabel": "Tenant name input",
     "submit": "Create account",
     "submitHint": "Submit the registration form",
+    "submitting": "Creating account...",
     "haveAccount": "Already have an account? Sign in",
     "signInLinkHint": "Navigate to the sign-in page",
     "passwordMismatch": "Passwords do not match",
