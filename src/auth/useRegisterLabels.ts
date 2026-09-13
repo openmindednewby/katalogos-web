@@ -5,12 +5,10 @@
  * strings (`register.*` in `en.json`) and maps each `RegisterErrorCode` the form
  * reports to a localised message.
  */
-import { useMemo } from 'react';
+import { RegisterErrorCode, type RegisterFormLabels } from '@dloizides/auth-web';
 
 import { keycloakRealm } from './keycloakConfig';
 import { FM } from '../localization/helpers';
-
-import type { RegisterErrorCode, RegisterFormLabels } from '@dloizides/auth-web';
 
 const REALM_QUESTIONER = 'questioner';
 
@@ -32,32 +30,38 @@ function buildFieldLabels(): RegisterFormLabels['fields'] {
   };
 }
 
-/** Memoised label bag for `<RegisterForm labels>`. */
+/**
+ * Label bag for `<RegisterForm labels>`. Rebuilt on every render, not memoised:
+ * FM() reads the active language, so a language switch must re-resolve the copy.
+ */
 export function useRegisterLabels(): RegisterFormLabels {
-  return useMemo(
-    () => ({
-      title: FM('register.title'),
-      subtitle: FM('register.subtitle'),
-      submit: FM('register.submit'),
-      submitHint: FM('register.submitHint'),
-      submitting: FM('register.submitting'),
-      fields: buildFieldLabels(),
-    }),
-    []
-  );
+  return {
+    title: FM('register.title'),
+    subtitle: FM('register.subtitle'),
+    submit: FM('register.submit'),
+    submitHint: FM('register.submitHint'),
+    submitting: FM('register.submitting'),
+    fields: buildFieldLabels(),
+  };
 }
 
-/** Localised message for a register failure code; unknown codes get the generic failure. */
+/**
+ * Localised message for a register failure code. Exhaustive over
+ * `RegisterErrorCode`: a code added to the package fails the typecheck here.
+ * `InFlight` is never surfaced by the form; it maps to the generic failure.
+ */
 export function registerErrorMessage(code: RegisterErrorCode): string {
-  const messages: Record<string, string | undefined> = {
-    missingFields: FM('register.missingFields'),
-    invalidEmail: FM('register.invalidEmail'),
-    weakPassword: FM('register.weakPassword'),
-    passwordMismatch: FM('register.passwordMismatch'),
-    usernameTaken: FM('register.usernameTaken'),
-    emailTaken: FM('register.emailTaken'),
-    realmInvalid: FM('register.realmInvalid'),
-    validationFailed: FM('register.validationFailed'),
+  const messages: Record<RegisterErrorCode, string> = {
+    [RegisterErrorCode.MissingFields]: FM('register.missingFields'),
+    [RegisterErrorCode.InvalidEmail]: FM('register.invalidEmail'),
+    [RegisterErrorCode.WeakPassword]: FM('register.weakPassword'),
+    [RegisterErrorCode.PasswordMismatch]: FM('register.passwordMismatch'),
+    [RegisterErrorCode.UsernameTaken]: FM('register.usernameTaken'),
+    [RegisterErrorCode.EmailTaken]: FM('register.emailTaken'),
+    [RegisterErrorCode.RealmInvalid]: FM('register.realmInvalid'),
+    [RegisterErrorCode.ValidationFailed]: FM('register.validationFailed'),
+    [RegisterErrorCode.Failed]: FM('register.failed'),
+    [RegisterErrorCode.InFlight]: FM('register.failed'),
   };
-  return messages[code] ?? FM('register.failed');
+  return messages[code];
 }
