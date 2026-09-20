@@ -4,6 +4,8 @@ import { StyleSheet, Text, TouchableOpacity, View, useWindowDimensions } from 'r
 
 import { useRouter } from 'expo-router';
 
+import { MIN_TARGET_PX } from '@dloizides/ui-layout';
+
 import Wordmark from './Wordmark';
 import { useAuth } from '../../../auth/AuthProvider';
 import { FM } from '../../../localization/helpers';
@@ -20,7 +22,6 @@ const MOBILE_MENU_PADDING = 16;
 const HAMBURGER_LINE_HEIGHT = 2;
 const HAMBURGER_LINE_WIDTH = 22;
 const HAMBURGER_LINE_GAP = 5;
-const HAMBURGER_TAP_SIZE = 40;
 const MOBILE_LINK_FONT_SIZE = 16;
 const DEFAULT_BORDER_WIDTH = 1;
 const NAV_GAP = 32;
@@ -54,7 +55,8 @@ const styles = StyleSheet.create({
     borderRadius: BUTTON_BORDER_RADIUS,
   },
   registerText: { fontSize: BUTTON_FONT_SIZE, fontWeight: '600' },
-  hamburger: { width: HAMBURGER_TAP_SIZE, height: HAMBURGER_TAP_SIZE, justifyContent: 'center', alignItems: 'center' },
+  brand: { minHeight: MIN_TARGET_PX, justifyContent: 'center' },
+  hamburger: { width: MIN_TARGET_PX, height: MIN_TARGET_PX, justifyContent: 'center', alignItems: 'center' },
   hamburgerLine: { width: HAMBURGER_LINE_WIDTH, height: HAMBURGER_LINE_HEIGHT, borderRadius: 1, marginVertical: HAMBURGER_LINE_GAP / 2 },
   mobileMenu: { width: '100%', paddingHorizontal: MOBILE_MENU_PADDING, paddingVertical: MOBILE_MENU_PADDING, borderTopWidth: DEFAULT_BORDER_WIDTH },
   mobileLinkText: { fontSize: MOBILE_LINK_FONT_SIZE, fontWeight: '500', paddingVertical: 12 },
@@ -100,7 +102,7 @@ const LandingNavbar = (): React.ReactElement => {
   return (
     <View style={[styles.outer, styles.outerBorder, { backgroundColor: NAVBAR_BG, borderBottomColor: MARKETING_PALETTE.gray300 }]} testID={TestIds.LANDING_NAVBAR}>
       <View style={styles.inner}>
-        <TouchableOpacity accessibilityHint={FM('landing.nav.homeHint')} accessibilityLabel={FM('landing.brand')} accessibilityRole="link" testID={TestIds.LANDING_NAV_BRAND} onPress={() => handleNavigate(HOME_ROUTE)}>
+        <TouchableOpacity accessibilityHint={FM('landing.nav.homeHint')} accessibilityLabel={FM('landing.brand')} accessibilityRole="link" style={styles.brand} testID={TestIds.LANDING_NAV_BRAND} onPress={() => handleNavigate(HOME_ROUTE)}>
           <Wordmark size={NAVBAR_WORDMARK_SIZE} text={FM('landing.brand')} />
         </TouchableOpacity>
         {isMobile ? <TouchableOpacity accessibilityHint={FM('landing.nav.menuHint')} accessibilityLabel={FM('menu.title')} accessibilityRole="button" style={styles.hamburger} testID={TestIds.LANDING_NAV_MOBILE_MENU} onPress={() => setMobileMenuOpen(!mobileMenuOpen)}>

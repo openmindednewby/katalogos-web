@@ -21,7 +21,6 @@ module.exports = {
       ],
       numberOfRuns: 3,
       settings: {
-        preset: 'desktop',
         // Skip PWA audits since this is a web app, not PWA
         skipAudits: ['installable-manifest', 'splash-screen', 'themed-omnibox'],
       },

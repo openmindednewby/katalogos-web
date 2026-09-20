@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react';
 
-import { Platform, StyleSheet, Text } from 'react-native';
+import { Platform, Text } from 'react-native';
 
 import { TestIds } from '../../../shared/testIds';
 import {
@@ -19,11 +19,14 @@ interface Props {
   color?: string;
 }
 
-const styles = StyleSheet.create({
-  base: {
-    lineHeight: 1,
-  },
-});
+/**
+ * Multiplier applied to `size` to derive the wordmark's line height.
+ *
+ * In a React Native style `lineHeight` is an ABSOLUTE PIXEL value, not the unitless
+ * CSS ratio. The previous `lineHeight: 1` therefore collapsed the <Text> box to 1px,
+ * and the brand TouchableOpacity in LandingNavbar shrink-wrapped to a 1px hit box.
+ */
+const WORDMARK_LINE_HEIGHT_RATIO = 1.2;
 
 /**
  * Per-app marketing wordmark.
@@ -47,16 +50,14 @@ const Wordmark = ({ text, size, color }: Props): ReactElement => {
 
   return (
     <Text
-      style={[
-        styles.base,
-        {
+      style={{
           fontSize: size,
+          lineHeight: size * WORDMARK_LINE_HEIGHT_RATIO,
           fontWeight: MARKETING_WORDMARK_WEIGHT,
           letterSpacing: MARKETING_WORDMARK_LETTER_SPACING,
           color: resolvedColor,
           fontFamily,
-        },
-      ]}
+        }}
       testID={TestIds.LANDING_WORDMARK}
     >
       {text}
