@@ -23,7 +23,7 @@ RUN echo "Building Katalogos Web for ENV=$EXPO_PUBLIC_ENV" && npx expo export --
 # Inject the Umami analytics tag into every exported HTML page.
 # Expo's static export strips <script> elements from app/+html.tsx, so the
 # tag is added here as a post-export step instead.
-RUN find dist -name '*.html' -exec sed -i 's#</head>#<script defer src="https://analytics.dloizides.com/script.js" data-website-id="493b52aa-6e97-4bb5-95ab-056e7e90b4aa"></script></head>#' {} +
+RUN find dist -name '*.html' -exec sed -i 's#</head>#<script async src="https://analytics.dloizides.com/script.js" data-website-id="493b52aa-6e97-4bb5-95ab-056e7e90b4aa"></script></head>#' {} +
 
 # Inject SEO meta (Open Graph / Twitter / canonical) — Expo's static export
 # strips these from app/+html.tsx, same as it strips <script>.
