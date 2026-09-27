@@ -2,7 +2,8 @@
  * Hook for uploading content to the Content Service.
  *
  * Architecture (task #39, 2026-05-24): single-shot multipart POST to the
- * ContentService proxy endpoint via the BFF (see `utils/uploadUtils.ts`).
+ * ContentService proxy endpoint via the BFF, sent by `@dloizides/content-upload`
+ * (`uploadImage`: CSRF header, cookie credentials, XHR progress, abort).
  * The 3-step presigned-PUT flow (request-url → PUT to SeaweedFS →
  * complete) was retired because the signed URLs pointed at internal K8s
  * DNS, which is unreachable from the browser.
@@ -14,13 +15,14 @@
  */
 import { useCallback, useRef, useState } from 'react';
 
+import { blobFromUri, uploadImage } from '@dloizides/content-upload';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { isValueDefined } from '../../../../utils/is';
 import {
+  CONTENT_UPLOAD_ENDPOINT,
   fetchContent,
   PROGRESS_COMPLETE,
-  proxyUploadContent,
   validateFile,
 } from '../utils/uploadUtils';
 
@@ -116,10 +118,14 @@ async function performUploadFlow(
   const validation = validateFile(config.file, config.category);
   if (!validation.valid) throw new Error(validation.error);
 
-  const uploadResponse = await proxyUploadContent({
-    file: config.file,
+  const blob = await blobFromUri(config.file.uri);
+  const uploadResponse = await uploadImage(blob, {
+    endpoint: CONTENT_UPLOAD_ENDPOINT,
+    fileName: config.file.name,
     category: config.category,
     isPublic: config.isPublic,
+    // The local client never required `url`; metadata is re-read via fetchContent below.
+    requireUrl: false,
     onProgress,
     signal: config.signal,
   });

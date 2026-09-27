@@ -52,17 +52,6 @@ const BYTES_PER_MB = BYTES_PER_KB * BYTES_PER_KB;
 const MAX_IMAGE_SIZE_MB = 10;
 
 /**
- * Response from the single-shot multipart proxy upload
- * (`POST /api/v1/content/upload`). Mirrors `UploadContentResponse` in
- * `ContentService/Content/src/Content.Web/Upload/UploadContent.cs`.
- */
-export interface UploadContentResponse {
-  contentId: string;
-  status: ContentStatus;
-  url?: string;
-}
-
-/**
  * Response containing a content access URL.
  */
 export interface ContentUrlResponse {
