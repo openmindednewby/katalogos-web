@@ -102,7 +102,7 @@ Lives at `https://github.com/openmindednewby/dloizides-bootstrap` (private). Loc
 ## Open / outstanding items
 
 ### IMPORTANT — pending action by user
-1. **Save age private key** (`AGE-SECRET-KEY-13SKFEM66EPC9K3W7ZW5SV3YLDKPH8ZM5WSHLPM40TQNPZP9W4N0SGAFG49`) into:
+1. **Save age private key** (ROTATED 2026-10-07 by SECRETS-HISTORY-1 "History secret scan": the original key was exposed in this file and is retired; the current private key is never written in git — it lives in the password manager entry "dloizides backup age private key" (staged at `~/.config/dloizides-backup/age-identity.txt` until moved), public key in `~/.config/dloizides-backup/age-recipient.txt`) into:
    - Password manager entry "dloizides backup age private key" (PRIMARY)
    - Paper backup in fire-safe / safety-deposit box
    - Encrypted USB stored off-site (optional)
