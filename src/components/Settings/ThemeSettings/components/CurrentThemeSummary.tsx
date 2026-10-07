@@ -1,11 +1,6 @@
 
 
 
-/**
- * Current Theme Summary section.
- * Shows preset name, color swatches for primary/secondary/accent,
- * logo preview, and a light/dark mode toggle.
- */
 import React, { useCallback, useMemo } from 'react';
 
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';

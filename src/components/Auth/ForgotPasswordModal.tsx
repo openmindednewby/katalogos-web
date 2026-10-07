@@ -1,19 +1,3 @@
-/**
- * "Forgot password?" modal, launched from the login screen.
- *
- * Thin app-glue around the shared, **react-query-free** `<ForgotPasswordFields>`
- * from `@dloizides/auth-web` (promoted there so katalogos / erevna / kefi stop
- * hand-rolling the identical body — see the feature-reuse roadmap). This wrapper
- * supplies the three app-specific things the package cannot own:
- *  - the app's `ModalShell` chrome (title bar + close affordance),
- *  - the `FM()`-localised copy (the package is i18n-agnostic — copy comes via
- *    the `labels` bag), and
- *  - the same-origin `bffAuthClient` + this SPA's `resetUrlTemplate`.
- *
- * The field, validation, the direct `bffAuthClient.forgotPassword` call and the
- * anti-enumeration success state now all live in the package. It stays
- * react-query-free, so it renders on the provider-less login route.
- */
 import React from 'react';
 
 import {
@@ -30,12 +14,10 @@ import ModalShell from '../Shared/ModalShell';
 
 interface Props {
   visible: boolean;
-  /** The app theme mapped to the package's `AuthTheme` token bag. */
   theme: AuthTheme;
   onClose: () => void;
 }
 
-/** Map the app's localised strings onto the package label bag. */
 function forgotLabels(): Partial<ForgotPasswordFieldsLabels> {
   return {
     title: FM('forgotPassword.title'),

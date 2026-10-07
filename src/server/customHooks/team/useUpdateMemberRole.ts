@@ -1,6 +1,3 @@
-/**
- * Mutation hook for updating a team member's role via the Identity API.
- */
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { getListTeamMembersQueryKey } from './useListTeamMembers';
@@ -14,7 +11,6 @@ interface UpdateRoleVariables {
   data: UpdateMemberRoleRequest;
 }
 
-/** Updates a team member's role. */
 async function updateMemberRole({ memberId, data }: UpdateRoleVariables): Promise<TeamMemberDto> {
   return identityInstance<TeamMemberDto>({
     url: `/api/v1/team/members/${String(memberId)}/role`,

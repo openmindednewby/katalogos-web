@@ -1,19 +1,3 @@
-/**
- * Presentational reset-password screen body.
- *
- * Unified-auth Phase 1c: the reset-password form *logic* lives in the shared
- * `@dloizides/auth-web` `useResetPasswordForm` hook; this component is the
- * app-specific render layer it feeds. Split out of the route so the route stays
- * thin and the rendered UI / testIds / localized copy are unchanged from the
- * pre-port screen.
- *
- * It has two states:
- *  - `hasInvalidToken` → a "request a new link" CTA.
- *  - otherwise → the two-field new-password form.
- *
- * `errorMessage` is injected so the route owns the `ResetPasswordError → FM()`
- * mapping (the package is i18n-agnostic).
- */
 import React, { type ReactElement } from 'react';
 
 import { ActivityIndicator, StyleSheet, Text, TextInput, View } from 'react-native';
@@ -49,16 +33,8 @@ const styles = StyleSheet.create({
 });
 
 interface ResetPasswordViewProps {
-  /**
-   * The form state + callbacks from the active reset-password hook. Both the
-   * unified (`@dloizides/auth-web`) and legacy local hooks return this same
-   * `UseResetPasswordFormResult` shape — the legacy hook now re-exports the
-   * package's `ResetPasswordError`, so there is one enum identity.
-   */
   form: UseResetPasswordFormResult;
-  /** Maps a `ResetPasswordError` onto its localized message. */
   errorMessage: (errorKey: ResetPasswordError | null) => string;
-  /** Invoked when the user taps "request a new link" on the invalid-token CTA. */
   onRequestNew: () => void;
 }
 

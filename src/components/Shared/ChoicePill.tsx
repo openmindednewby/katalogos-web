@@ -32,13 +32,6 @@ interface Props {
 const ChoicePill = ({ label, selected = false, onPress, style, testID }: Props): React.ReactElement => {
   const { theme } = useTheme();
 
-  // The selected pill is a text-on-tint pair, and it shipped as the naive
-  // `primary['500']` on `primary['100']`. That FAILED AA on four of the five
-  // bundled presets — 3.35:1 on Tag Heuer, 3.86 on Forest, 3.87 on Sunset, 4.40
-  // on Ocean — and only cleared on Default (5.42:1). It is not a tuning problem:
-  // `500` is the tenant's seed verbatim and `100` is a tint of it, so the ratio
-  // tracks the seed's luminance, which nothing constrains. `badgeColors` measures
-  // per seed and returns the lightest shade that provably clears floor + margin.
   const selectedColors = React.useMemo(
     () => badgeColors(theme.palette.primary),
     [theme.palette.primary],

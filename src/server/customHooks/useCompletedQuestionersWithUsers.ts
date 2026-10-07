@@ -10,7 +10,6 @@ export interface CompletedQuestionerWithUser extends CompletedQuestionerDto {
   user?: IdentityAbstractionsModelsUserListItem | null;
 }
 
-/** Build a map of users by ID for efficient lookup */
 function buildUserMap(users: IdentityAbstractionsModelsUserListItem[]): Map<string, IdentityAbstractionsModelsUserListItem> {
   const map = new Map<string, IdentityAbstractionsModelsUserListItem>();
   for (const u of users) 
@@ -19,7 +18,6 @@ function buildUserMap(users: IdentityAbstractionsModelsUserListItem[]): Map<stri
   return map;
 }
 
-/** Merge questioners with user data */
 function mergeWithUsers(
   items: CompletedQuestionerDto[],
   userMap: Map<string, IdentityAbstractionsModelsUserListItem>,

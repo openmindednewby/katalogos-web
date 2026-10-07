@@ -36,11 +36,9 @@ const QuizAnswersPage = (): React.ReactElement => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isViewMode, setIsViewMode] = useState(false);
 
-  // Use composed hook that returns completed questioners with optional user details
   const composed = useCompletedQuestionersWithUsers();
   const items: CompletedQuestionerWithUser[] = composed.data;
 
-  // Simple client-side search state (searches name, username and email)
   const [search, setSearch] = useState('');
   const filteredItems = useMemo((): CompletedQuestionerWithUser[] => {
     const s = search.trim().toLowerCase();
@@ -62,7 +60,6 @@ const QuizAnswersPage = (): React.ReactElement => {
     [colors.background, colors.border],
   );
 
-  // Handlers moved out of JSX
   function handleEdit(item: CompletedQuestionerDto): void {
     setEditingItem(item);
     setIsViewMode(false);

@@ -1,12 +1,3 @@
-/**
- * FeaturedItemControls Unit Tests
- *
- * Tests focus on logic and behavior, not rendering:
- * - Toggle expansion state
- * - Featured toggle calls onUpdate with correct value
- * - Staff note character limit enforcement
- * - Featured order parsing and defaults
- */
 import React from 'react';
 
 import { fireEvent, render } from '@testing-library/react-native';
@@ -16,17 +7,11 @@ import { TestIds } from '../../shared/testIds';
 
 import type { MenuItem } from '../../types/menuTypes';
 
-// =============================================================================
-// Mocks
-// =============================================================================
 
 jest.mock('react-redux', () => ({
   useSelector: jest.fn(() => 'light'),
 }));
 
-// =============================================================================
-// Test Data
-// =============================================================================
 
 const STAFF_NOTE_MAX_LENGTH = 120;
 
@@ -47,9 +32,6 @@ const defaultProps = {
   surfaceColor: '#fff',
 };
 
-// =============================================================================
-// Tests
-// =============================================================================
 
 describe('FeaturedItemControls', () => {
   beforeEach(() => {

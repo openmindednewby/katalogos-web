@@ -1,23 +1,3 @@
-/**
- * Type extensions for Online Menu Management Phase 1 & 2
- *
- * These types extend the auto-generated types from orval with new fields
- * added in Phase 1 backend implementation:
- * - isActive: boolean field on TenantMenusDto
- * - displayOrder: number field on Category and MenuItem
- *
- * Phase 2 additions (Menu Customization):
- * - typography, colorScheme, layout, header, spacing on MenuContents
- * - imageSettings, videoSettings, typography, layout, styling on Category
- * - imageSettings, videoSettings, typography, priceStyle, layout, styling,
- *   availabilityBadge, badges, tags on MenuItem
- *
- * Note: Once the backend Swagger spec is updated and hooks are regenerated,
- * these manual extensions can be removed.
- *
- * @see Services/BACKEND_PHASE_1_COMPLETION_SUMMARY.md
- * @see BaseClient/docs/Tasks/TODO/menu-customization-feature.md
- */
 
 import type {
   GlobalTypography,
@@ -46,14 +26,8 @@ import type TranslationStatus from '../shared/enums/TranslationStatus';
 
 export type { NutritionalInfo } from './nutritionTypes';
 
-// ==========================================================================
-// Schedule & Seasonal Availability Types
-// ==========================================================================
 
-/**
- * Time-based schedule for a menu.
- * Mirrors the backend MenuSchedule value object.
- */
+/** Time-based schedule for a menu. */
 export interface MenuSchedule {
   scheduledDays: ScheduledDays;
   startTime: string;
@@ -62,17 +36,10 @@ export interface MenuSchedule {
   timeZoneId: string;
 }
 
-/** Counter for generating unique IDs (session-based) */
 let idCounter = 0;
 
-// ==========================================================================
-// Variant & Modifier Types
-// ==========================================================================
 
-/**
- * A group of variants for a menu item (e.g., "Size").
- * Typically single-select (choose exactly one size).
- */
+/** A group of variants for a menu item (e.g., "Size"). */
 export interface VariantGroup {
   /** Display name for this variant group (e.g., "Size", "Crust Type") */
   name: string;
@@ -88,10 +55,7 @@ export interface VariantGroup {
   variants?: Variant[];
 }
 
-/**
- * A single variant option (e.g., "Small" at $12.00).
- * The price is absolute - it replaces the menu item's base price.
- */
+/** A single variant option (e.g., "Small" at $12.00). */
 export interface Variant {
   /** Display name for this variant (e.g., "Small", "Medium", "Large") */
   name: string;
@@ -103,10 +67,7 @@ export interface Variant {
   isAvailable?: boolean;
 }
 
-/**
- * A group of modifiers for a menu item (e.g., "Extras", "Toppings").
- * Typically multi-select (add zero or more extras).
- */
+/** A group of modifiers for a menu item (e.g., "Extras", "Toppings"). */
 export interface ModifierGroup {
   /** Display name for this modifier group (e.g., "Extras", "Toppings") */
   name: string;
@@ -122,10 +83,7 @@ export interface ModifierGroup {
   modifiers?: Modifier[];
 }
 
-/**
- * A single modifier option (e.g., "Add cheese" at +$1.00).
- * The priceAdjustment is additive - it's added to the base or variant price.
- */
+/** A single modifier option (e.g., "Add cheese" at +$1.00). */
 export interface Modifier {
   /** Display name for this modifier (e.g., "Add cheese", "Extra sauce") */
   name: string;
@@ -142,16 +100,10 @@ export interface Modifier {
  * Extended TenantMenusDto with isActive field
  */
 export interface TenantMenusDto extends GeneratedTenantMenusDto {
-  /**
-   * Indicates whether the menu is active and should be visible to customers.
-   * Defaults to false when a menu is created.
-   */
+  /** Indicates whether the menu is active and should be visible to customers. */
   isActive: boolean;
 
-  /**
-   * Optional time-based schedule for this menu.
-   * Null means no schedule restrictions (always visible when active).
-   */
+  /** Optional time-based schedule for this menu. */
   schedule?: MenuSchedule | null;
 }
 
@@ -164,16 +116,10 @@ export interface Category extends Omit<GeneratedCategory, 'items'> {
    */
   id?: string;
 
-  /**
-   * Emoji icon displayed before the category name (e.g., "🍕").
-   * Optional. When not set, no icon is shown.
-   */
+  /** Emoji icon displayed before the category name (e.g., "🍕"). */
   icon?: string | null;
 
-  /**
-   * Sort order for displaying categories.
-   * Lower numbers appear first. Defaults to 0.
-   */
+  /** Sort order for displaying categories. */
   displayOrder?: number;
 
   /**
@@ -191,9 +137,6 @@ export interface Category extends Omit<GeneratedCategory, 'items'> {
    */
   items?: MenuItem[];
 
-  // ==========================================================================
-  // Phase 2: Menu Customization - Category Styling
-  // ==========================================================================
 
   /**
    * Settings for category image display
@@ -230,10 +173,7 @@ export interface MenuItem extends GeneratedMenuItem {
    */
   id?: string;
 
-  /**
-   * Sort order for displaying menu items within a category.
-   * Lower numbers appear first. Defaults to 0.
-   */
+  /** Sort order for displaying menu items within a category. */
   displayOrder?: number;
 
   /**
@@ -251,9 +191,6 @@ export interface MenuItem extends GeneratedMenuItem {
    */
   documentContentIds?: string[];
 
-  // ==========================================================================
-  // Phase 2: Menu Customization - Item Styling
-  // ==========================================================================
 
   /**
    * Settings for item image display
@@ -300,9 +237,6 @@ export interface MenuItem extends GeneratedMenuItem {
    */
   tags?: string[];
 
-  // ==========================================================================
-  // Staff Picks / Featured Items
-  // ==========================================================================
 
   /**
    * Whether this item is marked as a Staff Pick / Featured item.
@@ -314,65 +248,31 @@ export interface MenuItem extends GeneratedMenuItem {
    */
   staffNote?: string | null;
 
-  /**
-   * Display order within the featured/staff picks section.
-   * Lower numbers appear first.
-   */
+  /** Display order within the featured/staff picks section. */
   featuredOrder?: number;
 
-  // ==========================================================================
-  // Phase 3: Variants & Modifiers
-  // ==========================================================================
 
-  /**
-   * Variant groups for this item (e.g., "Size" with Small/Medium/Large).
-   * Each variant has an absolute price that replaces the base Price.
-   * When variants exist, Price becomes the starting/minimum price.
-   */
+  /** Variant groups for this item (e.g., "Size" with Small/Medium/Large). */
   variantGroups?: VariantGroup[];
 
-  /**
-   * Modifier groups for this item (e.g., "Extras" with Add cheese/Add bacon).
-   * Each modifier has a price adjustment added to the base or variant price.
-   */
+  /** Modifier groups for this item (e.g., "Extras" with Add cheese/Add bacon). */
   modifierGroups?: ModifierGroup[];
 
-  // ==========================================================================
-  // Phase 5: Nutritional Info
-  // ==========================================================================
 
-  /**
-   * Comma-separated list of ingredients for this menu item.
-   * Used as input for AI-powered nutritional info generation.
-   */
+  /** Comma-separated list of ingredients for this menu item. */
   ingredients?: string | null;
 
-  /**
-   * Nutritional information per serving.
-   * Can be manually entered or auto-filled via AI.
-   */
+  /** Nutritional information per serving. */
   nutritionalInfo?: NutritionalInfo | null;
 
-  /**
-   * Allergens detected by the AI from the ingredients list.
-   * Stored as tag keys that map to the DietaryTag system.
-   */
+  /** Allergens detected by the AI from the ingredients list. */
   detectedAllergens?: string[];
 
-  // ==========================================================================
-  // Phase 4: Seasonal Availability
-  // ==========================================================================
 
-  /**
-   * Start date for seasonal availability (MM-dd format, e.g., "09-01").
-   * When set, the item is only visible on or after this date (recurring annually).
-   */
+  /** Start date for seasonal availability (MM-dd format, e.g., "09-01"). */
   availableFrom?: string | null;
 
-  /**
-   * End date for seasonal availability (MM-dd format, e.g., "11-30").
-   * When set, the item is only visible on or before this date (recurring annually).
-   */
+  /** End date for seasonal availability (MM-dd format, e.g., "11-30"). */
   availableTo?: string | null;
 }
 
@@ -380,24 +280,14 @@ export interface MenuItem extends GeneratedMenuItem {
  * Extended MenuContents with updated Category type and styling options
  */
 export interface MenuContents {
-  // ==========================================================================
-  // Legacy fields (Phase 1)
-  // ==========================================================================
   titleFont?: string | null;
   titleFontSize?: number;
   backgroundColor?: string | null;
   textColor?: string | null;
   categories?: Category[];
 
-  // ==========================================================================
-  // Phase 2: Menu Customization - Global Styling
-  // ==========================================================================
 
-  /**
-   * Schema version for backwards compatibility.
-   * Version 1 = Phase 1 fields only
-   * Version 2 = Phase 2 with full customization
-   */
+  /** Schema version for backwards compatibility. */
   schemaVersion?: number;
 
   /**
@@ -430,16 +320,8 @@ export interface MenuContents {
    */
   defaultMediaSettings?: MediaSettings;
 
-  // ==========================================================================
-  // Staff Picks / Featured Items
-  // ==========================================================================
 
-  /**
-   * Whether the featured/Staff Picks section is shown on the public menu.
-   * - undefined/null = auto (show if any featured items exist)
-   * - true = explicitly enabled
-   * - false = explicitly disabled
-   */
+  /** Whether the featured/Staff Picks section is shown on the public menu. */
   featuredSectionEnabled?: boolean;
 
   /**
@@ -448,9 +330,6 @@ export interface MenuContents {
   featuredSectionTitle?: string | null;
 }
 
-// ==========================================================================
-// Translation Types
-// ==========================================================================
 
 /**
  * Translated content for an entire menu.
@@ -461,9 +340,6 @@ export interface TranslatedMenuContents {
   categories: TranslatedCategory[];
 }
 
-/**
- * Translated content for a single category.
- */
 interface TranslatedCategory {
   originalIndex: number;
   name?: string | null;
@@ -471,9 +347,6 @@ interface TranslatedCategory {
   items: TranslatedMenuItem[];
 }
 
-/**
- * Translated content for a single menu item.
- */
 interface TranslatedMenuItem {
   originalIndex: number;
   name?: string | null;
@@ -537,20 +410,13 @@ export function updateMenuItemDisplayOrder(items: MenuItem[]): MenuItem[] {
   }));
 }
 
-/**
- * Generate a unique ID for categories and menu items.
- * Uses a combination of timestamp and counter to ensure uniqueness.
- */
+/** Generate a unique ID for categories and menu items. */
 export function generateUniqueId(prefix: string): string {
   idCounter += 1;
   return `${prefix}_${Date.now()}_${idCounter}`;
 }
 
-/**
- * Get all featured/Staff Pick items from menu contents, sorted by featuredOrder.
- * Returns empty array if the featured section is explicitly disabled.
- * When featuredSectionEnabled is undefined/null, returns featured items (auto mode).
- */
+/** Get all featured/Staff Pick items from menu contents, sorted by featuredOrder. */
 export function getFeaturedItems(contents: MenuContents | null | undefined): MenuItem[] {
   if (contents?.featuredSectionEnabled === false) return [];
   const allItems = (contents?.categories ?? []).flatMap((c) => c.items ?? []);
@@ -560,10 +426,7 @@ export function getFeaturedItems(contents: MenuContents | null | undefined): Men
     .sort((a, b) => (a.featuredOrder ?? DEFAULT_ORDER) - (b.featuredOrder ?? DEFAULT_ORDER));
 }
 
-/**
- * Ensure all categories and items in menu contents have unique IDs.
- * This is called when loading menu contents to add IDs to any items that don't have them.
- */
+/** Ensure all categories and items in menu contents have unique IDs. */
 export function ensureMenuContentsHaveIds(contents: MenuContents | null | undefined): MenuContents {
   if (!contents) return { categories: [] };
 

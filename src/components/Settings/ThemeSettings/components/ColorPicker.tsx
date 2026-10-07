@@ -1,7 +1,3 @@
-/**
- * Color picker with hex input and visual swatch.
- * Validates hex input on blur and shows error state.
- */
 import React, { useCallback, useMemo, useState } from 'react';
 
 import { StyleSheet, Text, TextInput, View } from 'react-native';

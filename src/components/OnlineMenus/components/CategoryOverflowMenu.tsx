@@ -1,4 +1,3 @@
-/** CategoryOverflowMenu - Overflow actions modal for a category (move, select all, delete). */
 import React from 'react';
 
 import { Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -7,7 +6,6 @@ import { FM } from '@/localization/helpers';
 
 import { TestIds } from '../../../shared/testIds';
 
-/** Intentionally lighter than standard MODAL_OVERLAY_COLOR (0.5) for subtle context menus. */
 const CATEGORY_MENU_OVERLAY_COLOR = 'rgba(0, 0, 0, 0.3)';
 const MIN_WIDTH = 180;
 const BORDER_RADIUS = 8;

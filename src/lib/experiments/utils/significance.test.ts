@@ -1,7 +1,3 @@
-/**
- * Tests for significance calculation and metric formatting.
- * Focuses on logic thresholds and edge cases.
- */
 import SignificanceResult, {
   calculateSignificance,
   formatMetricPercentage,

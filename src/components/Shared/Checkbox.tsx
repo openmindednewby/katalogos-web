@@ -15,11 +15,8 @@ interface Props {
   label?: string;
   isChecked: boolean;
   onPress: () => void;
-  /** Optional localized label for checked state. Defaults to i18n `quizTemplates.yes`. */
   yesLabel?: string;
-  /** Optional localized label for unchecked state. Defaults to i18n `quizTemplates.no`. */
   noLabel?: string;
-  /** If true (default) the checkbox will append the yes/no state to the provided label. */
   baseLabel?: string;
   testID?: string;
 }
@@ -34,8 +31,6 @@ const Checkbox = ({ label, isChecked, onPress, yesLabel, noLabel, baseLabel, tes
   const { colors, palette } = theme;
   const primaryColor = palette.primary['500'];
 
-  // Build the displayed label. If showStateInLabel is true and a base label is provided,
-  // append ": Yes" or ": No" (localized) depending on `isChecked`.
   function renderLabel(): string {
     const yes = yesLabel ?? FM('quizTemplates.yes');
     const no = noLabel ?? FM('quizTemplates.no');

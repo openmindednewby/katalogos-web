@@ -1,4 +1,3 @@
-/** CategoryEditorBody - Expanded body content for a category editor. */
 import React from 'react';
 
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';

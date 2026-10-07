@@ -15,10 +15,7 @@ const QUESTIONNAIRE_FEATURES: readonly LandingFeature[] = [
   { titleKey: 'landing.questionnaires.features.privacy', descriptionKey: 'landing.questionnaires.features.privacyDesc' },
 ] as const;
 
-/**
- * Dedicated landing page for the Questionnaires service.
- * Shows hero, feature grid, and CTA section.
- */
+/** Dedicated landing page for the Questionnaires service. */
 const QuestionnairesLandingPage = (): React.ReactElement => {
   return (
     <LandingLayout>

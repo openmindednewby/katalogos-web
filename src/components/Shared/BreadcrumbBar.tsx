@@ -1,8 +1,3 @@
-/**
- * BreadcrumbBar - Generic breadcrumb navigation for modal contexts.
- * Unlike the route-based Breadcrumb component, this accepts crumb items directly
- * and does not depend on the router. Phone viewports show last 2 items with ellipsis.
- */
 import React, { useMemo } from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';

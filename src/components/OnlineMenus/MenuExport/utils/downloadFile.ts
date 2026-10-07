@@ -1,7 +1,3 @@
-/**
- * Browser file download utility.
- * Creates a Blob and triggers a download via a temporary anchor element.
- */
 import ExportFormat from '../../../../shared/enums/ExportFormat';
 
 const MIME_TYPES: Record<ExportFormat, string> = {
@@ -14,10 +10,7 @@ const FILE_EXTENSIONS: Record<ExportFormat, string> = {
   [ExportFormat.Json]: 'json',
 };
 
-/**
- * Build the export filename: `{menuName}-export-{YYYY-MM-DD}.{ext}`
- * Sanitizes the menu name by replacing non-alphanumeric chars with hyphens.
- */
+/** Build the export filename: `{menuName}-export-{YYYY-MM-DD}.{ext}` */
 export function buildExportFilename(menuName: string, format: ExportFormat): string {
   const sanitized = menuName.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   const name = sanitized !== '' ? sanitized : 'menu';
@@ -25,10 +18,7 @@ export function buildExportFilename(menuName: string, format: ExportFormat): str
   return `${name}-export-${date}.${FILE_EXTENSIONS[format]}`;
 }
 
-/**
- * Trigger a browser file download with the given content.
- * Uses the Blob API and a temporary anchor element.
- */
+/** Trigger a browser file download with the given content. */
 export function downloadFile(content: string, filename: string, format: ExportFormat): void {
   const blob = new Blob([content], { type: MIME_TYPES[format] });
   const url = URL.createObjectURL(blob);

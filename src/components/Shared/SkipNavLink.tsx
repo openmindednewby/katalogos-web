@@ -1,8 +1,3 @@
-/**
- * SkipNavLink - Visually hidden link that becomes visible on focus.
- * Allows keyboard users to skip past navigation directly to main content.
- * Only rendered on web where keyboard navigation is primary.
- */
 import React, { useCallback, useMemo, useState } from 'react';
 
 import { Platform, StyleSheet, Text, TouchableOpacity } from 'react-native';
@@ -18,7 +13,6 @@ const SKIP_NAV_BORDER_RADIUS = 4;
 const SKIP_NAV_OFF_SCREEN = -9999;
 const SKIP_NAV_VISIBLE_TOP = 8;
 
-/** Text color for the skip navigation link on primary background. */
 const SKIP_NAV_TEXT_COLOR = '#ffffff';
 
 const styles = StyleSheet.create({

@@ -2,15 +2,7 @@ import type { Module } from '@baseclient/core';
 
 export const IDENTITY_MODULE_NAME = 'identity';
 
-/**
- * Identity Module - User and Tenant Management
- *
- * Required service: IdentityService (port 5002)
- *
- * Features:
- * - User management (CRUD)
- * - Tenant management (CRUD)
- */
+/** Identity Module - User and Tenant Management */
 export const identityModule: Module = {
   name: IDENTITY_MODULE_NAME,
   displayName: 'Identity Management',

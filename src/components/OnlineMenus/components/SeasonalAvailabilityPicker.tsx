@@ -1,7 +1,3 @@
-/**
- * SeasonalAvailabilityPicker - Date range picker for seasonal item availability.
- * Uses month dropdown + validated day input (MM-dd format, no year) for recurring annual availability.
- */
 import React, { useCallback, useMemo } from 'react';
 
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';

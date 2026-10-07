@@ -15,10 +15,7 @@ const styles = StyleSheet.create({
   content: { flexGrow: 1 },
 });
 
-/**
- * Shared layout wrapper for all landing pages.
- * Renders LandingNavbar at top, children in scrollable middle, LandingFooter at bottom.
- */
+/** Shared layout wrapper for all landing pages. */
 const LandingLayout = ({ children }: Props): ReactElement => {
   const { theme } = useTheme();
 

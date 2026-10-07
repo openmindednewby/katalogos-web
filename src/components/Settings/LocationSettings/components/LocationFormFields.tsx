@@ -1,6 +1,3 @@
-/**
- * LocationFormFields - Renders all form fields for a location.
- */
 import React, { useCallback } from 'react';
 
 import { StyleSheet, Switch, Text, View } from 'react-native';

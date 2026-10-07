@@ -1,7 +1,3 @@
-/**
- * Unit tests for usePublicBusinessProfile hook.
- * Tests logic and behavior, not rendering.
- */
 import { useQuery } from '@tanstack/react-query';
 import { renderHook } from '@testing-library/react-native';
 

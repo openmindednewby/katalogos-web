@@ -1,4 +1,3 @@
-/** MenuDisplayView - renders the fully-loaded public menu with white-label integration. */
 import React, { useMemo } from 'react';
 
 import { ActivityIndicator, View } from 'react-native';
@@ -21,7 +20,6 @@ import type { PublicMenuLocation } from '../hooks/usePublicMenuLocation';
 import type { BusinessProfileData } from '../utils/businessProfileSchema';
 import type { PublicMenuTheme } from '../utils/publicMenuThemeTypes';
 
-/** Subset of PublicMenuDto fields used by the display view. */
 interface PublicMenuData {
   name?: string | null;
   description?: string | null;
@@ -74,11 +72,6 @@ interface MenuDisplayViewProps {
   onLocationChange: (locationId: string) => void;
 }
 
-/**
- * API profile fields are `string | null` while SeoHead props want
- * `string | undefined` — module-level so the null-coalescing doesn't count
- * toward the component's complexity budget.
- */
 function orUndefined<T>(value: T | null | undefined): T | undefined {
   return value ?? undefined;
 }

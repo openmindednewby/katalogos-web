@@ -1,7 +1,3 @@
-/**
- * Unit tests for billing DTO mappers.
- * Tests mapping from Orval-generated API DTOs to frontend types.
- */
 import { mapSubscription, mapPricingPlan, mapBillingHistory, mapFeatureAccess } from './mappers';
 import BillingCycle from '../enums/BillingCycle';
 import SubscriptionStatus from '../enums/SubscriptionStatus';

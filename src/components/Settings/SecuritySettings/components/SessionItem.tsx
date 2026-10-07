@@ -1,8 +1,3 @@
-/**
- * Session Item.
- * Renders a single active session row with IP address, last access time,
- * client info, and a revoke button.
- */
 import React, { useCallback } from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';

@@ -33,7 +33,6 @@ interface UseTemplateMutationsReturn {
   handleCreate: (payload: UpdateQuestionerTemplateRequest) => void;
 }
 
-/** Safely show success notification with error handling */
 function showSuccessNotification(messageKey: string): void {
   try {
     notifySuccess(FM(messageKey));
@@ -42,7 +41,6 @@ function showSuccessNotification(messageKey: string): void {
   }
 }
 
-/** Create success handler for save edit operation */
 function createSaveEditSuccessHandler(
   refetchTemplatesSoon: () => void,
   setIsModalVisible: (visible: boolean) => void,
@@ -56,7 +54,6 @@ function createSaveEditSuccessHandler(
   };
 }
 
-/** Create success handler for delete operation */
 function createDeleteSuccessHandler(refetchTemplatesSoon: () => void): () => void {
   return () => {
     refetchTemplatesSoon();
@@ -64,7 +61,6 @@ function createDeleteSuccessHandler(refetchTemplatesSoon: () => void): () => voi
   };
 }
 
-/** Create handlers for activate operation */
 interface ActivateHandlers {
   onSuccess: () => void;
   onError: (err: unknown) => void;
@@ -84,7 +80,6 @@ function createActivateHandlers(refetchTemplatesSoon: () => void): ActivateHandl
   };
 }
 
-/** Create success handler for create operation */
 function createCreateSuccessHandler(refetchTemplatesSoon: () => void): () => void {
   return () => {
     refetchTemplatesSoon();
@@ -92,7 +87,6 @@ function createCreateSuccessHandler(refetchTemplatesSoon: () => void): () => voi
   };
 }
 
-/** Build activate mutation data from item */
 function buildActivateMutationData(
   id: string,
   item: QuestionerTemplateDto,
@@ -104,7 +98,6 @@ function buildActivateMutationData(
   };
 }
 
-/** Options for save/edit and create handlers */
 interface SaveAndCreateOptions {
   editingItem: QuestionerTemplateDto | null;
   refetchTemplatesSoon: () => void;
@@ -115,7 +108,6 @@ interface SaveAndCreateOptions {
   analyticsTrack?: AnalyticsTrackFn;
 }
 
-/** Hook for save/edit and create operations */
 function useSaveAndCreateHandlers(
   options: SaveAndCreateOptions,
 ): { handleSaveEdit: (p: UpdateQuestionerTemplateRequest) => void; handleCreate: (p: UpdateQuestionerTemplateRequest) => void } {
@@ -146,7 +138,6 @@ function useSaveAndCreateHandlers(
   return { handleSaveEdit, handleCreate };
 }
 
-/** Options for delete and activate handlers */
 interface DeleteAndActivateOptions {
   items: QuestionerTemplateDto[];
   refetchTemplatesSoon: () => void;
@@ -154,7 +145,6 @@ interface DeleteAndActivateOptions {
   deleteMutation: ReturnType<typeof useQuestionerWebQuestionerTemplatesDelete>;
 }
 
-/** Hook for delete and activate operations */
 function useDeleteAndActivateHandlers(
   options: DeleteAndActivateOptions,
 ): { handleDelete: (id: string) => void; handleActivate: (id: string, current?: boolean | number) => void } {

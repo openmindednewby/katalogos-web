@@ -1,7 +1,3 @@
-/**
- * Buttons components showcase section.
- * Demonstrates: Button (all variants/sizes/states), SaveButton, CancelButton.
- */
 import type { ReactElement } from 'react';
 
 import { StyleSheet, View } from 'react-native';
@@ -20,8 +16,8 @@ const styles = StyleSheet.create({
   rowSpaced: { flexDirection: 'row', flexWrap: 'wrap', gap: VARIANT_GAP, marginBottom: VARIANT_GAP },
 });
 
+// eslint-disable-next-line no-empty-function
 function handleNoOp(): void {
-  // intentional no-op for demo
 }
 
 const ButtonsSection = (): ReactElement => (

@@ -1,4 +1,3 @@
-/** ItemAdvancedSection - Advanced settings for a menu item (styling, seasonal, featured, overrides). */
 import React from 'react';
 
 import FeaturedItemControls from '../FeaturedItemControls';

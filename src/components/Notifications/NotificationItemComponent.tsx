@@ -91,9 +91,6 @@ const styles = StyleSheet.create({
   },
 });
 
-/**
- * Formats a date string to a relative time display with i18n support
- */
 function useFormatRelativeTime(): (dateString: string) => string {
   return useCallback((dateString: string): string => {
     const date = new Date(dateString);

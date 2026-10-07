@@ -2,12 +2,6 @@
 
 
 
-/**
- * Get default notification preferences
- */
-/**
- * Helper functions for NotificationPreferencesScreen.
- */
 import type {
   NotificationPreferences,
   NotificationCategoryKey,

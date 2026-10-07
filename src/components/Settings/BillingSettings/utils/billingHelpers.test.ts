@@ -1,7 +1,3 @@
-/**
- * Unit tests for billing helper functions.
- * Tests logic: trial day calculations, status keys, permissions.
- */
 import {
   getTrialDaysRemaining,
   getStatusTranslationKey,
@@ -138,7 +134,6 @@ describe('getAnnualSavingsPercent', () => {
   });
 
   it('calculates correct savings for standard discount', () => {
-    // $29/mo = $348/yr, annual price $290 = $58 savings = ~17%
     expect(getAnnualSavingsPercent(29, 290)).toBe(17);
   });
 

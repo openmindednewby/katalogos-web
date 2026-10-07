@@ -1,7 +1,3 @@
-/**
- * React Query hooks for GDPR data export requests.
- * Wraps generated Orval API functions with app-specific logic.
- */
 import { useCallback } from 'react';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -17,7 +13,6 @@ import type { DataExportRequest } from '../types';
 
 const EXPORT_QUERY_KEY = ['privacy', 'data-export'] as const;
 
-/** Polling interval in ms for active exports. */
 const POLL_INTERVAL_MS = 5000;
 
 const EXPORT_STATUS_MAP: Record<string, ExportStatus | undefined> = {
@@ -49,11 +44,6 @@ async function checkExportStatus(requestId: string): Promise<DataExportRequest> 
   };
 }
 
-/**
- * Downloads a data export as a Blob.
- * Uses identityInstance directly because the generated hook types the response
- * as void (Swagger doesn't model binary file responses correctly).
- */
 async function downloadExport(requestId: string): Promise<Blob> {
   return identityInstance<Blob>({
     url: `/api/privacy/data-export/${requestId}/download`,

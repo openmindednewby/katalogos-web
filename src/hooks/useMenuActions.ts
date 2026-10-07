@@ -29,22 +29,7 @@ export async function deactivateMenu(externalId: string): Promise<unknown> {
   });
 }
 
-/**
- * React Query hook for activating a menu.
- * Automatically invalidates relevant queries on success.
- *
- * @example
- * ```tsx
- * const { mutate: activate, isPending } = useActivateMenu({
- *   onSuccess: () => {
- *     showNotification('Menu activated successfully');
- *   },
- * });
- *
- * // Call it
- * activate({ externalId: 'menu-guid-here' });
- * ```
- */
+/** React Query hook for activating a menu. */
 export function useActivateMenu<TError = unknown, TContext = unknown>(
   options?: UseMutationOptions<
     unknown,
@@ -60,16 +45,13 @@ export function useActivateMenu<TError = unknown, TContext = unknown>(
     ...restOptions,
     mutationFn: async ({ externalId }) => activateMenu(externalId),
     onSuccess: (data, variables, onMutateResult, context) => {
-      // Invalidate queries to refresh the UI
       queryClient.invalidateQueries({
         queryKey: getOnlineMenuWebMenuListQueryKey(),
       }).catch(() => {
-        // Ignore invalidation errors
       });
       queryClient.invalidateQueries({
         queryKey: getOnlineMenuWebMenuGetByIdQueryKey(variables.externalId),
       }).catch(() => {
-        // Ignore invalidation errors
       });
 
       if (options?.onSuccess)
@@ -79,22 +61,7 @@ export function useActivateMenu<TError = unknown, TContext = unknown>(
   });
 }
 
-/**
- * React Query hook for deactivating a menu.
- * Automatically invalidates relevant queries on success.
- *
- * @example
- * ```tsx
- * const { mutate: deactivate, isPending } = useDeactivateMenu({
- *   onSuccess: () => {
- *     showNotification('Menu deactivated successfully');
- *   },
- * });
- *
- * // Call it
- * deactivate({ externalId: 'menu-guid-here' });
- * ```
- */
+/** React Query hook for deactivating a menu. */
 export function useDeactivateMenu<TError = unknown, TContext = unknown>(
   options?: UseMutationOptions<
     unknown,
@@ -110,16 +77,13 @@ export function useDeactivateMenu<TError = unknown, TContext = unknown>(
     ...restOptions,
     mutationFn: async ({ externalId }) => deactivateMenu(externalId),
     onSuccess: (data, variables, onMutateResult, context) => {
-      // Invalidate queries to refresh the UI
       queryClient.invalidateQueries({
         queryKey: getOnlineMenuWebMenuListQueryKey(),
       }).catch(() => {
-        // Ignore invalidation errors
       });
       queryClient.invalidateQueries({
         queryKey: getOnlineMenuWebMenuGetByIdQueryKey(variables.externalId),
       }).catch(() => {
-        // Ignore invalidation errors
       });
 
       if (options?.onSuccess)

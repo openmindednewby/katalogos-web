@@ -1,7 +1,3 @@
-/**
- * Undo/Redo hook for the Menu Editor.
- * Manages state snapshots via useReducer with a configurable history cap.
- */
 import { useCallback, useReducer } from 'react';
 
 import { UNDO_STACK_MAX_SIZE } from './undoRedoConstants';

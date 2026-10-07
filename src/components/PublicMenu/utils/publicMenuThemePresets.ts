@@ -1,8 +1,3 @@
-/**
- * Registry of all public menu theme presets.
- * Individual preset definitions are split across presetsLight.ts
- * and presetsDark.ts to keep each file under 200 lines.
- */
 import { BOTANICAL, COASTAL, DARK, ELEGANT, MIDNIGHT, WARM } from './presetsDark';
 import { CLASSIC, FRESH, MINIMAL, MODERN, RUSTIC, VIBRANT } from './presetsLight';
 

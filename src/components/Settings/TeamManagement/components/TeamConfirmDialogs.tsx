@@ -1,6 +1,3 @@
-/**
- * Confirm dialogs for team management actions (remove, revoke, role change).
- */
 import React from 'react';
 
 import { FM } from '../../../../localization/helpers';

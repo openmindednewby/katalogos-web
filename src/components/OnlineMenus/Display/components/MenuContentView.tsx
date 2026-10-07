@@ -1,27 +1,7 @@
 
 
 
-// =============================================================================
-// Main Component
-// =============================================================================
 
-/**
- * MenuContentView renders the full menu content with all styling applied.
- *
- * Features:
- * - Header rendering with logo, banner, title, description
- * - Layout template support (list, grid, cards)
- * - Global style propagation to child components
- * - Category and item-level style overrides
- */
-/**
- * MenuContentView - Main display component that renders the full menu content with all styling.
- *
- * This component composes CategoryRenderer and MenuItemDisplay sub-components,
- * applies global styles from MenuContents, and supports various layout templates.
- *
- * @see BaseClient/docs/Tasks/IN_PROGRESS/create-menu-content-view-component.md
- */
 import React, { useMemo } from 'react';
 
 import { ScrollView, Text, View } from 'react-native';
@@ -36,35 +16,21 @@ import { menuContentViewStyles } from '../utils/menuContentViewStyles';
 
 import type { Category, MenuContents, MenuItem } from '../../../../types/menuTypes';
 
-// =============================================================================
-// Types
-// =============================================================================
 
 interface MenuContentViewProps {
-  /** The menu contents including categories, items, and styling */
   contents: MenuContents;
-  /** Menu name (for header display) */
   menuName?: string;
-  /** Menu description (for header display) */
   menuDescription?: string | null;
-  /** Callback when a menu item is pressed */
   onItemPress?: (category: Category, item: MenuItem) => void;
-  /** Translation function for localized strings */
   t?: (key: string, defaultValue?: string) => string;
 }
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const DEFAULT_MENU_NAME = 'Menu';
 const DEFAULT_EMPTY_MESSAGE = 'No menu items available';
 const DEFAULT_FONT_SIZE_SMALL = 16;
 const DEFAULT_PAGE_PADDING = 16;
 
-// =============================================================================
-// Component
-// =============================================================================
 
 export const MenuContentView: React.FC<MenuContentViewProps> = ({
   contents,

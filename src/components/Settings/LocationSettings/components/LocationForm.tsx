@@ -1,6 +1,3 @@
-/**
- * LocationForm - Modal form for creating or editing a location.
- */
 import React, { useState, useCallback, useEffect } from 'react';
 
 import {
@@ -68,7 +65,6 @@ const styles = StyleSheet.create({
   },
 });
 
-/** Returns the string value or empty string if null/undefined. */
 function str(value: string | null | undefined): string {
   return value ?? '';
 }

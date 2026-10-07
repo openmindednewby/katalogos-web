@@ -5,7 +5,6 @@ import ExportFormat from '../../../../shared/enums/ExportFormat';
 
 import type { MenuContents } from '../../../../types/menuTypes';
 
-// Mock the download utility to prevent actual DOM manipulation in tests
 jest.mock('../utils/downloadFile', () => ({
   buildExportFilename: jest.fn().mockReturnValue('test-export-2026-03-20.csv'),
   downloadFile: jest.fn(),

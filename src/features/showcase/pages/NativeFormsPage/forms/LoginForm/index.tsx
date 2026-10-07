@@ -1,11 +1,4 @@
 /* eslint-disable no-console */
-/**
- * Demo login form using native HTML elements.
- * No Syncfusion dependencies.
- *
- * Note: This is a web-only component using native HTML,
- * so React Native linting rules are disabled.
- */
 import type { ReactElement } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -25,7 +18,6 @@ import { ButtonNative } from '../../../../../../components/ui/native/ButtonNativ
 import type { LoginFormData } from './schema';
 import type { z } from 'zod';
 
-/** Input type before Zod transforms (rememberMe is optional) */
 type LoginFormInput = z.input<typeof loginSchema>;
 
 export const LoginForm = (): ReactElement => {
@@ -43,7 +35,6 @@ export const LoginForm = (): ReactElement => {
   });
 
   function handleFormSubmit(data: LoginFormData): void {
-    // Demo: log form data
     console.log('Login form submitted:', data);
     // eslint-disable-next-line no-alert
     alert(`Login submitted!\nEmail: ${data.email}\nRemember Me: ${String(data.rememberMe)}`);

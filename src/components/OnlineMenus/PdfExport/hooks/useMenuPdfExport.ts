@@ -1,7 +1,3 @@
-/**
- * Hook for lazy-loaded menu PDF export.
- * Loads jsPDF only when the user triggers an export.
- */
 import { useCallback, useState } from 'react';
 
 import { FM } from '@/localization/helpers';

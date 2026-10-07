@@ -1,23 +1,13 @@
-/**
- * Pure formatting helpers for menu PDF export.
- * Transforms menu data into structured sections ready for PDF rendering.
- */
 
 import { isValueDefined } from '../../../../utils/is';
 import { CURRENCY_SYMBOL } from '../../Display/utils/menuItemDisplayStyles';
 
 import type { Category, MenuItem, MenuContents } from '../../../../types/menuTypes';
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const MAX_FILENAME_LENGTH = 50;
 const PRICE_DECIMALS = 2;
 
-// =============================================================================
-// Types
-// =============================================================================
 
 /** A single item row ready for PDF rendering. */
 export interface PdfItemRow {
@@ -30,7 +20,6 @@ export interface PdfItemRow {
   variants: PdfVariantRow[];
 }
 
-/** A variant row for an item. */
 interface PdfVariantRow {
   groupName: string;
   options: string;
@@ -50,9 +39,6 @@ export interface PdfMenuData {
   categories: PdfCategorySection[];
 }
 
-// =============================================================================
-// Helpers
-// =============================================================================
 
 /** Formats a price as "$X.XX". Returns empty string for zero/undefined. */
 export function formatPdfPrice(price: number | undefined): string {

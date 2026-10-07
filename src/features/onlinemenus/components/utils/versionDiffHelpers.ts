@@ -1,6 +1,3 @@
-/**
- * Utility functions for formatting and summarizing menu version diffs.
- */
 import ChangeSemanticKey from '@/shared/enums/ChangeSemanticKey';
 import { isValueDefined } from '@/utils/is';
 
@@ -15,20 +12,14 @@ interface ChangeSummary {
   modifications: number;
 }
 
-/**
- * Formats a JSON path into a human-readable label.
- * e.g., "Categories[0].Items[1].Price" -> "Categories > Item 2 > Price"
- */
+/** Formats a JSON path into a human-readable label. */
 export function formatVersionPath(path: string): string {
   return path
     .replace(/\[(\d+)\]/g, (_match, index: string) => ` ${String(Number(index) + 1)}`)
     .replace(/\./g, ' > ');
 }
 
-/**
- * Returns a semantic color key for a given change type.
- * Resolve the actual color from theme semantic tokens in the component.
- */
+/** Returns a semantic color key for a given change type. */
 export function getChangeSemanticKey(changeType: string): ChangeSemanticKey {
   if (changeType === ADDED_CHANGE_TYPE) return ChangeSemanticKey.Success;
   if (changeType === REMOVED_CHANGE_TYPE) return ChangeSemanticKey.Error;

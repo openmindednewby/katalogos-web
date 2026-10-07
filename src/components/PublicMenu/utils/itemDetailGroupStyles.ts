@@ -1,16 +1,8 @@
-/**
- * Style builders for variant/modifier groups and tag containers
- * in the ItemDetailModal. Split from itemDetailModalStyles.ts
- * to keep files under 200 lines.
- */
 import type { TextStyle, ViewStyle } from 'react-native';
 
 import type { PublicMenuTheme } from './publicMenuThemeTypes';
 import type { ResponsiveLayout } from './responsiveStyles';
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const GROUP_MARGIN_BOTTOM = 12;
 const GROUP_HEADER_MARGIN_BOTTOM = 4;
@@ -19,9 +11,6 @@ const OPTION_NAME_FLEX = 1;
 const TAG_CONTAINER_GAP = 6;
 const DESCRIPTION_MARGIN_BOTTOM = 16;
 
-// =============================================================================
-// Style Builders
-// =============================================================================
 
 export function buildGroupContainerStyle(): ViewStyle {
   return { marginBottom: GROUP_MARGIN_BOTTOM };

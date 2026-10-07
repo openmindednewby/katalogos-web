@@ -3,7 +3,6 @@
  */
 
 export const NavTestIds = {
-  // Expandable toggle suffix (appended to parent testID)
   NAV_EXPANDABLE_TOGGLE: 'nav-expandable-toggle',
   NAV_HOME: 'nav-home',
   NAV_ACCOUNT_SETTINGS: 'nav-account-settings',

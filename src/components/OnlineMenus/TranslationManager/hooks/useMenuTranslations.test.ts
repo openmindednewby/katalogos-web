@@ -1,7 +1,3 @@
-/**
- * Tests for useMenuTranslations hook.
- * Focuses on logic: mutation callbacks, notification messages, and query key construction.
- */
 import React from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -11,24 +7,20 @@ import { useMenuTranslations } from './useMenuTranslations';
 
 import type { TranslatedMenuContents } from '../../../../types/menuTypes';
 
-// Mock the HTTP client
 const mockCustomInstance = jest.fn();
 jest.mock('../../../../server/mutators/onlineMenuMutator', () => ({
   customInstance: (...args: unknown[]) => mockCustomInstance(...args),
 }));
 
-// Mock notifications
 const mockNotify = jest.fn();
 jest.mock('../../../../lib/notifications', () => ({
   notify: (...args: unknown[]) => mockNotify(...args),
 }));
 
-// Mock FM
 jest.mock('@/localization/helpers', () => ({
   FM: (key: string) => key,
 }));
 
-// Mock isValueDefined
 jest.mock('../../../../utils/is', () => ({
   isValueDefined: (val: unknown) => val !== null && val !== undefined,
 }));

@@ -1,7 +1,3 @@
-/**
- * Business Profile Settings route page.
- * Wraps the BusinessProfileSettingsScreen component.
- */
 import React from 'react';
 
 import { BusinessProfileSettingsScreen } from '../../../src/components/Settings';

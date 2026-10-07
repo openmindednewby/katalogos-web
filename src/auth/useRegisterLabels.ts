@@ -1,10 +1,3 @@
-/**
- * FM-backed copy for the shared `<RegisterForm>` from `@dloizides/auth-web`.
- *
- * The package ships English defaults only; the app passes its own translated
- * strings (`register.*` in `en.json`) and maps each `RegisterErrorCode` the form
- * reports to a localised message.
- */
 import { RegisterErrorCode, type RegisterFormLabels } from '@dloizides/auth-web';
 
 import { keycloakRealm } from './keycloakConfig';
@@ -17,7 +10,6 @@ function resolveTenantNameLabel(): string {
   return FM('register.tenantName.onlinemenu');
 }
 
-/** Localised field copy for every visible register input. */
 function buildFieldLabels(): RegisterFormLabels['fields'] {
   return {
     firstName: { label: FM('register.firstName'), placeholder: FM('register.firstNamePlaceholder'), hint: FM('register.firstNameHint'), inputLabel: FM('register.firstNameInputLabel') },
@@ -30,10 +22,7 @@ function buildFieldLabels(): RegisterFormLabels['fields'] {
   };
 }
 
-/**
- * Label bag for `<RegisterForm labels>`. Rebuilt on every render, not memoised:
- * FM() reads the active language, so a language switch must re-resolve the copy.
- */
+/** Label bag for `<RegisterForm labels>`. Rebuilt on every render, not memoised: */
 export function useRegisterLabels(): RegisterFormLabels {
   return {
     title: FM('register.title'),
@@ -45,11 +34,7 @@ export function useRegisterLabels(): RegisterFormLabels {
   };
 }
 
-/**
- * Localised message for a register failure code. Exhaustive over
- * `RegisterErrorCode`: a code added to the package fails the typecheck here.
- * `InFlight` is never surfaced by the form; it maps to the generic failure.
- */
+/** Localised message for a register failure code. Exhaustive over */
 export function registerErrorMessage(code: RegisterErrorCode): string {
   const messages: Record<RegisterErrorCode, string> = {
     [RegisterErrorCode.MissingFields]: FM('register.missingFields'),

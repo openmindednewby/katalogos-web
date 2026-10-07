@@ -74,7 +74,6 @@ describe('useMenuActions', () => {
         url: '/api/v1/TenantMenus/test-menu-id/activate',
         method: 'PATCH',
       });
-      // Response is 204 No Content, so data should be undefined
       expect(result.current.isSuccess).toBe(true);
     });
 
@@ -92,7 +91,6 @@ describe('useMenuActions', () => {
       await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
       expect(onSuccessMock).toHaveBeenCalledTimes(1);
-      // Verify it receives the react-query v5 args: data, variables, onMutateResult, context
       const callArgs = onSuccessMock.mock.calls[0];
       expect(callArgs).toHaveLength(4);
       expect(callArgs[1]).toEqual({ externalId: 'test-menu-id' });
@@ -111,7 +109,6 @@ describe('useMenuActions', () => {
 
       await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
-      // Both the internal cache invalidation AND external onSuccess should run
       expect(externalOnSuccess).toHaveBeenCalledTimes(1);
     });
 
@@ -167,7 +164,6 @@ describe('useMenuActions', () => {
         url: '/api/v1/TenantMenus/test-menu-id/deactivate',
         method: 'PATCH',
       });
-      // Response is 204 No Content, so data should be undefined
       expect(result.current.isSuccess).toBe(true);
     });
 
@@ -185,7 +181,6 @@ describe('useMenuActions', () => {
       await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
       expect(onSuccessMock).toHaveBeenCalledTimes(1);
-      // Verify it receives the react-query v5 args: data, variables, onMutateResult, context
       const callArgs = onSuccessMock.mock.calls[0];
       expect(callArgs).toHaveLength(4);
       expect(callArgs[1]).toEqual({ externalId: 'test-menu-id' });
@@ -204,7 +199,6 @@ describe('useMenuActions', () => {
 
       await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
-      // Both the internal cache invalidation AND external onSuccess should run
       expect(externalOnSuccess).toHaveBeenCalledTimes(1);
     });
 

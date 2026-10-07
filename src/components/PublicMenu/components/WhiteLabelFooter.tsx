@@ -1,7 +1,3 @@
-/**
- * Renders custom white-label footer HTML on public menu pages.
- * Uses dangerouslySetInnerHTML on web; no-op on native.
- */
 import React from 'react';
 
 import { Platform, View } from 'react-native';

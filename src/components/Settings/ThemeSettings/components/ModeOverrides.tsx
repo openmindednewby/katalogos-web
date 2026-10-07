@@ -1,7 +1,3 @@
-/**
- * Mode overrides section for editing light/dark mode color tokens.
- * Each mode shows editable fields for background, surface, text, border, etc.
- */
 import React, { useCallback, useMemo } from 'react';
 
 import { StyleSheet, Text, TextInput, View } from 'react-native';

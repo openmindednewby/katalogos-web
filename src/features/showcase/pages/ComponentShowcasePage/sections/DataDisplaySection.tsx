@@ -1,7 +1,3 @@
-/**
- * Data Display components showcase section.
- * Demonstrates: GenericStatusBadge, Tabs, EmptyListState.
- */
 import type { ReactElement } from 'react';
 import { useCallback, useState } from 'react';
 

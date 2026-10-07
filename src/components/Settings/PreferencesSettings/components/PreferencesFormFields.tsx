@@ -1,4 +1,3 @@
-/** Form fields for language, timezone, and date format preferences. */
 import React from 'react';
 
 import { Text, View } from 'react-native';

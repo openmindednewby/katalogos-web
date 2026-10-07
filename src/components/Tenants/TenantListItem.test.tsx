@@ -4,12 +4,10 @@ import { fireEvent, render } from '@testing-library/react-native';
 
 import TenantListItem from './TenantListItem';
 
-// Mock dependencies
 jest.mock('react-redux', () => ({
   useSelector: () => 'light',
 }));
 
-// Mock useTheme (new theme system)
 jest.mock('../../theme/hooks/useTheme', () => ({
   useTheme: () => ({
     theme: {
@@ -109,7 +107,6 @@ describe('TenantListItem', () => {
       const openExternalButton = getByText(/Open Link/);
       fireEvent.press(openExternalButton);
 
-      // Button is disabled, so callback should not be called
       expect(mockOnOpenExternal).not.toHaveBeenCalled();
     });
 
@@ -160,7 +157,6 @@ describe('TenantListItem', () => {
     it('does not render activate button when onActivate is not provided', () => {
       const { queryByText } = render(<TenantListItem {...defaultProps} />);
 
-      // Only Edit and Delete should be shown, not Activate
       expect(queryByText(/Edit/)).toBeTruthy();
       expect(queryByText(/Delete/)).toBeTruthy();
     });
@@ -169,9 +165,6 @@ describe('TenantListItem', () => {
   describe('onQrCode callback', () => {
     const mockOnQrCode = jest.fn();
 
-    // The QR button renders the localized label ("QR Code"), not the raw
-    // translation key. Match on the localized text, like the sibling
-    // Edit/Delete tests above.
     it('calls onQrCode with the item ID when QR code button is pressed for active menu', () => {
       const { getByText } = render(
         <TenantListItem {...defaultProps} onQrCode={mockOnQrCode} />,

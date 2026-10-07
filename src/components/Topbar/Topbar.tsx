@@ -38,7 +38,7 @@ const Topbar = ({ showAccountButton = false }: Props): React.ReactElement => {
     ? {
         label: FM('topbar.account'),
         hint: FM('topbar.accountHint'),
-        onPress: () => { /* TODO: open account */ },
+        onPress: () => { },
       }
     : undefined;
 

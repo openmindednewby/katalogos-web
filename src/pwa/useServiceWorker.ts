@@ -6,7 +6,6 @@ import { logger } from '../utils/logger';
 
 export function useServiceWorker(): void {
   useEffect(() => {
-    // Enable in dev by default, or when explicitly opted-in via env
     const enabled = (process.env.EXPO_PUBLIC_ENABLE_PWA_PROMPTS ?? 'false') === 'true' || process.env.NODE_ENV !== 'production';
     if (!enabled) return;
     if (Platform.OS === 'web' && 'serviceWorker' in navigator) {

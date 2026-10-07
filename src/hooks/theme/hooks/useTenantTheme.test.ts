@@ -1,10 +1,3 @@
-/**
- * Unit tests for useTenantTheme hook.
- *
- * Tests the hook logic: query enabling, cache integration, ETag support,
- * 304 Not Modified handling, fallback behavior, and logout cleanup.
- * Does NOT test rendering.
- */
 import * as tenantThemeWeb from '@dloizides/tenant-theme-web';
 import { renderHook } from '@testing-library/react-native';
 
@@ -17,7 +10,6 @@ import type {
   TenantThemeResponse,
 } from '@dloizides/tenant-theme-web';
 
-// -- Mocks -------------------------------------------------------------------
 
 const MOCK_TENANT_ID = 'tenant-abc';
 const MOCK_ETAG = '"etag-1"';
@@ -105,7 +97,6 @@ const MOCK_CACHED: CachedThemeData = {
   cachedAt: Date.now(),
 };
 
-// -- Tests -------------------------------------------------------------------
 
 describe('useTenantTheme', () => {
   const mockReadCache = tenantThemeWeb.readThemeCache as jest.Mock;
@@ -208,7 +199,6 @@ describe('useTenantTheme', () => {
       queryFn: (ctx: { signal: AbortSignal }) => Promise<TenantThemeResponse>;
     };
 
-    // The queryFn should be a function that passes the cached ETag
     expect(typeof queryArgs.queryFn).toBe('function');
   });
 

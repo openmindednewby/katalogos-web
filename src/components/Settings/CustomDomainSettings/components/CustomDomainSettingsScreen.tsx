@@ -1,7 +1,3 @@
-/**
- * CustomDomainSettingsScreen - main screen for managing a custom domain.
- * Shows either the add-domain form or the domain status with DNS instructions.
- */
 import React, { useCallback, useMemo, useState } from 'react';
 
 import { ActivityIndicator, Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';

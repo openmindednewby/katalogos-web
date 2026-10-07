@@ -1,8 +1,3 @@
-/**
- * Profile Settings Screen.
- * Displays user profile info with editable fields for name, email, phone.
- * Read-only display for role and tenant. Wired to profile API via Orval hooks.
- */
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -70,7 +65,6 @@ const ProfileSettingsScreen = (): React.ReactElement => {
           queryClient.invalidateQueries({
             queryKey: getIdentityServiceAPIMeGetProfileQueryKey(),
           }).catch(() => {
-            // Ignore invalidation errors
           });
           notifySuccess(FM('settings.profile.messages.saveSuccess'));
         },

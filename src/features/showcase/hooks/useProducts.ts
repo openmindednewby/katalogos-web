@@ -1,7 +1,3 @@
-/**
- * Hook to fetch products from the dummyjson API.
- * Returns products, loading state, error state, retry function, and categories.
- */
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const PRODUCTS_URL = 'https://dummyjson.com/products';

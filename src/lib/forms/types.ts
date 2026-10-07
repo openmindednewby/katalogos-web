@@ -1,6 +1,3 @@
-/**
- * Form type definitions for React Hook Form integration.
- */
 import type { UseFormReturn, DefaultValues, FieldValues } from 'react-hook-form';
 import type { ZodSchema, z } from 'zod';
 

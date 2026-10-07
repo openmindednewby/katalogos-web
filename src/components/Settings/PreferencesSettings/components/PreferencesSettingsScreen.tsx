@@ -1,8 +1,3 @@
-/**
- * Preferences Settings Screen.
- * Allows user to configure language, timezone, and date format preferences.
- * Wired to preferences API via Orval hooks.
- */
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -74,7 +69,6 @@ const PreferencesSettingsScreen = (): React.ReactElement => {
           queryClient.invalidateQueries({
             queryKey: getIdentityServiceAPIMeGetPreferencesQueryKey(),
           }).catch(() => {
-            // Ignore invalidation errors
           });
           notifySuccess(FM('settings.preferences.messages.saveSuccess'));
         },

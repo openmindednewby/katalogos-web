@@ -1,11 +1,3 @@
-/**
- * Unit tests for categoryEmojiData.
- *
- * Tests focus on LOGIC:
- * - Data structure integrity
- * - getAllEmojis helper
- * - isValidCategoryEmoji validation
- */
 import {
   CATEGORY_EMOJI_GROUPS,
   getAllEmojis,

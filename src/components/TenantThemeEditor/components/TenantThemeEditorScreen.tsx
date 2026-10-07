@@ -1,11 +1,6 @@
 
 
 
-/**
- * Tenant Theme Editor screen.
- * Full granular theme editor with brand colors, typography, presets, and live preview.
- * Admins can edit; non-admins see a read-only message.
- */
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import {

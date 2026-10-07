@@ -1,7 +1,4 @@
-/**
- * DTO for menu template data returned from GET /api/v1/menu-templates.
- * Matches the backend MenuTemplateDto record.
- */
+/** DTO for menu template data returned from GET /api/v1/menu-templates. */
 export interface MenuTemplateDto {
   externalId: string;
   slug: string;

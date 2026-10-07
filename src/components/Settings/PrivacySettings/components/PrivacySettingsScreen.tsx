@@ -1,7 +1,3 @@
-/**
- * Privacy Settings Screen.
- * Main screen combining consent management, data export, and account deletion.
- */
 import React from 'react';
 
 import { StyleSheet, View, Text, ScrollView, ActivityIndicator } from 'react-native';

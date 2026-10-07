@@ -42,7 +42,6 @@ function isWebNavigatorWithStandalone(nav: Navigator): nav is WebNavigator {
   return 'standalone' in nav;
 }
 
-/** Check if PWA is already installed (standalone mode) */
 function checkIsInstalled(): boolean {
   try {
     const mq = typeof window.matchMedia === 'function' ? window.matchMedia('(display-mode: standalone)') : undefined;
@@ -62,7 +61,6 @@ function getWindowDeferredPrompt(): unknown {
   return window.deferredPrompt;
 }
 
-/** Handle the beforeinstallprompt event */
 function createBeforeInstallHandler(
   setDeferredPrompt: (p: BeforeInstallPromptEvent | null) => void,
   setShowInstallPrompt: (show: boolean) => void,
@@ -77,7 +75,6 @@ function createBeforeInstallHandler(
   };
 }
 
-/** Setup event listeners for PWA install and return cleanup function */
 function setupPWAListeners(
   setDeferredPrompt: (p: BeforeInstallPromptEvent | null) => void,
   setShowInstallPrompt: (show: boolean) => void,

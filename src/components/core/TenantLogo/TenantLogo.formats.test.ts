@@ -1,15 +1,7 @@
-/**
- * Additional unit tests for resolveLogoUrl edge cases.
- *
- * Complements TenantLogo.test.ts by testing URL formats not covered:
- * undefined input (runtime safety), whitespace-only, query strings,
- * and protocol-relative URLs.
- */
 import { resolveLogoUrl } from './TenantLogo';
 
 describe('resolveLogoUrl - additional URL formats', () => {
   it('returns null when logoUrl is undefined (runtime safety)', () => {
-    // The type signature is string | null, but runtime callers may pass undefined
     const result = resolveLogoUrl(undefined as unknown as string | null);
     expect(result).toBeNull();
   });
@@ -35,7 +27,6 @@ describe('resolveLogoUrl - additional URL formats', () => {
   });
 
   it('returns whitespace-only string as-is (not treated as empty)', () => {
-    // resolveLogoUrl checks for '' but not whitespace-only
     const whitespace = '   ';
     expect(resolveLogoUrl(whitespace)).toBe(whitespace);
   });

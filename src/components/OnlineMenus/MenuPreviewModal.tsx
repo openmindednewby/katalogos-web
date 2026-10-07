@@ -1,6 +1,3 @@
-/**
- * Modal for previewing a menu's live appearance.
- */
 import React from 'react';
 
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';

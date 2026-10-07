@@ -1,12 +1,4 @@
  
-/**
- * Native Forms Showcase Page.
- * Demonstrates native HTML form elements styled with CSS variables.
- * No Syncfusion dependencies - lightweight bundle for pages like login.
- *
- * Note: This is a web-only page that uses native HTML elements,
- * so React Native linting rules are disabled.
- */
 import type { ReactElement } from 'react';
 import { useEffect } from 'react';
 
@@ -24,11 +16,9 @@ const FALLBACK_PADDING = 20;
 
 export const NativeFormsPage = (): ReactElement => {
   useEffect(() => {
-    // Inject styles on web platform
     if (Platform.OS === 'web') injectNativeFormStyles();
   }, []);
 
-  // This page is web-only since it uses native HTML elements
   if (Platform.OS !== 'web')
     return (
       <div style={{ padding: FALLBACK_PADDING }}>

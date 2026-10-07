@@ -1,8 +1,3 @@
-/**
- * Primary hook for accessing the tenant theme system.
- * Returns the full ThemeContextValue from ThemeProvider.
- * Throws a descriptive error if used outside ThemeProvider.
- */
 import { useContext } from 'react';
 
 import { isValueDefined } from '../../utils/is';

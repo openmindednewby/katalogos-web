@@ -1,9 +1,6 @@
 
 
 
-/**
- * SpacingEditor - Editor for menu spacing settings (padding and margins).
- */
 import React, { useCallback } from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';
@@ -20,9 +17,6 @@ import { themePalette } from '../../../../theme/utils/styles';
 import type { RootState } from '../../../../store/reduxStore';
 import type { SpacingSettings } from '../../../../types/menuStyleTypes';
 
-// =============================================================================
-// Props Interface
-// =============================================================================
 
 interface Props {
   value: SpacingSettings;
@@ -30,18 +24,12 @@ interface Props {
   disabled?: boolean;
 }
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const MIN_SPACING = 0;
 const MAX_SPACING = 48;
 const SPACING_STEP = 4;
 const DEFAULT_SPACING = 16;
 
-// =============================================================================
-// Styles
-// =============================================================================
 
 const styles = StyleSheet.create({
   container: {
@@ -68,9 +56,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// =============================================================================
-// Component
-// =============================================================================
 
 const SpacingEditor: React.FC<Props> = ({ value, onChange, disabled = false }) => {
   const theme = useSelector((s: RootState) => s.ui.theme);

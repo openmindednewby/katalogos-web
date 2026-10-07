@@ -1,7 +1,3 @@
-/**
- * Undo/Redo toolbar for the Menu Editor.
- * Renders two buttons that call the provided undo/redo callbacks.
- */
 import React from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';

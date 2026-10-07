@@ -1,8 +1,3 @@
-/**
- * Per-tenant theme configuration stored as a JSON blob in the database.
- * Kept flat and small (~2-5KB) since it is fetched on every app load.
- * All color values are hex strings (e.g. '#005f73').
- */
 import type { ThemeModeColors } from './themeModeColors';
 
 /** Optional semantic/status color overrides. Omitted values fall back to defaults. */

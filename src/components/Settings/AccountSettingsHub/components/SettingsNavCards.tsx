@@ -1,7 +1,3 @@
-/**
- * Grouped navigation cards for the Account Settings Hub.
- * Organized into Account, Business, and Advanced sections.
- */
 import React, { useCallback } from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';

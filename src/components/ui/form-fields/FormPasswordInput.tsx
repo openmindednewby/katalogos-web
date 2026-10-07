@@ -1,8 +1,3 @@
-/**
- * Native password input with visibility toggle.
- * Consumes useTheme() via useFormThemeVars() for per-tenant styling.
- * No Syncfusion dependencies.
- */
 import type { ReactElement } from 'react';
 import { useState } from 'react';
 

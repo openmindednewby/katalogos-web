@@ -31,22 +31,11 @@ const FAQ_ENTRIES = [
   { questionKey: 'landing.faq.q7Question', answerKey: 'landing.faq.q7Answer' },
 ] as const;
 
-/**
- * Katalogos marketing landing — home route.
- *
- * Web visitors see the full marketing landing (hero + features + FAQ + footer).
- * Mobile platforms skip the marketing surface and route into auth or dashboard.
- *
- * Brand identity: locked Manrope wordmark + KT-02 tagline ("Your menu, online — in minutes.")
- * + P-01 Terracotta Warm palette. Greenfield brand — applies to marketing landing AND in-app
- * default theme (no equivalent-tenant constraint vs. Erevna).
- */
+/** Katalogos marketing landing — home route. */
 const RootPage = (): React.ReactElement | null => {
   const router = useRouter();
   const { isLoggedIn, loading } = useAuth();
 
-  // Mobile apps: skip landing, go to auth or dashboard. `isLoggedIn` is the
-  // post-BFF-cutover session signal (driven by `GET /bff/me`).
   useEffect(() => {
     if (Platform.OS === 'web') return;
     if (loading) return;
@@ -66,11 +55,6 @@ const RootPage = (): React.ReactElement | null => {
       <BrandedHero
         primaryCtaHintKey="landing.hero.primaryCtaHint"
         primaryCtaKey="landing.hero.primaryCta"
-        // Auth-aware: a signed-in visitor lands in the product; an anonymous
-        // visitor tapping "Build your menu free" goes to SIGN-UP (self-serve,
-        // P1-08) — not /login. The navbar exposes Login + Dashboard separately.
-        // (P1-07: the "stranded on marketing" symptom was a P0-01 side effect —
-        // the authed layout crashed on a 404 chunk; fixed by Recreate.)
         primaryCtaRoute={isLoggedIn ? PROTECTED_ROUTE : REGISTER_ROUTE}
         secondaryCtaHintKey="landing.hero.secondaryCtaHint"
         secondaryCtaKey="landing.hero.secondaryCta"

@@ -3,13 +3,10 @@ import i18n from './i18n';
 
 import type { TranslationKey } from '../@types/i18next';
 
-/** Cast test-only keys to TranslationKey for type compatibility. */
 const testKey = (k: string): TranslationKey => k as TranslationKey;
 
-// Mock i18n before importing helpers
 jest.mock('./i18n', () => ({
   t: jest.fn((key: string, options?: Record<string, unknown>) => {
-    // Simple mock implementation that replaces {{p1}}, {{p2}}, {{p3}} with values
     const translations: Record<string, string> = {
       'test.simple': 'Simple message',
       'test.oneParam': 'Deleted {{p1}} templates',
@@ -81,7 +78,6 @@ describe('Localization Helpers', () => {
 
     it('formats date with default options', () => {
       const result = FD(mockDate);
-      // Result depends on locale, just verify it's not empty
       expect(result).toBeTruthy();
       expect(typeof result).toBe('string');
     });

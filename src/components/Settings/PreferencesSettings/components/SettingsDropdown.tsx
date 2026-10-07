@@ -1,7 +1,3 @@
-/**
- * Generic settings dropdown for selecting from a list of string options.
- * Thin wrapper around the shared ModalDropdown component.
- */
 import React from 'react';
 
 import ModalDropdown from '../../../Shared/ModalDropdown';

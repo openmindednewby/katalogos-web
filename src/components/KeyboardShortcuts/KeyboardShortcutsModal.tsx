@@ -1,7 +1,3 @@
-/**
- * Modal displaying all available keyboard shortcuts grouped by category.
- * Closes on Escape key or close button press.
- */
 import React, { useMemo } from 'react';
 
 import { Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';

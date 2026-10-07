@@ -6,10 +6,7 @@ interface EmbedUrlOptions {
   origin?: string | null;
 }
 
-/**
- * Builds the full embed URL for a given menu external ID and configuration.
- * Pure function with no side effects.
- */
+/** Builds the full embed URL for a given menu external ID and configuration. */
 export function buildEmbedUrl(
   publicUrl: string,
   menuExternalId: string,

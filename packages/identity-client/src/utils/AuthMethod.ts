@@ -1,4 +1,3 @@
-/** Auth method enum values */
 const AUTH_METHOD_USERNAME_PASSWORD = 0;
 const AUTH_METHOD_PHONE_OTP = 1;
 const AUTH_METHOD_EMAIL_OTP = 2;

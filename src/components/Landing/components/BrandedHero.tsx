@@ -86,11 +86,7 @@ const styles = StyleSheet.create({
   ctaText: { fontSize: CTA_FONT_SIZE, fontWeight: '600' },
 });
 
-/**
- * Branded marketing hero for the Katalogos landing.
- * Uses the locked P-01 Terracotta Warm palette tokens directly (cream background,
- * clay-primary CTA button) to give the marketing landing its distinct identity.
- */
+/** Branded marketing hero for the Katalogos landing. */
 const BrandedHero = (props: Props): ReactElement => {
   const {
     wordmarkKey,

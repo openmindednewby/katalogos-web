@@ -1,12 +1,3 @@
-/**
- * Register screen — a thin wrapper around the shared `<RegisterForm>` from
- * `@dloizides/auth-web`.
- *
- * The app keeps what is product-specific: the request (sent through the app's
- * BFF client, which carries the realm, plus the verify-URL template), the
- * post-signup redirect, analytics, and the `FM()` copy. Form state, validation,
- * the honeypot and the `register-*` testIDs live in the package.
- */
 import React, { useCallback, useMemo } from 'react';
 
 import { useRouter } from 'expo-router';

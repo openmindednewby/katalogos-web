@@ -1,9 +1,3 @@
-/**
- * Hook managing the image crop modal lifecycle.
- *
- * Opens a promise-based crop flow: the caller awaits `requestCrop`,
- * the modal calls `onApply` or `onCancel` to resolve/reject the promise.
- */
 import { useCallback, useRef, useState } from 'react';
 
 import { Platform } from 'react-native';
@@ -15,9 +9,6 @@ import { blobToFileInfo, cropImageToBlob, getAspectRatioValue } from '../utils/c
 import type { FileInfo } from '../../../lib/hooks/content/types';
 import type { PixelCrop } from '../utils/cropImageUtils';
 
-// ---------------------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------------------
 
 interface CropModalState {
   isVisible: boolean;
@@ -26,25 +17,15 @@ interface CropModalState {
 }
 
 interface UseImageCropResult {
-  /** Current modal state. */
   modalState: CropModalState;
-  /** Current aspect ratio preset. */
   aspectPreset: AspectRatioPreset;
-  /** Numeric aspect ratio (undefined = free). */
   aspectRatio: number | undefined;
-  /** Sets the aspect ratio preset. */
   setAspectPreset: (preset: AspectRatioPreset) => void;
-  /** Opens the crop modal and returns the cropped FileInfo. Resolves null on cancel. */
   requestCrop: (file: FileInfo) => Promise<FileInfo | null>;
-  /** Applies the crop with given pixel coordinates. */
   onApply: (pixelCrop: PixelCrop) => void;
-  /** Cancels the crop modal. */
   onCancel: () => void;
 }
 
-// ---------------------------------------------------------------------------
-// Constants
-// ---------------------------------------------------------------------------
 
 const INITIAL_STATE: CropModalState = {
   isVisible: false,
@@ -54,11 +35,7 @@ const INITIAL_STATE: CropModalState = {
 
 const CROPPED_FILE_PREFIX = 'cropped-';
 
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
 
-/** Resolves the crop promise and resets modal state. */
 function resolveAndReset(
   resolverRef: React.MutableRefObject<((file: FileInfo | null) => void) | null>,
   setModalState: React.Dispatch<React.SetStateAction<CropModalState>>,
@@ -77,7 +54,6 @@ interface PerformCropParams {
   setModalState: React.Dispatch<React.SetStateAction<CropModalState>>;
 }
 
-/** Performs the crop, resolves the promise, and resets the modal. */
 async function performCrop(params: PerformCropParams): Promise<void> {
   const { imageUri, pixelCrop, originalFile, resolverRef, setModalState } = params;
   try {
@@ -90,9 +66,6 @@ async function performCrop(params: PerformCropParams): Promise<void> {
   }
 }
 
-// ---------------------------------------------------------------------------
-// Hook
-// ---------------------------------------------------------------------------
 
 export function useImageCrop(initialPreset: AspectRatioPreset = AspectRatioPreset.Square): UseImageCropResult {
   const [modalState, setModalState] = useState<CropModalState>(INITIAL_STATE);

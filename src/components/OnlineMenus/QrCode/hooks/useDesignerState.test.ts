@@ -1,7 +1,3 @@
-/**
- * Tests for useDesignerState hook — reducer transitions and initial state.
- * Focuses on logic, not rendering.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import { buildInitialState, useDesignerState } from './useDesignerState';

@@ -1,7 +1,3 @@
-/**
- * Hook for managing bulk item selection state in the menu editor.
- * Provides selection mode toggling, individual/all item selection, and O(1) lookups.
- */
 import { useCallback, useMemo, useState } from 'react';
 
 import type { MenuContents } from '../../../types/menuTypes';
@@ -18,7 +14,6 @@ interface UseBulkSelectionReturn {
   isSelected: (itemId: string) => boolean;
 }
 
-/** Toggle a single item in the selection set, returning a new Set. */
 function toggleItemInSet(prev: Set<string>, itemId: string): Set<string> {
   const next = new Set(prev);
   if (next.has(itemId)) next.delete(itemId);
@@ -26,7 +21,6 @@ function toggleItemInSet(prev: Set<string>, itemId: string): Set<string> {
   return next;
 }
 
-/** Extract valid item IDs from a category and add them all to the set. */
 function addCategoryItemsToSet(prev: Set<string>, categoryIndex: number, contents: MenuContents): Set<string> {
   const category = contents.categories?.[categoryIndex];
   if (!category) return prev;

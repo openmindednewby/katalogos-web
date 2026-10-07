@@ -1,6 +1,3 @@
-/**
- * Registration form validation schema using Zod.
- */
 import { z } from 'zod';
 
 const MIN_PASSWORD_LENGTH = 8;

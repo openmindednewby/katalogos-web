@@ -1,14 +1,3 @@
-/**
- * FM-backed label bags for the shared `@dloizides/auth-web` device-PIN and
- * passkey components — unified-login Increment 3 Batch 3.
- *
- * `@dloizides/auth-web` ships no translation framework: each consuming app
- * passes already-localised strings through a typed `labels` prop. These hooks
- * build the bags from katalogos's own `FM()` keys (under `auth.devicePin.*` /
- * `auth.passkey.*` in `en.json`), so the package components render on-brand and
- * fully translated. The bags are memoised so the components don't see a fresh
- * reference on every render.
- */
 import { useMemo } from 'react';
 
 import { FM } from '../localization/helpers';
@@ -24,29 +13,16 @@ import type {
   PreferredMethodHintLabels,
 } from '@dloizides/auth-web';
 
-/**
- * The shared `@dloizides/auth-web` components substitute their own placeholders
- * at render time via an internal `interpolate(template, { count | name })` that
- * matches a SINGLE-brace `{token}`. katalogos's translation files, however, must
- * use the FM-standard DOUBLE-brace `{{p1}}` (enforced by the repo's
- * `i18n-interpolation` lint rule). These converters bridge the two: they take
- * the FM-translated string (still carrying a literal `{{p1}}`, because no FM
- * param is passed) and rewrite it to the single-brace token the package expects,
- * so the package interpolates the live value (the PIN length / remembered name).
- */
 const FM_PARAM_TOKEN = /\{\{p1\}\}/g;
 
-/** Rewrite the FM `{{p1}}` placeholder to the package's `{count}` token. */
 function toCountToken(translated: string): string {
   return translated.replace(FM_PARAM_TOKEN, '{count}');
 }
 
-/** Rewrite the FM `{{p1}}` placeholder to the package's `{name}` token. */
 function toNameToken(translated: string): string {
   return translated.replace(FM_PARAM_TOKEN, '{name}');
 }
 
-/** Rewrite the FM `{{p1}}` placeholder to the `<OtpForm>` `{identifier}` token. */
 function toIdentifierToken(translated: string): string {
   return translated.replace(FM_PARAM_TOKEN, '{identifier}');
 }

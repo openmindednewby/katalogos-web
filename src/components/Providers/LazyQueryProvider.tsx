@@ -3,11 +3,6 @@ import React, { Suspense } from 'react';
 
 import { View, ActivityIndicator } from 'react-native';
 
-/**
- * Lazy-loaded React Query provider.
- * Defers @tanstack/react-query + queryClient from the initial bundle
- * so the login page loads without this ~40 KB dependency.
- */
 const QueryProvider = React.lazy(async () => {
   const [{ QueryClientProvider }, { queryClient }] = await Promise.all([
     import('@tanstack/react-query'),

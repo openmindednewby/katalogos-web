@@ -1,10 +1,3 @@
-/**
- * FeaturedItemCard - Public display card for a featured / Staff Pick item.
- *
- * Shows a visually distinct card with accent border, Staff Pick badge,
- * item image, name, price, and optional staff note.
- * Tappable to open the item detail modal.
- */
 import React from 'react';
 
 import { Text, TouchableOpacity, View } from 'react-native';
@@ -21,9 +14,6 @@ import type { MenuItem } from '../../../types/menuTypes';
 import type { PublicMenuTheme } from '../utils/publicMenuThemeTypes';
 import type { ResponsiveLayout } from '../utils/responsiveStyles';
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const ACCENT_BORDER_WIDTH = 2;
 const BADGE_PADDING_HORIZONTAL = 10;
@@ -39,9 +29,6 @@ const PRICE_DECIMALS = 2;
 const BADGE_TEXT_COLOR = '#ffffff';
 const BADGE_LETTER_SPACING = 0.5;
 
-// =============================================================================
-// Props
-// =============================================================================
 
 interface FeaturedItemCardProps {
   item: MenuItem;
@@ -51,9 +38,6 @@ interface FeaturedItemCardProps {
   onItemPress?: (item: MenuItem) => void;
 }
 
-// =============================================================================
-// Component
-// =============================================================================
 
 export const FeaturedItemCard: React.FC<FeaturedItemCardProps> = ({
   item,

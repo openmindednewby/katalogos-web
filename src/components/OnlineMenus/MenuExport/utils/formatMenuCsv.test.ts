@@ -164,7 +164,6 @@ describe('formatMenuCsv', () => {
     const result = formatMenuCsv(contents);
     const lines = result.split('\n');
 
-    // Header + 3 data rows
     const EXPECTED_LINE_COUNT = 4;
     expect(lines).toHaveLength(EXPECTED_LINE_COUNT);
   });

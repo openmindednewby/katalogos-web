@@ -1,6 +1,3 @@
-/**
- * Shared types for native form field components.
- */
 import type { InputHTMLAttributes, TextareaHTMLAttributes } from 'react';
 
 export type NativeInputProps = InputHTMLAttributes<HTMLInputElement>;

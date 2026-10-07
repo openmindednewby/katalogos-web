@@ -1,15 +1,5 @@
-/**
- * Type definitions for public menu theme presets.
- * These types define the comprehensive styling tokens
- * applied to the public-facing menu viewer.
- */
 import type { TextStyle } from 'react-native';
 
-/**
- * React Native's fontWeight literal union — using it for the weight tokens
- * (instead of plain `string`) lets the presets' values flow into TextStyle
- * without casts and catches invalid weights at compile time.
- */
 type FontWeight = NonNullable<TextStyle['fontWeight']>;
 
 /** Typography tokens for a public menu theme. */

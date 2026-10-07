@@ -1,8 +1,3 @@
-/**
- * Lazy-loads jsPDF and creates a PDF document.
- * Extracted for testability -- this module can be mocked
- * without needing to mock the dynamic import of jspdf.
- */
 
 import type { PdfDocument } from './menuPdfRenderer';
 

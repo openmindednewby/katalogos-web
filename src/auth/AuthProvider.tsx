@@ -30,25 +30,11 @@ interface AuthContextType {
   userInfo: KeycloakUserInfo | null;
   user: NormalizedUser | null;
   refreshingUserInfo: boolean;
-  /**
-   * Bridge a `BffUser` from an external login surface (the shared `<LoginForm>`
-   * from `@dloizides/auth-web`, which calls `bffAuthClient.login` directly)
-   * into the Redux session view. Without this, the rest of the app would not
-   * see the user as logged in until a page reload re-bootstrapped via
-   * `GET /bff/me`. See `useAuthOperations.applyBffSession` for the impl.
-   */
   applyBffSession: (user: BffUser) => void;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
-// Phase 2 BFF cutover: katalogos-web no longer does direct-KC ROPC. The native
-// branded login form posts credentials to the same-origin `bff-katalogos`,
-// which terminates auth server-side and sets an httpOnly session cookie. The
-// SPA holds no token — there is nothing here to refresh or store.
-//
-// `bffAuthClient` is the shared `BffAuthClient` from `@dloizides/auth-client`
-// v3, wired same-origin.
 
 function useLogoutButtonEffect(logout: () => Promise<void>): void {
   useEffect(() => {
@@ -71,8 +57,8 @@ function useLogoutButtonEffect(logout: () => Promise<void>): void {
         if (!el) return;
         if (!shouldTriggerLogout()) return;
         logout().catch(() => {});
+      // eslint-disable-next-line no-empty
       } catch {
-        // ignore
       }
     };
 
@@ -84,11 +70,6 @@ function useLogoutButtonEffect(logout: () => Promise<void>): void {
   }, [logout]);
 }
 
-/**
- * Bootstrap the session on app load. `GET /bff/me` tells us whether there is a
- * live BFF session — it replaces the old token-in-storage check. A `null`
- * result (the BFF answered 401) leaves the user logged out.
- */
 function useSessionBootstrap(dispatch: AppDispatch): void {
   useEffect(() => {
     let active = true;
@@ -129,29 +110,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }): React
 
   useSessionBootstrap(dispatch);
 
-  /**
-   * End the session via the shared `performBffLogout` sequencer.
-   *
-   * This used to redirect BEFORE awaiting `bffAuthClient.logout()`. `redirectTo`
-   * ends in `window.location.replace()`, and a document navigation cancels
-   * in-flight fetches — so `POST /bff/logout` was frequently never sent. The
-   * httpOnly session cookie SURVIVED: the UI looked signed out while the server
-   * still considered the user authenticated, so navigating back signed them
-   * straight in. On a shared machine that is account takeover, and the `catch`
-   * logged it "non-fatal", so it never surfaced.
-   *
-   * It also discarded the return value. `logout()` resolves to the IdP's
-   * RP-initiated logout URL (`Promise<string | null>`, not `void`) — dropping it
-   * left the Keycloak SSO session alive, the documented "sign out and get signed
-   * straight back in" bug.
-   *
-   * The sequencer owns the ordering (clear local → AWAIT the BFF → navigate
-   * exactly once, last). `withLogoutInFlight` closes the second hole the
-   * sequencer cannot see on its own: clearing local state re-renders
-   * `ProtectedLayout`, whose guard would otherwise fire its own `redirectTo` and
-   * unload the document out from under the in-flight POST. See
-   * `logoutNavigationGuard.ts`.
-   */
   const logout = useCallback(
     async (): Promise<void> =>
       withLogoutInFlight(async () =>

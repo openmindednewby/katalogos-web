@@ -1,10 +1,5 @@
-/**
- * Unit tests for useWhiteLabelRuntime hook utilities.
- * Tests the CSS injection/removal and favicon injection/removal functions.
- */
 import { injectCustomCss, injectFavicon, removeCustomCss, removeFavicon } from './useWhiteLabelRuntime';
 
-// Mock Platform to return 'web'
 jest.mock('react-native', () => ({
   Platform: { OS: 'web' },
 }));
@@ -103,7 +98,6 @@ describe('removeCustomCss', () => {
 
     removeCustomCss();
 
-    // No error thrown
     expect(document.getElementById).toHaveBeenCalledWith('white-label-custom-css');
   });
 });

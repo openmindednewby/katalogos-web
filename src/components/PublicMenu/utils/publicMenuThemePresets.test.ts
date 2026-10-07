@@ -1,7 +1,3 @@
-/**
- * Unit tests for public menu theme presets.
- * Ensures all presets are complete, valid, and consistent.
- */
 import {
   DEFAULT_PUBLIC_MENU_THEME,
   DEFAULT_PUBLIC_MENU_THEME_ID,

@@ -1,14 +1,3 @@
-/**
- * Tests for color condition logic in CategorySection and MenuItemDisplay.
- *
- * BUG-MENU-011: CategorySection had duplicate identical conditions.
- * BUG-MENU-012: MenuItemDisplay had the same duplicate pattern.
- *
- * The fix changes `isValueDefined(x) && isValueDefined(x)` to
- * `isValueDefined(x) && x !== ''` so empty strings fall through
- * to the default/fallback color.
- */
-// Replicate the exact logic from CategorySection and MenuItemDisplay
 function resolveTextColor(textColor: string | null | undefined, fallback: string): string {
   const hasColor = textColor !== null && textColor !== undefined && textColor !== '';
   return hasColor ? String(textColor) : fallback;

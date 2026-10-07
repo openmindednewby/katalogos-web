@@ -1,7 +1,3 @@
-/**
- * Theme presets barrel export.
- * Provides built-in presets that tenants can choose as a starting point.
- */
 import { DEFAULT_THEME_CONFIG } from './default';
 import { FOREST_THEME_CONFIG } from './forest';
 import { OCEAN_THEME_CONFIG } from './ocean';

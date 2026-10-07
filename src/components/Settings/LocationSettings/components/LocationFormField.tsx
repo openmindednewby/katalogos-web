@@ -1,6 +1,3 @@
-/**
- * LocationFormField - Reusable labeled text input for location forms.
- */
 import React from 'react';
 
 import { StyleSheet, Text, TextInput, View } from 'react-native';

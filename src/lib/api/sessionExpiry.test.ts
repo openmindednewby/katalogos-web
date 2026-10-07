@@ -1,11 +1,3 @@
-/**
- * Unit tests for the session-expiry interceptor. Focus is on the logic: a 401
- * is confirmed against `/bff/me` before the session is torn down — only a
- * genuinely dead session clears the session view and emits `session-expired`.
- * An endpoint-level 401 (where `/bff/me` still reports a live user) passes
- * through untouched. Any non-401 status is passed through untouched. No real
- * HTTP — `bffAuthClient.getCurrentUser` is mocked.
- */
 import { registerSessionExpiryInterceptor } from './sessionExpiry';
 
 const mockEmit = jest.fn();

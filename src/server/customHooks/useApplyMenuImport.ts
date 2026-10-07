@@ -1,7 +1,3 @@
-/**
- * Custom hook for applying AI-imported menu data to a specific menu.
- * Uses the OnlineMenu API: POST /api/v1/TenantMenus/{ExternalId}/apply-import
- */
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { customInstance } from '@/server/mutators/onlineMenuMutator';

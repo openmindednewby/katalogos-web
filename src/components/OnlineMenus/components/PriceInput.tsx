@@ -1,6 +1,3 @@
-/**
- * PriceInput - Controlled decimal input for price fields.
- */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { StyleSheet, TextInput } from 'react-native';

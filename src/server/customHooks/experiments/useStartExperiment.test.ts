@@ -1,7 +1,3 @@
-/**
- * Tests for useStartExperiment hook.
- * Focuses on mutation function and callback behavior.
- */
 import React from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';

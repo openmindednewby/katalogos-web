@@ -1,7 +1,3 @@
-/**
- * Unit tests for menuCacheManager.
- * Tests cache clearing logic and edge cases.
- */
 import { clearAllCaches, clearMenuCache, getManagedCacheNames } from './menuCacheManager';
 
 const mockDelete = jest.fn<Promise<boolean>, [string]>();

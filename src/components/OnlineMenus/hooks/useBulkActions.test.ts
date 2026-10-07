@@ -1,7 +1,3 @@
-/**
- * Tests for bulk action pure helpers and useBulkActions hook.
- * Focuses on logic: correct item filtering, price math, and callback wiring.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import {

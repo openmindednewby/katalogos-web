@@ -1,7 +1,3 @@
-/**
- * Tests for useMenuOpenExternal hook.
- * Focus on testing the callback logic, not the underlying mutations.
- */
 import { Linking } from 'react-native';
 
 import { renderHook, act } from '@testing-library/react-native';
@@ -12,7 +8,6 @@ import { logger } from '../utils/logger';
 import { setPlatformOS, resetPlatformOS } from './__mocks__/reactNativePlatform';
 import { mockT, setupCommonMocks } from './menuPageHandlers.testUtils';
 
-// Mock dependencies
 jest.mock('../lib/notifications', () => ({
   notify: jest.fn(),
   notifySuccess: jest.fn(),

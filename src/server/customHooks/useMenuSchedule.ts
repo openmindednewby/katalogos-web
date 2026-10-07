@@ -1,8 +1,3 @@
-/**
- * Custom hooks for menu schedule management.
- * Handles PUT /api/v1/TenantMenus/{ExternalId}/schedule (set schedule)
- * and DELETE /api/v1/TenantMenus/{ExternalId}/schedule (remove schedule).
- */
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { customInstance } from '@/server/mutators/onlineMenuMutator';

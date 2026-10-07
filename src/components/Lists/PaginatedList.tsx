@@ -1,11 +1,3 @@
-/**
- * PaginatedList — a FlatList with client-side paging, an empty state and a loading state.
- *
- * The paging *maths* lives in `usePagedRows` from `@dloizides/ui-tables` (promoted in
- * de-fork wave W1.1). This component stays app-side on purpose: it binds a `FlatList`
- * plus this app's `EmptyListState` / `LoadingFallback`, none of which belong in a
- * brand-agnostic package.
- */
 import React, { useCallback, useMemo } from 'react';
 
 import { View, FlatList, StyleSheet } from 'react-native';
@@ -50,7 +42,6 @@ const PaginatedList = <T,>({
   contentContainerStyle,
   testID = 'paginated-list',
 }: Props<T>): React.ReactElement => {
-  // Memoised: an inline options object would be a new reference every render.
   const pagingOptions = useMemo(() => ({ pageSize }), [pageSize]);
   const { pageRows, currentPage, totalPages, setPage, hasPages } = usePagedRows(data, pagingOptions);
 

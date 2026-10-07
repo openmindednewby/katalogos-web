@@ -1,24 +1,7 @@
 
 
 
-// =============================================================================
-// Component
-// =============================================================================
 
-/**
- * Enhanced CategorySection component that renders a menu category with full styling.
- */
-/**
- * CategorySection - Enhanced display component for menu categories.
- *
- * Renders a menu category with full styling support including:
- * - Box styling (border, padding, background)
- * - Typography for category title and description
- * - Media position for category image
- * - Overlay settings
- *
- * @see BaseClient/docs/Tasks/TODO/menu-customization-feature.md
- */
 import React, { useMemo } from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';
@@ -38,28 +21,16 @@ import { generateCategoryStyles } from '../../../../utils/menuStyleGenerator';
 
 import type { Category, MenuItem, MenuContents } from '../../../../types/menuTypes';
 
-// =============================================================================
-// Types
-// =============================================================================
 
 interface Props {
-  /** The category to display */
   category: Category;
-  /** Global menu styles for color scheme inheritance */
   globalStyles?: MenuContents;
-  /** Callback when a menu item is pressed */
   onItemPress?: (item: MenuItem) => void;
 }
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const DEFAULT_CATEGORY_NAME = 'Category';
 
-// =============================================================================
-// Styles
-// =============================================================================
 
 const styles = StyleSheet.create({
   section: {
@@ -79,13 +50,7 @@ const styles = StyleSheet.create({
   },
 });
 
-// =============================================================================
-// Helper Functions
-// =============================================================================
 
-/**
- * Determines flex direction based on media position.
- */
 function getFlexDirection(position: MediaPosition): ViewStyle['flexDirection'] {
   switch (position) {
     case MediaPosition.Left:
@@ -103,41 +68,26 @@ function getFlexDirection(position: MediaPosition): ViewStyle['flexDirection'] {
   }
 }
 
-/**
- * Checks if media should be displayed based on position.
- */
 function shouldShowMedia(position: MediaPosition | undefined): boolean {
   return position !== MediaPosition.None;
 }
 
-/**
- * Checks if description should be visible based on typography settings.
- */
 function isDescriptionVisible(category: Category): boolean {
   return category.typography?.descriptionVisible ?? DEFAULT_CATEGORY_TYPOGRAPHY.descriptionVisible ?? true;
 }
 
-/**
- * Gets the media position from category settings.
- */
 function getMediaPosition(category: Category): MediaPosition {
   const settingsPosition = category.imageSettings?.position;
   const defaultPosition = DEFAULT_CATEGORY_IMAGE_SETTINGS.position ?? MediaPosition.Top;
   return isValueDefined(settingsPosition) ? settingsPosition : defaultPosition;
 }
 
-/**
- * Checks if category has valid media content.
- */
 function hasMedia(category: Category): boolean {
   const hasImage = isValueDefined(category.imageContentId) && category.imageContentId !== '';
   const hasVideo = isValueDefined(category.videoContentId) && category.videoContentId !== '';
   return hasImage || hasVideo;
 }
 
-/**
- * Determines if media should be rendered and whether it is background media.
- */
 function getMediaDisplayFlags(category: Category): { showMedia: boolean; isBackgroundMedia: boolean; mediaPosition: MediaPosition } {
   const mediaPosition = getMediaPosition(category);
   const showMedia = shouldShowMedia(mediaPosition) && hasMedia(category);
@@ -145,9 +95,6 @@ function getMediaDisplayFlags(category: Category): { showMedia: boolean; isBackg
   return { showMedia, isBackgroundMedia, mediaPosition };
 }
 
-// =============================================================================
-// Sub-Renderers
-// =============================================================================
 
 function renderMediaSection(
   category: Category,
@@ -163,9 +110,6 @@ function renderMediaSection(
   />;
 }
 
-// =============================================================================
-// Main Component
-// =============================================================================
 
 export const CategorySection: React.FC<Props> = ({
   category,

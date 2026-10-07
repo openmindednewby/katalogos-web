@@ -1,10 +1,3 @@
-/**
- * Hook that fetches white-label configuration from the tenant theme endpoint.
- *
- * The white-label fields are stored alongside theme colors in ThemeConfigJson.
- * This hook fetches the raw JSON via the Identity API and extracts only the
- * white-label fields.
- */
 import { useMemo } from 'react';
 
 import { useQuery } from '@tanstack/react-query';

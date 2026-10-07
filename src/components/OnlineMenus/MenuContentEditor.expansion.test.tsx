@@ -1,6 +1,3 @@
-/**
- * Tests for MenuContentEditor - Category Expansion functionality.
- */
 import './MenuContentEditor.mocks';
 
 import { fireEvent, render, within } from '@testing-library/react-native';
@@ -40,17 +37,14 @@ describe('MenuContentEditor - Category Expansion', () => {
 
     const toggleButton = getByTestId('category-toggle-button-0');
 
-    // Initially collapsed - arrow points right, no Add Item button
     expect(within(toggleButton).getByText('\u25B6')).toBeTruthy();
     expect(getByText('Appetizers')).toBeTruthy();
     expect(queryByText('Add Item')).toBeNull();
 
-    // Expand
     fireEvent.press(toggleButton);
     expect(within(toggleButton).getByText('\u25BC')).toBeTruthy();
     expect(queryByText('Add Item')).toBeTruthy();
 
-    // Collapse
     fireEvent.press(toggleButton);
     expect(within(toggleButton).getByText('\u25B6')).toBeTruthy();
     expect(queryByText('Add Item')).toBeNull();

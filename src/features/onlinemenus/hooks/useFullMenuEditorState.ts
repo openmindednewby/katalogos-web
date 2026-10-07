@@ -1,7 +1,3 @@
-/**
- * State management hook for FullMenuEditor.
- * Wraps useUndoRedo to provide named setters and integrates keyboard shortcuts.
- */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { useUndoRedo } from '@/components/OnlineMenus/hooks/useUndoRedo';
@@ -43,13 +39,6 @@ interface UseFullMenuEditorStateReturn {
   collapseAllRef: React.MutableRefObject<(() => void) | null>;
 }
 
-/**
- * Snapshot reset: replace the editor's present state from `item` when (a) the
- * user opens a different menu (externalId changes) or (b) the user hasn't
- * started editing yet (canUndo === false). Skipping the reset once `canUndo`
- * is true preserves in-flight edits when a background list refetch returns a
- * new `item` reference for the same menu.
- */
 function useSnapshotReset(visible: boolean, item: TenantMenusDto | null, reset: (s: EditorSnapshot) => void, canUndo: boolean): void {
   const lastResetIdRef = useRef<string | undefined>(undefined);
   const externalId = item?.externalId;
@@ -66,7 +55,6 @@ function useSnapshotReset(visible: boolean, item: TenantMenusDto | null, reset: 
   }, [visible, item, externalId, reset, canUndo]);
 }
 
-/** Tab, name-error, and active-category local state. */
 function useTabState(visible: boolean, item: TenantMenusDto | null, reset: (s: EditorSnapshot) => void, canUndo: boolean): {
   activeTab: EditorTab;
   setActiveTab: (tab: EditorTab) => void;
@@ -82,10 +70,6 @@ function useTabState(visible: boolean, item: TenantMenusDto | null, reset: (s: E
 
   useSnapshotReset(visible, item, reset, canUndo);
 
-  // UI reset: only fires when the editor opens (visible false→true) or the user
-  // switches to a different menu (externalId changes). Doesn't snap the user
-  // back to the Details tab just because a background refetch returned an
-  // otherwise-equivalent item reference.
   useEffect(() => {
     if (visible) {
       setNameError('');
@@ -97,7 +81,6 @@ function useTabState(visible: boolean, item: TenantMenusDto | null, reset: (s: E
   return { activeTab, setActiveTab, nameError, setNameError, activeCategoryId, setActiveCategoryId };
 }
 
-/** Clear activeCategoryId if the category was deleted from content. */
 function useStaleCategoryGuard(
   categories: MenuContents['categories'],
   activeCategoryId: string | null,
@@ -110,7 +93,6 @@ function useStaleCategoryGuard(
   }, [categories, activeCategoryId, setActiveCategoryId]);
 }
 
-/** Stable callbacks that push field changes into the undo stack. */
 function useFieldHandlers(present: EditorSnapshot, push: (s: EditorSnapshot) => void): {
   handleNameChange: (value: string) => void;
   handleDescriptionChange: (value: string) => void;

@@ -1,7 +1,3 @@
-/**
- * Visual indicator for auto-save status.
- * Shows the current save state (saving, saved, error) with appropriate styling.
- */
 import React from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';

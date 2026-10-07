@@ -1,7 +1,3 @@
-/**
- * Unit tests for ModeOverrides logic.
- * Tests exported constants and token key structure.
- */
 import { MODE_TOKEN_KEYS, TOKEN_LABEL_MAP } from './ModeOverrides';
 
 const EXPECTED_TOKEN_COUNT = 7;

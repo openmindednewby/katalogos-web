@@ -1,7 +1,3 @@
-/**
- * Unit tests for ColorPicker validation logic.
- * Tests the hex validation function, not rendering.
- */
 import { validateHex } from './ColorPicker';
 
 describe('validateHex (isValidHex)', () => {

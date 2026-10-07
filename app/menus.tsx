@@ -15,10 +15,7 @@ const MENU_FEATURES: readonly LandingFeature[] = [
   { titleKey: 'landing.menus.features.offlineAccess', descriptionKey: 'landing.menus.features.offlineAccessDesc' },
 ] as const;
 
-/**
- * Dedicated landing page for the Online Menus service.
- * Shows hero, feature grid, and CTA section.
- */
+/** Dedicated landing page for the Online Menus service. */
 const MenusLandingPage = (): React.ReactElement => {
   return (
     <LandingLayout>

@@ -1,13 +1,3 @@
-/**
- * Unit tests for FormNativeInput - WS4 (validation UX) + WS5A (ARIA accessibility).
- *
- * These tests focus on LOGIC: showError condition behavior and ARIA attribute values.
- * Visual rendering is tested by Playwright E2E.
- *
- * Note: FormNativeInput renders native HTML elements (<input>, <span>) within
- * a React Native test renderer. We use toJSON() tree inspection to verify
- * attributes and structure.
- */
 import React, { useEffect } from 'react';
 
 import { View, Text, Pressable } from 'react-native';
@@ -19,9 +9,6 @@ import { FormNativeInput } from './FormNativeInput';
 
 import type { UseFormReturn } from 'react-hook-form';
 
-// =============================================================================
-// Mocks
-// =============================================================================
 
 jest.mock('../../../theme/hooks/useTheme', () => ({
   useTheme: () => ({
@@ -34,17 +21,11 @@ jest.mock('../../../theme/hooks/useTheme', () => ({
   }),
 }));
 
-// =============================================================================
-// Test Data
-// =============================================================================
 
 interface TestForm {
   email: string;
 }
 
-/**
- * Minimal shape of a node returned by toJSON().
- */
 interface TreeNode {
   type: string;
   props?: Record<string, unknown>;
@@ -56,9 +37,6 @@ const TEST_FIELD_NAME = 'email';
 const ERROR_ID = `${TEST_FIELD_NAME}-error`;
 const INPUT_TEST_ID = 'email-input';
 
-// =============================================================================
-// Test Helpers
-// =============================================================================
 
 let formRef: UseFormReturn<TestForm>;
 
@@ -103,9 +81,6 @@ const TestWrapper = ({
   );
 };
 
-/**
- * Recursively find a node in the RNTL JSON tree matching a predicate.
- */
 function findNode(
   root: unknown,
   predicate: (node: TreeNode) => boolean,
@@ -131,18 +106,12 @@ function findAlertNode(root: unknown): TreeNode | null {
   return findNode(root, (n) => n.props?.role === 'alert');
 }
 
-// =============================================================================
-// Test Suite
-// =============================================================================
 
 describe('FormNativeInput', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  // ---------------------------------------------------------------------------
-  // WS4: showError condition logic
-  // ---------------------------------------------------------------------------
 
   describe('showError logic (WS4)', () => {
     it('does not show error when field has error but is not touched and not submitted', () => {
@@ -153,12 +122,10 @@ describe('FormNativeInput', () => {
     it('shows error after form submission even if field was never touched', async () => {
       const { toJSON } = render(<TestWrapper />);
 
-      // handleSubmit sets formState.isSubmitted = true
       await act(async () => {
         await formRef.handleSubmit(jest.fn())();
       });
 
-      // Set error after submit (simulates server-side validation)
       await act(async () => {
         formRef.setError(TEST_FIELD_NAME, { type: 'required', message: REQUIRED_MESSAGE });
       });
@@ -171,12 +138,10 @@ describe('FormNativeInput', () => {
     it('shows error when field is touched and has error (before submit)', async () => {
       const { toJSON } = render(<TestWrapper />);
 
-      // Set error
       await act(async () => {
         formRef.setError(TEST_FIELD_NAME, { type: 'required', message: REQUIRED_MESSAGE });
       });
 
-      // Trigger touch by calling field.onBlur via the input node
       const inputBefore = findInputNode(toJSON());
       expect(inputBefore).not.toBeNull();
 
@@ -201,9 +166,6 @@ describe('FormNativeInput', () => {
     });
   });
 
-  // ---------------------------------------------------------------------------
-  // WS5A: ARIA attributes
-  // ---------------------------------------------------------------------------
 
   describe('ARIA attributes (WS5A)', () => {
     it('sets aria-invalid to false when no error exists', () => {

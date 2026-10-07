@@ -1,4 +1,3 @@
-/** Platform-aware utilities for keyboard shortcut display. */
 import { Platform } from 'react-native';
 
 const IS_MAC = Platform.OS === 'web' && typeof navigator !== 'undefined'

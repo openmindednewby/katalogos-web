@@ -1,7 +1,3 @@
-/**
- * Tests for QrCodeModal logic (download and clipboard operations).
- * Focuses on callback behavior, not rendering.
- */
 import { buildPublicMenuUrl } from './utils/buildPublicMenuUrl';
 import { copyToClipboard, downloadQrAsPng, downloadQrAsSvg } from './utils/qrCodeDownload';
 

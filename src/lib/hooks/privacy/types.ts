@@ -1,6 +1,3 @@
-/**
- * Types for privacy/GDPR hooks.
- */
 import ConsentType from './enums/ConsentType';
 
 import type DeletionStatus from './enums/DeletionStatus';

@@ -1,6 +1,3 @@
-/**
- * Contact form validation schema using Zod.
- */
 import { z } from 'zod';
 
 const MIN_MESSAGE_LENGTH = 10;

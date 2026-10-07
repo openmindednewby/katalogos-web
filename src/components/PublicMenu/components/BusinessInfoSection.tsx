@@ -50,13 +50,11 @@ const styles = StyleSheet.create({
   hoursValue: { fontSize: VALUE_FONT_SIZE, flex: 1, textAlign: 'right' },
 });
 
-/** Opens a URL using Linking on native or window.open on web. */
 function openExternalUrl(url: string): void {
   if (Platform.OS === 'web') window.open(url, '_blank', 'noopener,noreferrer');
   else Linking.openURL(url).catch((err) => logger.warn('BusinessInfoSection', 'Failed to open URL', err));
 }
 
-/** Renders a single day's hours row. */
 const HoursRow = ({ entry, textColor }: { entry: OperatingHoursEntry; textColor: string }): React.ReactElement => {
   const dayKey = DAY_KEYS[entry.day] ?? '';
   const dayName = dayKey !== '' ? FM(dayKey) : '';

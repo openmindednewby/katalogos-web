@@ -1,11 +1,4 @@
-/**
- * Unit tests for SettingsDropdown logic.
- * Tests selectedLabel computation, handleSelect callback, and keyExtractor.
- */
 
-// ---------------------------------------------------------------------------
-// Mocks
-// ---------------------------------------------------------------------------
 
 jest.mock('../../../../localization/helpers', () => ({
   FM: (key: string) => key,
@@ -19,18 +12,12 @@ jest.mock('../../../../hooks/useFocusTrap', () => ({
   useFocusTrap: jest.fn(),
 }));
 
-// ---------------------------------------------------------------------------
-// Types (mirroring the component's internal interface)
-// ---------------------------------------------------------------------------
 
 interface DropdownOption {
   readonly label: string;
   readonly value: string;
 }
 
-// ---------------------------------------------------------------------------
-// Constants
-// ---------------------------------------------------------------------------
 
 const TIMEZONE_OPTIONS: readonly DropdownOption[] = [
   { label: 'UTC', value: 'UTC' },
@@ -45,28 +32,16 @@ const LANGUAGE_OPTIONS: readonly DropdownOption[] = [
 
 const EMPTY_OPTIONS: readonly DropdownOption[] = [] as const;
 
-// ---------------------------------------------------------------------------
-// Logic functions (mirroring the component's implementation)
-// ---------------------------------------------------------------------------
 
-/**
- * Mirrors the selectedLabel useMemo logic from SettingsDropdown.
- */
 function computeSelectedLabel(options: readonly DropdownOption[], value: string): string {
   const found = options.find((opt) => opt.value === value);
   return found?.label ?? value;
 }
 
-/**
- * Mirrors the keyExtractor callback from SettingsDropdown.
- */
 function keyExtractor(item: DropdownOption): string {
   return item.value;
 }
 
-// ---------------------------------------------------------------------------
-// Tests: selectedLabel computation
-// ---------------------------------------------------------------------------
 
 describe('SettingsDropdown - selectedLabel computation', () => {
   it('returns the label for a matching option value', () => {
@@ -100,14 +75,8 @@ describe('SettingsDropdown - selectedLabel computation', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// Tests: handleSelect callback logic
-// ---------------------------------------------------------------------------
 
 describe('SettingsDropdown - handleSelect callback', () => {
-  /**
-   * Simulates the handleSelect logic from the component.
-   */
   function simulateHandleSelect(onChange: (value: string) => void, optionValue: string): void {
     onChange(optionValue);
   }
@@ -138,9 +107,6 @@ describe('SettingsDropdown - handleSelect callback', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// Tests: keyExtractor
-// ---------------------------------------------------------------------------
 
 describe('SettingsDropdown - keyExtractor', () => {
   it('returns the value property of the item', () => {

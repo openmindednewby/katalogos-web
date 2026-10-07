@@ -12,11 +12,6 @@ interface DuplicateMenuResponse {
   externalId: string;
 }
 
-/**
- * Calls the backend duplicate-menu endpoint, which clones the source menu
- * (name + contents + schedule) into a new inactive draft and returns its id.
- * The endpoint is hand-wired (not yet in the generated client).
- */
 async function duplicateMenu(request: DuplicateMenuRequest): Promise<DuplicateMenuResponse> {
   return customInstance<DuplicateMenuResponse>({
     url: `/TenantMenus/${request.externalId}/duplicate`,

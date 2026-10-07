@@ -2,7 +2,7 @@ import type { ComponentType } from 'react';
 
 export interface SidebarItem {
   key: string;
-  labelKey: string; // i18n key
+  labelKey: string;
   route: string;
   icon?: string;
   requiredRoles?: string[];

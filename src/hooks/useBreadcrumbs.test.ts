@@ -57,7 +57,6 @@ describe('useBreadcrumbs', () => {
     mockPathname = Routes.PROFILE_SETTINGS;
     renderHook(() => useBreadcrumbs('override.key'));
 
-    // Re-render without dynamicLabel to verify originals unchanged
     const { result } = renderHook(() => useBreadcrumbs());
     expect(result.current[1].labelKey).toBe('settings.profile.title');
   });

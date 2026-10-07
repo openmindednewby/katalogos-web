@@ -1,8 +1,3 @@
-/**
- * Stress tests for theme resolution and preset validation.
- * Verifies resolveTheme produces valid output for all configs and modes,
- * and that all 5 presets are structurally sound.
- */
 import {
   THEME_PRESETS,
   DEFAULT_THEME_CONFIG,
@@ -17,7 +12,6 @@ import ThemeMode from '../../shared/enums/ThemeMode';
 
 import type { TenantThemeConfig, ThemeModeColors, ResolvedTheme } from '../types';
 
-// -- Constants ----------------------------------------------------------------
 
 const SHADE_KEYS = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'] as const;
 const HEX_PATTERN = /^#[0-9a-f]{6}$/i;
@@ -31,7 +25,6 @@ const THEME_MODE_COLOR_KEYS: ReadonlyArray<keyof ThemeModeColors> = [
   'text', 'textSecondary', 'border', 'divider',
 ];
 
-// -- Helpers ------------------------------------------------------------------
 
 function makeModeColors(base: string): ThemeModeColors {
   return {
@@ -90,7 +83,6 @@ function assertValidResolvedTheme(theme: ResolvedTheme): void {
   expect(typeof theme.typography.headingScale).toBe('number');
 }
 
-// -- Theme resolution stress --------------------------------------------------
 
 describe('resolveTheme stress', () => {
   describe('minimal config (only required fields)', () => {
@@ -173,7 +165,6 @@ describe('resolveTheme stress', () => {
   });
 });
 
-// -- Preset validation stress -------------------------------------------------
 
 describe('preset validation stress', () => {
   it(`has exactly ${EXPECTED_PRESET_COUNT} presets`, () => {

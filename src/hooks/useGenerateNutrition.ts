@@ -44,10 +44,7 @@ export async function generateNutrition(
   });
 }
 
-/**
- * React Query mutation hook for generating AI nutritional info.
- * No cache invalidation needed since this returns ephemeral data.
- */
+/** React Query mutation hook for generating AI nutritional info. */
 export function useGenerateNutrition<TError = unknown, TContext = unknown>(
   options?: UseMutationOptions<
     GenerateNutritionResponse,

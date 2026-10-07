@@ -1,9 +1,3 @@
-/**
- * Unit tests for the core Button component.
- *
- * Tests focus on LOGIC: callback invocation, disabled/loading behavior,
- * accessibility state attributes. Visual rendering is tested by Playwright E2E.
- */
 import React from 'react';
 import type { ReactNode } from 'react';
 
@@ -14,9 +8,6 @@ import ButtonSize from '../utils/ButtonSize';
 import ButtonVariant from '../utils/ButtonVariant';
 
 
-// ---------------------------------------------------------------------------
-// Mocks
-// ---------------------------------------------------------------------------
 
 const mockTheme = {
   colors: {
@@ -79,8 +70,6 @@ const mockTheme = {
   branding: { logoUrl: null, faviconUrl: null },
 };
 
-// The shared Button reads its theme from the @dloizides/ui-feedback UiProvider
-// (`useUi`); the app bridges the real theme in production. Mock it here.
 jest.mock('@dloizides/ui-feedback', () => ({
   useUi: () => ({ theme: mockTheme }),
 }));
@@ -92,9 +81,6 @@ jest.mock('../../../Icons/SvgIcon', () => {
   return MockSvgIcon;
 });
 
-// ---------------------------------------------------------------------------
-// Tests
-// ---------------------------------------------------------------------------
 
 describe('Button', () => {
   const defaultProps = {
@@ -109,9 +95,6 @@ describe('Button', () => {
     jest.clearAllMocks();
   });
 
-  // -------------------------------------------------------------------------
-  // Callback behavior
-  // -------------------------------------------------------------------------
 
   describe('callback behavior', () => {
     it('calls onPress when pressed', () => {
@@ -142,9 +125,6 @@ describe('Button', () => {
     });
   });
 
-  // -------------------------------------------------------------------------
-  // Accessibility state
-  // -------------------------------------------------------------------------
 
   describe('accessibility state', () => {
     it('reports disabled=false when enabled', () => {
@@ -178,9 +158,6 @@ describe('Button', () => {
     });
   });
 
-  // -------------------------------------------------------------------------
-  // Variant defaults
-  // -------------------------------------------------------------------------
 
   describe('variant defaults', () => {
     it('defaults to primary variant', () => {
@@ -206,9 +183,6 @@ describe('Button', () => {
     });
   });
 
-  // -------------------------------------------------------------------------
-  // Size defaults
-  // -------------------------------------------------------------------------
 
   describe('size defaults', () => {
     it('defaults to medium size', () => {

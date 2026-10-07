@@ -1,6 +1,5 @@
 import { TemplateType } from '../enums/TemplateType';
 
-/** Pixel dimensions for each template type at 96 DPI. */
 interface TemplateDimensions {
   width: number;
   height: number;

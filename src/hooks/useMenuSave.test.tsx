@@ -1,7 +1,3 @@
-/**
- * Tests for useMenuSave hook.
- * Focus on testing the callback logic, not the underlying mutations.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import { mockT, createMockMutation, createMockSaveCallbacks } from './menuPageHandlers.testUtils';
@@ -185,7 +181,6 @@ describe('useMenuSave', () => {
       const mockCreate = jest.fn();
       const mockUpdate = jest.fn();
 
-      // Simulate create success returning externalId
       mockCreate.mockImplementation((_payload, options) => {
         options.onSuccess({ externalId: 'new-menu-123' });
       });
@@ -205,13 +200,11 @@ describe('useMenuSave', () => {
         result.current({ name: 'New Menu', contents: contentsWithCategories });
       });
 
-      // Create should be called first
       expect(mockCreate).toHaveBeenCalledWith(
         expect.objectContaining({ data: expect.objectContaining({ name: 'New Menu' }) }),
         expect.any(Object)
       );
 
-      // Update should be called with the externalId from create response
       expect(mockUpdate).toHaveBeenCalledWith(
         expect.objectContaining({
           data: expect.objectContaining({
@@ -246,12 +239,10 @@ describe('useMenuSave', () => {
       const mockCreate = jest.fn();
       const mockUpdate = jest.fn();
 
-      // Simulate create success
       mockCreate.mockImplementation((_payload, options) => {
         options.onSuccess({ externalId: 'new-menu-123' });
       });
 
-      // Simulate update success
       mockUpdate.mockImplementation((_payload, options) => {
         options.onSuccess();
       });

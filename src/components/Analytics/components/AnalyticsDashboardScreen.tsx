@@ -51,8 +51,6 @@ const styles = StyleSheet.create({
     flexBasis: '48%',
     flexGrow: 1,
   },
-  // UX Move 4: on wide desktops the four stat cards form a single dense row
-  // instead of a sparse 2x2 grid. Phone/tablet keep the 48% two-column layout.
   statItemWide: {
     flexBasis: '22%',
   },
@@ -88,7 +86,6 @@ const AnalyticsDashboardScreen = (): React.ReactElement => {
   const primary = theme.palette.primary['500'];
   const errorColor = theme.semantic.error['500'];
   const router = useRouter();
-  // UX Move 4: relax the stat grid to a single dense row on wide desktops.
   const { isDesktop } = useBreakpoint();
   const statItemStyle = isDesktop ? [styles.statItem, styles.statItemWide] : styles.statItem;
 

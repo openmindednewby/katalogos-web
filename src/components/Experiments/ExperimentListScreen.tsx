@@ -1,7 +1,3 @@
-/**
- * ExperimentListScreen -- main screen listing all A/B test experiments.
- * Gated to Enterprise tier via useSubscription.
- */
 import React, { useCallback, useState } from 'react';
 
 import { ActivityIndicator, FlatList, ScrollView, Text, View } from 'react-native';

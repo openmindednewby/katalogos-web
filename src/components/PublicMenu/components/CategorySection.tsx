@@ -30,9 +30,7 @@ interface CategorySectionProps {
   menuId?: string;
   observeItem?: (element: HTMLElement | null, meta: ItemMeta) => void;
   onItemPress?: (item: MenuItem) => void;
-  /** @deprecated Use theme prop instead */
   menuTextColor?: string;
-  /** @deprecated Use theme prop instead */
   borderColor?: string;
 }
 
@@ -41,10 +39,7 @@ const CATEGORY_VIDEO_HEIGHT = 180;
 const TITLE_MARGIN_BOTTOM = 8;
 const DESCRIPTION_MARGIN_BOTTOM = 16;
 
-/**
- * Renders a themed category section with image, video, title,
- * description, and menu items.
- */
+/** Renders a themed category section with image, video, title, */
 export const CategorySection: React.FC<CategorySectionProps> = ({
   category,
   testIdSuffix,
@@ -60,7 +55,6 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
   const categoryName = category.name ?? defaultCategoryLabel;
   const categoryDescription = category.description;
 
-  // Category-level text color override
   const categoryTextColor =
     isValueDefined(category.textColor) && category.textColor !== ''
       ? String(category.textColor)

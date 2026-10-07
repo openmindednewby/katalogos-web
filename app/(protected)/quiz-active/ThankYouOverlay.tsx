@@ -1,22 +1,13 @@
-/**
- * ThankYouOverlay - Animated thank you message displayed after quiz submission.
- */
 import React, { useCallback, useEffect, useRef, useMemo } from 'react';
 
 import type { ImageSourcePropType, StyleProp, ViewStyle, TextStyle, ImageStyle } from 'react-native';
 import { Animated, StyleSheet, Text, View } from 'react-native';
 
-/** Animation duration for thank you fade in/out */
 const THANK_YOU_FADE_DURATION_MS = 220;
-/** Delay before fading out the thank you message */
 const THANK_YOU_DISPLAY_DELAY_MS = 1000;
-/** Initial scale for thank you animation */
 const THANK_YOU_INITIAL_SCALE = 0.85;
-/** Pulse animation scale up value */
 const THANK_YOU_SCALE_UP = 1.05;
-/** Pulse animation scale down value */
 const THANK_YOU_SCALE_DOWN = 0.95;
-/** Number of pulse iterations */
 const PULSE_ITERATIONS = 2;
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

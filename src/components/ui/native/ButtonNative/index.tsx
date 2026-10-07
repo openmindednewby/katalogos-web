@@ -1,8 +1,3 @@
-/**
- * Native HTML button styled with CSS variables.
- * Supports primary, secondary, and outline variants.
- * No Syncfusion dependencies.
- */
 import type { ButtonHTMLAttributes, ReactElement, ReactNode } from 'react';
 
 const enum ButtonVariant {

@@ -1,6 +1,3 @@
-/**
- * Styles for MenuItemEditorBody component.
- */
 import { StyleSheet } from 'react-native';
 
 const LABEL_FONT_SIZE = 14;

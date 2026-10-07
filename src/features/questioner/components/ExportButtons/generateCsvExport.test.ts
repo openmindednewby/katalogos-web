@@ -3,10 +3,6 @@ import { type CompletedQuestionerWithUser } from '@/server/customHooks/useComple
 
 import { generateCsvExport } from './generateCsvExport';
 
-/**
- * The CSV exporter probes runtime-only fields (completedAt/submittedAt) via dynamic key
- * access and the API rows can carry a legacy id - model that in the fixture type.
- */
 type TestRecord = CompletedQuestionerWithUser & { id?: string; completedAt?: string };
 
 jest.mock("react-native", () => ({

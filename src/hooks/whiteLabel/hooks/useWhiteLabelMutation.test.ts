@@ -1,7 +1,3 @@
-/**
- * Unit tests for useWhiteLabelMutation hook utilities.
- * Tests the toApiPayload mapping function.
- */
 import { toApiPayload } from './useWhiteLabelMutation';
 
 import type { WhiteLabelFormState } from '../types';

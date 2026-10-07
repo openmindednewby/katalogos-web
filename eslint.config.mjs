@@ -14,7 +14,7 @@ import reactCompilerPlugin from 'eslint-plugin-react-compiler';
 // Shared custom ESLint rules — published as @dloizides/frontend-devtools (Platform P1).
 // `legacyPlugins` is a Record<ruleName, oneRulePlugin> that preserves the exact
 // `'<name>/<name>'` config keys + inline `eslint-disable-next-line <name>` comments.
-import { legacyPlugins } from '@dloizides/frontend-devtools/eslint';
+import { legacyPlugins, commentsConfig } from '@dloizides/frontend-devtools/eslint';
 
 export default [
   // Ignore patterns
@@ -833,4 +833,5 @@ export default [
       'curly': ['error', 'multi'],
     },
   },
+  commentsConfig,
 ];

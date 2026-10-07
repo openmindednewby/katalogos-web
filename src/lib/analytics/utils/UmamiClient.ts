@@ -21,16 +21,16 @@ export class UmamiClient implements AnalyticsClient {
     this.send('event', { name: event, data: sanitizeProperties(properties) });
   }
 
+  // eslint-disable-next-line no-empty-function
   identify(_distinctId: string, _traits?: EventProperties): void {
-    // Umami does not support user identification — no-op
   }
 
   page(path: string, properties?: EventProperties): void {
     this.send('event', { url: path, data: sanitizeProperties(properties) });
   }
 
+  // eslint-disable-next-line no-empty-function
   reset(): void {
-    // Umami is stateless on the client side — no-op
   }
 
   private send(type: string, payload: Record<string, unknown>): void {

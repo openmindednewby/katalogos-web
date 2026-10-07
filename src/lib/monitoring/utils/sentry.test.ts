@@ -11,11 +11,6 @@ interface SentryModule {
   clearSentryUser: () => void;
 }
 
-/**
- * The Sentry SDK is now loaded via the lazy `sentryLoader` seam (UX Move 6),
- * so every wrapper call resolves asynchronously. Flush the pending microtasks
- * of the resolved-mock promise chain.
- */
 async function flush(): Promise<void> {
   for (let i = 0; i < 5; i++) await Promise.resolve();
 }

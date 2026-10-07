@@ -13,9 +13,6 @@ import { useTheme } from '../../theme/hooks/useTheme';
 import { isValueDefined } from '../../utils/is';
 import { SvgIcon } from '../Icons';
 
-/**
- * Local notification type matching the notification-client package
- */
 interface ToastNotification {
   id: string;
   title: string;
@@ -23,9 +20,6 @@ interface ToastNotification {
   actionUrl?: string;
 }
 
-/**
- * Type for the useNotifications hook result
- */
 interface UseNotificationsResult {
   toasts: ToastNotification[];
   dismissToast: (id: string) => void;
@@ -177,10 +171,7 @@ function isUseNotificationsResult(value: unknown): value is UseNotificationsResu
   return 'toasts' in value && 'dismissToast' in value;
 }
 
-/**
- * Container for displaying real-time notification toasts.
- * Automatically shows and dismisses toast notifications.
- */
+/** Container for displaying real-time notification toasts. */
 const RealTimeToastContainer = (): React.ReactElement | null => {
   const { theme } = useTheme();
   const router = useRouter();

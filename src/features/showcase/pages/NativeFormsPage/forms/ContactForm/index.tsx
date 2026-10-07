@@ -1,11 +1,4 @@
 /* eslint-disable no-console */
-/**
- * Demo contact form using native HTML elements.
- * No Syncfusion dependencies.
- *
- * Note: This is a web-only component using native HTML,
- * so React Native linting rules are disabled.
- */
 import type { ReactElement } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -40,7 +33,6 @@ export const ContactForm = (): ReactElement => {
   });
 
   function handleFormSubmit(data: ContactFormData): void {
-    // Demo: log form data
     console.log('Contact form submitted:', data);
     // eslint-disable-next-line no-alert
     alert(`Message sent!\nSubject: ${data.subject}\nFrom: ${data.name}`);

@@ -1,16 +1,5 @@
 import type { LoginResponse, UserInfo } from '../types';
 
-/**
- * Normalize register response: server uses `userInfo.id`, downstream uses `sub`.
- *
- * The register endpoint returns `userInfo.id` while the rest of the auth
- * surface (login, refresh, verifyOtp) returns `userInfo.sub`. Downstream
- * consumers (AuthProvider, KeycloakUserInfo) all read `sub`, so we alias
- * `id → sub` when `sub` is absent. No-op when `sub` is already set.
- *
- * Implemented without type assertions: we treat the server payload as a
- * loose record-of-strings and rebuild a typed `UserInfo` from it.
- */
 
 type RawUserInfo = Record<string, unknown>;
 

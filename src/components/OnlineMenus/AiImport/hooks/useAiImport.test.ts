@@ -1,7 +1,3 @@
-/**
- * Tests for useAiImport hook.
- * Focuses on state transitions and data manipulation logic.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import { useAiImport } from './useAiImport';

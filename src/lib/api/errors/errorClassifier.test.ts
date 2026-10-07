@@ -2,13 +2,8 @@ import { classifyError, extractErrorCode, extractErrorMessage, extractRequestId 
 
 import type { AxiosError, AxiosHeaders, AxiosResponse } from 'axios';
 
-/** Minimal headers shape that satisfies AxiosError['config']['headers'] */
 const EMPTY_HEADERS: AxiosHeaders = Object.create(null);
 
-/**
- * Build a partial AxiosError for testing. We use Object.assign to avoid
- * type assertions, which are banned by the linter.
- */
 function createAxiosError(overrides: Partial<AxiosError> = {}): AxiosError {
   // @ts-expect-error - minimal AxiosError mock for testing
   const base: AxiosError = Object.assign(new Error('Request failed'), {
@@ -64,9 +59,6 @@ describe('errorClassifier', () => {
     });
 
     it('prefers errorCode over code over error', () => {
-      // Aligned with @dloizides/api-client-base — the dloizides-FastEndpoints
-      // convention is `errorCode` (not `code`) for the application-level code,
-      // so the shared package picks that one first.
       expect(extractErrorCode({ code: 'A', errorCode: 'B', error: 'C' })).toBe('B');
     });
   });

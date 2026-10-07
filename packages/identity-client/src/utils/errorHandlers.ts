@@ -13,25 +13,13 @@ import type {
 const NETWORK_ERROR_CODE = 'NETWORK_ERROR';
 const UNKNOWN_ERROR_CODE = 'UNKNOWN_ERROR';
 
-/**
- * Server-side register error envelope.
- *
- * 400: { errorCode, errors: [{ field, message }] }
- * 409: { errorCode: "USERNAME_TAKEN" | "EMAIL_TAKEN", message }
- * 422: { errorCode: "REALM_REQUIRED" | "REALM_INVALID", message }
- */
 interface RegisterErrorEnvelope {
   errorCode?: string;
   message?: string;
   errors?: RegisterErrorField[];
 }
 
-/**
- * Structured Error subclass thrown by `IdentityClient.register`.
- *
- * Carries the parsed envelope so the UI can map `errorCode` → a localized
- * message and decorate inputs from `fieldErrors`.
- */
+/** Structured Error subclass thrown by `IdentityClient.register`. */
 export class RegisterError extends Error implements RegisterErrorShape {
   public readonly errorCode: string;
   public readonly fieldErrors: RegisterErrorField[];
@@ -41,8 +29,6 @@ export class RegisterError extends Error implements RegisterErrorShape {
     this.name = 'RegisterError';
     this.errorCode = shape.errorCode;
     this.fieldErrors = shape.fieldErrors;
-    // Restore prototype chain after super() — required for `instanceof` to
-    // work across the compiled CJS boundary in some bundlers.
     Object.setPrototypeOf(this, RegisterError.prototype);
   }
 }

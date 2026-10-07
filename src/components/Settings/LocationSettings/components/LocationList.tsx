@@ -1,6 +1,3 @@
-/**
- * LocationList - Renders a list of LocationCards or an empty state message.
- */
 import React from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';

@@ -1,6 +1,3 @@
-/**
- * Tests for AI import data transformation utilities.
- */
 import {
   countTotalItems,
   mergeMenuContents,

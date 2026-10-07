@@ -1,10 +1,6 @@
 
 
 
-/**
- * Category preference row component for notification settings.
- * Displays a toggle and display preference dropdown for a notification category.
- */
 import React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';

@@ -1,7 +1,3 @@
-/**
- * Unit tests for generateNutrition API function.
- * Tests request construction and response mapping.
- */
 import { generateNutrition } from './useGenerateNutrition';
 
 import type { GenerateNutritionRequest } from './useGenerateNutrition';

@@ -1,9 +1,3 @@
-/**
- * Unit tests for the BFF user mapping — the projection from the `BffUser`
- * returned by `BffAuthClient` onto the app's `KeycloakUserInfo` /
- * `NormalizedUser` shapes. Pure logic: role narrowing, `realm_access`
- * reconstruction, claim copying.
- */
 import { bffUserToKeycloakUserInfo, bffUserToNormalizedUser } from './bffUserMapping';
 
 import type { BffUser } from '@dloizides/auth-client';

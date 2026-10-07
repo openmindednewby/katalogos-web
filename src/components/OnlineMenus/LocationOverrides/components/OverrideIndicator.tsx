@@ -1,7 +1,3 @@
-/**
- * OverrideIndicator - Visual badge shown on items that have location-specific overrides.
- * Displays a small colored dot and "Overridden" text.
- */
 import React from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';

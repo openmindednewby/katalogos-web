@@ -1,7 +1,3 @@
-/**
- * Hook to fetch the current tenant subscription.
- * Wraps the Orval-generated hook and maps the DTO to frontend types.
- */
 import {
   usePaymentServiceAPISubscriptionsGetCurrentSubscription,
   getPaymentServiceAPISubscriptionsGetCurrentSubscriptionQueryKey,

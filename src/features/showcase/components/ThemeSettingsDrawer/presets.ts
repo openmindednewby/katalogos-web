@@ -1,8 +1,3 @@
-/**
- * Theme preset definitions for the Theme Settings Drawer.
- * Each preset contains a name and an array of RGB color strings
- * used to render the color swatch preview strip.
- */
 
 interface ThemePreset {
   name: string;
@@ -11,11 +6,7 @@ interface ThemePreset {
 
 const FIRST_PRESET_INDEX = 0;
 
-/**
- * Available theme presets.
- * Note: Some presets intentionally share colors (e.g., `100 116 139`).
- * The component must use index-based keys to avoid React duplicate key warnings.
- */
+/** Available theme presets. */
 export const THEME_PRESETS: ThemePreset[] = [
   {
     name: 'Default',

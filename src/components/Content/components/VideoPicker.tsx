@@ -1,12 +1,6 @@
 
 
 
-/**
- * Video picker component for selecting and uploading videos.
- *
- * Uses expo-image-picker for video selection and ContentUploader for upload handling.
- * Shows a file size warning for large files.
- */
 import React, { useCallback, useMemo, useState } from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';
@@ -24,21 +18,13 @@ import { isValueDefined } from '../../../utils/is';
 
 import type { FileInfo } from '../../../lib/hooks/content/types';
 
-// ---------------------------------------------------------------------------
-// Constants
-// ---------------------------------------------------------------------------
 
-/** Bytes per kilobyte */
 const BYTES_PER_KB = 1024;
-/** Bytes per megabyte */
 const BYTES_PER_MB = BYTES_PER_KB * BYTES_PER_KB;
-/** Bytes per gigabyte */
 const BYTES_PER_GB = BYTES_PER_MB * BYTES_PER_KB;
 
-/** Warning threshold in MB - show warning when file is larger than 100MB */
 const WARNING_THRESHOLD_MB = 100;
 
-// Warning threshold - show warning when file is larger than 100MB
 const WARNING_THRESHOLD = WARNING_THRESHOLD_MB * BYTES_PER_MB;
 
 const styles = StyleSheet.create({
@@ -53,38 +39,20 @@ const styles = StyleSheet.create({
   },
 });
 
-// ---------------------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------------------
 
 interface Props {
-  /** Current content ID value (if already uploaded) */
   value?: string;
-  /** Callback when video is uploaded or removed */
   onChange?: (contentId: string | null) => void;
-  /** Optional label text */
   label?: string;
-  /** Whether the field is required */
   required?: boolean;
-  /** Whether the picker is disabled */
   disabled?: boolean;
-  /** Whether uploads should be public */
   isPublic?: boolean;
-  /** Hint text to display in the upload area */
   hint?: string;
-  /** Video quality preset */
   videoQuality?: ExpoImagePicker.UIImagePickerControllerQualityType;
-  /** Maximum duration in seconds (optional) */
   videoMaxDuration?: number;
 }
 
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
 
-/**
- * Extracts file name from URI.
- */
 function getFileNameFromUri(uri: string): string {
   const parts = uri.split('/');
   const fileName = parts[parts.length - 1];
@@ -92,9 +60,6 @@ function getFileNameFromUri(uri: string): string {
   return nameWithoutQuery !== '' ? nameWithoutQuery : 'video.mp4';
 }
 
-/**
- * Gets MIME type from file name.
- */
 function getMimeType(fileName: string): string {
   const extension = fileName.split('.').pop()?.toLowerCase() ?? '';
   if (extension === 'mp4') return 'video/mp4';
@@ -104,9 +69,6 @@ function getMimeType(fileName: string): string {
   return 'video/mp4';
 }
 
-/**
- * Formats bytes to human readable size.
- */
 function formatFileSize(bytes: number): string {
   if (bytes < BYTES_PER_KB) return `${bytes} B`;
   if (bytes < BYTES_PER_MB) return `${(bytes / BYTES_PER_KB).toFixed(1)} KB`;
@@ -114,9 +76,6 @@ function formatFileSize(bytes: number): string {
   return `${(bytes / BYTES_PER_GB).toFixed(1)} GB`;
 }
 
-// ---------------------------------------------------------------------------
-// Main component
-// ---------------------------------------------------------------------------
 
 export const VideoPicker = ({
   value,
@@ -133,10 +92,8 @@ export const VideoPicker = ({
   const warningColor = theme.semantic.warning['500'];
   const [selectedFileSize, setSelectedFileSize] = useState<number | null>(null);
 
-  // Fetch content data if we have a value
   const { data: content, isLoading: isContentLoading } = useContent(value);
 
-  // Use public or authenticated URL based on isPublic prop
   const publicUrlQuery = usePublicContentUrl(isPublic ? value : undefined);
   const authenticatedUrlQuery = useContentUrl(isPublic ? undefined : value);
   const urlQuery = isPublic ? publicUrlQuery : authenticatedUrlQuery;
@@ -147,10 +104,8 @@ export const VideoPicker = ({
     error: urlError,
   } = urlQuery;
 
-  // Determine loading state - loading content metadata or URL
   const isLoading = isContentLoading || isUrlLoading;
 
-  // Format error message for display
   const getUrlErrorMessage = (): string | undefined => {
     if (!isUrlError) return undefined;
     return urlError instanceof Error ? urlError.message : 'Failed to load video URL';
@@ -159,7 +114,7 @@ export const VideoPicker = ({
 
   const warningStyles = useMemo(() => {
     const containerStyle = {
-      backgroundColor: `${warningColor  }20`, // 20% opacity
+      backgroundColor: `${warningColor  }20`,
     };
     const textStyle: TextStyle = {
       color: warningColor,
@@ -168,13 +123,11 @@ export const VideoPicker = ({
   }, [warningColor]);
 
   const handlePickFile = useCallback(async (): Promise<FileInfo | null> => {
-    // Request permission
     const permissionResult = await ExpoImagePicker.requestMediaLibraryPermissionsAsync();
     if (permissionResult.status !== ExpoImagePicker.PermissionStatus.GRANTED)
       return null;
 
 
-    // Launch video picker
     const result = await ExpoImagePicker.launchImageLibraryAsync({
       mediaTypes: ['videos'],
       allowsEditing: false,

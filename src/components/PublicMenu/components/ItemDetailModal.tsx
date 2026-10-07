@@ -1,11 +1,3 @@
-/**
- * ItemDetailModal - Full-screen (mobile) or centered (desktop) modal
- * showing complete menu item details including image, price,
- * description, dietary tags, variants, modifiers, and staff pick info.
- *
- * WCAG: Focus is trapped inside the modal, Escape closes it,
- * and focus returns to the trigger element on close.
- */
 import React, { useMemo, useRef } from 'react';
 
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';

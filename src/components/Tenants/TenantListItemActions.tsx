@@ -36,7 +36,6 @@ interface StatusAwareButtonProps {
   onPress: () => void;
 }
 
-/** Button that is disabled when the item is not active. */
 const StatusAwareButton = ({
   isActive, activeColor, inactiveColor, label,
   activeHint, disabledHint, iconName, testID, onPress,
@@ -61,10 +60,6 @@ const StatusAwareButton = ({
   );
 };
 
-/**
- * The three status-aware actions (open-external / QR / embed), extracted so the
- * main actions row stays under the cyclomatic-complexity budget.
- */
 const StatusAwareActions = (props: TenantListItemActionsProps): React.ReactElement => {
   const {
     itemID, colors, isCurrentlyActive,

@@ -1,9 +1,3 @@
-/**
- * DietaryTagBadge - Colored badge displaying a dietary tag (icon + name).
- *
- * Used on menu item cards in both admin and public views.
- * Renders a small pill-shaped badge with the tag's color as background tint.
- */
 import React, { useMemo } from 'react';
 
 import { Text, View } from 'react-native';

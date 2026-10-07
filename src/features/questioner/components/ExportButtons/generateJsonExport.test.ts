@@ -1,6 +1,5 @@
 import { type CompletedQuestionerWithUser } from '@/server/customHooks/useCompletedQuestionersWithUsers';
 
-/** The sanitizer walks arbitrary nested structures - model the extra fixture fields. */
 type TestRecord = CompletedQuestionerWithUser & {
   id?: string;
   nested?: Record<string, unknown>;

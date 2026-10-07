@@ -1,7 +1,3 @@
-/**
- * Hook to create a new subscription.
- * Wraps the Orval-generated mutation and handles cache invalidation.
- */
 import { useCallback, useMemo } from 'react';
 
 import { useQueryClient } from '@tanstack/react-query';

@@ -19,11 +19,8 @@ interface FaqEntry {
 }
 
 interface Props {
-  /** Translation key for the section heading (e.g. "landing.faq.sectionTitle"). */
   sectionTitleKey: string;
-  /** Hint key resolved by FM, used for screen-reader toggle hint on every item. */
   toggleHintKey: string;
-  /** Q&A entries — keys resolved via FM at render time. */
   entries: readonly FaqEntry[];
 }
 
@@ -50,10 +47,7 @@ const styles = StyleSheet.create({
   list: { width: '100%', maxWidth: FAQ_MAX_WIDTH },
 });
 
-/**
- * Frequently-asked-questions accordion section for the landing page.
- * Each entry is a collapsible FaqItem; first paint shows all collapsed.
- */
+/** Frequently-asked-questions accordion section for the landing page. */
 const FaqSection = ({ sectionTitleKey, toggleHintKey, entries }: Props): ReactElement => {
   const { theme } = useTheme();
   const { width } = useWindowDimensions();

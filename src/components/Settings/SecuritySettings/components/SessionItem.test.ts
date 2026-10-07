@@ -1,12 +1,5 @@
-/**
- * Unit tests for SessionItem logic.
- * Tests formatTimestamp pure function and handleRevoke callback behavior.
- */
 import { formatTimestamp } from './SessionItem';
 
-// ---------------------------------------------------------------------------
-// Mocks
-// ---------------------------------------------------------------------------
 
 jest.mock('../../../../localization/helpers', () => ({
   FM: (key: string) => key,
@@ -16,16 +9,9 @@ jest.mock('../../../../theme/hooks/useTheme', () => ({
   useTheme: jest.fn(),
 }));
 
-// ---------------------------------------------------------------------------
-// Constants
-// ---------------------------------------------------------------------------
 
-/** Known epoch for 2024-01-15T12:00:00.000Z */
 const KNOWN_EPOCH = 1705320000000;
 
-// ---------------------------------------------------------------------------
-// Tests: formatTimestamp (pure function)
-// ---------------------------------------------------------------------------
 
 describe('formatTimestamp', () => {
   it('returns empty string when epoch is undefined', () => {
@@ -46,21 +32,12 @@ describe('formatTimestamp', () => {
 
   it('returns a valid date string for epoch zero (Unix epoch start)', () => {
     const result = formatTimestamp(0);
-    // epoch 0 is falsy but isValueDefined(0) should be true
-    // (0 is defined, not null/undefined)
     expect(result).not.toBe('');
   });
 });
 
-// ---------------------------------------------------------------------------
-// Tests: handleRevoke callback logic (simulated)
-// ---------------------------------------------------------------------------
 
 describe('SessionItem - handleRevoke logic', () => {
-  /**
-   * Simulates the handleRevoke logic from the component.
-   * Uses explicit null/undefined check mirroring isValueDefined behavior.
-   */
   function simulateHandleRevoke(
     sessionId: string | undefined | null,
     onRevoke: (id: string) => void,

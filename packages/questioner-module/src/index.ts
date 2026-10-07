@@ -2,16 +2,7 @@ import type { Module } from '@baseclient/core';
 
 export const QUESTIONER_MODULE_NAME = 'questioner';
 
-/**
- * Questioner Module - Quiz/Survey Management
- *
- * Required service: QuestionerService (port 5004)
- *
- * Features:
- * - Quiz template management (create, edit, activate)
- * - Quiz submission and completion
- * - Quiz answers/responses viewing and export
- */
+/** Questioner Module - Quiz/Survey Management */
 export const questionerModule: Module = {
   name: QUESTIONER_MODULE_NAME,
   displayName: 'Questioner',

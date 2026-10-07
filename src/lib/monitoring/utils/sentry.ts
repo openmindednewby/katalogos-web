@@ -1,17 +1,3 @@
-/**
- * Sentry error monitoring wrapper.
- *
- * All Sentry SDK access is isolated to this module (and its `sentryLoader`
- * seam) so nothing else imports `@sentry/react` directly. When the DSN is
- * empty (dev/test), every function is a no-op and the SDK is never loaded.
- *
- * PERFORMANCE (UX Move 6 — "speed as a feature"): `@sentry/react` and its
- * transitive `@sentry/*` packages weigh ~2.3 MB and previously sat in the
- * eager root-layout entry chunk via a static `import * as Sentry`. They are
- * now pulled in through a lazy `import('@sentry/react')` (in `sentryLoader`) so
- * the SDK lives in its own async chunk, entirely off the first-paint critical
- * path — and is never fetched at all when the DSN is empty.
- */
 
 import { loadSentryAdapter } from './sentryLoader';
 import env from '../../../config/environment';
@@ -29,14 +15,8 @@ interface SentryContext {
 const dsn = String(env.SENTRY_DSN);
 const isEnabled = dsn !== '';
 
-/** Cached promise of the initialised SDK adapter; null until first use. */
 let sentryPromise: Promise<SentryApi | null> | null = null;
 
-/**
- * Lazily import and initialise the Sentry SDK exactly once, returning a small
- * adapter. Resolves to null when disabled or if the dynamic import fails, so
- * callers never throw.
- */
 async function loadSentry(): Promise<SentryApi | null> {
   if (!isEnabled) return null;
   const config: SentryInit = {
@@ -49,7 +29,6 @@ async function loadSentry(): Promise<SentryApi | null> {
   return sentryPromise;
 }
 
-/** Run a callback once the SDK is loaded. No-op (and no download) when disabled. */
 function withSentry(fn: (api: SentryApi) => void): void {
   if (!isEnabled) return;
   loadSentry()
@@ -59,11 +38,7 @@ function withSentry(fn: (api: SentryApi) => void): void {
     .catch(() => undefined);
 }
 
-/**
- * Initialise Sentry. Called once at app startup. Does nothing when the DSN is
- * empty. The SDK load happens asynchronously via a dynamic import so it never
- * blocks first paint.
- */
+/** Initialise Sentry. Called once at app startup. Does nothing when the DSN is */
 function initSentry(): void {
   if (!isEnabled) return;
   loadSentry().catch(() => undefined);
@@ -86,10 +61,7 @@ function captureMessage(message: string, level?: SeverityLevel): void {
   });
 }
 
-/**
- * Associate the current session with a user.
- * Only opaque IDs are sent -- never PII.
- */
+/** Associate the current session with a user. */
 function setSentryUser(userId: string, tenantId?: string): void {
   withSentry((api) => {
     api.setUser({

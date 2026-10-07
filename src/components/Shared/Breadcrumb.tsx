@@ -1,8 +1,3 @@
-/**
- * Breadcrumb navigation bar for settings sub-pages.
- * Shows parent crumbs as tappable links with separators and the current page as plain text.
- * Returns null when the crumb trail has fewer than 2 items.
- */
 import React, { useCallback, useMemo } from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View, type StyleProp, type TextStyle } from 'react-native';
@@ -50,7 +45,6 @@ interface Props {
   testID?: string;
 }
 
-/** Renders a single parent breadcrumb with a trailing separator. */
 const ParentCrumb = ({
   crumb,
   parentStyle,

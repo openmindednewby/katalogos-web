@@ -1,7 +1,3 @@
-/**
- * React Query hooks for privacy consent management.
- * Wraps generated Orval API functions with app-specific logic.
- */
 import { useCallback } from 'react';
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';

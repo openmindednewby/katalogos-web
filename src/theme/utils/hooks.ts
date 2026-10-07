@@ -1,11 +1,3 @@
-/**
- * Theme-related React hooks (legacy).
- *
- * @deprecated useThemeColors() has no remaining consumers and will be removed
- * in a future release. All components have been migrated to useTheme() from
- * '../hooks/useTheme'. Only OnlineMenus/* still uses the old Redux + palette
- * pattern directly.
- */
 import { useContext } from 'react';
 
 import { useSelector } from 'react-redux';
@@ -18,10 +10,7 @@ import { isValueDefined } from '../../utils/is';
 import type { ThemeColors } from './palette';
 import type { RootState } from '../../store/reduxStore';
 
-/**
- * @deprecated Use `useTheme()` from `../hooks/useTheme` instead.
- * This hook is kept only for backwards compatibility with OnlineMenus.
- */
+/** This hook is kept only for backwards compatibility with OnlineMenus. */
 export function useThemeColors(): ThemeColors {
   const themeContext = useContext(ThemeContext);
   const rawTheme = useSelector((s: RootState) => s.ui.theme);

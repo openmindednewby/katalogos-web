@@ -1,14 +1,7 @@
-/**
- * Renders menu data into a jsPDF document with print-friendly formatting.
- * Separated from helpers to keep files under 300 lines and isolate jsPDF dependency.
- */
 import { FM } from '@/localization/helpers';
 
 import type { PdfMenuData, PdfCategorySection, PdfItemRow } from './menuPdfHelpers';
 
-// =============================================================================
-// Layout Constants (mm)
-// =============================================================================
 
 const PAGE_WIDTH = 210;
 const PAGE_HEIGHT = 297;
@@ -32,9 +25,6 @@ const TAG_INDENT = 4;
 const DRAW_COLOR_GRAY = 180;
 const HEADER_LINE_MULTIPLIER = 2;
 
-// =============================================================================
-// PDF Wrapper Interface
-// =============================================================================
 
 /** Minimal interface for jsPDF methods used by the renderer. */
 export interface PdfDocument {
@@ -48,9 +38,6 @@ export interface PdfDocument {
   addPage: () => void;
 }
 
-// =============================================================================
-// Cursor Tracking
-// =============================================================================
 
 interface Cursor {
   y: number;
@@ -68,9 +55,6 @@ function ensureSpace(pdf: PdfDocument, cursor: Cursor, spaceNeeded: number): Cur
   return newPage(pdf, cursor);
 }
 
-// =============================================================================
-// Page Footer
-// =============================================================================
 
 function writePageFooter(pdf: PdfDocument, pageNumber: number): void {
   pdf.setFontSize(TAG_FONT_SIZE);
@@ -79,9 +63,6 @@ function writePageFooter(pdf: PdfDocument, pageNumber: number): void {
   pdf.text(footerText, PAGE_WIDTH / 2, PAGE_HEIGHT - FOOTER_Y_OFFSET, { align: 'center' });
 }
 
-// =============================================================================
-// Section Renderers
-// =============================================================================
 
 function renderHeader(pdf: PdfDocument, cursor: Cursor, data: PdfMenuData): Cursor {
   let y = cursor.y;
@@ -188,14 +169,8 @@ function renderItem(pdf: PdfDocument, cursor: Cursor, item: PdfItemRow): Cursor 
   return { ...current, y: current.y + ITEM_GAP };
 }
 
-// =============================================================================
-// Public API
-// =============================================================================
 
-/**
- * Renders menu data into an existing jsPDF document.
- * The caller is responsible for creating the jsPDF instance and saving it.
- */
+/** Renders menu data into an existing jsPDF document. */
 export function renderMenuPdf(pdf: PdfDocument, data: PdfMenuData): void {
   let cursor: Cursor = { y: MARGIN_TOP, pageNumber: 1 };
 

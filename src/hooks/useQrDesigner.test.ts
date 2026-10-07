@@ -1,7 +1,3 @@
-/**
- * Tests for useQrDesigner hook.
- * Focuses on state management logic for QR designer modal.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import { useQrDesigner } from './useQrDesigner';

@@ -12,9 +12,7 @@ import { generateJsonExport } from './generateJsonExport';
 
 const BUTTON_TEXT_COLOR = '#fff';
 
-/** Full opacity for enabled buttons */
 const OPACITY_ENABLED = 1;
-/** Reduced opacity for disabled buttons */
 const OPACITY_DISABLED = 0.5;
 
 const styles = StyleSheet.create({

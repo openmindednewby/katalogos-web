@@ -1,7 +1,3 @@
-/**
- * Unit tests for responsive style utilities.
- * Tests font scaling, spacing scaling, and breakpoint detection.
- */
 import { PUBLIC_MENU_THEME_PRESETS } from './publicMenuThemePresets';
 import {
   buildResponsiveLayout,

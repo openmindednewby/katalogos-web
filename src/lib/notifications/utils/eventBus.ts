@@ -18,8 +18,8 @@ export function notify<R>(event: NotificationEvent, payload?: R): void {
   for (const l of Array.from(listeners))
     try {
       l(event, payload);
+    // eslint-disable-next-line no-empty
     } catch {
-      // ignore listener errors
     }
 
 }

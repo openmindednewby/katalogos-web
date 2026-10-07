@@ -1,7 +1,3 @@
-/**
- * Custom Domain Settings route page.
- * Wraps the CustomDomainSettingsScreen component.
- */
 import React from 'react';
 
 import { CustomDomainSettingsScreen } from '../../../src/components/Settings';

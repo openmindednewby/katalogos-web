@@ -1,6 +1,3 @@
-/**
- * Shared styles for dietary tag components.
- */
 import { StyleSheet } from 'react-native';
 
 import {

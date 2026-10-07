@@ -1,6 +1,3 @@
-/**
- * Apply step: lets user choose merge strategy before applying AI import.
- */
 import React from 'react';
 
 import { Pressable, StyleSheet, Text, View } from 'react-native';

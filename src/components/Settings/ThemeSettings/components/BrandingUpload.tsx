@@ -1,7 +1,3 @@
-/**
- * Branding upload section for logo and favicon.
- * Displays current images and provides upload/remove actions.
- */
 import React, { useMemo } from 'react';
 
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';

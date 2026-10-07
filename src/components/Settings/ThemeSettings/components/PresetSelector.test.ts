@@ -1,10 +1,3 @@
-/**
- * Unit tests for PresetGrid / PresetSelector logic.
- *
- * Tests the selection logic and preset data integrity beyond what
- * presetHelpers.test.ts already covers. Focuses on preset color swatch
- * correctness and callback behavior.
- */
 import { isPresetSelected } from './PresetGrid';
 import {
   THEME_PRESETS,
@@ -18,9 +11,6 @@ import {
 import type { ThemePreset } from '../../../../theme/presets';
 import type { TenantThemeConfig } from '../../../../theme/types';
 
-// ---------------------------------------------------------------------------
-// Constants
-// ---------------------------------------------------------------------------
 
 const PRESET_COUNT = 5;
 const SWATCH_COLOR_COUNT = 3;
@@ -55,9 +45,6 @@ const EXPECTED_SWATCHES: Record<string, { primary: string; secondary: string; ac
   },
 };
 
-// ---------------------------------------------------------------------------
-// Tests
-// ---------------------------------------------------------------------------
 
 describe('PresetSelector - preset data integrity', () => {
   describe('all 5 presets render in the grid data', () => {
@@ -91,7 +78,6 @@ describe('PresetSelector - preset data integrity', () => {
         const swatchColors = [config.primary, config.secondary, config.accent];
         expect(swatchColors).toHaveLength(SWATCH_COLOR_COUNT);
 
-        // All swatch colors should be valid hex
         for (const color of swatchColors) 
           expect(color).toMatch(/^#[0-9a-fA-F]{6}$/);
         
@@ -121,7 +107,6 @@ describe('PresetSelector - selection logic', () => {
         const preset = THEME_PRESETS.find((p: ThemePreset) => p.id === presetId);
         expect(preset).toBeDefined();
 
-        // Simulate onSelectPreset callback receiving the preset config
         const selectedConfig = preset!.config;
         expect(selectedConfig.branding.presetId).toBe(presetId);
       },

@@ -1,7 +1,3 @@
-/**
- * Export menu data button with format selection (CSV / JSON).
- * Appears alongside the import button in the menu content editor.
- */
 import React, { useCallback, useMemo } from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';

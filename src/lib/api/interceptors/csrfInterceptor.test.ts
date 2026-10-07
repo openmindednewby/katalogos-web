@@ -1,7 +1,3 @@
-/**
- * Unit tests for the CSRF request interceptor. Focus is on the logic: which
- * methods get the `X-BFF-Csrf` header and which are left alone.
- */
 import { attachCsrfHeader } from './csrfInterceptor';
 
 import type { InternalAxiosRequestConfig } from 'axios';
@@ -12,8 +8,6 @@ interface HeaderBag {
 
 function makeConfig(method: string | undefined): { config: InternalAxiosRequestConfig; headers: HeaderBag } {
   const headers: HeaderBag = { set: jest.fn() };
-  // The interceptor only touches `method` and `headers.set` — a minimal stub
-  // is enough and avoids constructing a full AxiosHeaders instance.
   const config = { method, headers } as unknown as InternalAxiosRequestConfig;
   return { config, headers };
 }

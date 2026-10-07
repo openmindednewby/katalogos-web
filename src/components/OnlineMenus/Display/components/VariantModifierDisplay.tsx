@@ -1,9 +1,3 @@
-/**
- * VariantModifierDisplay - Shows variant and modifier options on a menu item.
- *
- * Renders variant groups (e.g., "Size: Small $12 / Medium $16 / Large $20")
- * and modifier groups (e.g., "Extras: Add cheese +$1.00, Bacon +$2.00").
- */
 import React from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';
@@ -18,9 +12,6 @@ import {
 
 import type { MenuItem } from '../../../../types/menuTypes';
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const GROUP_MARGIN_TOP = 6;
 const GROUP_NAME_FONT_SIZE = 12;
@@ -28,9 +19,6 @@ const OPTION_FONT_SIZE = 11;
 const OPTION_GAP = 4;
 const CURRENCY_SYMBOL = '$';
 
-// =============================================================================
-// Styles
-// =============================================================================
 
 const styles = StyleSheet.create({
   container: { marginTop: GROUP_MARGIN_TOP },
@@ -40,9 +28,6 @@ const styles = StyleSheet.create({
   optionText: { fontSize: OPTION_FONT_SIZE },
 });
 
-// =============================================================================
-// Props
-// =============================================================================
 
 interface Props {
   item: MenuItem;
@@ -50,9 +35,6 @@ interface Props {
   testID: string;
 }
 
-// =============================================================================
-// Component
-// =============================================================================
 
 const VariantModifierDisplay: React.FC<Props> = ({ item, textColor, testID }) => {
   const showVariants = hasVariants(item);

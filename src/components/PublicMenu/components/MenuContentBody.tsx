@@ -1,4 +1,3 @@
-/** Content body of the public menu: filter bar, featured section, categories, and empty states. */
 import React, { useMemo } from 'react';
 
 import { Text, View } from 'react-native';

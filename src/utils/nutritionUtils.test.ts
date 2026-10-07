@@ -42,21 +42,18 @@ describe('macroPercentage', () => {
 
 describe('proteinPercentage', () => {
   it('should calculate protein calories as percentage (4 cal/g)', () => {
-    // 30g * 4 = 120 cal -> 120/500 = 24%
     expect(proteinPercentage(SAMPLE_INFO)).toBe(24);
   });
 });
 
 describe('carbsPercentage', () => {
   it('should calculate carbs calories as percentage (4 cal/g)', () => {
-    // 50g * 4 = 200 cal -> 200/500 = 40%
     expect(carbsPercentage(SAMPLE_INFO)).toBe(40);
   });
 });
 
 describe('fatPercentage', () => {
   it('should calculate fat calories as percentage (9 cal/g)', () => {
-    // 15g * 9 = 135 cal -> 135/500 = 27%
     expect(fatPercentage(SAMPLE_INFO)).toBe(27);
   });
 });

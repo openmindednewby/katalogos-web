@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 import { Platform } from 'react-native';
 
-/** Delay before showing iOS add-to-home prompt in ms */
 const IOS_PROMPT_DELAY_MS = 2000;
 
 interface WebNavigator extends Navigator {

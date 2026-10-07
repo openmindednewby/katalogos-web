@@ -1,10 +1,3 @@
-/**
- * Manages location selection for public menus with URL persistence.
- * When a menu is available at multiple locations, customers can select
- * a location to see location-specific prices and availability.
- *
- * Follows the same URL-persistence pattern as usePublicMenuLanguage.
- */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 /** A location where a menu is available. */
@@ -16,20 +9,14 @@ export interface PublicMenuLocation {
 
 const MIN_LOCATIONS_FOR_PICKER = 2;
 
-/**
- * Reads the `location` query parameter from the current URL.
- * Returns empty string in non-browser environments or when the param is absent.
- */
+/** Reads the `location` query parameter from the current URL. */
 export function getUrlLocationParam(): string {
   if (typeof window === 'undefined') return '';
   const params = new URLSearchParams(window.location.search);
   return params.get('location') ?? '';
 }
 
-/**
- * Updates the `location` query parameter in the browser URL without a full page reload.
- * Removes the param when locationId is empty (reverting to all-locations view).
- */
+/** Updates the `location` query parameter in the browser URL without a full page reload. */
 export function setUrlLocationParam(locationId: string): void {
   if (typeof window === 'undefined') return;
   const url = new URL(window.location.href);
@@ -38,10 +25,7 @@ export function setUrlLocationParam(locationId: string): void {
   window.history.replaceState({}, '', url.toString());
 }
 
-/**
- * Resolves the initial location from URL param, falling back to empty (all locations).
- * Only returns a locationId if it matches an available location.
- */
+/** Resolves the initial location from URL param, falling back to empty (all locations). */
 export function resolveLocation(
   availableLocations: PublicMenuLocation[],
   urlLocationId: string,
@@ -53,13 +37,9 @@ export function resolveLocation(
 }
 
 interface UsePublicMenuLocationReturn {
-  /** Currently selected location ID, or empty string for base menu (all locations). */
   selectedLocationId: string;
-  /** Switch to a specific location (empty string reverts to base menu). */
   setLocation: (locationId: string) => void;
-  /** Available locations from the menu response. */
   availableLocations: PublicMenuLocation[];
-  /** Whether the location picker should be shown (2+ locations). */
   showLocationPicker: boolean;
 }
 

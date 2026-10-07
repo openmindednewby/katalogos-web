@@ -1,9 +1,3 @@
-/**
- * Maps Orval-generated API DTOs to frontend billing types.
- *
- * Generated DTOs use API naming conventions (externalId, planTier, etc.)
- * while the frontend uses simpler names (id, tier, etc.).
- */
 import BillingCycle from '../enums/BillingCycle';
 import SubscriptionStatus from '../enums/SubscriptionStatus';
 
@@ -21,7 +15,6 @@ import type {
 const POPULAR_TIER = 'Pro';
 const UNKNOWN_PLAN = 'Unknown';
 
-/** Map a feature limit DTO to a frontend FeatureLimit. */
 function mapFeatureLimit(dto: PaymentServiceUseCasesDTOsFeatureLimitDto): FeatureLimit {
   return {
     featureCode: dto.featureCode ?? '',
@@ -31,7 +24,6 @@ function mapFeatureLimit(dto: PaymentServiceUseCasesDTOsFeatureLimitDto): Featur
   };
 }
 
-/** Map a feature limit DTO to a display-facing PlanFeature. */
 function mapPlanFeature(dto: PaymentServiceUseCasesDTOsFeatureLimitDto): PlanFeature {
   return {
     code: dto.featureCode ?? '',
@@ -40,7 +32,6 @@ function mapPlanFeature(dto: PaymentServiceUseCasesDTOsFeatureLimitDto): PlanFea
   };
 }
 
-/** Parse a string subscription status to the enum value. */
 function parseStatus(value: string | undefined): SubscriptionStatus {
   const statusMap: Record<string, SubscriptionStatus> = {
     Trial: SubscriptionStatus.Trial,
@@ -54,7 +45,6 @@ function parseStatus(value: string | undefined): SubscriptionStatus {
   return statusMap[value ?? ''] ?? SubscriptionStatus.Expired;
 }
 
-/** Parse a string billing cycle to the enum value. */
 function parseBillingCycle(value: string | undefined): BillingCycle {
   if (value === 'Annual') return BillingCycle.Annual;
   return BillingCycle.Monthly;
@@ -99,7 +89,6 @@ export function mapPricingPlan(dto: PaymentServiceUseCasesDTOsPricingPlanDto): P
   };
 }
 
-/** Map a payment DTO to a BillingHistoryItem. */
 function mapPayment(dto: PaymentServiceUseCasesDTOsPaymentDto): BillingHistoryItem {
   return {
     id: dto.externalId ?? '',

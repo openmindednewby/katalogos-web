@@ -1,11 +1,3 @@
-/**
- * React Query mutation hook for saving tenant theme configuration.
- *
- * Uses PUT /api/tenants/{tenantId}/theme via the shared
- * `@dloizides/tenant-theme-web` package (transport wired in
- * `lib/theme/themeTransport`). Invalidates the tenant theme query cache on
- * success so useTenantTheme picks up the new config immediately.
- */
 import { useMemo } from 'react';
 
 import { saveTenantTheme } from '@dloizides/tenant-theme-web';

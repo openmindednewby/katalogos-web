@@ -1,16 +1,3 @@
-/**
- * Native Components Showcase Page.
- * Demonstrates native HTML elements to verify correct rendering and behavior.
- *
- * Checkbox section includes four states:
- * - Checked (controlled, toggleable)
- * - Unchecked (uncontrolled, starts unchecked)
- * - Disabled (non-interactive)
- * - Indeterminate (readOnly + checked, Bug 1 fix)
- *
- * Note: This is a web-only page that uses native HTML elements,
- * so React Native linting rules are disabled.
- */
 import type { ReactElement } from 'react';
 import { useCallback, useState } from 'react';
 

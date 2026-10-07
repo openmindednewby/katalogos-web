@@ -12,9 +12,7 @@ import { useBreakpoint } from '@/hooks/useBreakpoint';
 import { Routes } from '@/navigation/routes';
 import { TestIds } from '@/shared/testIds';
 
-/** Emoji icon for restaurant/menu-related cards */
 const ICON_RESTAURANT = '\uD83C\uDF7D\uFE0F';
-/** Emoji icon for clipboard/survey-related cards */
 const ICON_CLIPBOARD = '\uD83D\uDCCB';
 
 const CARDS_ROW_GAP = 16;

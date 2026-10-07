@@ -1,6 +1,3 @@
-/**
- * Confirmation modal for restoring a menu version.
- */
 import React from 'react';
 
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';

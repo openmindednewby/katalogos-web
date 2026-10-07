@@ -1,8 +1,3 @@
-/**
- * Consent Management section.
- * Displays toggle switches for analytics/marketing consent.
- * Essential consent is always on and disabled.
- */
 import React, { useCallback, useMemo } from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';

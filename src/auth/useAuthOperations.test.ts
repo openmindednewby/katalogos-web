@@ -1,10 +1,3 @@
-/**
- * Unit tests for `useAuthOperations` — the BFF login + register operations.
- *
- * Focus is on the logic: a successful login/register dispatches the derived
- * user view + `setAuthenticated(true)`, and the loading flag is toggled around
- * the call regardless of outcome. No rendering, no real HTTP.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import { useAuthOperations } from './useAuthOperations';

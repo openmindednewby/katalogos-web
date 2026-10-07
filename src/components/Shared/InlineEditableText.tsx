@@ -1,11 +1,3 @@
-/**
- * InlineEditableText - A reusable component that displays text
- * and allows inline editing on click.
- *
- * Click on the text to enter edit mode. Press Enter or blur to save,
- * press Escape to cancel. Shows a cursor pointer on hover and a subtle
- * pencil icon to indicate the text is editable.
- */
 import React, { useEffect, useMemo } from 'react';
 
 import { TextInput, TouchableOpacity, View } from 'react-native';

@@ -72,13 +72,7 @@ const ENTERPRISE_FEATURE_KEYS = [
   'landing.pricing.enterprise.feature6',
 ] as const;
 
-/**
- * Pricing page showing four tiers side-by-side: Trial / Free+Ads / Paid (No Ads) / Paid Full.
- * Pro (No Ads) is highlighted as the recommended tier.
- *
- * Background uses the locked Katalogos cream gray-100 to match the marketing identity.
- * Responsive: 4 columns on desktop (wraps to 2x2 on tablet), single-column on mobile.
- */
+/** Pricing page showing four tiers side-by-side: Trial / Free+Ads / Paid (No Ads) / Paid Full. */
 const PricingPage = (): React.ReactElement => {
   const { width } = useWindowDimensions();
   const { track } = useAnalytics();

@@ -9,15 +9,10 @@ import BoxStyleEditor from './BoxStyleEditor';
 
 import type { BoxStyling } from '../../../../types/menuStyleTypes';
 
-// Mock dependencies
 jest.mock('react-redux', () => ({
   useSelector: () => 'light',
 }));
 
-/**
- * Helper to flatten style prop from React Native components.
- * Handles both single style objects and arrays of styles.
- */
 function flattenStyle(style: ViewStyle | ViewStyle[] | undefined): ViewStyle {
   if (!isValueDefined(style)) return {};
   if (!Array.isArray(style)) return style;
@@ -440,7 +435,6 @@ describe('BoxStyleEditor', () => {
         <BoxStyleEditor {...defaultProps} value={undefinedValues} />,
       );
 
-      // Should render without crashing
       expect(getByTestId('box-style-editor')).toBeTruthy();
     });
   });

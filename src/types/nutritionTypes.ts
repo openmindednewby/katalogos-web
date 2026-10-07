@@ -2,10 +2,7 @@
  * Types for nutritional information on menu items.
  */
 
-/**
- * Nutritional information for a menu item.
- * Values are per serving.
- */
+/** Nutritional information for a menu item. */
 export interface NutritionalInfo {
   /** Calories per serving */
   calories: number;

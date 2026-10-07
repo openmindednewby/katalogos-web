@@ -1,6 +1,3 @@
-/**
- * Tests for menu import validation utilities.
- */
 import { detectColumnMappings } from './columnDetection';
 import { parsePrice, validateColumnMappings, validateRows } from './validateMenuRows';
 import MenuField from '../../../../shared/enums/MenuField';
@@ -140,7 +137,6 @@ describe('validateRows', () => {
         }),
       ]),
     );
-    // Warning does not make the row invalid
     expect(result.rows[1].isValid).toBe(true);
   });
 

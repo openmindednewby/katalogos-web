@@ -1,7 +1,3 @@
-/**
- * Appearance section for the White Label settings screen.
- * Includes custom CSS, header HTML, and footer HTML textareas.
- */
 import React from 'react';
 
 import { Text, TextInput } from 'react-native';

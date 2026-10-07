@@ -1,8 +1,3 @@
-/**
- * Component Library Showcase route.
- * Accessible at /showcase/components
- * Gated behind the enableThemeEditor feature flag.
- */
 import React from 'react';
 
 import FeatureGate from '../../../src/components/Shared/FeatureGate';

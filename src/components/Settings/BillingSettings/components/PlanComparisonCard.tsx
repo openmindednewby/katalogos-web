@@ -1,7 +1,3 @@
-/**
- * PlanComparisonCard - single plan card in the comparison grid.
- * Shows plan name, price, features, and action button.
- */
 import React from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';

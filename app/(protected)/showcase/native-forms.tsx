@@ -1,8 +1,3 @@
-/**
- * Native Forms Showcase route.
- * Accessible at /showcase/native-forms
- * Gated behind the enableThemeEditor feature flag.
- */
 import React from 'react';
 
 import FeatureGate from '../../../src/components/Shared/FeatureGate';

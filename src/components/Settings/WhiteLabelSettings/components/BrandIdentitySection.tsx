@@ -1,7 +1,3 @@
-/**
- * Brand Identity section for the White Label settings screen.
- * Includes company name, logo URL, and favicon URL inputs.
- */
 import React from 'react';
 
 import { Text, TextInput } from 'react-native';

@@ -20,15 +20,7 @@ import type { ThemeModeColors } from '@/theme/types/themeModeColors';
 
 const REALM_QUESTIONER = 'questioner';
 
-/**
- * Resolve the realm-keyed translation suffix for the current Keycloak realm.
- * Erevna runs against the `questioner` realm; Katalogos runs against
- * `onlinemenu`. The default falls through to `onlinemenu` to preserve the
- * existing copy for any environment where the realm isn't wired up yet.
- *
- * Exported for unit testing.
- */
-// ts-prune-ignore-next -- exported only for unit tests (loaded via dynamic require)
+/** Resolve the realm-keyed translation suffix for the current Keycloak realm. */
 export function resolveWizardRealmKey(): 'questioner' | 'onlinemenu' {
   if (keycloakRealm === REALM_QUESTIONER) return 'questioner';
   return 'onlinemenu';

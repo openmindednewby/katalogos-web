@@ -1,7 +1,3 @@
-/**
- * Hook for managing menu translations via the OnlineMenu API.
- * Uses React Query for caching, refetching, and mutation state.
- */
 import { useCallback } from 'react';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';

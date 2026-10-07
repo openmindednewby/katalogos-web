@@ -1,6 +1,3 @@
-/**
- * Styles for the HeaderEditor component.
- */
 import { StyleSheet } from 'react-native';
 
 import {

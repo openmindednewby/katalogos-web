@@ -1,7 +1,3 @@
-/**
- * Custom hook for comparing two menu versions.
- * Uses the OnlineMenu API: GET /TenantMenus/{menuId}/versions/{v1}/compare/{v2}
- */
 import { useQuery } from '@tanstack/react-query';
 
 import { customInstance } from '@/server/mutators/onlineMenuMutator';

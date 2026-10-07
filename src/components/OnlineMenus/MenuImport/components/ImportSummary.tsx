@@ -1,6 +1,3 @@
-/**
- * Import summary card: shows results after a successful import.
- */
 import React from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';

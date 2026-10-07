@@ -1,4 +1,3 @@
-/** Shared styles for ScheduleEditor and ScheduleEditorForm. */
 import { StyleSheet } from 'react-native';
 
 import {

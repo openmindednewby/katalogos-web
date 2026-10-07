@@ -1,7 +1,3 @@
-/**
- * Custom hook for restoring a menu to a previous version.
- * Uses the OnlineMenu API: POST /TenantMenus/{menuId}/versions/{versionId}/restore
- */
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { customInstance } from '@/server/mutators/onlineMenuMutator';

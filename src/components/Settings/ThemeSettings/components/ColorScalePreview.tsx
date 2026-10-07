@@ -1,7 +1,3 @@
-/**
- * Color scale preview showing generated 50-900 shade strip.
- * Uses palette-generator to produce the full shade scale from a base hex color.
- */
 import React, { useMemo } from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';

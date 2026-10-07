@@ -1,6 +1,3 @@
-/**
- * Processing step: shows a loading state while AI extracts menu data.
- */
 import React from 'react';
 
 import { ActivityIndicator, Text, View } from 'react-native';

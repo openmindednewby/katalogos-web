@@ -1,7 +1,3 @@
-/**
- * Tests for usePopularItems hook.
- * Focuses on query key generation logic.
- */
 import { getPopularItemsQueryKey } from './usePopularItems';
 
 const SAMPLE_FROM = '2026-03-01';

@@ -43,10 +43,7 @@ function applyTrackingDataset(element: HTMLElement, itemId: string): void {
   Object.assign(element.dataset, { trackItemId: itemId });
 }
 
-/**
- * Renders a single themed menu item card with image, video,
- * name, price, and description. Tappable to open item detail modal.
- */
+/** Renders a single themed menu item card with image, video, */
 export const MenuItemDisplay: React.FC<MenuItemDisplayProps> = ({
   item,
   testIdSuffix,
@@ -77,7 +74,6 @@ export const MenuItemDisplay: React.FC<MenuItemDisplayProps> = ({
     [canTrack, observeItem, menuId, itemId, categoryName],
   );
 
-  // Item-level styling overrides
   const itemBackgroundColor =
     isValueDefined(item.backgroundColor) && item.backgroundColor !== ''
       ? String(item.backgroundColor)

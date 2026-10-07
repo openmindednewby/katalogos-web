@@ -1,7 +1,4 @@
-/**
- * Constants for the Custom Domain settings screen.
- * Domain-specific styling and configuration values.
- */
+/** Constants for the Custom Domain settings screen. */
 
 /** CNAME target that custom domains should point to. */
 export const CNAME_TARGET = 'public.yoursaas.com';

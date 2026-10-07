@@ -1,6 +1,3 @@
-/**
- * Tests for quizHelpers - Page navigation and ordering.
- */
 import { getOrderedPages, findPageInDirection } from './quizHelpers';
 import QuestionType from '../../../shared/enums/QuestionType';
 

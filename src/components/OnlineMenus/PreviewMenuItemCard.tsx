@@ -1,6 +1,3 @@
-/**
- * MenuItemCard - Renders a single menu item in the preview.
- */
 import React from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';
@@ -68,7 +65,6 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
   const itemHasVariants = hasVariants(item);
   const displayPrice = minVariantPrice ?? basePrice;
 
-  // Item-level styling (overrides category-level)
   const hasCustomBackground = isValueDefined(item.backgroundColor);
   const itemBackgroundColor = hasCustomBackground ? String(item.backgroundColor) : 'transparent';
   const hasCustomTextColor = isValueDefined(item.textColor);

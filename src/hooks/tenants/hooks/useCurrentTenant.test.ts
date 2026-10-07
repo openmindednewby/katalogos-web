@@ -1,10 +1,3 @@
-/**
- * Tests for useCurrentTenant hook.
- *
- * Focuses on the resolution logic — how the hook normalises the API response
- * (empty/whitespace-only names → null, missing tenantId → disabled query).
- * The autogen GET hook is mocked so we never hit the network.
- */
 import { renderHook } from '@testing-library/react-native';
 
 import { useCurrentTenant } from './useCurrentTenant';
@@ -103,9 +96,6 @@ describe('useCurrentTenant', () => {
   });
 
   it('reports loading=false when no tenantId even if the query helper says loading=true', () => {
-    // The autogen hook's enabled=!!tenantId means the query never actually runs,
-    // but defensive: we don't want a stale loading=true to gate UI when there is
-    // no tenant to load.
     mockUseAuth.mockReturnValue({ userInfo: { tenantId: '' } });
     mockUseGetTenantById.mockReturnValue({ data: undefined, isLoading: true });
 

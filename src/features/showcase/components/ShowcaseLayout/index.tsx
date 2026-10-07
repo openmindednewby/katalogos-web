@@ -1,8 +1,3 @@
-/**
- * Layout wrapper for showcase pages.
- * Provides the main content area with the Theme Settings Drawer.
- * Manages the full-width layout state and corresponding CSS classes.
- */
 import type { ReactElement, ReactNode } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 

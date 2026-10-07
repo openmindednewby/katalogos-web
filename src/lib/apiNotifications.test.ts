@@ -2,7 +2,6 @@ import { HttpMethod } from '@dloizides/api-client-base';
 
 import { getApiNotificationMessage, registerApiNotification } from './apiNotifications';
 
-// Mock the localization helper
 jest.mock('../localization/helpers', () => ({
   FM: jest.fn((id: string, p1?: string, _p2?: string) => {
     const messages: Record<string, string | undefined> = {

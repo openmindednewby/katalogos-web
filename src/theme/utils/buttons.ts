@@ -1,12 +1,8 @@
 
 
 
-/**
- * Button styles used across the application.
- */
 import { StyleSheet } from 'react-native';
 
-/** WCAG 2.5.5 minimum touch target size */
 const MIN_TOUCH_TARGET_HEIGHT = 44;
 
 export const buttonStyles = StyleSheet.create({

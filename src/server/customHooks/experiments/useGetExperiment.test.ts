@@ -1,7 +1,3 @@
-/**
- * Tests for useGetExperiment hook.
- * Focuses on enabled logic and query key construction.
- */
 import { useQuery } from '@tanstack/react-query';
 import { renderHook } from '@testing-library/react-native';
 

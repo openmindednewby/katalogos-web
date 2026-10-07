@@ -1,7 +1,3 @@
-/**
- * Storage cleanup utilities for authentication logout flow.
- * Extracted from AuthProvider to maintain file size limits.
- */
 import { clearAllThemeCaches } from '../lib/theme';
 import { STORAGE_KEYS } from '../shared/constants';
 import { clearSession, setUser, setUserInfo } from '../store/slices/authSlice';
@@ -9,7 +5,6 @@ import { logger } from '../utils/logger';
 
 import type { AppDispatch } from '../store/reduxStore';
 
-// Token refresh delay constants for logout cleanup
 const LOGOUT_CLEANUP_DELAY_IMMEDIATE = 0;
 const LOGOUT_CLEANUP_DELAY_SHORT = 50;
 const LOGOUT_CLEANUP_DELAY_DEFAULT = 200;
@@ -26,8 +21,8 @@ const LOGOUT_CLEANUP_DELAYS = [
 function safeWarn(context: string, message: string, data?: unknown): void {
   try {
     logger.warn(context, message, data);
+  // eslint-disable-next-line no-empty
   } catch {
-    // ignore
   }
 }
 

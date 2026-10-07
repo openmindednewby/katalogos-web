@@ -1,19 +1,7 @@
-/**
- * BUG-QUIZ-010: Tests that handleSaveFromJson returns early on invalid JSON.
- * BUG-QUIZ-017: Tests that isQuestionerContents rejects arrays.
- *
- * Tests extracted logic functions without rendering the component.
- */
-/**
- * Mirrors the fixed isQuestionerContents type guard (BUG-QUIZ-017).
- */
 function isQuestionerContents(value: unknown): boolean {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
-/**
- * Mirrors parseContents from TemplateEditorModal.
- */
 function parseContents(text: string): Record<string, unknown> | null {
   try {
     const parsed: unknown = JSON.parse(text);
@@ -86,10 +74,6 @@ describe('TemplateEditorModal - parseContents', () => {
 });
 
 describe('TemplateEditorModal - handleSaveFromJson logic (BUG-QUIZ-010)', () => {
-  /**
-   * Simulates the fixed handleSaveFromJson logic:
-   * If parseContents returns null, should NOT call onSave.
-   */
   function simulateHandleSaveFromJson(
     jsonText: string,
     onSave: (payload: unknown) => void,

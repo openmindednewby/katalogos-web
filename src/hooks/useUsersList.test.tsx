@@ -1,7 +1,3 @@
-/**
- * Tests for useUsersList hook.
- * Focus on testing user data mapping and filtering.
- */
 import './userPageHandlers.setupMocks';
 
 import { renderHook } from '@testing-library/react-native';

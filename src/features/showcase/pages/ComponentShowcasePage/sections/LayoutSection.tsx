@@ -1,7 +1,3 @@
-/**
- * Layout components showcase section.
- * Demonstrates: Section, Heading, Title, PageHeaderWithActions, ActionRow.
- */
 import type { ReactElement } from 'react';
 
 import { StyleSheet, View } from 'react-native';
@@ -22,8 +18,8 @@ const styles = StyleSheet.create({
   sectionContent: { padding: SECTION_PADDING },
 });
 
+// eslint-disable-next-line no-empty-function
 function handleNoOp(): void {
-  // intentional no-op for demo
 }
 
 const LayoutSection = (): ReactElement => (

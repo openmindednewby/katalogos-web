@@ -1,39 +1,20 @@
 
 
-/**
- * Create a full notification from partial data
- */
-/**
- * Test Notification API for E2E Testing
- *
- * This module exposes a test API on the window object that allows Playwright E2E tests
- * to inject mock notifications without needing the real backend/SignalR connection.
- *
- * SECURITY: This API is only exposed in non-production environments.
- */
 
 import { isValueDefined } from '@dloizides/utils';
 
 import type { Notification, NotificationPriority, DisplayPreference } from '@dloizides/notification-client';
 
-/** Default priority for test notifications */
 const DEFAULT_PRIORITY: NotificationPriority = 'normal';
 
-/** Default display preference for test notifications */
 const DEFAULT_DISPLAY_PREFERENCE: DisplayPreference = 'in_app';
 
-/** Radix for generating random ID string */
 const RANDOM_ID_RADIX = 36;
 
-/** Start index for random ID substring */
 const RANDOM_ID_START = 2;
 
-/** End index for random ID substring */
 const RANDOM_ID_END = 9;
 
-/**
- * Store actions interface that matches the notification store
- */
 interface NotificationStoreActions {
   addNotification: (notification: Notification) => void;
   clearNotifications: () => void;
@@ -43,23 +24,16 @@ interface NotificationStoreActions {
   markAllAsRead: () => void;
 }
 
-/**
- * Store state interface that matches the notification store
- */
 interface NotificationStoreState {
   notifications: Notification[];
   unreadCount: number;
   toasts: Notification[];
 }
 
-/**
- * Store hook interface that matches the Zustand store
- */
 interface NotificationStoreHook {
   getState: () => NotificationStoreState & NotificationStoreActions;
 }
 
-/** Reference to the notification store hook */
 let registeredStore: NotificationStoreHook | null = null;
 
 export function createFullNotification(partial: Partial<Notification>): Notification {
@@ -83,12 +57,7 @@ export function createFullNotification(partial: Partial<Notification>): Notifica
   };
 }
 
-/**
- * Register the notification store for the test API.
- * This should be called by the NotificationProvider when it mounts.
- *
- * @param store - The Zustand notification store hook
- */
+/** Register the notification store for the test API. */
 export function registerNotificationStore(store: NotificationStoreHook): void {
   if (isProduction()) return;
   registeredStore = store;
@@ -105,7 +74,6 @@ export function setupTestNotificationApi(): void {
   if (isProduction()) return;
   if (typeof window === 'undefined') return;
 
-  // Create the test API object
   const testApi: NotificationTestApi = {
     isStoreReady,
     injectNotification,
@@ -119,7 +87,6 @@ export function setupTestNotificationApi(): void {
     markAllAsRead,
   };
 
-  // Expose on window
   window.__NOTIFICATION_TEST_API__ = testApi;
 }
 
@@ -130,23 +97,14 @@ export function cleanupTestNotificationApi(): void {
   registeredStore = null;
 }
 
-/**
- * Check if we are in a production environment
- */
 function isProduction(): boolean {
   return process.env.NODE_ENV === 'production';
 }
 
-/**
- * Check if the notification store has been registered
- */
 function isStoreReady(): boolean {
   return isValueDefined(registeredStore);
 }
 
-/**
- * Inject a notification into the store
- */
 function injectNotification(partial: Partial<Notification>): Notification {
   if (!isValueDefined(registeredStore))
     throw new Error('Notification store not registered. Is NotificationProvider mounted?');
@@ -158,9 +116,6 @@ function injectNotification(partial: Partial<Notification>): Notification {
   return notification;
 }
 
-/**
- * Clear all notifications from the store
- */
 function clearNotifications(): void {
   if (!isValueDefined(registeredStore))
     throw new Error('Notification store not registered. Is NotificationProvider mounted?');
@@ -168,9 +123,6 @@ function clearNotifications(): void {
   registeredStore.getState().clearNotifications();
 }
 
-/**
- * Get all notifications from the store
- */
 function getNotifications(): Notification[] {
   if (!isValueDefined(registeredStore))
     return [];
@@ -178,9 +130,6 @@ function getNotifications(): Notification[] {
   return registeredStore.getState().notifications;
 }
 
-/**
- * Get the unread count from the store
- */
 function getUnreadCount(): number {
   if (!isValueDefined(registeredStore))
     return 0;
@@ -188,9 +137,6 @@ function getUnreadCount(): number {
   return registeredStore.getState().unreadCount;
 }
 
-/**
- * Add a toast notification
- */
 function addToast(partial: Partial<Notification>): Notification {
   if (!isValueDefined(registeredStore))
     throw new Error('Notification store not registered. Is NotificationProvider mounted?');
@@ -202,9 +148,6 @@ function addToast(partial: Partial<Notification>): Notification {
   return notification;
 }
 
-/**
- * Remove a toast notification
- */
 function removeToast(id: string): void {
   if (!isValueDefined(registeredStore))
     throw new Error('Notification store not registered. Is NotificationProvider mounted?');
@@ -212,9 +155,6 @@ function removeToast(id: string): void {
   registeredStore.getState().removeToast(id);
 }
 
-/**
- * Get all toast notifications
- */
 function getToasts(): Notification[] {
   if (!isValueDefined(registeredStore))
     return [];
@@ -222,9 +162,6 @@ function getToasts(): Notification[] {
   return registeredStore.getState().toasts;
 }
 
-/**
- * Mark a notification as read
- */
 function markAsRead(id: string): void {
   if (!isValueDefined(registeredStore))
     throw new Error('Notification store not registered. Is NotificationProvider mounted?');
@@ -232,9 +169,6 @@ function markAsRead(id: string): void {
   registeredStore.getState().markAsRead(id);
 }
 
-/**
- * Mark all notifications as read
- */
 function markAllAsRead(): void {
   if (!isValueDefined(registeredStore))
     throw new Error('Notification store not registered. Is NotificationProvider mounted?');

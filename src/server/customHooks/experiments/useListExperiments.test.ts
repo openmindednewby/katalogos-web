@@ -1,7 +1,3 @@
-/**
- * Tests for useListExperiments hook.
- * Focuses on query key generation and query configuration.
- */
 import { useQuery } from '@tanstack/react-query';
 import { renderHook } from '@testing-library/react-native';
 

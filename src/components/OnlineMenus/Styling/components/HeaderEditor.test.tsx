@@ -8,7 +8,6 @@ import LogoSize from '../../../../types/enums/LogoSize';
 
 import type { HeaderSettings } from '../../../../types/menuStyleTypes';
 
-// Mock dependencies
 jest.mock('react-redux', () => ({
   useSelector: () => 'light',
 }));

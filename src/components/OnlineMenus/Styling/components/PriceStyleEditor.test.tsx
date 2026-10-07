@@ -8,9 +8,6 @@ import FontWeight from '../../../../types/enums/FontWeight';
 
 import type { PriceStyle } from '../../../../types/menuStyleTypes';
 
-// =============================================================================
-// Mocks
-// =============================================================================
 
 jest.mock('react-redux', () => ({
   useSelector: () => 'light',
@@ -37,9 +34,6 @@ jest.mock('@react-native-community/slider', () => {
   };
 });
 
-// =============================================================================
-// Test Suite
-// =============================================================================
 
 describe('PriceStyleEditor', () => {
   const mockOnChange = jest.fn();

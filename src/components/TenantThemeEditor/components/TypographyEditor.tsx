@@ -1,8 +1,5 @@
 
 
-/**
- * Typography editor section with font family chip selector and heading scale input.
- */
 import React, { useCallback, useMemo } from 'react';
 
 import { StyleSheet, Text, TextInput, View } from 'react-native';
@@ -26,7 +23,6 @@ interface Props {
 const MIN_HEADING_SCALE = 0.5;
 const MAX_HEADING_SCALE = 2.0;
 
-// Font names are proper nouns and should not be localized
 const FONT_OPTIONS = [
   { value: 'System', label: 'System' },
   { value: 'Roboto', label: 'Roboto' },

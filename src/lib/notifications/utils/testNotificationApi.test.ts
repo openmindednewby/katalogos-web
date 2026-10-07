@@ -1,8 +1,3 @@
-/**
- * Unit tests for testNotificationApi
- *
- * Tests the E2E test notification API functions.
- */
 
 import {
   createFullNotification,
@@ -13,19 +8,15 @@ import {
 } from './testNotificationApi';
 import { createMockStore } from './testNotificationApi.helpers';
 
-// Mock the process.env
 const originalEnv = process.env.NODE_ENV;
 
 describe('testNotificationApi', () => {
   beforeEach(() => {
-    // Reset environment
     process.env.NODE_ENV = 'test';
-    // Clean up any existing test API
     cleanupTestNotificationApi();
   });
 
   afterEach(() => {
-    // Restore environment
     process.env.NODE_ENV = originalEnv;
     cleanupTestNotificationApi();
   });

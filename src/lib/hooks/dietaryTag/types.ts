@@ -1,9 +1,4 @@
-/**
- * Types for dietary tag hooks and components.
- *
- * DietaryTagDto matches the backend API response shape from
- * GET /api/dietary-tags and GET /public/dietary-tags.
- */
+/** Types for dietary tag hooks and components. */
 
 export interface DietaryTagDto {
   externalId: string;

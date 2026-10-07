@@ -1,9 +1,6 @@
 
 
 
-/**
- * AvailabilityBadge - Displays the availability status badge.
- */
 import React from 'react';
 
 import { Text, View } from 'react-native';
@@ -25,9 +22,6 @@ interface Props {
 const DEFAULT_UNAVAILABLE_BG = '#EF4444';
 const DEFAULT_UNAVAILABLE_TEXT = '#FFFFFF';
 
-/**
- * Gets the position style for the badge.
- */
 function getBadgePositionStyle(position?: BadgePosition): StyleProp<ViewStyle> {
   if (position === BadgePosition.TopLeft) return styles.badgeTopLeft;
   if (position === BadgePosition.BottomLeft) return styles.badgeBottomLeft;

@@ -1,20 +1,3 @@
-/**
- * Reset-password landing page (`/reset-password?token=…`).
- *
- * Reachable while logged out — the route lives under the `(auth)` group which
- * does not gate on session state. The token comes from the email-link query
- * param; on mount we read it once and pass it to the reset-password form hook.
- *
- * On success: navigates to the login screen and emits a success notification.
- * On expired / invalid token (HTTP 400): swaps the form for a CTA that returns
- * the user to login (where they can request a new link).
- *
- * Unified-auth Phase 1c: the form *logic* lives in `@dloizides/auth-web`
- * (`useResetPasswordForm`); this route owns only the token parsing, the
- * navigation, and the `ResetPasswordError → FM()` mapping (the package is
- * i18n-agnostic). The rendered body is the shared `ResetPasswordView` so the
- * UI and its testIds are unchanged from the pre-port screen.
- */
 import React, { useCallback, useMemo, type ReactElement } from 'react';
 
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -33,7 +16,6 @@ function readQueryToken(raw: string | string[] | undefined): string {
   return '';
 }
 
-/** Resolve a `ResetPasswordError` onto its localized message. */
 function errorMessage(errorKey: ResetPasswordError | null): string {
   if (!isValueDefined(errorKey)) return '';
   if (errorKey === ResetPasswordError.Empty) return FM('resetPassword.errors.empty');

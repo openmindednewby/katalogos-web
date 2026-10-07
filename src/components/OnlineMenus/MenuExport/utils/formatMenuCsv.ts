@@ -1,22 +1,13 @@
-/**
- * CSV formatting for menu data export.
- * Produces a CSV string compatible with the menu import wizard columns:
- * Category, Item Name, Description, Price
- */
 import { sortCategoriesByDisplayOrder, sortMenuItemsByDisplayOrder } from '../../../../types/menuTypes';
 import { isValueDefined } from '../../../../utils/is';
 
 import type { MenuContents } from '../../../../types/menuTypes';
 
-/** CSV column headers matching the import wizard format. */
 const CSV_HEADERS = ['Category', 'Item Name', 'Description', 'Price'];
 
 const DECIMAL_PLACES = 2;
 
-/**
- * Escape a field value for CSV.
- * Wraps in double quotes if the value contains commas, quotes, or newlines.
- */
+/** Escape a field value for CSV. */
 export function escapeCsvField(value: string): string {
   const needsQuoting = value.includes('"') || value.includes(',') ||
     value.includes('\n') || value.includes('\r');
@@ -26,11 +17,7 @@ export function escapeCsvField(value: string): string {
   return value;
 }
 
-/**
- * Format menu contents as a CSV string.
- * Categories and items are sorted by displayOrder.
- * Returns empty string if there are no categories or items.
- */
+/** Format menu contents as a CSV string. */
 export function formatMenuCsv(contents: MenuContents | null | undefined): string {
   if (!isValueDefined(contents) || (contents.categories?.length ?? 0) === 0) return '';
 
@@ -52,7 +39,6 @@ export function formatMenuCsv(contents: MenuContents | null | undefined): string
     }
   }
 
-  // Only header row means no actual data
   if (rows.length === 1) return '';
 
   return rows.join('\n');

@@ -1,7 +1,3 @@
-/**
- * MenuSearchBar - Search input for filtering public menu items by name.
- * Renders a themed text input with a search icon and a clear button.
- */
 import React from 'react';
 
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -13,9 +9,6 @@ import { TestIds } from '../../../shared/testIds';
 
 import type { PublicMenuTheme } from '../utils/publicMenuThemeTypes';
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const INPUT_HEIGHT = 44;
 const INPUT_PADDING_LEFT = 40;
@@ -31,9 +24,6 @@ const SEARCH_ICON_LEFT = 12;
 const UNICODE_MULTIPLY = '\u00D7';
 const UNICODE_SEARCH = '\uD83D\uDD0D';
 
-// =============================================================================
-// Props
-// =============================================================================
 
 interface MenuSearchBarProps {
   value: string;
@@ -41,9 +31,6 @@ interface MenuSearchBarProps {
   theme: PublicMenuTheme;
 }
 
-// =============================================================================
-// Component
-// =============================================================================
 
 export const MenuSearchBar: React.FC<MenuSearchBarProps> = ({
   value,

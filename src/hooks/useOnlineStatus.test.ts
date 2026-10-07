@@ -1,19 +1,13 @@
-/**
- * Unit tests for useOnlineStatus hook.
- * Tests logic: online/offline state transitions and event handling.
- */
 import { Platform } from 'react-native';
 
 import { renderHook, act } from '@testing-library/react-native';
 
 import { useOnlineStatus } from './useOnlineStatus';
 
-// Store event handlers so tests can simulate browser events
 const eventHandlers: Record<string, (() => void) | undefined> = {};
 
 beforeEach(() => {
   jest.clearAllMocks();
-  // Reset event handlers
   Object.keys(eventHandlers).forEach((key) => {
     eventHandlers[key] = undefined;
   });

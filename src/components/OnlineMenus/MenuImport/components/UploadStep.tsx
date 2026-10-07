@@ -1,6 +1,3 @@
-/**
- * Upload step: lets user select a CSV or Excel file for import.
- */
 import React from 'react';
 
 import { Text, TouchableOpacity, View } from 'react-native';

@@ -1,7 +1,3 @@
-/**
- * Unit tests for TenantThemeEditor helper functions.
- * Tests pure logic only, no rendering.
- */
 import { BrandColorField } from './BrandColorField';
 import {
   applyColorToConfig,

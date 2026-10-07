@@ -1,7 +1,3 @@
-/**
- * A subtle banner displayed when the user is offline and viewing a cached menu.
- * Web-only component -- native apps handle offline state differently.
- */
 import React, { memo, useCallback, useState } from 'react';
 
 import { Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -22,7 +18,6 @@ const SHADOW_OFFSET_Y = 2;
 const SHADOW_COLOR = '#000';
 const DISMISS_SYMBOL = '\u00D7';
 
-/** Default amber palette used when no custom colors are provided. */
 const DEFAULT_BG_COLOR = '#FEF3C7';
 const DEFAULT_TEXT_COLOR = '#92400E';
 const DEFAULT_BORDER_COLOR = '#F59E0B';
@@ -65,12 +60,6 @@ const styles = StyleSheet.create({
   },
 });
 
-/**
- * Shows a subtle banner informing the user that they are
- * viewing a cached (offline) version of the menu.
- *
- * Only renders on web platform. Returns null on native or when dismissed.
- */
 const OfflineBanner: React.FC<OfflineBannerProps> = ({
   backgroundColor = DEFAULT_BG_COLOR,
   textColor = DEFAULT_TEXT_COLOR,

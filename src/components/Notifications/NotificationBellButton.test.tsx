@@ -4,7 +4,6 @@ import { fireEvent, render, screen } from '@testing-library/react-native';
 
 import NotificationBellButton from './NotificationBellButton';
 
-// Mock dependencies
 const mockPush = jest.fn();
 let mockUnreadCount = 0;
 
@@ -81,7 +80,6 @@ describe('NotificationBellButton', () => {
 
     const badge = screen.getByTestId('notification-bell-badge');
     expect(badge).toBeTruthy();
-    // The badge text should show 99+
   });
 
   it('has correct accessibility properties', () => {

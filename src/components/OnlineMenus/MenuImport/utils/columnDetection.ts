@@ -1,7 +1,3 @@
-/**
- * Column detection utilities for menu import.
- * Auto-detects which file columns map to menu fields (category, item name, etc.)
- */
 import {
   CATEGORY_ALIASES,
   DESCRIPTION_ALIASES,
@@ -17,10 +13,7 @@ export interface ColumnMapping {
   field: MenuField;
 }
 
-/**
- * Detect menu field mappings from column headers.
- * Returns a mapping for each column, defaulting to Unmapped.
- */
+/** Detect menu field mappings from column headers. */
 export function detectColumnMappings(headers: string[]): ColumnMapping[] {
   const usedFields = new Set<MenuField>();
 
@@ -33,10 +26,6 @@ export function detectColumnMappings(headers: string[]): ColumnMapping[] {
   });
 }
 
-/**
- * Match a single header string to a menu field.
- * Uses normalized comparison against known aliases.
- */
 function matchHeaderToField(
   header: string,
   usedFields: Set<MenuField>,
@@ -63,10 +52,7 @@ function matchesAnyAlias(normalized: string, aliases: string[]): boolean {
   return aliases.some((alias) => normalized === alias);
 }
 
-/**
- * Extract a value from a row by field, using the column mappings.
- * Returns undefined if no column is mapped to the field.
- */
+/** Extract a value from a row by field, using the column mappings. */
 export function getValueByField(
   row: string[],
   mappings: ColumnMapping[],

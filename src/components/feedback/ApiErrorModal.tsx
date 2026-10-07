@@ -1,12 +1,3 @@
-/**
- * Modal component for displaying API error events.
- *
- * Renders different content based on the modalComponent type:
- * - ErrorModal: generic error dialog
- * - MaintenanceModal: system under maintenance
- * - UpgradePrompt: feature gate / plan upgrade
- * - FeatureGateModal: feature not available
- */
 
 import React, { useMemo } from 'react';
 

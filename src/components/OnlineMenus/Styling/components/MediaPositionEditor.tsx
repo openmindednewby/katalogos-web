@@ -177,7 +177,6 @@ const MediaPositionEditor: React.FC<Props> = ({ value, onChange, disabled = fals
 
 export default MediaPositionEditor;
 
-// Re-export constants for backward compatibility with tests
 export {
   FIT_OPTION_COUNT,
   FIT_OPTIONS,

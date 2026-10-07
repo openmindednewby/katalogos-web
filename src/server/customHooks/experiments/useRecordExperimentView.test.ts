@@ -1,7 +1,3 @@
-/**
- * Tests for useRecordExperimentView hook.
- * Focuses on mutation function construction.
- */
 import React from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';

@@ -1,14 +1,3 @@
-/**
- * Unit tests for `useAuthLabels` — the FM-backed label bags for the shared
- * `@dloizides/auth-web` device-PIN + passkey components (unified-login
- * Increment 3 Batch 3).
- *
- * Focus: the placeholder-token bridging logic. katalogos stores the FM-standard
- * double-brace `{{p1}}` in its JSON, but the shared package interpolates a
- * SINGLE-brace `{count}` / `{name}` token. These tests assert the hooks rewrite
- * the FM placeholder to the package token for exactly the placeholder-bearing
- * keys, and leave plain strings untouched.
- */
 import { renderHook } from '@testing-library/react-native';
 
 import {
@@ -19,9 +8,6 @@ import {
   usePasskeySettingsLabels,
 } from './useAuthLabels';
 
-// FM echoes the key so each label's value is its own translation key — except
-// the placeholder-bearing keys, which return a template carrying `{{p1}}` so we
-// can assert the conversion to the package's single-brace token.
 const PLACEHOLDER_TEMPLATES: Record<string, string> = {
   'auth.devicePin.unlock.title': 'Welcome back, {{p1}}',
   'auth.devicePin.unlock.description': 'Enter your {{p1}}-digit PIN.',

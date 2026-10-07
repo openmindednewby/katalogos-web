@@ -3,10 +3,8 @@ import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import { get } from '../../lib/httpService';
 import { Endpoints } from '../endpoints';
 
-/** Time constants for query configuration */
 const MS_PER_SECOND = 1000;
 const SECONDS_PER_MINUTE = 60;
-/** Number of retry attempts for failed queries */
 const QUERY_RETRY_COUNT = 1;
 
 export function useTenantUsers(): UseQueryResult<UserRecord[]> {

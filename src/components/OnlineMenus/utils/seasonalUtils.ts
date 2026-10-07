@@ -1,7 +1,3 @@
-/**
- * Utility functions for seasonal item availability.
- * Handles MM-dd date parsing, formatting, and range preview text.
- */
 import { FM } from '@/localization/helpers';
 
 import { isValueDefined } from '../../../utils/is';
@@ -30,7 +26,6 @@ const DAYS_31 = 31;
 const DAYS_30 = 30;
 const DAYS_28 = 28;
 
-/** Days per month (non-leap year), indexed 0-11. */
 const DAYS_PER_MONTH = [
   DAYS_31, DAYS_28, DAYS_31, DAYS_30, DAYS_31, DAYS_30,
   DAYS_31, DAYS_31, DAYS_30, DAYS_31, DAYS_30, DAYS_31,

@@ -41,16 +41,12 @@ interface Props {
   onRefresh?: () => void;
   refreshing?: boolean;
   refreshLabel?: string;
-  /** Test ID for the refresh button */
   refreshButtonTestId?: string;
   onAdd?: () => void;
   addLabel?: string;
   showAdd?: boolean;
-  /** @deprecated Use onAdd instead */
   onCreatePress?: () => void;
-  /** Test ID for the create/add button */
   createButtonTestId?: string;
-  /** Custom actions to render after the built-in refresh/add buttons */
   children?: React.ReactNode;
 }
 
@@ -79,7 +75,6 @@ const PageHeaderWithActions = ({
   );
   const addTextStyle = React.useMemo(() => ({ color: primaryColor }), [primaryColor]);
 
-  // Support both onCreatePress (new) and onAdd (old) props for backwards compatibility
   const handleAddClick = onCreatePress ?? onAdd;
   const shouldShowAdd = showAdd || typeof onCreatePress === 'function';
 
@@ -87,9 +82,7 @@ const PageHeaderWithActions = ({
     <View style={[styles.container, isPhone && phoneContainerStyle]}>
       <Title text={title} />
 
-      {/* Action buttons container */}
       <View style={[styles.actions, isPhone && phoneActionsStyle]}>
-        {/* Refresh button */}
         {typeof onRefresh === 'function' && (
           <TouchableOpacity
             accessibilityHint={FM('common.refreshHint')}
@@ -104,7 +97,6 @@ const PageHeaderWithActions = ({
           </TouchableOpacity>
         )}
 
-        {/* Add button */}
         {shouldShowAdd && typeof handleAddClick === 'function' ? (
           <TouchableOpacity
             accessibilityHint={FM('common.addHint')}
@@ -117,7 +109,6 @@ const PageHeaderWithActions = ({
           </TouchableOpacity>
         ) : null}
 
-        {/* Custom actions */}
         {children}
       </View>
     </View>

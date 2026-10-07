@@ -1,15 +1,6 @@
 
 
 
-/**
- * Check if service workers are supported in the current environment
- */
-/**
- * Service Worker registration utilities for OS notifications.
- *
- * IMPORTANT: The service worker only DISPLAYS notifications.
- * All notification delivery comes through SignalR WebSocket.
- */
 
 import { isValueDefined } from '@dloizides/utils';
 
@@ -17,9 +8,6 @@ import { logger } from '../../../utils/logger';
 
 const SERVICE_WORKER_PATH = '/sw-notifications.js';
 
-/**
- * Message type values for service worker communication
- */
 const SW_MSG_CLICKED = 'NOTIFICATION_CLICKED' as const;
 const SW_MSG_CLOSED = 'NOTIFICATION_CLOSED' as const;
 
@@ -59,7 +47,6 @@ export async function registerNotificationServiceWorker(): Promise<ServiceWorker
       scope: registration.scope,
     });
 
-    // Wait for the service worker to be ready
     await navigator.serviceWorker.ready;
 
     return registration;
@@ -188,27 +175,20 @@ export function onServiceWorkerMessage(
   };
 }
 
-/**
- * Check if the message data is a valid service worker message
- */
 function isValidServiceWorkerMessage(data: unknown): data is ServiceWorkerMessage {
-  // Check if data is an object and defined
   if (typeof data !== 'object' || !isValueDefined(data))
     return false;
 
 
-  // Check if data has a type property
   const hasTypeProperty = 'type' in data;
   if (!hasTypeProperty)
     return false;
 
 
-  // Access the type property safely
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- necessary for type narrowing from unknown
   const dataObj = data as Record<string, unknown>;
   const messageType = dataObj.type;
 
-  // Check if the type matches one of our known message types
   if (messageType === SW_MSG_CLICKED)
     return true;
 

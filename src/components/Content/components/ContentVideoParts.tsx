@@ -1,9 +1,6 @@
 
 
 
-/**
- * Sub-components for ContentVideo.
- */
 import React from 'react';
 
 import {
@@ -19,9 +16,6 @@ import { FM } from '@/localization/helpers';
 
 import { SvgIcon } from '../../Icons';
 
-// ---------------------------------------------------------------------------
-// Constants
-// ---------------------------------------------------------------------------
 
 const styles = StyleSheet.create({
   container: {
@@ -46,13 +40,7 @@ const styles = StyleSheet.create({
   },
 });
 
-// ---------------------------------------------------------------------------
-// Components
-// ---------------------------------------------------------------------------
 
-/**
- * Web video component using HTML5 video element.
- */
 interface WebVideoProps {
   url: string;
   width: number | string;
@@ -104,10 +92,6 @@ const WebVideo = ({
   );
 };
 
-/**
- * Native placeholder component showing play icon.
- * Full native video playback requires expo-av package.
- */
 interface NativePlaceholderProps {
   textColor: string;
   primaryColor: string;

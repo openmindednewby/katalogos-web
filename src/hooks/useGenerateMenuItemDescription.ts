@@ -43,10 +43,7 @@ export async function generateMenuItemDescription(
   });
 }
 
-/**
- * React Query mutation hook for generating AI menu item descriptions.
- * No cache invalidation needed since this returns ephemeral data.
- */
+/** React Query mutation hook for generating AI menu item descriptions. */
 export function useGenerateMenuItemDescription<TError = unknown, TContext = unknown>(
   options?: UseMutationOptions<
     GenerateDescriptionResponse,

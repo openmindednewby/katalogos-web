@@ -1,9 +1,6 @@
 
 
 
-/**
- * Single color input field with hex validation and swatch preview.
- */
 import React, { useCallback, useMemo, useState } from 'react';
 
 import { StyleSheet, Text, TextInput, View } from 'react-native';

@@ -1,8 +1,3 @@
-/**
- * Account Deletion section.
- * Allows users to request account deletion with a grace period,
- * and cancel a pending deletion request.
- */
 import React, { useCallback, useMemo, useState } from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';
@@ -58,7 +53,6 @@ const styles = StyleSheet.create({
   },
 });
 
-/** Translation key map for deletion statuses. */
 const STATUS_TRANSLATION_KEYS: Record<string, string | undefined> = {
   [DeletionStatus.PendingConfirmation]: 'settings.privacy.deletion.status.pendingConfirmation',
   [DeletionStatus.Confirmed]: 'settings.privacy.deletion.status.confirmed',

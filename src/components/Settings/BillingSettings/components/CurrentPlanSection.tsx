@@ -1,6 +1,3 @@
-/**
- * CurrentPlanSection - shows the current plan name, status, and trial countdown.
- */
 import React from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';

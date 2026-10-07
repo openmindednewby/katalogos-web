@@ -1,11 +1,4 @@
 /* eslint-disable no-console */
-/**
- * Demo newsletter form with inline layout using native HTML elements.
- * No Syncfusion dependencies.
- *
- * Note: This is a web-only component using native HTML,
- * so React Native linting rules are disabled.
- */
 import type { ReactElement } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -34,7 +27,6 @@ export const NewsletterForm = (): ReactElement => {
   });
 
   function handleFormSubmit(data: NewsletterFormData): void {
-    // Demo: log form data
     console.log('Newsletter form submitted:', data);
     // eslint-disable-next-line no-alert
     alert(`Subscribed!\nEmail: ${data.email}`);

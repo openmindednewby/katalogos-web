@@ -1,6 +1,3 @@
-/**
- * MetricsComparison -- side-by-side metrics for variant A vs B.
- */
 import React from 'react';
 
 import { Text, View, type DimensionValue } from 'react-native';

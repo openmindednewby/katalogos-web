@@ -1,12 +1,3 @@
-/**
- * AriaLiveRegion - Announces dynamic content changes to screen readers.
- *
- * Renders a visually hidden text node with `accessibilityLiveRegion`
- * so assistive technology reads the updated message aloud.
- *
- * @example
- * <AriaLiveRegion message={FM('publicMenu.filter.resultsCount', String(count))} />
- */
 import React from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';
@@ -25,7 +16,6 @@ const styles = StyleSheet.create({
 
 interface AriaLiveRegionProps {
   message: string;
-  /** @default "polite" */
   politeness?: 'polite' | 'assertive';
 }
 

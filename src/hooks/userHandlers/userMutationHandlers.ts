@@ -1,6 +1,3 @@
-/**
- * User mutation handlers for create, delete, and toggle operations.
- */
 import { useCallback } from 'react';
 
 import { Alert } from 'react-native';

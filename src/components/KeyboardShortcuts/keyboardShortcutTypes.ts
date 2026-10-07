@@ -1,10 +1,6 @@
 /** Type definitions for the keyboard shortcuts system. */
 
-/**
- * `KeyboardShortcut` is the CONTRACT of `useKeyboardShortcuts`, so it lives with the
- * hook in `@dloizides/rn-web-hooks` and is re-exported here. One definition, not two —
- * a second local copy is exactly how erevna and katalogos drifted apart.
- */
+/** `KeyboardShortcut` is the CONTRACT of `useKeyboardShortcuts`, so it lives with the */
 export type { KeyboardShortcut } from '@dloizides/rn-web-hooks';
 
 /** A category grouping shortcuts for display in the help modal. */

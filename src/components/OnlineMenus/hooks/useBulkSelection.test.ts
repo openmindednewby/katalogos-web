@@ -1,6 +1,3 @@
-/**
- * Tests for useBulkSelection hook — selection mode management and item toggling.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import { useBulkSelection } from './useBulkSelection';

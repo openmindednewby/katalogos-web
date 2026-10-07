@@ -1,6 +1,3 @@
-/**
- * Custom hook for fetching team members from the Identity API.
- */
 import { useQuery } from '@tanstack/react-query';
 
 import { identityInstance } from '../../mutators/identityMutator';
@@ -15,7 +12,6 @@ export function getListTeamMembersQueryKey(): string[] {
   return ['team', 'members'];
 }
 
-/** Fetches team members from the Identity API. */
 async function fetchTeamMembers(signal?: AbortSignal): Promise<ListMembersResponse> {
   return identityInstance<ListMembersResponse>({
     url: '/api/v1/team/members',

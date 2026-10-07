@@ -1,11 +1,6 @@
 
 
 
-/**
- * Upload progress indicator component.
- *
- * Shows upload progress with a progress bar, file name, and cancel button.
- */
 import React, { useMemo } from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -17,9 +12,6 @@ import { DISABLED_OPACITY } from '../../../shared/constants';
 import { TestIds } from '../../../shared/testIds';
 import { useTheme } from '../../../theme/hooks/useTheme';
 
-// ---------------------------------------------------------------------------
-// Constants
-// ---------------------------------------------------------------------------
 
 
 const CANCEL_TEXT_COLOR = '#ffffff';
@@ -69,9 +61,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// ---------------------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------------------
 
 interface Props {
   fileName: string;
@@ -99,9 +88,6 @@ interface ThemeColors {
   textSecondary: string;
 }
 
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
 
 function createContainerStyles(colors: ThemeColors): { container: ViewStyle; fileName: TextStyle } {
   return {
@@ -126,9 +112,6 @@ function createProgressStyles(colors: ThemeColors, progress: number): { containe
   };
 }
 
-// ---------------------------------------------------------------------------
-// Main component
-// ---------------------------------------------------------------------------
 
 export const UploadProgress = ({
   fileName,

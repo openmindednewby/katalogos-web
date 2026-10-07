@@ -1,7 +1,3 @@
-/**
- * Notification Preferences Screen.
- * Allows users to configure their notification settings.
- */
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 
 import { StyleSheet, View, Text, ScrollView, ActivityIndicator } from 'react-native';

@@ -1,10 +1,6 @@
 
 
 
-/**
- * Dynamic form styles with theme support.
- * Uses useTheme() for per-tenant color customization.
- */
 import { type TextStyle, type ViewStyle } from 'react-native';
 
 import ThemeMode from '../../shared/enums/ThemeMode';
@@ -76,7 +72,6 @@ export interface FormStyles {
   optionText: TextStyle;
 }
 
-/** Flattened color tokens resolved from the theme for form style builders. */
 interface FormColorTokens {
   background: string;
   surface: string;

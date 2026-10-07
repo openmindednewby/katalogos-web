@@ -1,6 +1,3 @@
-/**
- * Tests for the useMenuImport hook.
- */
 import { act, renderHook } from '@testing-library/react-native';
 
 import { useMenuImport } from './useMenuImport';
@@ -9,7 +6,6 @@ import MenuField from '../../../../shared/enums/MenuField';
 import * as parseModule from '../utils/parseMenuFile';
 
 
-// Mock parseMenuFile to avoid actual file I/O
 jest.mock('../utils/parseMenuFile');
 const mockParseMenuFile = parseModule.parseMenuFile as jest.MockedFunction<typeof parseModule.parseMenuFile>;
 
@@ -220,7 +216,6 @@ describe('useMenuImport', () => {
       await result.current.handleFileSelected(fakeFile);
     });
 
-    // SAMPLE_ROW_COUNT is 3
     expect(result.current.sampleRows).toHaveLength(3);
   });
 
@@ -237,7 +232,6 @@ describe('useMenuImport', () => {
       await result.current.handleFileSelected(fakeFile);
     });
 
-    // None of the headers match Category, Item Name, or Price
     expect(result.current.columnMappingErrors.length).toBeGreaterThan(0);
   });
 });

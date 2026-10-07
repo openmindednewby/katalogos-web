@@ -1,10 +1,6 @@
-/**
- * Drawer and overlay layout styles.
- */
 import { StyleSheet } from 'react-native';
 
 export const drawerStyles = StyleSheet.create({
-  // Dropdown panels
   dropdownPanel: {
     position: 'absolute',
     top: 56,

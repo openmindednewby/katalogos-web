@@ -1,22 +1,12 @@
-/**
- * Curated emoji data for menu category icons.
- * Organized by category for the picker grid.
- */
 import { isValueDefined } from '../../../utils/is';
 
-/** A single emoji entry with its character and descriptive label. */
 interface EmojiEntry {
-  /** The emoji character (e.g., "🍕") */
   emoji: string;
-  /** Descriptive label for accessibility (e.g., "pizza") */
   label: string;
 }
 
-/** A group of emojis under a named category. */
 interface EmojiGroup {
-  /** Translation key suffix for the group label (e.g., "categoryFood") */
   labelKey: string;
-  /** Emoji entries in this group */
   emojis: EmojiEntry[];
 }
 

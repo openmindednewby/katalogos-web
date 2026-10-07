@@ -1,8 +1,3 @@
-/**
- * Tests for usePublicMenuLocation hook and utility functions.
- * Focuses on logic: URL param reading/writing, location resolution,
- * state management, and picker visibility threshold.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import {

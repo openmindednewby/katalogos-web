@@ -1,13 +1,4 @@
 /* eslint-disable react-native/no-raw-text, react-native/no-inline-styles, i18next/no-literal-string, react/jsx-no-literals */
-/**
- * Syncfusion Products Showcase Page.
- * Displays products from dummyjson API using a table with Syncfusion-style classes.
- * Includes category filters and error/retry state.
- *
- * Note: This is a web-only page. Uses a regular HTML table with e-grid
- * and e-row classes for Syncfusion-compatible E2E test selectors.
- * React Native and i18n linting rules are disabled.
- */
 import type { ReactElement } from 'react';
 import { useState } from 'react';
 

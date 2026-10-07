@@ -1,6 +1,3 @@
-/**
- * Styles for MenuContentEditor component.
- */
 import { StyleSheet } from 'react-native';
 
 const CONTAINER_PADDING = 16;

@@ -12,7 +12,6 @@ export const AnalyticsTestIds = {
   ANALYTICS_EMPTY_STATE: 'analytics-empty-state',
   NAV_ANALYTICS: 'nav-analytics',
 
-  // Menu Analytics Detail
   MENU_ANALYTICS_SCREEN: 'menu-analytics-screen',
   MENU_ANALYTICS_LOADING: 'menu-analytics-loading',
   MENU_ANALYTICS_ERROR: 'menu-analytics-error',
@@ -26,7 +25,6 @@ export const AnalyticsTestIds = {
   MENU_ANALYTICS_TOP_ITEMS_LIST: 'menu-analytics-top-items-list',
   MENU_ANALYTICS_TOP_ITEM: 'menu-analytics-top-item',
 
-  // Popular Items
   POPULAR_ITEMS_CARD: 'popular-items-card',
   POPULAR_ITEMS_LOADING: 'popular-items-loading',
   POPULAR_ITEMS_ERROR: 'popular-items-error',

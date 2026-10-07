@@ -1,7 +1,3 @@
-/**
- * Custom hook for fetching a single experiment with metrics.
- * Uses the OnlineMenu API: GET /api/v1/experiments/{id}
- */
 import { useQuery } from '@tanstack/react-query';
 
 import { customInstance } from '@/server/mutators/onlineMenuMutator';

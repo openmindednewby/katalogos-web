@@ -1,7 +1,3 @@
-/**
- * Feedback components showcase section.
- * Demonstrates: ConfirmDialog, LoadingFallback, PageSkeleton.
- */
 import type { ReactElement } from 'react';
 import { useCallback, useState } from 'react';
 

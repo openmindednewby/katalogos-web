@@ -12,7 +12,6 @@ export function sanitizeFilename(name: string): string {
   return name.replace(/[^a-zA-Z0-9-_]/g, '_').substring(0, MAX_FILENAME_LENGTH);
 }
 
-/** Triggers a browser download of a blob with the given filename. */
 function triggerBlobDownload(blob: Blob, filename: string): void {
   const url = URL.createObjectURL(blob);
   const anchor = document.createElement('a');
@@ -24,10 +23,7 @@ function triggerBlobDownload(blob: Blob, filename: string): void {
   URL.revokeObjectURL(url);
 }
 
-/**
- * Extracts the QR code SVG from the hidden source element and
- * converts it to a data URI for embedding in designer templates.
- */
+/** Extracts the QR code SVG from the hidden source element and */
 export function extractQrDataUri(): string {
   const container = document.getElementById(DESIGNER_QR_SOURCE_ID);
   if (!container) return '';
@@ -38,7 +34,6 @@ export function extractQrDataUri(): string {
   return `data:${SVG_MIME_TYPE};base64,${encoded}`;
 }
 
-/** Renders an SVG string to a canvas and returns a PNG blob. */
 async function svgToPngBlob(svgString: string, width: number, height: number): Promise<Blob | null> {
   return new Promise((resolve) => {
     const scaledWidth = width * DESIGNER_PNG_EXPORT_SCALE;

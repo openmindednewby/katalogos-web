@@ -1,7 +1,3 @@
-/**
- * NutritionSection - Ingredients input + NutritionCard wrapper for menu item editor.
- * Manages nutrition-specific callbacks and state display.
- */
 import React, { useCallback } from 'react';
 
 import { View } from 'react-native';

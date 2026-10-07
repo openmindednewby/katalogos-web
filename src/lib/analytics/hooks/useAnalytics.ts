@@ -6,13 +6,9 @@ import type AnalyticsEventName from '../../../shared/enums/AnalyticsEventName';
 import type { EventProperties } from '../types';
 
 interface UseAnalyticsReturn {
-  /** Track a named event with optional properties. */
   track: (event: AnalyticsEventName, properties?: EventProperties) => void;
-  /** Identify the current user by GUID (no PII). */
   identify: (distinctId: string, traits?: EventProperties) => void;
-  /** Track a page view. */
   page: (path: string, properties?: EventProperties) => void;
-  /** Reset all analytics state (call on logout). */
   reset: () => void;
 }
 

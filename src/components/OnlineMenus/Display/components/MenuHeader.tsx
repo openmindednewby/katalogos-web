@@ -1,13 +1,6 @@
 
 
 
-/**
- * Renders the menu header with logo, banner, title, and description.
- * All display is controlled by HeaderSettings.
- */
-/**
- * MenuHeader - Renders the header section of a menu with logo, banner, title, and description.
- */
 import React from 'react';
 
 import { Text, View } from 'react-native';
@@ -23,9 +16,6 @@ import { DEFAULT_BANNER_HEIGHT, LOGO_SIZES, menuContentViewStyles } from '../uti
 
 import type { HeaderSettings, ColorScheme, GlobalTypography } from '../../../../types/menuStyleTypes';
 
-// =============================================================================
-// Types
-// =============================================================================
 
 interface MenuHeaderProps {
   menuName: string;
@@ -36,21 +26,11 @@ interface MenuHeaderProps {
   pagePadding: number;
 }
 
-// =============================================================================
-// Constants
-// =============================================================================
 
-// Typography fallback constants
 const DEFAULT_TITLE_FONT_SIZE = 32;
 const DEFAULT_BODY_FONT_SIZE = 16;
 
-// =============================================================================
-// Helper Functions
-// =============================================================================
 
-/**
- * Determines which header sections should be visible.
- */
 function getHeaderVisibility(header: HeaderSettings, menuDescription?: string | null): {
   showLogo: boolean;
   showBanner: boolean;
@@ -64,9 +44,6 @@ function getHeaderVisibility(header: HeaderSettings, menuDescription?: string | 
   return { showLogo, showBanner, showTitle, showDescription };
 }
 
-/**
- * Resolves header layout settings with defaults.
- */
 function resolveHeaderLayout(header: HeaderSettings): {
   logoSize: number;
   bannerHeight: number;
@@ -81,9 +58,6 @@ function resolveHeaderLayout(header: HeaderSettings): {
   };
 }
 
-/**
- * Builds title text style from typography and color scheme.
- */
 function buildTitleTextStyle(typography: GlobalTypography, colorScheme: ColorScheme): TextStyle {
   return {
     fontSize: typography.titleFontSize ?? DEFAULT_TITLE_FONT_SIZE,
@@ -92,9 +66,6 @@ function buildTitleTextStyle(typography: GlobalTypography, colorScheme: ColorSch
   };
 }
 
-/**
- * Builds description text style from typography and color scheme.
- */
 function buildDescriptionTextStyle(typography: GlobalTypography, colorScheme: ColorScheme): TextStyle {
   return {
     fontSize: typography.bodyFontSize ?? DEFAULT_BODY_FONT_SIZE,
@@ -103,9 +74,6 @@ function buildDescriptionTextStyle(typography: GlobalTypography, colorScheme: Co
   };
 }
 
-/**
- * Gets position alignment styles based on a position string.
- */
 function getPositionAlignmentStyles(position: string): TextStyle | undefined {
   if (position === 'left') return menuContentViewStyles.titleLeft;
   if (position === 'right') return menuContentViewStyles.titleRight;
@@ -113,9 +81,6 @@ function getPositionAlignmentStyles(position: string): TextStyle | undefined {
   return undefined;
 }
 
-/**
- * Gets logo container alignment styles based on position.
- */
 function getLogoAlignmentStyle(position: string): ViewStyle | undefined {
   if (position === 'left') return menuContentViewStyles.logoLeft;
   if (position === 'right') return menuContentViewStyles.logoRight;
@@ -123,9 +88,6 @@ function getLogoAlignmentStyle(position: string): ViewStyle | undefined {
   return undefined;
 }
 
-// =============================================================================
-// Component
-// =============================================================================
 
 export const MenuHeader: React.FC<MenuHeaderProps> = ({
   menuName,

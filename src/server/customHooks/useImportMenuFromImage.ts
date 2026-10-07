@@ -1,7 +1,3 @@
-/**
- * Custom hook for importing menu data from an image or PDF using AI.
- * Uses the OnlineMenu API: POST /api/v1/TenantMenus/import-from-image
- */
 import { useMutation } from '@tanstack/react-query';
 
 import { customInstance } from '@/server/mutators/onlineMenuMutator';

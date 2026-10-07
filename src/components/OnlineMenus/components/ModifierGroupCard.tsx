@@ -1,6 +1,3 @@
-/**
- * ModifierGroupCard - Single modifier group editor card.
- */
 import React from 'react';
 
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';

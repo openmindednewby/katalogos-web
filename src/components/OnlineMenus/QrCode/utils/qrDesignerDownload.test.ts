@@ -1,7 +1,3 @@
-/**
- * Tests for QR designer download utilities.
- * Focuses on filename sanitization and data URI extraction logic.
- */
 import { DESIGNER_QR_SOURCE_ID } from './qrDesignerConstants';
 import { sanitizeFilename, extractQrDataUri, downloadDesignAsSvg } from './qrDesignerDownload';
 

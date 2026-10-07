@@ -1,11 +1,3 @@
-/**
- * ComponentCard - Reusable wrapper for displaying a single component demo
- * in the component showcase. Shows the component name, description,
- * import path, and a live demo area.
- *
- * Note: This is a web-only component using native HTML elements,
- * so React Native linting rules are disabled.
- */
 import type { ReactElement, ReactNode } from 'react';
 
 import { Platform, Text } from 'react-native';

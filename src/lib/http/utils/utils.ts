@@ -1,8 +1,5 @@
 
 
-/**
- * Utility functions for HTTP service modules.
- */
 import { isNotEmptyArray } from '../../../utils/is';
 
 import type { DefaultPayload } from '../types';

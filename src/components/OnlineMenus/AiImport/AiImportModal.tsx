@@ -1,12 +1,3 @@
-/**
- * AiImportModal - Multi-step wizard for importing menu items from photos/PDFs using AI.
- *
- * Steps:
- * 1. Upload - User selects an image or PDF
- * 2. Processing - AI extracts menu data
- * 3. Review - User edits extracted items
- * 4. Apply - Choose merge strategy and confirm
- */
 import React, { useCallback, useMemo, useRef } from 'react';
 
 import { Modal, Text, TouchableOpacity, View } from 'react-native';
@@ -53,7 +44,6 @@ function getStepIndex(step: AiImportStep): number {
   return REVIEW_STEP_INDEX + 1;
 }
 
-/** Type-safe check that narrows ImportedMenuData | null to ImportedMenuData. */
 function hasImportedData(data: ImportedMenuData | null): data is ImportedMenuData {
   return isValueDefined(data);
 }

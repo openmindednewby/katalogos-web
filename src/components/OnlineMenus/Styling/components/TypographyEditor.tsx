@@ -19,9 +19,6 @@ import { typographyEditorStyles as styles } from '../utils/typographyEditorStyle
 import type { RootState } from '../../../../store/reduxStore';
 import type { GlobalTypography } from '../../../../types/menuStyleTypes';
 
-// =============================================================================
-// Props Interface
-// =============================================================================
 
 interface Props {
   value: GlobalTypography;
@@ -30,9 +27,6 @@ interface Props {
   disabled?: boolean;
 }
 
-// =============================================================================
-// Main Component
-// =============================================================================
 
 const TypographyEditor: React.FC<Props> = ({
   value,
@@ -69,12 +63,10 @@ const TypographyEditor: React.FC<Props> = ({
         {FM('typography.title')}
       </Text>
 
-      {/* Typography Sections */}
       <TypographySection sectionKey={TypographySectionKey.Title} {...sectionProps} />
       <TypographySection sectionKey={TypographySectionKey.Body} {...sectionProps} />
       <TypographySection sectionKey={TypographySectionKey.Price} {...sectionProps} />
 
-      {/* Preview Section */}
       <TypographyPreview
         bgColor={bgColor}
         borderColor={borderColor}
@@ -83,7 +75,6 @@ const TypographyEditor: React.FC<Props> = ({
         value={value}
       />
 
-      {/* Reset Button */}
       {onReset ? (
         <View style={styles.resetContainer}>
           <TouchableOpacity

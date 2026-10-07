@@ -1,7 +1,3 @@
-/**
- * Hook that computes breadcrumb items for the FullMenuEditor modal.
- * Breadcrumbs derive from modal-local state (not routes).
- */
 import { useMemo } from 'react';
 
 import { FM } from '@/localization/helpers';

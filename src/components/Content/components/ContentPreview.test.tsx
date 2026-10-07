@@ -1,7 +1,3 @@
-/**
- * Unit tests for ContentPreview component.
- * Focus on logic: callbacks, conditional rendering logic, error states.
- */
 import React from 'react';
 
 import { fireEvent, render } from '@testing-library/react-native';
@@ -13,7 +9,6 @@ import { TestIds } from '../../../shared/testIds';
 
 import type { ContentDto } from '../../../lib/hooks/content/types';
 
-// Mock theme
 jest.mock('../../../theme/hooks/useTheme', () => ({
   useTheme: () => ({
     theme: {
@@ -117,7 +112,6 @@ describe('ContentPreview', () => {
         <ContentPreview content={content} onDelete={mockOnDelete} />,
       );
 
-      // The component should use content data
       const preview = getByTestId(TestIds.CONTENT_PREVIEW);
       expect(preview).toBeTruthy();
     });
@@ -140,7 +134,6 @@ describe('ContentPreview', () => {
         />,
       );
 
-      // Should use explicit category, showing document preview
       const docPreview = getByTestId(TestIds.CONTENT_PREVIEW_DOCUMENT);
       expect(docPreview).toBeTruthy();
     });
@@ -171,7 +164,6 @@ describe('ContentPreview', () => {
         />,
       );
 
-      // Should render image preview, not error
       expect(queryByText('Failed to load content')).toBeNull();
     });
 

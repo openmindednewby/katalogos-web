@@ -1,6 +1,3 @@
-/**
- * BillingStatusBadge - wraps the shared StatusBadge with subscription status color mapping.
- */
 import React, { useMemo } from 'react';
 
 import SubscriptionStatus from '../../../../lib/hooks/billing/enums/SubscriptionStatus';

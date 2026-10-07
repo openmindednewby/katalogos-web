@@ -1,7 +1,3 @@
-/**
- * Import action buttons for the menu content editor.
- * Includes CSV/Excel import and AI photo import.
- */
 import React from 'react';
 
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';

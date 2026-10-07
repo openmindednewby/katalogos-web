@@ -1,7 +1,3 @@
-/**
- * Hook for location CRUD mutations.
- * Wraps Orval-generated location hooks with cache invalidation and toast notifications.
- */
 import { useCallback, useMemo } from 'react';
 
 import { useQueryClient } from '@tanstack/react-query';
@@ -33,7 +29,6 @@ interface UseLocationMutationsResult {
   isMutating: boolean;
 }
 
-/** Builds mutation options with cache invalidation and notifications. */
 function buildMutationOptions(
   invalidateList: () => void,
   successKey: string,

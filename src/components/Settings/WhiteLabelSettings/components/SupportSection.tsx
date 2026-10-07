@@ -1,4 +1,3 @@
-/** Support section for white-label settings (support email input). */
 import React from 'react';
 
 import { Text, TextInput } from 'react-native';

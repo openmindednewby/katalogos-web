@@ -1,12 +1,6 @@
-/**
- * Test helpers for testNotificationApi tests
- */
 
 import type { Notification } from '@dloizides/notification-client';
 
-/**
- * Mock store state interface
- */
 interface MockStoreState {
   notifications: Notification[];
   unreadCount: number;
@@ -19,9 +13,6 @@ interface MockStoreState {
   markAllAsRead: jest.Mock;
 }
 
-/**
- * Mock store interface
- */
 interface MockStore {
   getState: () => MockStoreState;
   subscribe: jest.Mock;

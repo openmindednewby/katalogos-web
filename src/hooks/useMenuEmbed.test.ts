@@ -1,7 +1,3 @@
-/**
- * Tests for useMenuEmbed hook.
- * Focuses on state management logic for embed widget modal.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import { useMenuEmbed } from './useMenuEmbed';
@@ -12,7 +8,6 @@ jest.mock('react-native', () => ({
 
 const mockOrigin = 'https://test.com';
 
-// Mock window.location.origin for web platform
 Object.defineProperty(window, 'location', {
   value: { origin: mockOrigin },
   writable: true,

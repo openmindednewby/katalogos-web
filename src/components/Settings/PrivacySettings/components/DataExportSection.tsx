@@ -1,7 +1,3 @@
-/**
- * Data Export section.
- * Allows users to request, monitor, and download a GDPR data export.
- */
 import React, { useCallback, useMemo, useState } from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';
@@ -51,7 +47,6 @@ const styles = StyleSheet.create({
   },
 });
 
-/** Translation key map for export statuses. */
 const STATUS_TRANSLATION_KEYS: Record<string, string | undefined> = {
   [ExportStatus.Pending]: 'settings.privacy.dataExport.status.pending',
   [ExportStatus.Processing]: 'settings.privacy.dataExport.status.processing',

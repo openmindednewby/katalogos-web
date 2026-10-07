@@ -1,6 +1,3 @@
-/**
- * Custom hook for fetching pending team invitations from the Identity API.
- */
 import { useQuery } from '@tanstack/react-query';
 
 import { identityInstance } from '../../mutators/identityMutator';
@@ -15,7 +12,6 @@ export function getListTeamInvitationsQueryKey(): string[] {
   return ['team', 'invitations'];
 }
 
-/** Fetches pending invitations from the Identity API. */
 async function fetchTeamInvitations(signal?: AbortSignal): Promise<ListInvitationsResponse> {
   return identityInstance<ListInvitationsResponse>({
     url: '/api/v1/team/invitations',

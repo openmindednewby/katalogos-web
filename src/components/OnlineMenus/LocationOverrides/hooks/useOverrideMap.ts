@@ -1,7 +1,3 @@
-/**
- * Hook for managing an override map with dirty tracking.
- * Extracted from useLocationOverrides to keep each hook under the line limit.
- */
 import { useCallback, useState } from 'react';
 
 import type { MenuItemOverrideDto } from '../types';
@@ -11,7 +7,6 @@ export function overrideKey(categoryIndex: number, itemIndex: number): string {
   return `${categoryIndex}-${itemIndex}`;
 }
 
-/** Builds a Map from an array of override DTOs. */
 function buildMap(dtos: MenuItemOverrideDto[]): Map<string, MenuItemOverrideDto> {
   const map = new Map<string, MenuItemOverrideDto>();
   for (const dto of dtos)
@@ -20,7 +15,6 @@ function buildMap(dtos: MenuItemOverrideDto[]): Map<string, MenuItemOverrideDto>
   return map;
 }
 
-/** Merges partial updates into a Map entry, creating it if needed. */
 function mergeEntry(
   prev: Map<string, MenuItemOverrideDto>, ci: number, ii: number, updates: Partial<MenuItemOverrideDto>,
 ): Map<string, MenuItemOverrideDto> {

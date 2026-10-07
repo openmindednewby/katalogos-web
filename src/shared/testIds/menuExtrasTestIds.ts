@@ -1,10 +1,6 @@
-/**
- * Test IDs for menu import and bulk action controls.
- * Split from menuTestIds.ts to keep file sizes under 200 lines.
- */
+/** Test IDs for menu import and bulk action controls. */
 
 export const MenuExtrasTestIds = {
-  // Menu Import
   MENU_IMPORT_BUTTON: 'menu-import-button',
   MENU_IMPORT_MODAL: 'menu-import-modal',
   MENU_IMPORT_FILE_INPUT: 'menu-import-file-input',
@@ -18,7 +14,6 @@ export const MenuExtrasTestIds = {
   MENU_IMPORT_ERROR: 'menu-import-error',
   MENU_IMPORT_SUMMARY: 'menu-import-summary',
 
-  // Bulk Actions
   BULK_SELECT_BUTTON: 'bulk-select-button',
   BULK_ACTION_BAR: 'bulk-action-bar',
   BULK_SELECTION_COUNT: 'bulk-selection-count',

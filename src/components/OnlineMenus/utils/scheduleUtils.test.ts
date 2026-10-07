@@ -1,7 +1,3 @@
-/**
- * Tests for schedule utility functions.
- * Focuses on day flag operations, time formatting, and schedule preview logic.
- */
 import {
   isDaySelected,
   toggleDay,

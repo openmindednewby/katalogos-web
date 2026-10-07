@@ -1,15 +1,3 @@
-/**
- * Presentational pieces for the verify-email landing page.
- *
- * Three state components — Loading, Success, Failure — plus a small resend
- * form the failure state owns. Each is exported individually so the route
- * (`/verify-email`) can switch between them without an in-component
- * conditional ladder + so each piece stays small enough to read at a glance.
- *
- * Visual chrome mirrors the reset-password / register screens — centred card
- * on the tenant background colour, theme-driven palette, no hardcoded brand
- * tokens beyond the shared box-shadow.
- */
 import React, { type ReactElement, useCallback, useState } from 'react';
 
 import { ActivityIndicator, StyleSheet, Text, TextInput, View } from 'react-native';
@@ -24,11 +12,6 @@ import SaveButton from '../Buttons/SaveButton';
 const BOX_SHADOW = '0px 2px 8px rgba(0, 0, 0, 0.1)';
 const SUCCESS_GREEN = '#10b981';
 const ERROR_RED = '#d33';
-/**
- * Decorative glyphs (built from codepoints rather than literal characters so
- * the `react/jsx-no-literals` rule does not flag them — they are visual chrome,
- * not user-facing copy, and the `accessibilityLabel` carries the meaning).
- */
 const CHECK_MARK_CODEPOINT = 0x2713;
 const EXCLAMATION_CODEPOINT = 0x21;
 const CHECK_GLYPH = String.fromCodePoint(CHECK_MARK_CODEPOINT);
@@ -97,7 +80,6 @@ export const VerifyEmailSuccess = ({ onContinue }: VerifyEmailSuccessProps): Rea
   );
 };
 
-/** Map a {@link VerifyEmailErrorCode} onto its localized body copy. */
 function errorBodyForCode(code: VerifyEmailErrorCode): string {
   if (code === VerifyEmailErrorCode.TokenInvalid) return FM('verifyEmail.errorInvalid');
   if (code === VerifyEmailErrorCode.TokenExpired) return FM('verifyEmail.errorExpired');
@@ -106,12 +88,6 @@ function errorBodyForCode(code: VerifyEmailErrorCode): string {
   return FM('verifyEmail.errorGeneric');
 }
 
-/**
- * Inline resend-email form. Anti-enum: regardless of whether the address is
- * known, the BFF returns 200 and we surface the same "if registered, sent"
- * copy. Network-failures collapse to the same confirmation so we never reveal
- * existence by error path either.
- */
 const ResendVerificationForm = (): ReactElement => {
   const { theme } = useTheme();
   const [email, setEmail] = useState('');

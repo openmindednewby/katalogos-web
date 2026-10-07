@@ -1,8 +1,3 @@
-/**
- * Tests for useQuizForm hook - covers BUG-QUIZ-001, BUG-QUIZ-004, BUG-QUIZ-008 fixes.
- * Verifies that handleSubmit, handleNext, handleBack use refs (no stale closures)
- * and are wrapped in useCallback (stable references).
- */
 import { Alert } from 'react-native';
 
 import { renderHook, act } from '@testing-library/react-native';
@@ -46,7 +41,6 @@ describe('useQuizForm', () => {
       const mutation = createMockMutation();
       const { result } = renderHook(() => useQuizForm(data, mutation, mockRefetch, mockT));
 
-      // Update answer then submit -- the latest answer should be in the payload
       act(() => { result.current.updateAnswer('q1', 'latest-answer'); });
       await act(async () => { await result.current.handleSubmit(); });
 

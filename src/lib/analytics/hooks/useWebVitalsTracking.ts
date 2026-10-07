@@ -13,12 +13,7 @@ function isDntEnabled(): boolean {
   return navigator.doNotTrack === '1';
 }
 
-/**
- * Reports Core Web Vitals once, on web, after analytics is enabled and consent is
- * granted. Mirrors the gate used by `AnalyticsProvider` so the `web-vitals`
- * listeners are never registered when analytics is off / no consent / DNT, and the
- * browser-only `web-vitals` API is never touched on native.
- */
+/** Reports Core Web Vitals once, on web, after analytics is enabled and consent is */
 export function useWebVitalsTracking(): void {
   const { track } = useAnalytics();
   const { consent } = useCookieConsent();

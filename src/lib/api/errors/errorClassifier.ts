@@ -1,13 +1,3 @@
-/**
- * Re-export shim for @dloizides/api-client-base classifier helpers.
- *
- * The pure classifier and envelope-extraction helpers live in the shared
- * `@dloizides/api-client-base` package. BaseClient still exposes its
- * historical surface — `classifyError(AxiosError)`,
- * `extractErrorMessage(AxiosError)`, `extractRequestId(AxiosResponse | undefined)`
- * — as thin adapters around the package primitives so the rest of the app
- * keeps working unchanged.
- */
 import {
   classifyAxiosError,
   extractErrorCode,

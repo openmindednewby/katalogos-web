@@ -1,6 +1,3 @@
-/**
- * Constants for the MediaPositionEditor component.
- */
 
 import { MediaFit, MediaPosition, MediaSize } from '../../../../types/menuStyleTypes';
 
@@ -51,7 +48,6 @@ export const POSITION_OPTION_COUNT = 5;
 export const SIZE_OPTION_COUNT = 4;
 export const FIT_OPTION_COUNT = 3;
 
-// Color constants
 export const SELECTED_BUTTON_TEXT_COLOR = '#FFFFFF';
 export const SWITCH_THUMB_INACTIVE_COLOR = '#f4f3f4';
 export const SWITCH_TRACK_INACTIVE_COLOR = '#767577';

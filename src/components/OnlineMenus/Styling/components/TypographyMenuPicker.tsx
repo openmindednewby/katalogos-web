@@ -1,8 +1,5 @@
 
 
-// =============================================================================
-// Component
-// =============================================================================
 
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 
@@ -14,9 +11,6 @@ import { useFocusTrap } from '../../../../hooks/useFocusTrap';
 import { hasExactFontMatch } from '../utils/typographyConstants';
 import { typographyEditorStyles as styles } from '../utils/typographyEditorStyles';
 
-// =============================================================================
-// Types
-// =============================================================================
 
 interface MenuOption {
   label: string;
@@ -40,15 +34,9 @@ export interface TypographyMenuPickerProps {
   allowCustom?: boolean;
 }
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const DROPDOWN_ARROW = '\u25BC';
 
-// =============================================================================
-// Helpers
-// =============================================================================
 
 function buildHighlightedLabel(label: string, search: string, textColor: string): React.JSX.Element {
   if (search === '') return <Text style={[styles.menuItemText, { color: textColor }]}>{label}</Text>;
@@ -72,9 +60,6 @@ function buildHighlightedLabel(label: string, search: string, textColor: string)
   );
 }
 
-// =============================================================================
-// Component
-// =============================================================================
 
 export const TypographyMenuPicker = ({
   label,

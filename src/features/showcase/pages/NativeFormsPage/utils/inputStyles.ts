@@ -1,8 +1,3 @@
-/**
- * CSS styles for native form base elements: CSS variables, field containers,
- * labels, text inputs, selects, and select-specific styles.
- * Split from styles.ts to keep file sizes under 200 lines.
- */
 
 import { nativeFormControlStyles } from './controlStyles';
 

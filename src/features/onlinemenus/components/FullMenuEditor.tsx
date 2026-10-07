@@ -78,9 +78,6 @@ const FullMenuEditor: React.FC<FullMenuEditorProps> = ({ visible, item, onSave, 
       return;
     }
     setNameError('');
-    // Drop any pending debounced autoSave before the manual save. Without this,
-    // a debounce armed by the reopen-with-stale-list-cache cycle can fire ~1.5s
-    // later and overwrite the just-saved menu with empty contents.
     cancelPendingSave();
     onSave({ name: name.trim(), description: description.trim() !== '' ? description.trim() : null, contents: menuContents });
   }, [name, description, menuContents, onSave, setNameError, setActiveTab, cancelPendingSave]);

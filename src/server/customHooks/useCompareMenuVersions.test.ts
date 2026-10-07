@@ -1,7 +1,3 @@
-/**
- * Tests for useCompareMenuVersions hook.
- * Focuses on query key generation and enabled logic.
- */
 import { useQuery } from '@tanstack/react-query';
 import { renderHook } from '@testing-library/react-native';
 

@@ -1,10 +1,4 @@
-/**
- * Re-export shim for @dloizides/api-client-base error type definitions.
- *
- * The runtime types and enums are defined in the shared
- * `@dloizides/api-client-base` package. This file is kept for backward
- * compatibility with existing imports inside BaseClient.
- */
+/** Re-export shim for @dloizides/api-client-base error type definitions. */
 export type {
   ClassifiedError,
   ErrorAction,

@@ -1,7 +1,3 @@
-/**
- * LocationSelector - Dropdown for selecting which location's overrides to view/edit.
- * Shows "Base Menu" as default plus all tenant locations.
- */
 import React, { useCallback } from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';

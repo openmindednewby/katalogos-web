@@ -27,9 +27,7 @@ const BUTTON_PADDING_HORIZONTAL = 16;
 const BUTTON_PADDING_VERTICAL = 10;
 const BUTTON_BORDER_RADIUS = 8;
 const OTP_EXPIRY_MINUTES = 5;
-/** Primary auth method index: email-based authentication */
 const AUTH_METHOD_EMAIL = 0;
-/** Tenant status index: active */
 const TENANT_STATUS_ACTIVE = 1;
 
 const styles = StyleSheet.create({
@@ -72,7 +70,6 @@ const TenantsPage = (): React.ReactElement => {
     handleHideCreateModal,
   } = useTenantActions(tenantActionsArgs);
 
-  // Show access denied if user is not a superAdmin
   if (!isSuperAdmin) 
     return (
       <View style={[layoutStyles.container, colorStyles.container]}>
@@ -117,7 +114,6 @@ const TenantsPage = (): React.ReactElement => {
         />
       </View>
 
-      {/* Create Tenant Modal */}
       <ModalShell title={FM('tenants.createModalTitle')} visible={showCreateModal} onCancel={handleHideCreateModal}>
         <TenantForm
           initialRequireSmsVerification

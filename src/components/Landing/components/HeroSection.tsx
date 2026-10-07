@@ -57,10 +57,7 @@ const styles = StyleSheet.create({
   ctaText: { fontSize: HERO_CTA_FONT_SIZE, fontWeight: '700' },
 });
 
-/**
- * Configurable hero section for landing pages.
- * Renders a large heading, subtitle text, and primary CTA button.
- */
+/** Configurable hero section for landing pages. */
 const HeroSection = ({ titleKey, subtitleKey, ctaTextKey, ctaHintKey, ctaRoute }: Props): ReactElement => {
   const { theme } = useTheme();
   const router = useRouter();

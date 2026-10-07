@@ -1,11 +1,3 @@
-/**
- * FeaturedItemControls - Collapsible section for Staff Pick / Featured item settings.
- *
- * Provides:
- * - Toggle to mark an item as a Staff Pick
- * - Text input for a staff note (max 120 chars, visible when featured)
- * - Numeric input for featured display order (visible when featured)
- */
 import React, { useCallback, useState } from 'react';
 
 import type { NativeSyntheticEvent, TextInputEndEditingEventData } from 'react-native';
@@ -18,13 +10,8 @@ import { SvgIcon } from '../Icons';
 
 import type { MenuItem } from '../../types/menuTypes';
 
-// =============================================================================
-// Constants
-// =============================================================================
 
-/** Standard React Native Switch inactive thumb color */
 const SWITCH_THUMB_INACTIVE = '#f4f3f4';
-/** Standard React Native Switch inactive track color */
 const SWITCH_TRACK_INACTIVE = '#767577';
 const CHEVRON_ICON_SIZE = 16;
 const SECTION_PADDING = 12;
@@ -44,9 +31,6 @@ const LABEL_MARGIN_TOP_ZERO = 0;
 const STAFF_NOTE_MAX_LENGTH = 120;
 const DEFAULT_FEATURED_ORDER = 0;
 
-// =============================================================================
-// Styles
-// =============================================================================
 
 const styles = StyleSheet.create({
   container: {
@@ -94,9 +78,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// =============================================================================
-// Props Interface
-// =============================================================================
 
 interface Props {
   item: MenuItem;
@@ -106,9 +87,6 @@ interface Props {
   surfaceColor: string;
 }
 
-// =============================================================================
-// Component
-// =============================================================================
 
 const FeaturedItemControls: React.FC<Props> = ({
   item,

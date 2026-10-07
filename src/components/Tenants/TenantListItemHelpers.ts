@@ -1,7 +1,3 @@
-/**
- * Helper functions and types for TenantListItem.
- * Extracted to keep the component under the 200-line limit.
- */
 import { isValueDefined } from '../../utils/is';
 import { sanitizeText } from '../../utils/sanitize';
 
@@ -30,9 +26,6 @@ interface ItemData {
   showUser: boolean;
 }
 
-/**
- * Safely accesses a property from an item by key.
- */
 function getItemProperty(item: unknown, key: PropertyKey): unknown {
   const isNonNullObject = typeof item === 'object' && isValueDefined(item);
   if (!isNonNullObject || !(key in item)) return undefined;

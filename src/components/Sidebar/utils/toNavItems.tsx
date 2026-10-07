@@ -1,9 +1,3 @@
-/**
- * Maps the app's `SidebarItem[]` (from the module registry, grouped by
- * `groupSidebarItems`) into the `NavItem[]` shape consumed by the shared
- * `@dloizides/ui-nav` Sidebar: labels are pre-localized via `FM`, icons become
- * render slots, and `testID` keeps each item's stable key.
- */
 import React from 'react';
 
 import { FM } from '../../../localization/helpers';

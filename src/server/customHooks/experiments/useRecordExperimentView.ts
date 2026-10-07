@@ -1,8 +1,3 @@
-/**
- * Custom hook for recording an experiment view on public menu pages.
- * Uses the OnlineMenu API: POST /api/v1/experiments/{id}/view
- * This endpoint allows anonymous access.
- */
 import { useMutation } from '@tanstack/react-query';
 
 import { customInstance } from '@/server/mutators/onlineMenuMutator';

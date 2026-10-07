@@ -6,7 +6,6 @@ import LayoutTemplateSelector, { TEMPLATE_COUNT, TEMPLATES } from './LayoutTempl
 import LayoutTemplate from '../../../../types/enums/LayoutTemplate';
 
 
-// Mock dependencies
 jest.mock('react-redux', () => ({
   useSelector: () => 'light',
 }));
@@ -135,7 +134,6 @@ describe('LayoutTemplateSelector', () => {
       const modernGridCard = getByTestId('layout-template-modern-grid');
       const classicListCard = getByTestId('layout-template-classic-list');
 
-      // FM() returns the i18n key when translation is not in en.json
       expect(modernGridCard.props.accessibilityLabel).toBe('onlineMenus.layoutTemplates.modernGrid.name');
       expect(classicListCard.props.accessibilityLabel).toBe('onlineMenus.layoutTemplates.classicList.name');
     });
@@ -183,11 +181,9 @@ describe('LayoutTemplateSelector', () => {
         <LayoutTemplateSelector {...defaultProps} value={LayoutTemplate.ModernGrid} />,
       );
 
-      // Check initial selection
       let modernGridCard = getByTestId('layout-template-modern-grid');
       expect(modernGridCard.props.accessibilityState.selected).toBe(true);
 
-      // Change selection
       rerender(<LayoutTemplateSelector {...defaultProps} value={LayoutTemplate.Cards} />);
 
       modernGridCard = getByTestId('layout-template-modern-grid');

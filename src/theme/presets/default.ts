@@ -1,8 +1,3 @@
-/**
- * Default theme preset.
- * Values are taken directly from palette.ts basePalette to ensure
- * the app looks identical before any tenant customization is applied.
- */
 import type { TenantThemeConfig } from '../types';
 
 export const DEFAULT_THEME_CONFIG: TenantThemeConfig = {

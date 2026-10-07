@@ -1,6 +1,3 @@
-/**
- * Upload step: lets user select an image or PDF for AI menu extraction.
- */
 import React from 'react';
 
 import { Text, TouchableOpacity, View } from 'react-native';

@@ -15,15 +15,7 @@ export interface SentryApi {
   setUser: (user: { id: string; tenantId?: string } | null) => void;
 }
 
-/**
- * Dynamic-import seam for @sentry/react.
- *
- * Isolated into its own module (the same pattern as the jsPDF lazy wrapper) so
- * that the sentry wrapper can be unit-tested by mocking this loader instead of
- * the dynamic import itself. The `import('@sentry/react')` here keeps the SDK
- * and its transitive `@sentry/*` packages (~2.3 MB) in their own async chunk,
- * entirely off the first-paint critical path.
- */
+/** Dynamic-import seam for @sentry/react. */
 export async function loadSentryAdapter(config: SentryInit): Promise<SentryApi> {
   const sentry = await import('@sentry/react');
   sentry.init(config);

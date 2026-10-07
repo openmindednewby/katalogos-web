@@ -1,4 +1,3 @@
-/** Attribution section for white-label settings (powered-by toggle). */
 import React from 'react';
 
 import { Switch, Text, View } from 'react-native';

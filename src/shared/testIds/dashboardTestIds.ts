@@ -20,11 +20,9 @@ export const DashboardTestIds = {
   EMPTY_LIST_STATE: 'empty-list-state',
   EMPTY_LIST_CTA: 'empty-list-cta',
 
-  // Business Profile Nudge
   DASHBOARD_BUSINESS_PROFILE_NUDGE: 'dashboard-business-profile-nudge',
   DASHBOARD_BUSINESS_PROFILE_NUDGE_CTA: 'dashboard-business-profile-nudge-cta',
 
-  // Welcome Wizard
   WELCOME_WIZARD: 'welcome-wizard',
   WELCOME_WIZARD_PROGRESS: 'welcome-wizard-progress',
   WELCOME_WIZARD_STEP: 'welcome-wizard-step',
@@ -36,7 +34,6 @@ export const DashboardTestIds = {
   WELCOME_WIZARD_SKIP_BUTTON: 'welcome-wizard-skip-button',
   WELCOME_WIZARD_COMPLETE_BUTTON: 'welcome-wizard-complete-button',
 
-  // Setup Checklist
   SETUP_CHECKLIST: 'setup-checklist',
   SETUP_CHECKLIST_PROGRESS: 'setup-checklist-progress',
   SETUP_CHECKLIST_DISMISS: 'setup-checklist-dismiss',

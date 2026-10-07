@@ -1,10 +1,3 @@
-/**
- * CategoryStylingSection - Collapsible styling options for a category.
- *
- * Provides:
- * - BoxStyleEditor for category container styling (borders, padding, shadows)
- * - MediaPositionEditor for category image settings
- */
 import React, { useCallback, useState } from 'react';
 
 import { Text, TouchableOpacity, View } from 'react-native';
@@ -22,9 +15,6 @@ import { SvgIcon } from '../Icons';
 
 import type { BoxStyling, MediaSettings } from '../../types/menuStyleTypes';
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const CHEVRON_ICON_SIZE = 16;
 
@@ -43,9 +33,6 @@ const DEFAULT_MEDIA_SETTINGS: MediaSettings = {
   borderRadius: 0,
 };
 
-// =============================================================================
-// Props Interface
-// =============================================================================
 
 interface CategoryStylingSectionProps {
   categoryIndex: number;
@@ -58,9 +45,6 @@ interface CategoryStylingSectionProps {
   backgroundColor: string;
 }
 
-// =============================================================================
-// Component
-// =============================================================================
 
 const CategoryStylingSection: React.FC<CategoryStylingSectionProps> = ({
   categoryIndex,
@@ -121,7 +105,6 @@ const CategoryStylingSection: React.FC<CategoryStylingSectionProps> = ({
           style={styles.content}
           testID={`${TestIds.CATEGORY_STYLING_CONTENT}-${categoryIndex}`}
         >
-          {/* Box Style Editor */}
           <View
             style={styles.editorSection}
             testID={`${TestIds.CATEGORY_STYLING_BOX_EDITOR}-${categoryIndex}`}
@@ -133,7 +116,6 @@ const CategoryStylingSection: React.FC<CategoryStylingSectionProps> = ({
             />
           </View>
 
-          {/* Media Position Editor */}
           <View
             style={styles.editorSection}
             testID={`${TestIds.CATEGORY_STYLING_MEDIA_EDITOR}-${categoryIndex}`}

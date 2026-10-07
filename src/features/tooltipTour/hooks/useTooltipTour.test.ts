@@ -1,7 +1,3 @@
-/**
- * Tests for useTooltipTour hook.
- * Focuses on step progression, persistence, dismiss, and reset logic.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import TooltipTourId from '@/shared/enums/TooltipTourId';

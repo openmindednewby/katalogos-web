@@ -1,12 +1,7 @@
-/**
- * JSON formatting for menu data export.
- * Produces a structured JSON string with categories and items hierarchy.
- */
 import { sortCategoriesByDisplayOrder, sortMenuItemsByDisplayOrder } from '../../../../types/menuTypes';
 
 import type { Category, MenuContents } from '../../../../types/menuTypes';
 
-/** Exported item shape for JSON output. */
 interface ExportedItem {
   name: string;
   description: string;
@@ -15,7 +10,6 @@ interface ExportedItem {
   dietaryTags: string[];
 }
 
-/** Exported category shape for JSON output. */
 interface ExportedCategory {
   name: string;
   description: string;
@@ -34,7 +28,6 @@ export interface MenuJsonExport {
 const DEFAULT_ORDER = 0;
 const JSON_INDENT = 2;
 
-/** Convert a single category and its items to the export shape. */
 function mapCategory(category: Category): ExportedCategory {
   const sortedItems = sortMenuItemsByDisplayOrder(category.items);
   const items: ExportedItem[] = sortedItems.map((item) => ({
@@ -53,10 +46,7 @@ function mapCategory(category: Category): ExportedCategory {
   };
 }
 
-/**
- * Format menu contents as a structured JSON string.
- * Returns empty string if there are no categories or items.
- */
+/** Format menu contents as a structured JSON string. */
 export function formatMenuJson(contents: MenuContents | null | undefined): string {
   if ((contents?.categories?.length ?? 0) === 0) return '';
 

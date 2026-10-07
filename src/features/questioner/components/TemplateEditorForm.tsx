@@ -27,7 +27,6 @@ interface Props {
   saving?: boolean;
   enableAnswerSection: boolean;
   readOnly?: boolean;
-  /** Unique key to force TemplateForm remount when editing a different item */
   itemKey?: string;
 }
 

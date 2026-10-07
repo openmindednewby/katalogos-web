@@ -1,8 +1,3 @@
-/**
- * Hook for managing per-location menu item overrides.
- * Fetches overrides for the selected location + menu and provides
- * getOverride, setOverride, and clearOverride accessors.
- */
 import { useCallback, useMemo, useState } from 'react';
 
 import { overrideKey, useOverrideMap } from './useOverrideMap';

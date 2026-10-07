@@ -18,7 +18,6 @@ const TOOLBAR_GAP = 8;
 const BUTTON_ROW_GAP = 12;
 const BORDER_RADIUS = 12;
 
-// Desktop two-pane layout (>= EDITOR_TWO_PANE_BREAKPOINT_PX)
 const TWO_PANE_GAP = 20;
 const LEFT_PANE_FLEX = 58;
 const RIGHT_PANE_FLEX = 42;
@@ -36,7 +35,6 @@ export const fullEditorStyles = StyleSheet.create({
   toolbarRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: TOOLBAR_GAP },
   toolbarRowPhone: { flexWrap: 'wrap' },
   contentContainer: { flex: 1 },
-  // Desktop two-pane body: editor form (left) + live preview (right).
   bodyRow: { flex: 1, flexDirection: 'row', gap: TWO_PANE_GAP },
   leftPane: { flex: LEFT_PANE_FLEX, minWidth: LEFT_PANE_MIN_WIDTH },
   rightPane: { flex: RIGHT_PANE_FLEX, minWidth: RIGHT_PANE_MIN_WIDTH, borderLeftWidth: 1 },

@@ -1,7 +1,3 @@
-/**
- * Tests for useItemVisibilityTracker hook.
- * Focuses on the tracking logic callbacks.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import type { AnalyticsTrackFn } from '@/lib/analytics/types';

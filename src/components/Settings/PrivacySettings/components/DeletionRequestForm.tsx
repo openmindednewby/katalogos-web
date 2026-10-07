@@ -1,7 +1,3 @@
-/**
- * Sub-component for the deletion request form (reason input + request button).
- * Extracted from AccountDeletionSection to stay within the 200-line component limit.
- */
 import React, { useCallback, useState } from 'react';
 
 import { StyleSheet, Text, TextInput, View } from 'react-native';

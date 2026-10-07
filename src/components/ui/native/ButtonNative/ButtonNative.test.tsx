@@ -1,9 +1,3 @@
-/**
- * Unit tests for ButtonNative - WS5A (ARIA accessibility).
- *
- * Tests focus on LOGIC: aria-disabled and aria-busy attribute values.
- * Visual rendering is tested by Playwright E2E.
- */
 import React from 'react';
 
 import { Text } from 'react-native';
@@ -12,22 +6,13 @@ import { render } from '@testing-library/react-native';
 
 import { ButtonNative } from './index';
 
-// =============================================================================
-// Test Helpers
-// =============================================================================
 
-/**
- * Minimal shape of a node returned by toJSON().
- */
 interface TreeNode {
   type: string;
   props?: Record<string, unknown>;
   children?: Array<TreeNode | string>;
 }
 
-/**
- * Find the <button> node in the RNTL JSON tree.
- */
 function findButtonNode(root: unknown): TreeNode | null {
   const tree = root as TreeNode | null;
   if (tree === null) return null;
@@ -42,14 +27,8 @@ function findButtonNode(root: unknown): TreeNode | null {
   return null;
 }
 
-// =============================================================================
-// Test Suite
-// =============================================================================
 
 describe('ButtonNative', () => {
-  // ---------------------------------------------------------------------------
-  // WS5A: ARIA attributes
-  // ---------------------------------------------------------------------------
 
   describe('ARIA attributes (WS5A)', () => {
     it('sets aria-disabled to false when not disabled and not loading', () => {

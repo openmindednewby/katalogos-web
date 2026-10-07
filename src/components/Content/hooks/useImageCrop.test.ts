@@ -1,7 +1,3 @@
-/**
- * Unit tests for useImageCrop hook.
- * Tests logic: state transitions, promise resolution, aspect ratio switching.
- */
 import { Platform } from 'react-native';
 
 import { act, renderHook } from '@testing-library/react-native';
@@ -11,9 +7,6 @@ import AspectRatioPreset from '../../../shared/enums/AspectRatioPreset';
 
 import type { FileInfo } from '../../../lib/hooks/content/types';
 
-// ---------------------------------------------------------------------------
-// Mocks
-// ---------------------------------------------------------------------------
 
 const MOCK_BLOB_URL = 'blob:http://localhost/mock-cropped';
 const MOCK_BLOB_SIZE = 1024;
@@ -29,9 +22,6 @@ jest.mock('../utils/cropImageUtils', () => ({
   })),
 }));
 
-// ---------------------------------------------------------------------------
-// Fixtures
-// ---------------------------------------------------------------------------
 
 const MOCK_FILE: FileInfo = {
   uri: 'file:///test/photo.jpg',
@@ -40,9 +30,6 @@ const MOCK_FILE: FileInfo = {
   size: 2048,
 };
 
-// ---------------------------------------------------------------------------
-// Tests
-// ---------------------------------------------------------------------------
 
 describe('useImageCrop', () => {
   beforeEach(() => {

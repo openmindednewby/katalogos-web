@@ -1,7 +1,3 @@
-/**
- * Unit tests for ContentUploader component.
- * Focus on logic: callbacks, state transitions, error handling.
- */
 import React from 'react';
 
 import { fireEvent, render } from '@testing-library/react-native';
@@ -9,7 +5,6 @@ import { fireEvent, render } from '@testing-library/react-native';
 import { UploadProgress } from './UploadProgress';
 import { TestIds } from '../../../shared/testIds';
 
-// Mock theme
 jest.mock('../../../theme/hooks/useTheme', () => ({
   useTheme: () => ({
     theme: {
@@ -56,8 +51,6 @@ describe('UploadProgress', () => {
     const cancelButton = getByTestId(TestIds.UPLOAD_PROGRESS_CANCEL_BUTTON);
     fireEvent.press(cancelButton);
 
-    // Button is disabled, so onCancel should not be called
-    // Note: In React Native, disabled buttons may still fire events but the handler should check
     expect(mockOnCancel).not.toHaveBeenCalled();
   });
 
@@ -97,7 +90,6 @@ describe('UploadProgress callback behavior', () => {
 
     const cancelButton = getByTestId(TestIds.UPLOAD_PROGRESS_CANCEL_BUTTON);
 
-    // Simulate rapid presses
     fireEvent.press(cancelButton);
     fireEvent.press(cancelButton);
     fireEvent.press(cancelButton);
@@ -116,7 +108,6 @@ describe('UploadProgress callback behavior', () => {
       />,
     );
 
-    // Re-render with different progress
     rerender(
       <UploadProgress
         disabled={false}

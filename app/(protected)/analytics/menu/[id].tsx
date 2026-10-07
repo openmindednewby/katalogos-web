@@ -1,7 +1,3 @@
-/**
- * Menu Analytics detail route page.
- * Wraps the MenuAnalyticsScreen component with the route parameter.
- */
 import React from 'react';
 
 import { useLocalSearchParams } from 'expo-router';

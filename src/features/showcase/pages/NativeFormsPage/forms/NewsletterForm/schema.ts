@@ -1,6 +1,3 @@
-/**
- * Newsletter form validation schema using Zod.
- */
 import { z } from 'zod';
 
 export const newsletterSchema = z.object({

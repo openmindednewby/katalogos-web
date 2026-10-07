@@ -1,6 +1,3 @@
-/**
- * QuizContent - Renders the quiz form content including questions and navigation.
- */
 import React, { useMemo } from 'react';
 import type { RefObject } from 'react';
 

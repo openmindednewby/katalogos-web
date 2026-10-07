@@ -1,6 +1,3 @@
-/**
- * Renders a single pending invitation row with status badge and revoke button.
- */
 import React, { useMemo } from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -78,11 +75,6 @@ const PendingInvitationRow = ({ invitation, isAdmin, onRevoke }: Props): React.R
 
   const statusLabel = FM(getStatusLabelKey(invitation.status));
   const statusScale = theme.semantic[getStatusSemanticKey(invitation.status)];
-  // MEASURED per seed. A hardcoded shade-on-tint pair is safe only for DARK seeds —
-  // `700`-on-`100` bottoms out at 1.09:1 across the seed space — and this palette
-  // comes from the tenant, so an unseen seed is a real input. It happens to clear
-  // 4.75:1 at worst on the five bundled presets, i.e. it passes by luck rather than
-  // by construction. `badgeColors` walks `600 -> 700 -> 800 -> 900` and measures.
   const statusColors = badgeColors(statusScale);
   const statusBg = statusColors.backgroundColor;
   const statusFg = statusColors.color;

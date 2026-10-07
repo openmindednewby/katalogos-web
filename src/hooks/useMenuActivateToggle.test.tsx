@@ -1,7 +1,3 @@
-/**
- * Tests for useMenuActivateToggle hook.
- * Focus on testing the callback logic, not the underlying mutations.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import { mockT, createMockMutation } from './menuPageHandlers.testUtils';
@@ -13,7 +9,6 @@ import { logger } from '../utils/logger';
 type ActivateMutation = ReturnType<typeof useActivateMenu>;
 type DeactivateMutation = ReturnType<typeof useDeactivateMenu>;
 
-// Mock dependencies
 jest.mock('../lib/notifications', () => ({
   notify: jest.fn(),
   notifySuccess: jest.fn(),

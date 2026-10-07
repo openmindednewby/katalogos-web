@@ -1,10 +1,5 @@
 
 
-/**
- * ItemPrice - Renders the price display with formatting options.
- *
- * Supports "from $X" display when variants exist (showFromPrefix=true).
- */
 import React from 'react';
 
 import { Text } from 'react-native';
@@ -25,13 +20,9 @@ interface Props {
   isAvailable: boolean;
   textColor: string;
   testID: string;
-  /** When true, displays "from $X" prefix (used when variants exist). */
   showFromPrefix?: boolean;
 }
 
-/**
- * Resolves price display settings from optional style overrides.
- */
 function resolvePriceSettings(priceStyle: PriceStyle | undefined, textColor: string): {
   fontSize: number;
   fontWeight: FontWeight;
@@ -52,9 +43,6 @@ function resolvePriceSettings(priceStyle: PriceStyle | undefined, textColor: str
   };
 }
 
-/**
- * Gets the additional style for price positioning.
- */
 function getPricePositionStyle(position?: PricePosition): StyleProp<TextStyle> {
   if (position === PricePosition.BelowName) return styles.priceBelowName;
   if (position === PricePosition.BelowDescription) return styles.priceBelowDescription;

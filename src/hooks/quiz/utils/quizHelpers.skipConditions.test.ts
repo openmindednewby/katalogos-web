@@ -1,6 +1,3 @@
-/**
- * Tests for quizHelpers - Skip conditions and page visibility.
- */
 import { shouldSkipForForm, pageHasVisibleQuestion } from './quizHelpers';
 import QuestionType from '../../../shared/enums/QuestionType';
 

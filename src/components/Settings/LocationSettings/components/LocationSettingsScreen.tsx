@@ -1,7 +1,3 @@
-/**
- * LocationSettingsScreen - Main location management page.
- * Enterprise-gated: shows UpgradePrompt for non-enterprise tiers.
- */
 import React, { useState, useCallback, useMemo } from 'react';
 
 import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';

@@ -1,7 +1,3 @@
-/**
- * Theme Settings route page.
- * Wraps the ThemeSettingsScreen component.
- */
 import React from 'react';
 
 import { ThemeSettingsScreen } from '../../../src/components/Settings/ThemeSettings';

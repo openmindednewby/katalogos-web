@@ -1,13 +1,4 @@
-/**
- * Tests for RealTimeNotificationProvider — BFF era.
- *
- * Post-BFF-cutover the SPA holds no access token, so the SignalR
- * `NotificationProvider` is no longer mounted (its hub WebSocket needs a
- * Bearer the SPA cannot supply). The provider now always renders its
- * children; `TestApiRegistration` mounts only when there is a BFF session.
- */
 
-// All mocks MUST be declared before imports for Jest hoisting to work correctly
 import React from 'react';
 
 import { Text } from 'react-native';
@@ -28,7 +19,6 @@ jest.mock('@dloizides/notification-client/workers', () => ({
   },
 }));
 
-// Mock service worker registration - MUST be before imports
 jest.mock('../../lib/notifications', () => ({
   registerNotificationServiceWorker: jest.fn().mockResolvedValue(null),
   onServiceWorkerMessage: jest.fn().mockReturnValue(() => {}),

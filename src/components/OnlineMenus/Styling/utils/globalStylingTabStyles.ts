@@ -1,8 +1,5 @@
 
 
-/**
- * Styles for GlobalStylingTab component.
- */
 import { StyleSheet } from 'react-native';
 
 const SECTION_MARGIN = 8;

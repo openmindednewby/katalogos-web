@@ -1,9 +1,3 @@
-/**
- * Central subscription hook for the app.
- *
- * Provides tier information, trial status, feature limits, and watermark
- * visibility. Components use this to gate features based on subscription tier.
- */
 import { useMemo } from 'react';
 
 import { isValueDefined } from '../../../utils/is';
@@ -28,7 +22,6 @@ interface UseSubscriptionResult {
   isError: boolean;
 }
 
-/** Whether a string tier value matches a given SubscriptionTier. */
 function isTier(tier: string, target: string): boolean {
   return tier === target;
 }
@@ -36,9 +29,6 @@ function isTier(tier: string, target: string): boolean {
 export function useSubscription(): UseSubscriptionResult {
   const { subscription, isLoading, isError } = useGetCurrentSubscription();
 
-  // When subscription data is available, use it. When the API errors (service
-  // unavailable, 401, etc.), default to Pro so users aren't locked out of
-  // features. Only default to Free when still loading (not yet resolved).
   const fallbackTier = isError ? SubscriptionTier.Pro : SubscriptionTier.Free;
   const tier = isValueDefined(subscription)
     ? subscription.planTier

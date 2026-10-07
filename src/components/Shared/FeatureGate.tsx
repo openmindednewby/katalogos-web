@@ -12,16 +12,11 @@ import themeStyles from '../../theme/utils/styles';
 import type { FeatureFlags } from '../../config/featureFlags';
 
 interface Props {
-  /** The feature flag key to check */
   flag: keyof FeatureFlags;
-  /** Content to render when the feature is enabled */
   children: ReactElement;
 }
 
-/**
- * Gates content behind a feature flag.
- * Redirects to home when the flag is disabled.
- */
+/** Gates content behind a feature flag. */
 const FeatureGate = ({ flag, children }: Props): ReactElement => {
   const router = useRouter();
   const isEnabled = featureFlags[flag];

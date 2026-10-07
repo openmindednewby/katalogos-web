@@ -1,22 +1,3 @@
-/**
- * Shared testID constants for E2E testing
- *
- * These constants are used both in React Native components and Playwright E2E tests
- * to ensure consistency and avoid magic strings.
- *
- * Usage in React components:
- *   import { TestIds } from '../shared/testIds';
- *   <View testID={TestIds.TEMPLATE_LIST}>
- *
- * Usage in Playwright tests:
- *   import { TestIds } from '../../OnlineMenuSaaS/clients/OnlineMenuClientApp/src/shared/testIds';
- *   page.locator(`[data-testid="${TestIds.TEMPLATE_LIST}"]`)
- *
- * Split into sub-modules:
- * - testIds/commonTestIds.ts: Common UI, login, navigation, loading states
- * - testIds/menuTestIds.ts: Menu management, editor, categories, items, display
- * - testIds/stylingTestIds.ts: Styling editors, notifications, content upload
- */
 
 import { AccessibilityTestIds } from './testIds/accessibilityTestIds';
 import { AccountHubTestIds } from './testIds/accountHubTestIds';
@@ -92,5 +73,4 @@ export const TestIds = {
   ...WhiteLabelTestIds,
 } as const;
 
-// Type for testID values
 export type TestId = typeof TestIds[keyof typeof TestIds];

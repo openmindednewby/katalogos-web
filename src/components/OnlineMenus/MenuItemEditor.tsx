@@ -1,6 +1,3 @@
-/**
- * MenuItemEditor - Editor for a single menu item.
- */
 import React from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';

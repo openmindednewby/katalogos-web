@@ -1,19 +1,9 @@
-/**
- * BUG-QUIZ-012: Tests that React keys include the array index to avoid
- * collisions when multiple blank entries have the same value/label.
- */
 
 describe('OptionEditor/SkipConditions - key generation (BUG-QUIZ-012)', () => {
-  /**
-   * Mirrors the fixed key pattern from OptionEditor.
-   */
   function optionKey(index: number, value: string | null, label: string | null): string {
     return `${index}-${value ?? ''}|${label ?? ''}`;
   }
 
-  /**
-   * Mirrors the fixed key pattern from SkipConditions.
-   */
   function skipConditionKey(index: number, questionId: string | null, questionAnswer: string | null): string {
     return `${index}-${questionId ?? ''}|${questionAnswer ?? ''}`;
   }

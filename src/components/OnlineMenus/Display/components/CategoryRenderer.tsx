@@ -1,16 +1,7 @@
 
 
 
-// =============================================================================
-// Types & Helpers
-// =============================================================================
 
-/**
- * CategoryRenderer - Sub-components for rendering categories and their items
- * within MenuContentView.
- *
- * Extracted from MenuContentView.tsx to keep file sizes under 200 lines.
- */
 import React from 'react';
 
 import { Platform, Text, View } from 'react-native';
@@ -50,18 +41,12 @@ interface CategoryRendererProps {
   onItemPress?: (category: Category, item: MenuItem) => void;
 }
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const DEFAULT_FONT_SIZE_TITLE = 24;
 const DEFAULT_FONT_SIZE_BODY = 14;
 const DEFAULT_SHADOW_RADIUS = 4;
 const DEFAULT_SHADOW_COLOR = '#000000';
 
-// =============================================================================
-// Helper Functions
-// =============================================================================
 
 /**
  * Gets merged styling with defaults.
@@ -134,9 +119,6 @@ function buildCategorySectionStyle(category: Category, styles: MergedStyles): Vi
   return sectionStyle;
 }
 
-// =============================================================================
-// Sub-Component: Category Items List
-// =============================================================================
 
 interface CategoryItemsProps {
   category: Category;
@@ -182,9 +164,6 @@ const CategoryItems: React.FC<CategoryItemsProps> = ({
   );
 };
 
-// =============================================================================
-// Sub-Component: Category Section Renderer
-// =============================================================================
 
 export const CategoryRenderer: React.FC<CategoryRendererProps> = ({
   category,

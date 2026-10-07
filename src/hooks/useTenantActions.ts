@@ -28,7 +28,6 @@ interface UseTenantActionsOptions {
   enabled: boolean;
 }
 
-/** Create state setters for modal visibility */
 function useModalState(): {
   showCreateModal: boolean;
   handleShowCreateModal: () => void;
@@ -41,7 +40,6 @@ function useModalState(): {
   return { showCreateModal, handleShowCreateModal, handleHideCreateModal, setShowCreateModal };
 }
 
-/** Create state setters for editing */
 function useEditingState(): {
   editingId: string | null;
   handleStartEdit: (id: string) => void;
@@ -54,7 +52,6 @@ function useEditingState(): {
   return { editingId, handleStartEdit, handleCancelEdit, setEditingId };
 }
 
-/** Build the mutations params object */
 function useMutationsParams(
   handleRefetch: () => void,
   setEditingId: (id: string | null) => void,

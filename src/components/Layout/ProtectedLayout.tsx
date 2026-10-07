@@ -1,16 +1,3 @@
-/**
- * ProtectedLayout — the authenticated app shell. Thin wiring over the shared
- * `@dloizides/ui-nav` `NavShell` (`layout="side"`): a persistent left rail on
- * desktop, the icon-only `CollapsedRail` on tablet, and the overlay drawer on
- * phone are all owned by NavShell/AppShell. This app supplies only DATA + STYLE:
- * the role-gated `NavItem[]`, the existing `Topbar` (header slot), the Home
- * shortcut + appearance/logout footer (rail slots), and the theme.
- *
- * Replaces the bespoke Animated overlay drawer + tablet rail + Mobile* files and
- * `layoutStyles`. testIDs the E2E drives (`logout-button`, `nav-home`,
- * `main-content-region`) and the `Main navigation` landmark name are preserved;
- * the phone drawer's "Menu" toggle keeps an accessible name the logout flow finds.
- */
 import React, { useMemo } from 'react';
 
 import { StyleSheet, View } from 'react-native';
@@ -46,11 +33,6 @@ interface Props {
 const LAYOUT_TEST_ID = 'protected-layout';
 const MAIN_CONTENT_ID = 'main-content';
 
-/**
- * Tablet band for the icon-only collapsed rail: full rail above the tablet
- * breakpoint (desktop), collapsed rail across the tablet band, overlay drawer at
- * phone width — reproducing the app's phone(≤480)/tablet/desktop(>768) scheme.
- */
 const COLLAPSED_RAIL_RANGE = { min: PHONE_BREAKPOINT_PX + 1, max: TABLET_BREAKPOINT_PX + 1 };
 
 const styles = StyleSheet.create({

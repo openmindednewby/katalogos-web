@@ -7,7 +7,6 @@ export { layoutStyles } from './utils/layout';
 export { buttonStyles } from './utils/buttons';
 export { typography } from './utils/typography';
 export { useDynamicFormStyles, type FormStyles } from './utils/forms';
-/** @deprecated Use useTheme() instead. */
 export { useThemeColors } from './utils/hooks';
 export { useTheme } from './hooks/useTheme';
 export { useDarkMode, type UseDarkModeReturn } from './hooks/useDarkMode';

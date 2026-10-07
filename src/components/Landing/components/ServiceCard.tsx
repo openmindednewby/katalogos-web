@@ -47,10 +47,7 @@ const styles = StyleSheet.create({
   ctaText: { fontSize: CTA_FONT_SIZE, fontWeight: '600' },
 });
 
-/**
- * Service showcase card used on the brand hub page.
- * Displays a title, description, and CTA button linking to a service landing page.
- */
+/** Service showcase card used on the brand hub page. */
 const ServiceCard = ({ titleKey, descriptionKey, ctaTextKey, ctaHintKey, ctaRoute }: Props): ReactElement => {
   const { theme } = useTheme();
   const router = useRouter();

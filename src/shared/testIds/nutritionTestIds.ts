@@ -1,6 +1,5 @@
 /** Test IDs for nutritional information features. */
 export const NutritionTestIds = {
-  // Nutrition Editor
   NUTRITION_INGREDIENTS_INPUT: 'nutrition-ingredients-input',
   NUTRITION_AUTO_FILL_BUTTON: 'nutrition-auto-fill-button',
   NUTRITION_AUTO_FILL_LOADING: 'nutrition-auto-fill-loading',
@@ -18,7 +17,6 @@ export const NutritionTestIds = {
   NUTRITION_DETECTED_ALLERGENS: 'nutrition-detected-allergens',
   NUTRITION_UPGRADE_PROMPT: 'nutrition-upgrade-prompt',
 
-  // Public Nutrition Label
   NUTRITION_LABEL: 'nutrition-label',
   NUTRITION_LABEL_TOGGLE: 'nutrition-label-toggle',
   NUTRITION_LABEL_CALORIES: 'nutrition-label-calories',

@@ -1,4 +1,3 @@
-/** Full public menu renderer with theme-based styling and responsive layout. */
 import React, { useCallback, useMemo } from 'react';
 
 import { ScrollView, Text, View } from 'react-native';

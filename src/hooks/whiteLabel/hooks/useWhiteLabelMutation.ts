@@ -1,10 +1,3 @@
-/**
- * Mutation hook for saving white-label configuration.
- *
- * Sends a PUT to the existing tenant theme endpoint with white-label fields.
- * Preserves existing theme fields by merging with the current theme data.
- * Invalidates the tenant theme query cache on success.
- */
 import { useMemo } from 'react';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';

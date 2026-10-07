@@ -1,6 +1,3 @@
-/**
- * Styles for the BoxStyleEditor component.
- */
 import { StyleSheet } from 'react-native';
 
 import { DISABLED_OPACITY, PREVIEW_BOX_SIZE } from './boxStyleEditorConstants';

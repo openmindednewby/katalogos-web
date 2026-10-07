@@ -1,7 +1,3 @@
-/**
- * BillingSettingsScreen - main billing management page.
- * Shows current plan, plan comparison, actions, and billing history.
- */
 import React, { useState, useCallback, useMemo } from 'react';
 
 import { ActivityIndicator, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';

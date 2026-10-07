@@ -1,7 +1,3 @@
-/**
- * Unit tests for preset selection logic.
- * Tests helper functions, not rendering.
- */
 import { isPresetSelected } from './PresetGrid';
 import { THEME_PRESETS, DEFAULT_THEME_CONFIG } from '../../../../theme/presets';
 

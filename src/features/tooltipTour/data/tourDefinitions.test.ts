@@ -1,7 +1,3 @@
-/**
- * Tests for tour definitions.
- * Validates structure, uniqueness, and completeness of tour step data.
- */
 import TooltipTourId from '@/shared/enums/TooltipTourId';
 
 import {

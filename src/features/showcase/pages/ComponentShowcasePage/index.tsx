@@ -1,8 +1,3 @@
-/**
- * Component Library Showcase Page.
- * Interactive reference of all shared reusable components.
- * Web-only; renders a fallback message on native platforms.
- */
 import type { ReactElement } from 'react';
 import { useEffect } from 'react';
 

@@ -1,20 +1,3 @@
-/**
- * `<LoginCredentialForms>` — the inline credential surface of the login screen:
- * the method-tab row plus the active form (password or email-OTP),
- * unified-login parity (#172).
- *
- * It owns the active-method state and renders the `<LoginMethodTabs>` picker
- * (only when the BFF advertises `otp`) above either `<LoginForm>` (password) or
- * `<OtpForm>` (email-OTP). When OTP is not advertised the tabs are hidden and
- * the password form renders exactly as the legacy password-only login did.
- *
- * Passkey + the device-PIN unlock gate live on the screen itself, not here —
- * passkey is a button below this surface and device-PIN replaces the whole
- * screen, so neither belongs in the tabbed credential picker.
- *
- * react-query-FREE by design (the login route renders before the
- * LazyQueryProvider activates) — do NOT introduce any react-query usage here.
- */
 import React, { useState } from 'react';
 
 import { LoginForm, OtpForm } from '@dloizides/auth-web';
@@ -28,15 +11,10 @@ import type { BffUser } from '@dloizides/auth-client';
 import type { AuthTheme } from '@dloizides/auth-web';
 
 interface LoginCredentialFormsProps {
-  /** The methods the BFF advertises (`config.methods` from `/bff/config`). */
   methods: readonly string[];
-  /** The auth surface theme. */
   theme: AuthTheme;
-  /** Called with the signed-in user after a successful password / OTP login. */
   onSuccess: (user: BffUser) => void;
-  /** Called when the user taps "Forgot password?" in the password form. */
   onForgotPassword: () => void;
-  /** Called when the user taps "Create account" in the password form. */
   onSignUp: () => void;
 }
 

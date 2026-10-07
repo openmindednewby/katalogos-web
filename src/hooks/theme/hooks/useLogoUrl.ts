@@ -1,10 +1,3 @@
-/**
- * Hook to resolve a tenant theme logo contentId to a public URL.
- *
- * Uses the existing ContentService public-url endpoint to resolve
- * the logoContentId from the tenant theme config into an accessible URL.
- * Falls back to null on errors or when no logoContentId is configured.
- */
 import { usePublicContentUrl } from '../../../lib/hooks/content/hooks/useContent';
 import { isValueDefined } from '../../../utils/is';
 
@@ -22,10 +15,7 @@ function extractLogoContentId(config: TenantThemeConfig | null): string | undefi
   return undefined;
 }
 
-/**
- * Resolves the logoContentId from a tenant theme config into a public URL.
- * Returns null when no logo is configured or when the fetch fails.
- */
+/** Resolves the logoContentId from a tenant theme config into a public URL. */
 export function useLogoUrl(themeConfig: TenantThemeConfig | null): UseLogoUrlReturn {
   const logoContentId = extractLogoContentId(themeConfig);
   const { data, isLoading } = usePublicContentUrl(logoContentId);

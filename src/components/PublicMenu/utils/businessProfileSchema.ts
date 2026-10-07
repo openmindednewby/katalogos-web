@@ -1,6 +1,5 @@
 import { isValueDefined } from '../../../utils/is';
 
-/** Day names for schema.org OpeningHoursSpecification (ISO 8601: 0=Monday). */
 const SCHEMA_DAY_NAMES: readonly string[] = [
   'Monday',
   'Tuesday',
@@ -50,17 +49,14 @@ interface OperatingHoursEntry {
   isClosed?: boolean;
 }
 
-/** Type guard for a plain object record. */
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && isValueDefined(value);
 }
 
-/** Check if a string value is non-empty. */
 function isNonEmpty(value: string | null | undefined): value is string {
   return isValueDefined(value) && value !== '';
 }
 
-/** Type guard: validate an unknown value is a valid hours entry with required fields. */
 function isValidHoursEntry(value: unknown): value is OperatingHoursEntry {
   if (!isRecord(value)) return false;
   return typeof value.day === 'number'
@@ -69,13 +65,11 @@ function isValidHoursEntry(value: unknown): value is OperatingHoursEntry {
     && value.isClosed !== true;
 }
 
-/** Safely extract the hours array from parsed JSON. */
 function extractHoursArray(parsed: unknown): unknown[] | null {
   if (!isRecord(parsed)) return null;
   return Array.isArray(parsed.hours) ? parsed.hours : null;
 }
 
-/** Map a validated hours entry to a schema.org OpeningHoursSpecification. */
 function mapEntryToSchema(entry: OperatingHoursEntry): SchemaOpeningHours {
   return {
     '@type': 'OpeningHoursSpecification',

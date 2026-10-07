@@ -1,7 +1,3 @@
-/**
- * Tests for useSetupChecklist hook.
- * Focuses on completion detection logic, visibility, and dismiss behavior.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import type { DashboardData } from '@/components/Dashboard/types';
@@ -140,7 +136,7 @@ describe('useSetupChecklist', () => {
     mockProfileData.logoUrl = 'logo-id';
     localStorage.setItem(CHECKLIST_QR_GENERATED_KEY, 'true');
     const { result } = renderHook(() => useSetupChecklist(DASHBOARD_WITH_MENUS, createMockPreferences()));
-    const EXPECTED_COMPLETED = 3; // logo + createMenu + QR
+    const EXPECTED_COMPLETED = 3;
     expect(result.current.completedCount).toBe(EXPECTED_COMPLETED);
   });
 
@@ -179,7 +175,6 @@ describe('useSetupChecklist', () => {
     expect(result.current.allComplete).toBe(false);
   });
 
-  // --- Server-side state tests ---
 
   it('hides checklist when server preferences say checklistDismissed is true', () => {
     const prefs = createMockPreferences();

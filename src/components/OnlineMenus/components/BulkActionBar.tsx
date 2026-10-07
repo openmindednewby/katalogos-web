@@ -1,4 +1,3 @@
-/** BulkActionBar - Fixed bottom bar showing bulk actions during selection mode. */
 import React, { useState } from 'react';
 
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';

@@ -1,14 +1,3 @@
-/**
- * Menu Defaults Utility
- *
- * Provides sensible default values for menu styling properties,
- * ensuring backward compatibility with legacy menus that don't
- * have the new Phase 2 customization fields.
- *
- * Entity-level defaults (category, item) are in menuDefaultsEntityLevel.ts.
- *
- * @see BaseClient/docs/Tasks/TODO/menu-customization-feature.md
- */
 
 import {
   DEFAULT_CATEGORY_IMAGE_SETTINGS,
@@ -37,7 +26,6 @@ import type {
 } from '../types/menuStyleTypes';
 import type { MenuContents, Category, MenuItem } from '../types/menuTypes';
 
-// Re-export entity-level defaults for backward compatibility
 export {
   DEFAULT_CATEGORY_IMAGE_SETTINGS,
   DEFAULT_CATEGORY_TYPOGRAPHY,
@@ -50,9 +38,6 @@ export {
   DEFAULT_AVAILABILITY_BADGE,
 } from './menuDefaultsEntityLevel';
 
-// =============================================================================
-// Menu-Level Default Constants
-// =============================================================================
 
 /** Default typography settings for the entire menu. */
 export const DEFAULT_TYPOGRAPHY: Required<GlobalTypography> = {
@@ -111,14 +96,8 @@ export const DEFAULT_SPACING: Required<SpacingSettings> = {
   contentPadding: 16,
 };
 
-// =============================================================================
-// Utility Functions
-// =============================================================================
 
-/**
- * Deep merges user settings with defaults, preserving user overrides.
- * Returns a fully populated MenuContents object.
- */
+/** Deep merges user settings with defaults, preserving user overrides. */
 export function applyMenuDefaults(contents: MenuContents | null | undefined): MenuContents {
   if (!contents)
     return {
@@ -178,10 +157,7 @@ export function applyItemDefaults(item: MenuItem): MenuItem {
   };
 }
 
-/**
- * Normalizes menu contents based on schema version.
- * Handles migration from legacy menus (v1) to current schema (v2).
- */
+/** Normalizes menu contents based on schema version. */
 export function normalizeMenuContents(contents: MenuContents | null | undefined): MenuContents {
   if (!contents) return applyMenuDefaults(null);
 

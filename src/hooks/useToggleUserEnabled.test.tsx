@@ -1,7 +1,3 @@
-/**
- * Tests for useToggleUserEnabled hook.
- * Focus on testing enable/disable toggle callbacks and notifications.
- */
 import './userPageHandlers.setupMocks';
 
 import { renderHook, act } from '@testing-library/react-native';

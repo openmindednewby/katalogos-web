@@ -62,12 +62,10 @@ interface SchemaRestaurant {
   hasMenu: SchemaMenu;
 }
 
-/** Check if a string value is non-empty. */
 function isNonEmpty(value: string | null | undefined): value is string {
   return isValueDefined(value) && value !== '';
 }
 
-/** Build a schema.org MenuItem from domain data. */
 function buildSchemaMenuItem(
   item: { name?: string; description?: string | null; price?: number },
   currency: string,
@@ -92,7 +90,6 @@ function buildSchemaMenuItem(
   return schemaItem;
 }
 
-/** Build a schema.org MenuSection from a category. */
 function buildMenuSection(cat: Category, currency: string): SchemaMenuSection | null {
   const categoryName = cat.name ?? '';
   if (categoryName === '') return null;
@@ -104,7 +101,6 @@ function buildMenuSection(cat: Category, currency: string): SchemaMenuSection | 
   return { '@type': 'MenuSection', name: categoryName, hasMenuItem: menuItems };
 }
 
-/** Build optional restaurant fields from a business profile. */
 function buildProfileFields(bp: BusinessProfileData): Partial<SchemaRestaurant> {
   const fields: Partial<SchemaRestaurant> = {};
 
@@ -122,13 +118,7 @@ function buildProfileFields(bp: BusinessProfileData): Partial<SchemaRestaurant> 
   return fields;
 }
 
-/**
- * Generates schema.org JSON-LD structured data for a restaurant menu.
- *
- * Produces a Restaurant entity containing a Menu with MenuSection
- * and MenuItem children. Skips categories with no name and items
- * with no name so the output stays clean.
- */
+/** Generates schema.org JSON-LD structured data for a restaurant menu. */
 export function generateMenuJsonLd(options: StructuredDataOptions): SchemaRestaurant {
   const currency = options.priceCurrency ?? DEFAULT_CURRENCY;
 

@@ -4,18 +4,12 @@ const MAX_FILENAME_LENGTH = 50;
 const SVG_MIME_TYPE = 'image/svg+xml';
 const PNG_MIME_TYPE = 'image/png';
 
-/**
- * Finds the QR code SVG element inside the container.
- */
 function findQrSvgElement(): SVGSVGElement | null {
   const container = document.getElementById(QR_CODE_CONTAINER_ID);
   if (!container) return null;
   return container.querySelector('svg');
 }
 
-/**
- * Triggers a browser download of a blob with the given filename.
- */
 function triggerBlobDownload(blob: Blob, filename: string): void {
   const url = URL.createObjectURL(blob);
   const anchor = document.createElement('a');
@@ -27,19 +21,14 @@ function triggerBlobDownload(blob: Blob, filename: string): void {
   URL.revokeObjectURL(url);
 }
 
-/**
- * Sanitizes a menu name for use as a filename.
- */
 function sanitizeFilename(name: string): string {
   return name.replace(/[^a-zA-Z0-9-_]/g, '_').substring(0, MAX_FILENAME_LENGTH);
 }
 
-/** Serializes an SVG element to a string. */
 function serializeSvg(svg: SVGSVGElement): string {
   return new XMLSerializer().serializeToString(svg);
 }
 
-/** Draws an image onto a canvas and returns the resulting PNG blob. */
 async function drawImageToBlob(img: HTMLImageElement, scaledSize: number): Promise<Blob | null> {
   return new Promise((resolve) => {
     const canvas = document.createElement('canvas');
@@ -52,7 +41,6 @@ async function drawImageToBlob(img: HTMLImageElement, scaledSize: number): Promi
   });
 }
 
-/** Loads an SVG string as an image and renders it to a PNG blob. */
 async function renderSvgToCanvas(svgString: string, scaledSize: number): Promise<Blob | null> {
   return new Promise((resolve) => {
     const svgBlob = new Blob([svgString], { type: `${SVG_MIME_TYPE};charset=utf-8` });
@@ -68,10 +56,7 @@ async function renderSvgToCanvas(svgString: string, scaledSize: number): Promise
   });
 }
 
-/**
- * Downloads the QR code as an SVG file.
- * Returns true on success, false on failure.
- */
+/** Downloads the QR code as an SVG file. */
 export function downloadQrAsSvg(menuName: string): boolean {
   const svg = findQrSvgElement();
   if (!svg) return false;
@@ -82,10 +67,7 @@ export function downloadQrAsSvg(menuName: string): boolean {
   return true;
 }
 
-/**
- * Downloads the QR code as a PNG file.
- * Returns a promise that resolves to true on success, false on failure.
- */
+/** Downloads the QR code as a PNG file. */
 export async function downloadQrAsPng(menuName: string, size: number): Promise<boolean> {
   const svg = findQrSvgElement();
   if (!svg) return false;
@@ -99,10 +81,7 @@ export async function downloadQrAsPng(menuName: string, size: number): Promise<b
   return true;
 }
 
-/**
- * Copies text to the clipboard.
- * Returns true on success, false on failure.
- */
+/** Copies text to the clipboard. */
 export async function copyToClipboard(text: string): Promise<boolean> {
   try {
     await navigator.clipboard.writeText(text);

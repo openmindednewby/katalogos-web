@@ -1,9 +1,5 @@
-/**
- * Tests for debounce and throttle utilities.
- */
 import { debounce, throttle } from './debounce';
 
-// Use fake timers for precise control
 beforeEach(() => {
   jest.useFakeTimers();
 });
@@ -46,7 +42,7 @@ describe('debounce', () => {
     jest.advanceTimersByTime(200);
     expect(mockFn).not.toHaveBeenCalled();
 
-    debouncedFn(); // Reset the timer
+    debouncedFn();
     jest.advanceTimersByTime(200);
     expect(mockFn).not.toHaveBeenCalled();
 

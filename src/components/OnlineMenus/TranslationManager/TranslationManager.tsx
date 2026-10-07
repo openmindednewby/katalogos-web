@@ -1,7 +1,3 @@
-/**
- * Translation management panel for the menu editor.
- * Shows translation status for all supported languages and provides actions.
- */
 import React, { useCallback, useMemo } from 'react';
 
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -39,7 +35,6 @@ interface Props {
   menuExternalId: string | undefined;
 }
 
-/** Merges API translations with supported languages to show all rows. */
 function buildLanguageRows(translations: MenuTranslationSummary[]): MenuTranslationSummary[] {
   const translationMap = new Map(translations.map((t) => [t.languageCode, t]));
 
@@ -74,8 +69,6 @@ export const TranslationManager: React.FC<Props> = ({ menuExternalId }) => {
   }, [translateMenu]);
 
   const handleEdit = useCallback((_languageCode: string) => {
-    // TODO: build an inline edit modal when the backend is ready (the unused
-    // TranslationEditModal stub was removed as dead code; recover from git history if useful)
   }, []);
 
   const handleDelete = useCallback((languageCode: string) => {

@@ -1,7 +1,3 @@
-/**
- * Hook and pure helpers for bulk operations on menu items.
- * All helpers are pure functions for easy unit testing.
- */
 import { useCallback } from 'react';
 
 import { BulkPriceMode } from '../../../shared/enums/BulkPriceMode';

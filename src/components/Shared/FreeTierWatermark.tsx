@@ -1,7 +1,3 @@
-/**
- * FreeTierWatermark - "Powered by MenuFlow" badge for free-tier users.
- * Only renders when the subscription indicates watermark should be shown.
- */
 import React from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';

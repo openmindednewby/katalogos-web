@@ -33,29 +33,16 @@ const styles = StyleSheet.create({
 });
 
 interface Props {
-  /** SEO + page heading title key (e.g. "legal.privacyPolicy.title"). */
   titleKey: string;
-  /** Last-updated key — interpolated with the placeholder date. */
   lastUpdatedKey: string;
-  /** Date string interpolated into the lastUpdated key. */
   lastUpdatedDate: string;
-  /** Translation-key prefix for sections (e.g. "legal.privacyPolicy"). */
   sectionsKeyPrefix: string;
-  /** SEO description key — defaults to the page title if undefined. */
   seoDescriptionKey?: string;
-  /** Section identifiers used to build full keys (`{prefix}.{section}.title|body`). */
   sectionIds: readonly string[];
-  /** testID for the outermost view. */
   testID: string;
 }
 
-/**
- * Full-page legal renderer.
- *
- * Replaces the modal-based legal screens for landing/marketing routes — wraps the
- * standard LandingLayout (navbar + scrollable content + footer + PoweredByFooter)
- * around a sequence of LegalSection entries from the existing translation keys.
- */
+/** Full-page legal renderer. */
 const LegalPage = ({
   titleKey,
   lastUpdatedKey,

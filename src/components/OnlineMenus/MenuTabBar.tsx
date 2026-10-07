@@ -1,6 +1,3 @@
-/**
- * Tab bar for filtering menus by status.
- */
 import React from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';

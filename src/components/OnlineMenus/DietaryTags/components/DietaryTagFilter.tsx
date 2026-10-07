@@ -1,10 +1,3 @@
-/**
- * DietaryTagFilter - Filter bar/chips on the public menu page.
- *
- * Allows customers to filter menu items by dietary tags.
- * Supports multi-select. Shows a "Clear Filters" chip when
- * any filters are active.
- */
 import React, { useCallback, useMemo } from 'react';
 
 import { Text, TouchableOpacity, View } from 'react-native';
@@ -21,9 +14,6 @@ import { hexToRgba } from '../utils/hexToRgba';
 
 import type { DietaryTagDto } from '../../../../lib/hooks/dietaryTag/types';
 
-// =============================================================================
-// Sub-components (defined before main component to satisfy no-use-before-define)
-// =============================================================================
 
 interface ClearFilterChipProps {
   onClear: () => void;
@@ -109,9 +99,6 @@ const FilterChip: React.FC<FilterChipProps> = ({
   );
 };
 
-// =============================================================================
-// Main Component
-// =============================================================================
 
 interface DietaryTagFilterProps {
   availableTags: DietaryTagDto[];

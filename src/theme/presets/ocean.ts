@@ -1,8 +1,3 @@
-/**
- * Ocean blue theme preset.
- * Professional blue tones inspired by enterprise applications.
- * Deep ocean blues with subtle cyan accents for a trustworthy, modern look.
- */
 import type { TenantThemeConfig } from '../types';
 
 export const OCEAN_THEME_CONFIG: TenantThemeConfig = {

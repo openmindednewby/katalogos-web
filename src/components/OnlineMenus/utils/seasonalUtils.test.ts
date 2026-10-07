@@ -1,7 +1,3 @@
-/**
- * Tests for seasonal availability utility functions.
- * Focuses on date parsing, formatting, range detection, and preview text.
- */
 import {
   parseMonthDay,
   formatMonthDay,

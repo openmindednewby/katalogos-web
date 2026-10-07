@@ -11,12 +11,7 @@ interface EmbedSeoHeadProps {
   menuName: string;
 }
 
-/**
- * Head tags for the iframe EMBED variant of a public menu. Embeds must NOT be
- * indexed (they are meant to be framed on a customer's own site) and should
- * canonicalise to the standalone menu page so search engines consolidate ranking
- * signals there rather than treating the embed as duplicate content.
- */
+/** Head tags for the iframe EMBED variant of a public menu. Embeds must NOT be */
 export const EmbedSeoHead = ({ menuId, menuName }: EmbedSeoHeadProps): ReactElement | null => {
   if (Platform.OS !== 'web') return null;
 

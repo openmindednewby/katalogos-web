@@ -1,6 +1,3 @@
-/**
- * Supported languages for AI menu translation.
- */
 
 interface SupportedLanguage {
   code: string;

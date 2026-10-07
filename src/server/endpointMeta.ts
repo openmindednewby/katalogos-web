@@ -9,11 +9,9 @@ export interface EndpointMeta {
   method: HttpMethod;
 }
 
-// Use the enum member NAMES as keys to avoid collisions when multiple enum members map to the same path string.
 export type EndpointKey = keyof typeof Endpoints;
 
 export const endpointMeta: Partial<Record<EndpointKey, EndpointMeta>> = {
-  // Tenants
   onlinemenuWebTenantsCreate: { path: '/Tenants', method: HttpMethod.Post },
   onlinemenuWebTenantsList: { path: '/Tenants', method: HttpMethod.Get },
   onlinemenuWebTenantsUpdate: { path: '/Tenants', method: HttpMethod.Put },
@@ -21,7 +19,6 @@ export const endpointMeta: Partial<Record<EndpointKey, EndpointMeta>> = {
   onlinemenuWebTenantsGetById: { path: '/Tenants/{tenantId}', method: HttpMethod.Get },
   onlinemenuWebTenantsUsersList: { path: '/Tenants/users', method: HttpMethod.Get },
 
-  // TenantMenus
   onlinemenuWebMenuDelete: { path: '/TenantMenus/{externalId}', method: HttpMethod.Delete },
   onlinemenuWebMenuGetById: { path: '/TenantMenus/{externalId}', method: HttpMethod.Get },
   onlinemenuWebMenuList: { path: '/TenantMenus/list', method: HttpMethod.Get },
@@ -29,7 +26,6 @@ export const endpointMeta: Partial<Record<EndpointKey, EndpointMeta>> = {
   onlinemenuWebMenuUpdate: { path: '/TenantMenus', method: HttpMethod.Put },
   onlinemenuWebTenantMenusCreate: { path: '/TenantMenus', method: HttpMethod.Post },
 
-  // QuestionerTemplates
   onlinemenuWebQuestionerTemplatesActivateTemplate: { path: '/questionerTemplates/ActivateTemplate/{externalId}', method: HttpMethod.Put },
   onlinemenuWebQuestionerTemplatesCreate: { path: '/questionerTemplates', method: HttpMethod.Post },
   onlinemenuWebQuestionerTemplatesDelete: { path: '/questionerTemplates/{externalId}', method: HttpMethod.Delete },
@@ -37,21 +33,16 @@ export const endpointMeta: Partial<Record<EndpointKey, EndpointMeta>> = {
   onlinemenuWebQuestionerTemplatesUpdate: { path: '/questionerTemplates/{externalId}', method: HttpMethod.Put },
   onlinemenuWebQuestionerTemplatesList: { path: '/questionerTemplates/list', method: HttpMethod.Get },
 
-  // CompletedQuestioners
   onlinemenuWebCompletedQuestionersCreate: { path: '/completedQuestioners', method: HttpMethod.Post },
   onlinemenuWebCompletedQuestionersDelete: { path: '/completedQuestioners/{externalId}', method: HttpMethod.Delete },
   onlinemenuWebCompletedQuestionersGetById: { path: '/completedQuestioners/{externalId}', method: HttpMethod.Get },
   onlinemenuWebCompletedQuestionersUpdate: { path: '/completedQuestioners/{externalId}', method: HttpMethod.Put },
   onlinemenuWebCompletedQuestionersList: { path: '/completedQuestioners/list', method: HttpMethod.Get },
   
-  // Keycloak / Identity
   onlinemenuWebKeycloakUserInfo: { path: '/protocol/openid-connect/userinfo', method: HttpMethod.Get },
 };
 
-/**
- * Replace placeholders in the endpoint path with provided params.
- * Example: interpolateEndpoint('onlinemenuWebTenantsGetById', { tenantId: 'abc' }) -> '/Tenants/abc'
- */
+/** Replace placeholders in the endpoint path with provided params. */
 export function interpolateEndpoint(e: EndpointKey, params?: Record<string, string | number>): string {
   const meta = endpointMeta[e];
   if (!meta) throw new Error(`Unknown endpoint: ${String(e)}`);

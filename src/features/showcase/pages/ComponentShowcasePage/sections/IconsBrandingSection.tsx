@@ -1,7 +1,3 @@
-/**
- * Icons & Branding components showcase section.
- * Demonstrates: SvgIcon (all available icons), TenantLogo.
- */
 import type { ReactElement } from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';
@@ -29,7 +25,6 @@ const styles = StyleSheet.create({
   logoDesc: { fontSize: LABEL_FONT_SIZE, marginTop: DESC_MARGIN_TOP },
 });
 
-/** Representative sample of icons to display in the showcase. */
 const SAMPLE_ICONS: IconName[] = [
   'home', 'menu', 'close', 'edit', 'trash', 'eye', 'link', 'refresh',
   'bell', 'chevronDown', 'chevronUp', 'chevronLeft', 'chevronRight',

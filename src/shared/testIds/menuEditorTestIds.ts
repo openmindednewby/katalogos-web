@@ -1,11 +1,6 @@
-/**
- * Test IDs for menu editor features: bulk actions, featured items,
- * translation manager, and modifier groups.
- * Split from menuTestIds.ts to keep file sizes under 200 lines.
- */
+/** Test IDs for menu editor features: bulk actions, featured items, */
 
 export const MenuEditorTestIds = {
-  // Bulk Actions
   BULK_SELECT_BUTTON: 'bulk-select-button',
   BULK_ACTION_BAR: 'bulk-action-bar',
   BULK_SELECTION_COUNT: 'bulk-selection-count',
@@ -21,7 +16,6 @@ export const MenuEditorTestIds = {
   BULK_SELECT_ALL_IN_CATEGORY: 'bulk-select-all-in-category',
   ITEM_SELECTION_CHECKBOX: 'item-selection-checkbox',
 
-  // Featured / Staff Picks
   FEATURED_SECTION: 'featured-section',
   FEATURED_SECTION_TITLE: 'featured-section-title',
   FEATURED_ITEM_CARD: 'featured-item-card',
@@ -35,7 +29,6 @@ export const MenuEditorTestIds = {
   FEATURED_SECTION_ENABLED_TOGGLE: 'featured-section-enabled-toggle',
   FEATURED_SECTION_TITLE_INPUT: 'featured-section-title-input',
 
-  // Translation Manager
   TRANSLATION_MANAGER_TAB: 'translation-manager-tab',
   TRANSLATION_STATUS_ROW: 'translation-status-row',
   TRANSLATE_ALL_BUTTON: 'translate-all-button',
@@ -47,7 +40,6 @@ export const MenuEditorTestIds = {
   LANGUAGE_SWITCHER: 'language-switcher',
   LANGUAGE_SWITCHER_OPTION: 'language-switcher-option',
 
-  // Modifier Groups
   MODIFIER_GROUP_SECTION: 'modifier-group-section',
   MODIFIER_GROUP_ADD_BUTTON: 'modifier-group-add-button',
   MODIFIER_GROUP_NAME_INPUT: 'modifier-group-name-input',
@@ -59,30 +51,24 @@ export const MenuEditorTestIds = {
   MODIFIER_DELETE_BUTTON: 'modifier-delete-button',
   MODIFIER_AVAILABLE_TOGGLE: 'modifier-available-toggle',
 
-  // Undo/Redo
   MENU_EDITOR_UNDO_BUTTON: 'menu-editor-undo-button',
   MENU_EDITOR_REDO_BUTTON: 'menu-editor-redo-button',
   MENU_EDITOR_UNDO_REDO_BAR: 'menu-editor-undo-redo-bar',
 
-  // PDF Export
   MENU_EXPORT_PDF_BUTTON: 'menu-export-pdf-button',
 
-  // Auto-Save
   AUTO_SAVE_INDICATOR: 'auto-save-indicator',
   AUTO_SAVE_DOT: 'auto-save-dot',
   AUTO_SAVE_STATUS_TEXT: 'auto-save-status-text',
   AUTO_SAVE_CONTAINER: 'auto-save-container',
 
-  // Collapsible Item Editor Sections
   ITEM_SECTION_BASIC: 'item-section-basic',
   ITEM_SECTION_NUTRITION: 'item-section-nutrition',
   ITEM_SECTION_VARIANTS_MODIFIERS: 'item-section-variants-modifiers',
   ITEM_SECTION_ADVANCED: 'item-section-advanced',
 
-  // Desktop two-pane editor
   MENU_EDITOR_LIVE_PANE: 'menu-editor-live-pane',
 
-  // Category Overflow Menu
   CATEGORY_OVERFLOW_BUTTON: 'category-overflow-button',
   CATEGORY_OVERFLOW_MENU: 'category-overflow-menu',
   CATEGORY_OVERFLOW_BACKDROP: 'category-overflow-backdrop',

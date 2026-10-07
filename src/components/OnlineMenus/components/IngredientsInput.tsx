@@ -1,7 +1,3 @@
-/**
- * IngredientsInput - Text input for menu item ingredients with AI auto-fill button.
- * The auto-fill button is gated to Pro+ tier.
- */
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { ActivityIndicator, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';

@@ -1,22 +1,7 @@
-/**
- * Public API for the modular HTTP interceptor system.
- *
- * This barrel re-exports everything consumers need:
- * - apiClient: the shared Axios instance (no interceptors pre-registered)
- * - registerInterceptors: call once at bootstrap to install all interceptors
- * - errors/: error classification, matching, and action execution
- * - events/: typed event bus bridging interceptors to React UI
- *
- * Post-BFF-cutover there is no client-side token refresh: the BFF refreshes
- * tokens server-side; a 401 is handled by the session-expiry interceptor.
- */
+/** Public API for the modular HTTP interceptor system. */
 
-// --- Core Axios instance and interceptor registration ---
-// The axios factory + interceptor chain live in @dloizides/bff-web-client;
-// apiClient.ts supplies the app-owned ports (csrf, session-expiry, logger, toast).
 export { apiClient, registerAllInterceptors } from './apiClient';
 
-// --- Error system ---
 export {
   ErrorActionType,
   ErrorSeverity,
@@ -48,7 +33,6 @@ export type {
   ErrorMatchResult,
 } from './errors';
 
-// --- Event bus ---
 export { apiEventBus, ApiEventBus, useApiEvents, ApiEventsProvider } from './events';
 
 export type {

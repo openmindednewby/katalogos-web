@@ -1,12 +1,3 @@
-/**
- * ImportMenuModal - Multi-step wizard for importing menu items from CSV/Excel.
- *
- * Steps:
- * 1. Upload - User selects a CSV or XLSX file
- * 2. Map Columns - Auto-detect and let user adjust column mappings
- * 3. Preview - Show validated data with error/warning highlighting
- * After confirm, the imported MenuContents are passed to the parent.
- */
 import React, { useCallback, useRef } from 'react';
 
 import { Modal, Pressable, Text, TouchableOpacity, View } from 'react-native';
@@ -31,9 +22,6 @@ import { themePalette } from '../../../theme/utils/styles';
 import type { RootState } from '../../../store/reduxStore';
 import type { MenuContents } from '../../../types/menuTypes';
 
-// =============================================================================
-// Types
-// =============================================================================
 
 interface Props {
   visible: boolean;
@@ -42,17 +30,11 @@ interface Props {
   onClose: () => void;
 }
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const HIDDEN_INPUT_STYLE = { display: 'none' as const };
 const STEP_COUNT = 3;
 const STEP_INDICES = [0, 1, 2];
 
-// =============================================================================
-// Helpers
-// =============================================================================
 
 function getStepIndex(step: ImportStep): number {
   if (step === ImportStep.Upload) return 0;
@@ -60,9 +42,6 @@ function getStepIndex(step: ImportStep): number {
   return STEP_COUNT - 1;
 }
 
-// =============================================================================
-// Footer Sub-component (defined before main component)
-// =============================================================================
 
 interface ModalFooterProps {
   step: ImportStep;
@@ -105,9 +84,6 @@ const ModalFooter: React.FC<ModalFooterProps> = ({
   </View>
 );
 
-// =============================================================================
-// Main Component
-// =============================================================================
 
 const ImportMenuModal: React.FC<Props> = ({ visible, existingContents, onImportComplete, onClose }) => {
   const theme = useSelector((s: RootState) => s.ui.theme);

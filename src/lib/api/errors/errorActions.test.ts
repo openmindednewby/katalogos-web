@@ -4,7 +4,6 @@ import { HttpMethod } from '@dloizides/api-client-base';
 
 import type { ClassifiedError, ErrorRule } from './errorTypes';
 
-// Use const enum values inline since they're erased at compile time
 const ACTION_TYPE_TOAST = 'toast';
 const ACTION_TYPE_MODAL = 'modal';
 const ACTION_TYPE_REDIRECT = 'redirect';

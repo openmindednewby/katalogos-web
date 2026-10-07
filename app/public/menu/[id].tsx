@@ -39,7 +39,6 @@ const PublicMenuViewerPage = (): React.ReactElement => {
     [menuQuery.data?.availableLanguages],
   );
 
-  // Extract locations from the API response (field added after Orval generation)
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- Runtime field not yet in generated types
   const menuDataRecord = menuQuery.data as Record<string, unknown> | undefined;
   const availableLocations = useMemo(
@@ -53,7 +52,6 @@ const PublicMenuViewerPage = (): React.ReactElement => {
   const translatedQuery = usePublicMenuGetById(menuId, currentLanguage, selectedLocationId);
   const activeQuery = currentLanguage !== '' || selectedLocationId !== '' ? translatedQuery : menuQuery;
 
-  // Extract schedule from API response (field added after Orval generation)
   const menuSchedule = useMemo(
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- Runtime field not yet in generated types
     () => (activeQuery.data as Record<string, unknown> | undefined)?.schedule as MenuSchedule | null | undefined,
@@ -68,10 +66,6 @@ const PublicMenuViewerPage = (): React.ReactElement => {
   const { track } = useAnalytics();
   const hasTrackedViewRef = useRef(false);
 
-  // Trust boundary: the local domain MenuContents refines the loose wire types (e.g. the API's
-  // `position?: string | null` becomes the MediaPosition enum). The cast asserts that API data
-  // conforms to those refinements; replacing it requires a runtime validation layer (see the
-  // tsc-zero task doc, follow-up 2).
   const menuContents = useMemo(
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- documented domain trust boundary (wire types -> refined domain types)
     () => (activeQuery.data?.contents ?? undefined) as unknown as LocalMenuContents | undefined,

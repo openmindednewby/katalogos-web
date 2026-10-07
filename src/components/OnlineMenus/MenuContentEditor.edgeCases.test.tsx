@@ -1,6 +1,3 @@
-/**
- * Tests for MenuContentEditor - Edge Cases.
- */
 import './MenuContentEditor.mocks';
 
 import { fireEvent, render } from '@testing-library/react-native';
@@ -39,10 +36,8 @@ describe('MenuContentEditor - Edge Cases', () => {
       { wrapper: createWrapper() },
     );
 
-    // Expand category
     fireEvent.press(getByTestId('category-toggle-button-0'));
 
-    // Description input should exist and be empty
     const descInput = getByPlaceholderText('Category Description (optional)');
     expect(descInput.props.value).toBe('');
   });
@@ -82,14 +77,11 @@ describe('MenuContentEditor - Edge Cases', () => {
       { wrapper: createWrapper() },
     );
 
-    // Expand category
     fireEvent.press(getByTestId('category-toggle-button-0'));
 
-    // Try invalid price
     const priceInput = getByDisplayValue('8.5');
     fireEvent.changeText(priceInput, 'invalid');
 
-    // Should not call onChange with invalid price
     expect(mockOnChange).not.toHaveBeenCalled();
   });
 });

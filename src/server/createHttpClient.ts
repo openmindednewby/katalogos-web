@@ -8,7 +8,6 @@ import {
 
 import * as httpService from '../lib/httpService';
 
-// Re-export types for backward compatibility with existing imports.
 export type { OrvalRequest, OrvalMutator };
 
 interface HttpClientOptions {
@@ -23,14 +22,6 @@ interface AppRequestOptions {
   headers?: Record<string, string>;
 }
 
-/**
- * Maps the package's base request options onto the app's `httpService` option
- * shape. Every field the Orval-generated hooks ever set (`withCredentials`,
- * `baseURL`, `signal`, `headers`) is forwarded verbatim. `config` is left off:
- * the generated hooks never populate it, so this is behaviour-identical and
- * avoids a type assertion (the app's `config` is a concrete `AxiosRequestConfig`
- * while the port's options do not carry one).
- */
 function toAppOptions(opts: HttpRequestOptions): AppRequestOptions {
   return {
     withCredentials: opts.withCredentials,
@@ -40,14 +31,6 @@ function toAppOptions(opts: HttpRequestOptions): AppRequestOptions {
   };
 }
 
-/**
- * Adapter binding this app's `httpService` to the package's `HttpServicePort`.
- *
- * The shared factory takes the transport as a port (it imports no product);
- * this adapter maps the app's axios bridge onto the port without any type
- * assertions. The mutator http client stays SEPARATE from the UI axios by
- * design — sharing the instance is a future optimization.
- */
 function buildHttpServicePort(): HttpServicePort {
   return {
     get: async <TQry, TResp>(endpoint: string, params: TQry, opts: HttpRequestOptions): Promise<TResp> =>
@@ -65,12 +48,7 @@ function buildHttpServicePort(): HttpServicePort {
   };
 }
 
-/**
- * Thin local binding of `@dloizides/orval-preset`'s `createHttpClient` to this
- * app's `httpService` transport. Keeps the existing
- * `createHttpClient({ baseURL, withCredentials })` call shape used by the six
- * per-service `httpClient*.ts` files.
- */
+/** Thin local binding of `@dloizides/orval-preset`'s `createHttpClient` to this */
 export function createHttpClient(clientOptions: HttpClientOptions = {}): OrvalMutator {
   return createHttpClientWithTransport(buildHttpServicePort(), clientOptions);
 }

@@ -3,9 +3,6 @@ import FontWeight from '../../../../types/enums/FontWeight';
 
 
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const SAMPLE_PRICE = 12.99;
 const SAMPLE_CURRENCY = '$';
@@ -26,14 +23,8 @@ export const FONT_WEIGHT_OPTIONS: FontWeightOption[] = [
   { value: FontWeight.Bold, label: 'Bold' },
 ];
 
-// =============================================================================
-// Helper Functions
-// =============================================================================
 
-/**
- * Type-safe currency position parser.
- * Returns the position if valid, otherwise returns 'before' as default.
- */
+/** Type-safe currency position parser. */
 export function parseCurrencyPosition(position: string): CurrencyPosition {
   if (position === 'before') return CurrencyPosition.Before;
   if (position === 'after') return CurrencyPosition.After;

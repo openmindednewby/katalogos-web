@@ -1,8 +1,3 @@
-/**
- * Forest green theme preset.
- * Nature-inspired green tones with earthy warmth.
- * Deep forest greens paired with amber highlights.
- */
 import type { TenantThemeConfig } from '../types';
 
 export const FOREST_THEME_CONFIG: TenantThemeConfig = {

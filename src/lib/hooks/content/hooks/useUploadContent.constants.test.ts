@@ -1,6 +1,3 @@
-/**
- * Unit tests for useUploadContent hook - Constants and query keys.
- */
 import {
   ALLOWED_MIME_TYPES,
   MAX_FILE_SIZES,
@@ -11,15 +8,15 @@ import ContentCategory from '../../../../shared/enums/ContentCategory';
 
 describe('MAX_FILE_SIZES', () => {
   it('defines correct limits for Image', () => {
-    expect(MAX_FILE_SIZES.Image).toBe(10 * 1024 * 1024); // 10MB
+    expect(MAX_FILE_SIZES.Image).toBe(10 * 1024 * 1024);
   });
 
   it('defines correct limits for Video', () => {
-    expect(MAX_FILE_SIZES.Video).toBe(500 * 1024 * 1024); // 500MB
+    expect(MAX_FILE_SIZES.Video).toBe(500 * 1024 * 1024);
   });
 
   it('defines correct limits for Document', () => {
-    expect(MAX_FILE_SIZES.Document).toBe(50 * 1024 * 1024); // 50MB
+    expect(MAX_FILE_SIZES.Document).toBe(50 * 1024 * 1024);
   });
 });
 

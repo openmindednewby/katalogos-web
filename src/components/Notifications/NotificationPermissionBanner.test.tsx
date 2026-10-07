@@ -1,13 +1,4 @@
-/**
- * Tests for NotificationPermissionBanner component.
- *
- * Unit tests focus on callback behavior and state management logic.
- * Visual testing is done via Playwright E2E tests.
- */
 
-// Mock the notification service module with inline functions
-// This avoids Jest hoisting issues with external variable references
-// Import after mocks are set up
 import React from 'react';
 
 import { osNotificationService } from '@dloizides/notification-client/workers';
@@ -53,7 +44,6 @@ jest.mock('../../utils/logger', () => ({
   },
 }));
 
-// Get typed references to mock functions
 const mockIsSupported = osNotificationService.isSupported as jest.Mock;
 const mockGetPermissionStatus = osNotificationService.getPermissionStatus as jest.Mock;
 const mockRequestPermission = osNotificationService.requestPermission as jest.Mock;
@@ -61,7 +51,6 @@ const mockRequestPermission = osNotificationService.requestPermission as jest.Mo
 describe('NotificationPermissionBanner', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    // Reset to default state
     mockIsSupported.mockReturnValue(true);
     mockGetPermissionStatus.mockReturnValue('default');
     mockRequestPermission.mockResolvedValue('granted');

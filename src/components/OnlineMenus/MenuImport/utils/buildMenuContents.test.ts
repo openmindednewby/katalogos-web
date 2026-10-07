@@ -1,6 +1,3 @@
-/**
- * Tests for building MenuContents from validated import rows.
- */
 import { buildMenuContents } from './buildMenuContents';
 import ValidationSeverity from '../../../../shared/enums/ValidationSeverity';
 
@@ -131,7 +128,6 @@ describe('buildMenuContents', () => {
 
     const { contents, summary } = buildMenuContents(rows, existingContents);
 
-    // Should keep existing category and skip the imported one with same name
     expect(contents.categories).toHaveLength(1);
     expect(summary.categoryCount).toBe(0);
   });

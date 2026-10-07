@@ -74,7 +74,6 @@ export const typographyEditorStyles = StyleSheet.create({
     marginBottom: 8,
   },
   previewPrice: {
-    // Price preview styling handled inline
   },
   resetContainer: {
     marginTop: 16,

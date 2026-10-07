@@ -10,11 +10,9 @@ import {
 
 import type { TenantThemeConfig } from '../types';
 
-// -- Helpers ------------------------------------------------------------------
 
 const SHADE_KEYS = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'];
 
-/** Sum the RGB values of a hex string to measure relative brightness. */
 function hexBrightness(hex: string): number {
   const clean = hex.replace('#', '');
   const r = parseInt(clean.slice(0, 2), 16);
@@ -23,7 +21,6 @@ function hexBrightness(hex: string): number {
   return r + g + b;
 }
 
-// -- isValidHex ---------------------------------------------------------------
 
 describe('isValidHex', () => {
   it('accepts #RRGGBB format', () => {
@@ -57,7 +54,6 @@ describe('isValidHex', () => {
   });
 });
 
-// -- hexToHsl / hslToHex round-trip -------------------------------------------
 
 describe('hexToHsl', () => {
   it('converts pure red', () => {
@@ -128,14 +124,12 @@ describe('hex <-> HSL round-trip', () => {
   it.each(testColors)('round-trips %s with minimal loss', (hex) => {
     const hsl = hexToHsl(hex);
     const result = hslToHex(hsl.h, hsl.s, hsl.l);
-    // Allow +/-1 per channel due to rounding
     const originalBrightness = hexBrightness(hex);
     const resultBrightness = hexBrightness(result);
     expect(Math.abs(originalBrightness - resultBrightness)).toBeLessThanOrEqual(3);
   });
 });
 
-// -- lighten / darken ---------------------------------------------------------
 
 const NEAR_WHITE_BRIGHTNESS = 700;
 const NEAR_BLACK_BRIGHTNESS = 20;
@@ -188,7 +182,6 @@ describe('darken', () => {
   });
 });
 
-// -- generateColorScale -------------------------------------------------------
 
 describe('generateColorScale', () => {
   it('returns all ten shade keys', () => {
@@ -260,7 +253,6 @@ describe('generateColorScale', () => {
   });
 });
 
-// -- generateThemePalette -----------------------------------------------------
 
 describe('generateThemePalette', () => {
   const mockConfig: TenantThemeConfig = {

@@ -9,7 +9,6 @@ import { useTheme } from '../../../theme/hooks/useTheme';
 interface Props {
   question: string;
   answer: string;
-  /** Hint resolved by caller for screen reader users. */
   toggleHint: string;
 }
 

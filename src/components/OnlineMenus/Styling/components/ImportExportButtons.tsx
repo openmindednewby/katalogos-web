@@ -1,13 +1,6 @@
 
 
 
-/**
- * ImportExportButtons - UI component for importing and exporting menu configurations.
- *
- * Provides buttons for:
- * - Exporting current menu configuration as JSON
- * - Importing configuration from a JSON file with preview
- */
 import React, { useCallback, useRef, useState } from 'react';
 
 import { Modal, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
@@ -30,14 +23,8 @@ import type { RootState } from '../../../../store/reduxStore';
 import type { MenuContents } from '../../../../types/menuTypes';
 import type { ExportMetadata } from '../../../../utils/menuConfigExport';
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 
-// =============================================================================
-// Types
-// =============================================================================
 
 interface Props {
   contents: MenuContents;
@@ -57,9 +44,6 @@ const HIDDEN_INPUT_STYLE = { display: 'none' as const };
 const EXPORT_ICON = '\u2193';
 const IMPORT_ICON = '\u2191';
 
-// =============================================================================
-// Helper Functions
-// =============================================================================
 
 function formatExportDate(isoDate: string): string {
   try {
@@ -86,9 +70,6 @@ function createEmptyState(): ImportPreviewState {
   return { isVisible: false, contents: null, metadata: null, error: null };
 }
 
-// =============================================================================
-// Component
-// =============================================================================
 
 const ImportExportButtons: React.FC<Props> = ({ contents, onImport, disabled = false }) => {
   const theme = useSelector((s: RootState) => s.ui.theme);
@@ -126,7 +107,6 @@ const ImportExportButtons: React.FC<Props> = ({ contents, onImport, disabled = f
           error: result.error ?? FM('importExport.unknownError'),
         });
 
-      // Reset file input using a ref callback pattern
       if (fileInputRef.current) fileInputRef.current.value = '';
     },
     []

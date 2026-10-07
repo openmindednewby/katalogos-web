@@ -1,7 +1,3 @@
-/**
- * Security Settings route page.
- * Wraps the SecuritySettingsScreen component.
- */
 import React from 'react';
 
 import { SecuritySettingsScreen } from '../../../src/components/Settings';

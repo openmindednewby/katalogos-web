@@ -1,13 +1,6 @@
-/**
- * Unit tests for ChangePasswordForm validation and callback logic.
- * Tests pure validation function and handleSubmit behavior, not rendering.
- */
 import { validatePasswordForm } from './ChangePasswordForm';
 import { MIN_PASSWORD_LENGTH } from '../constants';
 
-// ---------------------------------------------------------------------------
-// Mocks
-// ---------------------------------------------------------------------------
 
 jest.mock('../../../../localization/helpers', () => ({
   FM: (key: string, ...args: string[]) =>
@@ -29,18 +22,12 @@ jest.mock('../../../../lib/notifications', () => ({
   notifySuccess: (...args: unknown[]) => mockNotifySuccess(...args),
 }));
 
-// ---------------------------------------------------------------------------
-// Constants
-// ---------------------------------------------------------------------------
 
 const VALID_CURRENT_PASSWORD = 'OldPass123!';
 const SHORT_PASSWORD = 'Ab1';
 const VALID_NEW_PASSWORD = 'NewSecure99!';
 const MISMATCHED_CONFIRM = 'DifferentPassword1!';
 
-// ---------------------------------------------------------------------------
-// Tests: validatePasswordForm (pure function)
-// ---------------------------------------------------------------------------
 
 describe('validatePasswordForm', () => {
   it('returns error when current password is empty', () => {
@@ -114,9 +101,6 @@ describe('validatePasswordForm', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// Tests: handleSubmit callback logic (simulated)
-// ---------------------------------------------------------------------------
 
 describe('ChangePasswordForm - handleSubmit logic', () => {
   const mockMutate = jest.fn();
@@ -125,10 +109,6 @@ describe('ChangePasswordForm - handleSubmit logic', () => {
     jest.clearAllMocks();
   });
 
-  /**
-   * Simulates the handleSubmit logic from the component.
-   * Mirrors the actual implementation: validate -> notify error or mutate.
-   */
   function simulateHandleSubmit(
     currentPassword: string,
     newPassword: string,

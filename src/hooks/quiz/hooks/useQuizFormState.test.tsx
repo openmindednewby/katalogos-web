@@ -1,6 +1,3 @@
-/**
- * Tests for useQuizFormState hook - covers BUG-QUIZ-002, BUG-QUIZ-004, BUG-QUIZ-005 fixes.
- */
 
 import { renderHook, act } from '@testing-library/react-native';
 

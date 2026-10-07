@@ -27,7 +27,6 @@ export interface MenuTheme {
   textColor: string;
 }
 
-/** Theme names available on the free tier. */
 const FREE_TIER_THEMES = new Set(['light', 'dark']);
 
 const PREDEFINED_THEMES: MenuTheme[] = [

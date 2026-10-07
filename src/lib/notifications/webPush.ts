@@ -1,11 +1,3 @@
-/**
- * Web Push (VAPID) opt-in for the web app — thin glue over @dloizides/notification-client's
- * shared helper. Fetches the server's VAPID public key, subscribes the browser, and registers
- * the subscription with NotificationService (POST/DELETE /api/v1/web-push/subscriptions).
- *
- * Web-only + permission-gated: no-ops where the Push API is unavailable; subscribing prompts the
- * user for notification permission. Call enableWebPush() from an opt-in control.
- */
 import { subscribeToWebPush, unsubscribeFromWebPush } from '@dloizides/notification-client';
 
 import { notificationInstance } from '../../server/mutators/notificationMutator';
@@ -44,7 +36,6 @@ export async function enableWebPush(): Promise<boolean> {
 }
 
 /** Unsubscribes the browser and unregisters the endpoint server-side. Returns true on success. */
-// ts-prune-ignore-next -- public web-push opt-in API; wired from the notifications opt-in control.
 export async function disableWebPush(): Promise<boolean> {
   return unsubscribeFromWebPush({
     unregisterSubscription: async (endpoint) => {

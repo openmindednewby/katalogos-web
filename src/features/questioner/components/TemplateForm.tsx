@@ -11,7 +11,6 @@ import { TestIds } from '@/shared/testIds';
 import { useTheme } from '@/theme/hooks/useTheme';
 import { layoutStyles } from '@/theme/utils/styles';
 import { isValueDefined } from '@/utils/is';
-// input label/spacing are now global in layoutStyles
 
 const TRANSPARENT_COLOR = 'transparent';
 const WHITE_COLOR = '#fff';
@@ -37,9 +36,7 @@ interface Props {
   initialDescription?: string;
   initialIsActive?: boolean;
   onCancel?: () => void;
-  // onSave should accept either create or update payload depending on usage
   onSave: (payload: CreateQuestionerTemplateRequest | UpdateQuestionerTemplateRequest) => void;
-  // optional onChange to lift field changes to parent (name/description/isActive)
   onChange?: (fields: { name: string; description: string; isActive: boolean }) => void;
   saving?: boolean;
   showStatus?: boolean;
@@ -67,8 +64,6 @@ const TemplateForm = ({
   const [isActive, setIsActive] = useState<boolean>(Boolean(initialIsActive));
   const [error, setError] = useState<string | null>(null);
 
-  // Keep refs in sync with text inputs so validation can use the latest value
-  // even if React state updates haven't flushed yet (helps E2E/mobile input timing).
   const nameRef = useRef(name);
   const descriptionRef = useRef(description);
 
@@ -123,7 +118,6 @@ const TemplateForm = ({
     onSave(basePayload);
   }
 
-  // lift changes
   React.useEffect(() => {
     if (typeof onChange === 'function') onChange({ name, description, isActive });
   }, [description, isActive, name, onChange]);

@@ -1,8 +1,3 @@
-/**
- * Native HTML date input wrapped with React Hook Form Controller.
- * Consumes useTheme() via useFormThemeVars() for per-tenant styling.
- * No Syncfusion dependencies.
- */
 import type { ReactElement } from 'react';
 
 import { Controller } from 'react-hook-form';

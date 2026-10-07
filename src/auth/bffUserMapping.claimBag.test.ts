@@ -1,9 +1,3 @@
-/**
- * Unit tests for `claimBagToBffUser` — the device-PIN unlock → `BffUser` bridge
- * (unified-login Increment 3 Batch 3). Tests the narrowing logic: known claims
- * are projected with `typeof` guards, malformed claims are dropped, and unknown
- * claims survive through the index signature.
- */
 import { claimBagToBffUser } from './bffUserMapping';
 
 describe('claimBagToBffUser', () => {

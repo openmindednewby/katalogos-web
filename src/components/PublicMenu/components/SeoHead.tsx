@@ -25,7 +25,6 @@ interface SeoHeadProps {
   businessProfile?: BusinessProfileData;
 }
 
-/** Injects a JSON-LD script tag into document.head on web. */
 function useJsonLdInjection(jsonLd: object): void {
   useEffect(() => {
     if (Platform.OS !== 'web' || typeof document === 'undefined') return;
@@ -45,13 +44,7 @@ function useJsonLdInjection(jsonLd: object): void {
   }, [jsonLd]);
 }
 
-/**
- * Injects SEO meta tags and JSON-LD structured data for a public menu.
- *
- * On web the component renders Open Graph and description meta tags via
- * expo-router Head, and injects a schema.org JSON-LD script into the
- * document head. On native platforms the component renders nothing.
- */
+/** Injects SEO meta tags and JSON-LD structured data for a public menu. */
 export const SeoHead = ({
   menuName,
   restaurantName,

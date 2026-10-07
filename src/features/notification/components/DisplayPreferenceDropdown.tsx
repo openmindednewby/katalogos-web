@@ -1,7 +1,3 @@
-/**
- * Display preference dropdown component.
- * Thin wrapper around ModalDropdown, typed to DisplayPreference.
- */
 import React, { useCallback } from 'react';
 
 import ModalDropdown from '@/components/Shared/ModalDropdown';
@@ -17,9 +13,6 @@ const DISPLAY_PREFERENCE_VALUES: ReadonlySet<number> = new Set([
   DisplayPreference.Both,
 ]);
 
-/**
- * Type guard to check if a number is a valid DisplayPreference.
- */
 function isDisplayPreference(value: number): value is DisplayPreferenceType {
   return DISPLAY_PREFERENCE_VALUES.has(value);
 }

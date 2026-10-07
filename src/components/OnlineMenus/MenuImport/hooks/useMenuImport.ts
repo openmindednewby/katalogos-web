@@ -1,7 +1,3 @@
-/**
- * Hook for managing the menu import wizard state.
- * Orchestrates file parsing, column detection, validation, and building final contents.
- */
 import { useCallback, useMemo, useState } from 'react';
 
 import { isValueDefined } from '@dloizides/utils';
@@ -20,9 +16,6 @@ import type { ColumnMapping } from '../utils/columnDetection';
 import type { ParsedFileResult } from '../utils/parseMenuFile';
 import type { ValidationResult } from '../utils/validateMenuRows';
 
-// =============================================================================
-// Types
-// =============================================================================
 
 interface UseMenuImportReturn {
   step: ImportStep;
@@ -54,9 +47,6 @@ interface ImportState {
 
 type SetState = React.Dispatch<React.SetStateAction<ImportState>>;
 
-// =============================================================================
-// Helpers
-// =============================================================================
 
 function createInitialState(): ImportState {
   return {
@@ -71,9 +61,6 @@ function buildErrorKey(errorCode: string): string {
   return 'menuImport.errors.parseError';
 }
 
-// =============================================================================
-// Hook
-// =============================================================================
 
 export function useMenuImport(): UseMenuImportReturn {
   const [state, setState] = useState<ImportState>(createInitialState);
@@ -104,9 +91,6 @@ export function useMenuImport(): UseMenuImportReturn {
   };
 }
 
-// =============================================================================
-// Individual Handler Hooks
-// =============================================================================
 
 function useFileSelectedHandler(setState: SetState): (file: File) => Promise<void> {
   return useCallback(async (file: File) => {

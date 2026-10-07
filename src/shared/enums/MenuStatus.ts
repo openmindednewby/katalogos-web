@@ -3,9 +3,6 @@ const enum MenuStatusEnum {
   Active = 1,
 }
 
-/**
- * Map menu status to translation key (use with i18n)
- */
 type MenuStatusInput = MenuStatusEnum | number | boolean | undefined;
 
 function normalizeStatusValue(s: MenuStatusInput): MenuStatusEnum | undefined {
@@ -26,10 +23,6 @@ function menuStatusToLabelKey(s: MenuStatusInput): string {
   return 'onlineMenus.status.inactive';
 }
 
-/**
- * Map menu status to a semantic color key used by the theme palette.
- * Caller should resolve the actual color from the palette.
- */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function menuStatusToColorKey(s: MenuStatusInput | undefined): string {
   const normalized = normalizeStatusValue(s);

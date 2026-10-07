@@ -1,8 +1,3 @@
-/**
- * Change Password Form.
- * Sub-component for SecuritySettingsScreen handling password change inputs,
- * client-side validation, and API mutation via Orval hooks.
- */
 import React, { useCallback, useState } from 'react';
 
 import { StyleSheet, Text, TextInput, View } from 'react-native';

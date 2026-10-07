@@ -48,7 +48,6 @@ const MenuLivePreview: React.FC<MenuLivePreviewProps> = ({
 
   const menuContents = contents ?? { categories: [] };
 
-  // Apply menu-level styling
   const defaultBg = String(colors.background);
   const defaultText = String(colors.text);
 
@@ -58,7 +57,6 @@ const MenuLivePreview: React.FC<MenuLivePreviewProps> = ({
   const hasCustomTextColor = isValueDefined(menuContents.textColor);
   const menuTextColor = hasCustomTextColor ? String(menuContents.textColor) : defaultText;
 
-  // Sort categories and items by displayOrder
   const categories = sortCategoriesByDisplayOrder(menuContents.categories).map((category) => ({
     ...category,
     items: sortMenuItemsByDisplayOrder(category.items),

@@ -1,9 +1,4 @@
 /* eslint-disable react-native/no-raw-text, i18next/no-literal-string, react/jsx-no-literals */
-/**
- * Theme Settings Drawer for showcase pages.
- * Provides preset theme selection and layout controls.
- * Web-only component using native HTML elements.
- */
 import type { ReactElement } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -19,9 +14,6 @@ const enum DrawerTab {
 const DEFAULT_MAX_WIDTH = '1440px';
 const FULL_WIDTH_MAX_WIDTH = 'none';
 
-// ---------------------------------------------------------------------------
-// Sub-components (defined before main to satisfy no-use-before-define)
-// ---------------------------------------------------------------------------
 
 interface PresetsTabProps {
   activePresetIndex: number;
@@ -86,9 +78,6 @@ const LayoutTabContent = ({ isFullWidth, onCheckboxChange }: LayoutTabProps): Re
   </label>
 );
 
-// ---------------------------------------------------------------------------
-// Main component
-// ---------------------------------------------------------------------------
 
 interface Props {
   isFullWidth: boolean;

@@ -1,6 +1,3 @@
-/**
- * Menu mutation handlers for delete, toggle, and external link operations.
- */
 import { useCallback } from 'react';
 
 import { Linking, Platform } from 'react-native';
@@ -134,7 +131,7 @@ function executeToggleMutation(args: ExecuteToggleArgs): void {
     {
       onSuccess: () => {
         notifySuccess(t(`onlineMenus.messages.${successKey}`));
-        purgePublicMenuCache(id); // activate/deactivate changes the public view
+        purgePublicMenuCache(id);
         refetchMenusSoon();
         analyticsTrack?.(analyticsEvent, { menuId: id });
       },

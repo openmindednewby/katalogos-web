@@ -1,6 +1,3 @@
-/**
- * Tests for useReorder hook and swapItems utility.
- */
 import { renderHook } from '@testing-library/react-native';
 
 import { swapItems, useReorder } from './useReorder';

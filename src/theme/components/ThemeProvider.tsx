@@ -1,15 +1,5 @@
 
 
-/**
- * ThemeProvider: central context provider for the tenant theme system.
- *
- * - Accepts an optional `tenantThemeConfig` prop (null = use defaults).
- * - Generates a ResolvedTheme via resolveTheme().
- * - Uses useDarkMode() for mode management with localStorage persistence
- *   and OS-level prefers-color-scheme detection.
- * - Syncs mode back to Redux for backwards compatibility.
- * - Memoized to prevent unnecessary re-renders.
- */
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
 
@@ -38,12 +28,10 @@ const ThemeProvider = ({ tenantThemeConfig, children }: Props): ReactNode => {
     tenantThemeConfig ?? null,
   );
 
-  // Sync prop changes into local state
   useEffect(() => {
     setConfig(tenantThemeConfig ?? null);
   }, [tenantThemeConfig]);
 
-  // Sync mode changes back to Redux for backwards compat
   useEffect(() => {
     dispatch(setTheme(effectiveMode));
   }, [effectiveMode, dispatch]);

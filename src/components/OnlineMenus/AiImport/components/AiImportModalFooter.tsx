@@ -1,4 +1,3 @@
-/** Footer buttons for the AI import modal. */
 import React from 'react';
 
 import { Pressable, Text, View } from 'react-native';

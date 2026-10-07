@@ -1,7 +1,3 @@
-/**
- * Sub-sections for ItemDetailModal: Variants and Modifiers display.
- * Extracted to keep the main modal component under 200 lines.
- */
 import React from 'react';
 
 import { Text, View } from 'react-native';

@@ -1,10 +1,3 @@
-/**
- * React hook that subscribes to the API event bus and dispatches
- * UI side-effects (toasts, modals, redirects, session-expired, maintenance).
- *
- * Must be used inside a component tree that has access to navigation
- * and the Redux store (for logout dispatch).
- */
 
 import type React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -47,8 +40,8 @@ function handleSessionExpired(dispatch: AppDispatch): void {
   notify('signout', { message: FM('errors.sessionExpired') });
   try {
     sessionStorage.setItem(STORAGE_KEYS.SESSION_EXPIRED, 'true');
+  // eslint-disable-next-line no-empty
   } catch {
-    // sessionStorage may be unavailable (SSR, private browsing)
   }
   if (typeof window !== 'undefined')
     window.location.href = LOGIN_PATH;
@@ -94,10 +87,7 @@ function createEventHandler(
   };
 }
 
-/**
- * Subscribe to the API event bus and route events to the appropriate
- * UI handler. Returns the current active modal for rendering.
- */
+/** Subscribe to the API event bus and route events to the appropriate */
 function useApiEvents(): UseApiEventsResult {
   const dispatch = useDispatch<AppDispatch>();
   const [activeModal, setActiveModal] = useState<ModalEvent | null>(null);

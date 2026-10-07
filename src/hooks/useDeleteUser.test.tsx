@@ -1,7 +1,3 @@
-/**
- * Tests for useDeleteUser hook.
- * Focus on testing delete confirmation and mutation callbacks.
- */
 import './userPageHandlers.setupMocks';
 
 import { Alert } from 'react-native';

@@ -1,9 +1,3 @@
-/**
- * Tests for ThemeProvider, useTheme, and backwards-compatible useThemeColors.
- *
- * Focuses on logic: mode toggling, config overrides, context availability,
- * and Redux synchronization. Does not test rendering/visual output.
- */
 import type { ReactNode } from 'react';
 
 import { renderHook, act } from '@testing-library/react-native';
@@ -20,7 +14,6 @@ import { ThemeContext } from '../utils/ThemeContext';
 import type { TenantThemeConfig } from '../types';
 import type { ThemeContextValue } from '../utils/ThemeContext';
 
-// -- Mocks -------------------------------------------------------------------
 
 const mockDispatch = jest.fn();
 
@@ -30,7 +23,6 @@ jest.mock('react-redux', () => ({
   useDispatch: () => mockDispatch,
 }));
 
-// Mock localStorage for useDarkMode
 const localStorageMock = (() => {
   let store: Record<string, string> = {};
   return {
@@ -46,7 +38,6 @@ const localStorageMock = (() => {
 
 Object.defineProperty(window, 'localStorage', { value: localStorageMock });
 
-// Mock matchMedia for useDarkMode
 Object.defineProperty(window, 'matchMedia', {
   value: jest.fn(() => ({
     matches: false,
@@ -55,7 +46,6 @@ Object.defineProperty(window, 'matchMedia', {
   })),
 });
 
-// -- Test helpers ------------------------------------------------------------
 
 function createWrapper(config?: TenantThemeConfig | null): ({ children }: { children: ReactNode }) => ReactNode {
   const Wrapper = ({ children }: { children: ReactNode }): ReactNode => (
@@ -95,7 +85,6 @@ const OCEAN_CONFIG: TenantThemeConfig = {
   },
 };
 
-// -- Tests -------------------------------------------------------------------
 
 describe('ThemeProvider + useTheme', () => {
   beforeEach(() => {

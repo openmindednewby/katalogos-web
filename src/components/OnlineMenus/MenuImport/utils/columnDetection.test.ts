@@ -1,6 +1,3 @@
-/**
- * Tests for column detection utilities.
- */
 import { detectColumnMappings, getValueByField } from './columnDetection';
 import MenuField from '../../../../shared/enums/MenuField';
 

@@ -33,7 +33,6 @@ describe("LocalStorage", () => {
   it("uses SecureStore on native (no window)", async () => {
     const globalWithWindow = globalThis as typeof globalThis & { window?: unknown };
     const originalWindow = globalWithWindow.window;
-    // Simulate non-web at module evaluation time
     // @ts-expect-error -- deleting window to simulate non-web environment
     delete globalWithWindow.window;
 

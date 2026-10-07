@@ -1,7 +1,3 @@
-/**
- * Unit tests for ColorInput validation logic.
- * Tests focus on logic (error display conditions), not rendering.
- */
 import React from 'react';
 
 import { fireEvent, render } from '@testing-library/react-native';

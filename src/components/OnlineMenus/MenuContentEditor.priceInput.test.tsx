@@ -1,6 +1,3 @@
-/**
- * Tests for MenuContentEditor - Decimal Price Input.
- */
 import './MenuContentEditor.mocks';
 
 import { fireEvent, render } from '@testing-library/react-native';
@@ -45,10 +42,8 @@ describe('MenuContentEditor - Decimal Price Input', () => {
       { wrapper: createWrapper() },
     );
 
-    // Expand category
     fireEvent.press(getByTestId('category-toggle-button-0'));
 
-    // Type decimal number
     const priceInput = getByDisplayValue('0');
     fireEvent.changeText(priceInput, '0.5');
 
@@ -91,10 +86,8 @@ describe('MenuContentEditor - Decimal Price Input', () => {
       { wrapper: createWrapper() },
     );
 
-    // Expand category
     fireEvent.press(getByTestId('category-toggle-button-0'));
 
-    // Type decimal number
     const priceInput = getByDisplayValue('0');
     fireEvent.changeText(priceInput, '12.99');
 
@@ -137,14 +130,11 @@ describe('MenuContentEditor - Decimal Price Input', () => {
       { wrapper: createWrapper() },
     );
 
-    // Expand category
     fireEvent.press(getByTestId('category-toggle-button-0'));
 
-    // Type just a decimal point
     const priceInput = getByDisplayValue('5');
     fireEvent.changeText(priceInput, '.');
 
-    // Should not call onChange for just a decimal point
     expect(mockOnChange).not.toHaveBeenCalled();
   });
 
@@ -171,14 +161,11 @@ describe('MenuContentEditor - Decimal Price Input', () => {
       { wrapper: createWrapper() },
     );
 
-    // Expand category
     fireEvent.press(getByTestId('category-toggle-button-0'));
 
-    // Try typing letters
     const priceInput = getByDisplayValue('5');
     fireEvent.changeText(priceInput, '5abc');
 
-    // Should not update with invalid characters
     expect(mockOnChange).not.toHaveBeenCalled();
   });
 });

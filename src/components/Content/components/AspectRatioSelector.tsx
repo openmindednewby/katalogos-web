@@ -1,8 +1,3 @@
-/**
- * AspectRatioSelector - row of preset buttons for choosing crop aspect ratio.
- *
- * Renders four TouchableOpacity buttons: Square, Landscape, Classic, Free.
- */
 import React from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -12,9 +7,6 @@ import { FM } from '@/localization/helpers';
 import AspectRatioPreset from '../../../shared/enums/AspectRatioPreset';
 import { TestIds } from '../../../shared/testIds';
 
-// ---------------------------------------------------------------------------
-// Constants
-// ---------------------------------------------------------------------------
 
 const SELECTED_OPACITY = 1;
 const UNSELECTED_OPACITY = 0.5;
@@ -28,9 +20,6 @@ const BUTTON_ITEMS: readonly ButtonItem[] = [
   { preset: AspectRatioPreset.Free, labelKey: 'imageCrop.aspectFree', hintKey: 'imageCrop.aspectFreeHint', testId: TestIds.CROP_ASPECT_FREE },
 ];
 
-// ---------------------------------------------------------------------------
-// Styles
-// ---------------------------------------------------------------------------
 
 const styles = StyleSheet.create({
   container: {
@@ -52,9 +41,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// ---------------------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------------------
 
 interface ButtonItem {
   preset: AspectRatioPreset;
@@ -71,9 +57,6 @@ interface Props {
   borderColor: string;
 }
 
-// ---------------------------------------------------------------------------
-// Component
-// ---------------------------------------------------------------------------
 
 const AspectRatioSelector = ({
   selected,

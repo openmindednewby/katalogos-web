@@ -1,8 +1,3 @@
-/**
- * Helper functions for MenuItemDisplay component.
- *
- * Extracted to keep MenuItemDisplay.tsx under the 200-line limit.
- */
 import { FM } from '@/localization/helpers';
 
 import MediaPosition from '../../../../types/enums/MediaPosition';

@@ -1,7 +1,3 @@
-/**
- * Billing Settings route page.
- * Wraps the BillingSettingsScreen component.
- */
 import React from 'react';
 
 import { BillingSettingsScreen } from '../../../src/components/Settings';

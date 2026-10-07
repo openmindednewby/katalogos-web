@@ -1,7 +1,3 @@
-/**
- * Hook for exporting menu data in CSV or JSON format.
- * Handles format selection, data formatting, and file download.
- */
 import { useCallback, useState } from 'react';
 
 import { FM } from '@/localization/helpers';
@@ -26,16 +22,11 @@ interface UseMenuExportResult {
   hasData: boolean;
 }
 
-/** Map of format to its formatting function. */
 const FORMAT_HANDLERS: Record<string, (c: MenuContents | null | undefined) => string> = {
   [ExportFormat.Csv]: formatMenuCsv,
   [ExportFormat.Json]: formatMenuJson,
 };
 
-/**
- * Format menu contents to string based on the selected format.
- * Returns empty string if format is not recognized or no data.
- */
 function formatContents(contents: MenuContents | null | undefined, format: ExportFormat): string {
   const handler = FORMAT_HANDLERS[format];
   return isValueDefined(handler) ? handler(contents) : '';

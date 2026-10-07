@@ -38,7 +38,6 @@ describe("reduxStore", () => {
     expect(state.ui).toEqual({ theme: "dark", locale: "el" });
     expect(state.auth.user).toEqual({ sub: "u1" });
     expect(state.auth.userInfo).toEqual({ preferred_username: "user1" });
-    // No token fields exist on the auth slice anymore.
     expect(state.auth).not.toHaveProperty("accessToken");
     expect(state.auth).not.toHaveProperty("refreshToken");
 

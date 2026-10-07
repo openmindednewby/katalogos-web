@@ -1,9 +1,6 @@
 
 
 
-/**
- * useQuizForm - Custom hook for managing quiz form state and submission.
- */
 import { useCallback, useMemo, useRef, useState } from 'react';
 
 import { Alert } from 'react-native';

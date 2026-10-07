@@ -1,6 +1,5 @@
 /** Test IDs for menu schedule and seasonal availability features. */
 export const ScheduleTestIds = {
-  // Schedule Editor
   SCHEDULE_EDITOR: 'schedule-editor',
   SCHEDULE_ENABLE_TOGGLE: 'schedule-enable-toggle',
   SCHEDULE_DAY_CHIP: 'schedule-day-chip',
@@ -13,7 +12,6 @@ export const ScheduleTestIds = {
   SCHEDULE_SAVE_BUTTON: 'schedule-save-button',
   SCHEDULE_REMOVE_BUTTON: 'schedule-remove-button',
 
-  // Seasonal Availability
   SEASONAL_PICKER: 'seasonal-picker',
   SEASONAL_FROM_MONTH: 'seasonal-from-month',
   SEASONAL_FROM_DAY: 'seasonal-from-day',
@@ -28,6 +26,5 @@ export const ScheduleTestIds = {
 
   SCHEDULE_TIME_ERROR: 'schedule-time-error',
 
-  // Public indicators
   SCHEDULE_PUBLIC_INDICATOR: 'schedule-public-indicator',
 } as const;

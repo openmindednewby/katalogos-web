@@ -1,6 +1,3 @@
-/**
- * MacroField - Single macro nutrient input field for the NutritionCard.
- */
 import React from 'react';
 
 import { StyleSheet, Text, TextInput, View } from 'react-native';

@@ -1,7 +1,3 @@
-/**
- * Unit tests for useCancelSubscription hook.
- * Tests mutation callbacks, cache invalidation, and error handling.
- */
 import { useQueryClient } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react-native';
 

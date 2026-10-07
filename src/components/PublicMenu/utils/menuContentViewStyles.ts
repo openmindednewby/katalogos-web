@@ -1,29 +1,14 @@
-/**
- * Style builders and constants for MenuContentView.
- *
- * Extracted to keep the component file under 200 lines.
- */
 import type { TextStyle, ViewStyle } from 'react-native';
 
 import type { PublicMenuTheme } from './publicMenuThemeTypes';
 import type { ResponsiveLayout } from './responsiveStyles';
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const EMPTY_CONTAINER_PADDING = 40;
 const TITLE_MARGIN_BOTTOM = 8;
 const DESCRIPTION_MARGIN_BOTTOM = 16;
 
-/**
- * UI chrome colors for the ShareButton component.
- * These are NOT part of the PublicMenuTheme because they represent fixed UI
- * feedback states (copy-success, button contrast text) rather than restaurant
- * branding. PublicMenuColors covers content theming only (background, text,
- * accent, borders). If a future theme redesign needs branded share buttons,
- * add `success` and `textOnPrimary` to PublicMenuColors.
- */
+/** UI chrome colors for the ShareButton component. */
 export const TEXT_ON_PRIMARY_BUTTON = '#ffffff';
 export const SHARE_SUCCESS_FEEDBACK = '#059669';
 
@@ -42,9 +27,6 @@ export const HEADER_ROW_STYLE: ViewStyle = {
 
 export const FLEX_ONE_STYLE: TextStyle = { flex: 1 };
 
-// =============================================================================
-// Style Builders
-// =============================================================================
 
 /** Builds container style from theme. */
 export function buildContainerStyle(theme: PublicMenuTheme): ViewStyle {

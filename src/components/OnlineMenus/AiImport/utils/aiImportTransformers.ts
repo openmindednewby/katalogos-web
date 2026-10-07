@@ -1,6 +1,3 @@
-/**
- * Transformers for converting AI-imported data to MenuContents format.
- */
 import { DEFAULT_ITEM_PRICE } from './aiImportConstants';
 
 import type { ImportedCategory, ImportedItem, ImportedMenuData } from '../../../../types/aiImportTypes';

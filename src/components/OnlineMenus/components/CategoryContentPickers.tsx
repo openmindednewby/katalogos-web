@@ -1,6 +1,3 @@
-/**
- * CategoryContentPickers - Image and video picker section for a category.
- */
 import React from 'react';
 
 import { View } from 'react-native';

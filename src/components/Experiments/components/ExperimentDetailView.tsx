@@ -1,6 +1,3 @@
-/**
- * ExperimentDetailView -- detailed view with metrics and start/stop controls.
- */
 import React, { useCallback, useMemo } from 'react';
 
 import { ActivityIndicator, ScrollView, Text, View } from 'react-native';

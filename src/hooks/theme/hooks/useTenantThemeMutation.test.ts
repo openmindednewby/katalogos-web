@@ -1,14 +1,9 @@
-/**
- * Unit tests for useTenantThemeMutation hook.
- * Tests logic and callbacks, not rendering.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import { useTenantThemeMutation } from './useTenantThemeMutation';
 
 import type { TenantThemeConfig } from '@dloizides/tenant-theme-web';
 
-// Mock queryClient module to prevent QueryCache constructor error
 jest.mock('../../../lib/queryClient', () => ({
   queryKeys: {
     tenantTheme: {
@@ -18,7 +13,6 @@ jest.mock('../../../lib/queryClient', () => ({
   },
 }));
 
-// Mock dependencies
 jest.mock('react-redux', () => ({
   useSelector: jest.fn().mockReturnValue('test-tenant-id'),
 }));
@@ -134,7 +128,6 @@ describe('useTenantThemeMutation', () => {
     const testError = new Error('Save failed');
     const onError = jest.fn();
 
-    // Override useMutation to simulate error flow
     const useMutation = require('@tanstack/react-query').useMutation;
     const originalImpl = useMutation;
     require('@tanstack/react-query').useMutation = (opts: Record<string, unknown>) => {
@@ -159,7 +152,6 @@ describe('useTenantThemeMutation', () => {
 
     expect(onError).toHaveBeenCalledWith(testError);
 
-    // Restore
     require('@tanstack/react-query').useMutation = originalImpl;
   });
 });

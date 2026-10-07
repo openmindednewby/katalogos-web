@@ -1,6 +1,3 @@
-/**
- * Review step: displays AI-extracted categories and items for user editing.
- */
 import React from 'react';
 
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';

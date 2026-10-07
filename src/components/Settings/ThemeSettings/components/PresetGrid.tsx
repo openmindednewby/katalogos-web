@@ -1,11 +1,6 @@
 
 
 
-/**
- * Preset Grid section.
- * Displays a grid of preset cards with color swatches.
- * Clicking a card applies the preset via the save mutation.
- */
 import React, { useCallback, useMemo } from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';

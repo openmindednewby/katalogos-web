@@ -1,23 +1,7 @@
 
 
 
-// =============================================================================
-// Component
-// =============================================================================
 
-/**
- * CategoryMedia component for rendering category images and videos with overlay.
- */
-/**
- * CategoryMedia - Renders category image/video with overlay support.
- *
- * Handles media display including:
- * - Position-based layout (background, left, right, top, bottom)
- * - Size and fit settings
- * - Optional overlay with configurable color and opacity
- *
- * @see BaseClient/docs/Tasks/TODO/menu-customization-feature.md
- */
 import React, { useMemo } from 'react';
 
 import { StyleSheet, View } from 'react-native';
@@ -36,16 +20,10 @@ import { ContentImage, ContentVideo } from '../../../Content';
 import type { OverlaySettings } from '../../../../types/menuStyleTypes';
 import type { Category, MenuContents } from '../../../../types/menuTypes';
 
-// =============================================================================
-// Types
-// =============================================================================
 
 interface Props {
-  /** The category containing media settings */
   category: Category;
-  /** Global menu styles for color scheme */
   globalStyles?: MenuContents;
-  /** Whether media should be positioned as background */
   isBackground: boolean;
 }
 
@@ -54,23 +32,14 @@ interface OverlayViewProps {
   categoryId: string | undefined;
 }
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const DEFAULT_MEDIA_HEIGHT = 120;
 const DEFAULT_VIDEO_HEIGHT = 150;
 const DEFAULT_BORDER_RADIUS = 8;
 
-/**
- * Resolves media dimensions based on whether the media is a background.
- */
 const FULL_SIZE_IMAGE: DimensionValue = '100%';
 const FULL_SIZE_VIDEO = '100%';
 
-// =============================================================================
-// Styles
-// =============================================================================
 
 const styles = StyleSheet.create({
   mediaContainer: {
@@ -100,37 +69,22 @@ const styles = StyleSheet.create({
   },
 });
 
-// =============================================================================
-// Helper Functions
-// =============================================================================
 
-/**
- * Checks if overlay settings are valid and enabled.
- */
 function isOverlayEnabled(overlay: OverlaySettings | undefined): overlay is OverlaySettings {
   return isValueDefined(overlay) && overlay.enabled === true;
 }
 
-/**
- * Gets media container style based on position.
- */
 function getMediaContainerStyle(isBackground: boolean, isHorizontal: boolean): ViewStyle {
   if (isBackground) return styles.backgroundContainer;
   if (isHorizontal) return styles.horizontalMedia;
   return styles.mediaWrapper;
 }
 
-/**
- * Checks if media position is horizontal (left or right).
- */
 function isHorizontalPosition(category: Category): boolean {
   const position = category.imageSettings?.position ?? DEFAULT_CATEGORY_IMAGE_SETTINGS.position;
   return position === MediaPosition.Left || position === MediaPosition.Right;
 }
 
-/**
- * Extracts media flags from a category.
- */
 function getCategoryMediaFlags(category: Category): { hasImage: boolean; hasVideo: boolean } {
   const imageContentId = category.imageContentId;
   const videoContentId = category.videoContentId;
@@ -148,13 +102,7 @@ function getMediaDimensions(
   return { imageHeight, videoHeight };
 }
 
-// =============================================================================
-// Sub-Components
-// =============================================================================
 
-/**
- * Renders the overlay layer for media.
- */
 const OverlayView: React.FC<OverlayViewProps> = ({ overlay, categoryId }) => {
   const overlayStyle = useMemo<ViewStyle>(() => ({
     ...styles.overlay,
@@ -171,9 +119,6 @@ const OverlayView: React.FC<OverlayViewProps> = ({ overlay, categoryId }) => {
   );
 };
 
-// =============================================================================
-// Main Component
-// =============================================================================
 
 export const CategoryMedia: React.FC<Props> = ({
   category,

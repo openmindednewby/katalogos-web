@@ -5,7 +5,6 @@ import { useApiEvents } from './useApiEvents';
 
 import type { ModalEvent, ToastEvent } from './apiEventTypes';
 
-// Mock dependencies
 const mockDispatch = jest.fn();
 jest.mock('react-redux', () => ({
   useDispatch: () => mockDispatch,
@@ -24,14 +23,12 @@ jest.mock('../../notifications', () => ({
   notify: (...args: unknown[]) => mockNotify(...args),
 }));
 
-// Save original window.location
 const originalLocation = window.location;
 
 beforeEach(() => {
   jest.clearAllMocks();
   apiEventBus.clear();
 
-  // Mock window.location
   Object.defineProperty(window, 'location', {
     writable: true,
     value: { href: '' },
@@ -54,7 +51,6 @@ describe('useApiEvents', () => {
     expect(subscribeSpy).toHaveBeenCalledWith(expect.any(Function));
 
     unmount();
-    // After unmount, emitting should not trigger any side effects
     mockNotify.mockClear();
     const toastEvent: ToastEvent = {
       type: 'toast',

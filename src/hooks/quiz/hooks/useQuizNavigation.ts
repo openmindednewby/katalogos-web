@@ -1,9 +1,6 @@
 
 
 
-/**
- * useQuizNavigation - Hook for quiz page navigation and scrolling.
- */
 import { useCallback, useRef } from 'react';
 
 import type { ScrollView } from 'react-native';

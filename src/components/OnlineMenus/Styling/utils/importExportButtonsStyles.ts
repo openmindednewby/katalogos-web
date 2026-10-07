@@ -1,8 +1,5 @@
 
 
-/**
- * Styles for ImportExportButtons component.
- */
 
 import { StyleSheet } from 'react-native';
 

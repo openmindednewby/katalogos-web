@@ -6,12 +6,9 @@ import { Endpoints } from '../endpoints';
 
 import type { KeycloakUserInfo } from '../../auth/keycloakTypes';
 
-/** Time constants for query configuration */
 const MS_PER_SECOND = 1000;
 const SECONDS_PER_MINUTE = 60;
-/** Stale time for user info query in minutes */
 const STALE_TIME_MINUTES = 5;
-/** Number of retry attempts for failed queries */
 const QUERY_RETRY_COUNT = 1;
 
 export function useKeycloakUserInfo(
@@ -20,8 +17,6 @@ export function useKeycloakUserInfo(
   const queryKey = ['keycloak', 'userinfo'];
 
   const queryFn = async (): Promise<KeycloakUserInfo> => {
-    // Use the endpoint-aware helper; pass the Keycloak issuer as baseURL so the
-    // same endpoint path works across environments.
     const resp = await getByEndpoint<undefined, KeycloakUserInfo>(
       Endpoints.onlinemenuWebKeycloakUserInfo,
       {
@@ -44,13 +39,8 @@ export function useKeycloakUserInfo(
 
 export default useKeycloakUserInfo;
 
-/**
- * Demo helper: fetch tenant list using the new endpoint-aware httpService helper.
- * This demonstrates calling an application API via `getByEndpoint` and is safe
- * to call from application code (it uses the app API base URL).
- */
+/** Demo helper: fetch tenant list using the new endpoint-aware httpService helper. */
 export async function fetchTenantListDemo(): Promise<unknown> {
-  // Example: call the Tenants list endpoint via the Endpoints enum
   const resp = await getByEndpoint<undefined, unknown>(Endpoints.onlinemenuWebTenantsList);
   return resp;
 }

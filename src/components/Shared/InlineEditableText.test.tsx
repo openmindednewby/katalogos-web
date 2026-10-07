@@ -1,7 +1,3 @@
-/**
- * Unit tests for InlineEditableText component.
- * Tests logic: edit/display toggle, commit/cancel callbacks, key handling.
- */
 import React from 'react';
 
 import { Text } from 'react-native';
@@ -13,12 +9,10 @@ import InlineEditableText from './InlineEditableText';
 import type { RenderAPI } from '@testing-library/react-native';
 
 
-// Mock FM to return the key
 jest.mock('@/localization/helpers', () => ({
   FM: (key: string) => key,
 }));
 
-// Mock SvgIcon to avoid SVG rendering in tests
 jest.mock('../Icons', () => ({
   SvgIcon: () => null,
 }));
@@ -111,7 +105,6 @@ describe('InlineEditableText', () => {
     fireEvent.changeText(input, '   ');
     fireEvent(input, 'blur');
     expect(onCommit).not.toHaveBeenCalled();
-    // Should stay in edit mode since validation failed
     expect(queryByTestId(`${TEST_ID}-input`)).toBeTruthy();
   });
 });

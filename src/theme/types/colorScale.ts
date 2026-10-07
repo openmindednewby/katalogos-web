@@ -1,7 +1,4 @@
-/**
- * Generated shade scale for a single color (50-900).
- * Used in ResolvedTheme for primary, secondary, accent, and semantic palettes.
- */
+/** Generated shade scale for a single color (50-900). */
 export interface ColorScale {
   '50': string;
   '100': string;

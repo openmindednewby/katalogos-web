@@ -1,6 +1,3 @@
-/**
- * Shared styles for WhiteLabelSettings sub-components.
- */
 import { StyleSheet } from 'react-native';
 
 import {

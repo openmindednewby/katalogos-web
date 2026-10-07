@@ -1,7 +1,3 @@
-/**
- * React context definition for the tenant theme system.
- * Separated from ThemeProvider for clean imports.
- */
 import { createContext } from 'react';
 
 import type DarkModePreference from '../../shared/enums/DarkModePreference';

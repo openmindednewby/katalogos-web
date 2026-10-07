@@ -1,17 +1,6 @@
-/**
- * Menu Configuration Export Utility
- *
- * Provides functionality to export menu configurations as JSON files
- * for backup and sharing purposes.
- *
- * @see BaseClient/docs/Tasks/IN_PROGRESS/menu-config-import-export.md
- */
 
 import type { MenuContents } from '../types/menuTypes';
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 /**
  * Current export format version for backwards compatibility.
@@ -23,29 +12,14 @@ const EXPORT_FORMAT_VERSION = 1;
  */
 const APP_VERSION = '1.0.0';
 
-/**
- * Default filename for exported configurations.
- */
 const DEFAULT_EXPORT_FILENAME = 'menu-config';
 
-/**
- * File extension for exported configurations.
- */
 const EXPORT_FILE_EXTENSION = '.json';
 
-/**
- * MIME type for JSON downloads.
- */
 const JSON_MIME_TYPE = 'application/json';
 
-/**
- * Timestamp slice end index for YYYY-MM-DD format.
- */
 const DATE_SLICE_END = 10;
 
-// =============================================================================
-// Types
-// =============================================================================
 
 /**
  * Metadata included in exported configuration files.
@@ -69,9 +43,6 @@ export interface ExportedMenuConfig {
   contents: MenuContents;
 }
 
-// =============================================================================
-// Export Functions
-// =============================================================================
 
 /**
  * Creates export metadata with current timestamp and version info.
@@ -86,16 +57,7 @@ export function createExportMetadata(): ExportMetadata {
   };
 }
 
-/**
- * Exports menu contents to a JSON string with metadata.
- *
- * The exported JSON includes:
- * - metadata: version info and export timestamp
- * - contents: the actual MenuContents object
- *
- * @param contents - The menu contents to export
- * @returns JSON string representation of the exported configuration
- */
+/** Exports menu contents to a JSON string with metadata. */
 export function exportMenuConfig(contents: MenuContents): string {
   const exportData: ExportedMenuConfig = {
     metadata: createExportMetadata(),
@@ -118,46 +80,27 @@ export function generateExportFilename(customName?: string): string {
   return `${baseName}-${timestamp}${EXPORT_FILE_EXTENSION}`;
 }
 
-/**
- * Triggers a browser download of the menu configuration as a JSON file.
- *
- * Creates a temporary anchor element, triggers the download, and cleans up.
- * This function is designed for web browser environments.
- *
- * @param contents - The menu contents to download
- * @param filename - Optional custom filename (extension will be added if missing)
- */
+/** Triggers a browser download of the menu configuration as a JSON file. */
 export function downloadMenuConfig(contents: MenuContents, filename?: string): void {
   const jsonString = exportMenuConfig(contents);
   const exportFilename = generateExportFilename(filename);
 
-  // Create blob from JSON string
   const blob = new Blob([jsonString], { type: JSON_MIME_TYPE });
 
-  // Create download URL
   const url = URL.createObjectURL(blob);
 
-  // Create temporary anchor element for download
   const anchor = document.createElement('a');
   anchor.href = url;
   anchor.download = exportFilename;
 
-  // Trigger download
   document.body.appendChild(anchor);
   anchor.click();
 
-  // Cleanup
   document.body.removeChild(anchor);
   URL.revokeObjectURL(url);
 }
 
-/**
- * Converts menu contents to a Blob for download.
- * Useful for platforms that need manual blob handling.
- *
- * @param contents - The menu contents to convert
- * @returns Blob containing the JSON configuration
- */
+/** Converts menu contents to a Blob for download. */
 export function createMenuConfigBlob(contents: MenuContents): Blob {
   const jsonString = exportMenuConfig(contents);
   return new Blob([jsonString], { type: JSON_MIME_TYPE });

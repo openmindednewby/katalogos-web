@@ -2,18 +2,7 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
 import type { NormalizedUser, KeycloakUserInfo } from '../../auth/keycloakTypes'
 
-/**
- * Auth slice — BFF era.
- *
- * After the Phase 2 BFF cutover the session is a server-side httpOnly cookie
- * (`__Host-bff-katalogos`). The SPA cannot and must not read or hold a token,
- * so this slice no longer carries `accessToken` / `refreshToken`. It holds
- * only the *derived* session view the UI needs: whether there is a session
- * (`isLoggedIn`), the current user, and bootstrap `loading`.
- *
- * `isLoggedIn` is driven by `BffAuthClient.getCurrentUser()` (`GET /bff/me`)
- * at app load, and by `login` / `logout` thereafter.
- */
+/** Auth slice — BFF era. */
 export interface AuthState {
   isLoggedIn: boolean;
   user: NormalizedUser | null;
@@ -34,11 +23,9 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    /** Marks a live BFF session — set after a successful `/bff/login` or `/bff/me`. */
     setAuthenticated: (state, action: PayloadAction<boolean>) => {
       return { ...state, isLoggedIn: action.payload };
     },
-    /** Clears the session view on logout / a 401 from the BFF. */
     clearSession: (state) => {
       return { ...state, isLoggedIn: false, user: null, userInfo: null };
     },

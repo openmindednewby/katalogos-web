@@ -1,11 +1,5 @@
 
 
-/**
- * BorderColorInput Component
- *
- * A color input field with validation and visual swatch preview.
- * Handles hex color validation and displays error state.
- */
 import React, { useCallback, useState } from 'react';
 
 import { Text, TextInput, View } from 'react-native';
@@ -17,9 +11,6 @@ import { TestIds } from '../../../../shared/testIds';
 import { INVALID_COLOR_SWATCH, isValidHexColor } from '../utils/boxStyleEditorConstants';
 import { boxStyleEditorStyles as styles } from '../utils/boxStyleEditorStyles';
 
-// =============================================================================
-// Types
-// =============================================================================
 
 interface Props {
   value: string;
@@ -32,9 +23,6 @@ interface Props {
   errorColor: string;
 }
 
-// =============================================================================
-// Component
-// =============================================================================
 
 const BorderColorInput: React.FC<Props> = ({
   bgColor,

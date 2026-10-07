@@ -1,7 +1,3 @@
-/**
- * File parsing utilities for menu import.
- * Supports CSV (native) and Excel via lazy-loaded xlsx library.
- */
 import { isValueDefined } from '@dloizides/utils';
 
 import { MAX_IMPORT_ROWS } from './menuImportConstants';
@@ -13,10 +9,7 @@ export interface ParsedFileResult {
   error?: string;
 }
 
-/**
- * Parse a CSV or XLSX file into headers + rows.
- * Excel support is lazy-loaded to avoid bloating the bundle.
- */
+/** Parse a CSV or XLSX file into headers + rows. */
 export async function parseMenuFile(file: File): Promise<ParsedFileResult> {
   const name = file.name.toLowerCase();
   if (name.endsWith('.csv')) return parseCsvFile(file);
@@ -24,9 +17,6 @@ export async function parseMenuFile(file: File): Promise<ParsedFileResult> {
   return { headers: [], rows: [], error: 'unsupportedFormat' };
 }
 
-// =============================================================================
-// CSV Parsing
-// =============================================================================
 
 async function parseCsvFile(file: File): Promise<ParsedFileResult> {
   try { return parseCsvText(await file.text()); }
@@ -58,9 +48,6 @@ function isEmptyRow(row: string[]): boolean {
   return row.every((cell) => cell.trim() === '');
 }
 
-// =============================================================================
-// CSV Row Parser (all mutation via class methods to satisfy no-param-reassign)
-// =============================================================================
 
 class CsvParser {
   readonly rows: string[][] = [];
@@ -115,9 +102,6 @@ function parseCsvRows(text: string): string[][] {
   return parser.rows;
 }
 
-// =============================================================================
-// Excel Parsing (lazy-loaded via read-excel-file)
-// =============================================================================
 
 async function parseExcelFile(file: File): Promise<ParsedFileResult> {
   try { return await readExcelWorkbook(file); }

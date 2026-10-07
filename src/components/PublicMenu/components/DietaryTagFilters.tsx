@@ -1,7 +1,3 @@
-/**
- * DietaryTagFilters - Renders filter chips for dietary tags.
- * Each chip toggles a dietary tag filter on/off.
- */
 import React from 'react';
 
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
@@ -13,9 +9,6 @@ import { TestIds } from '../../../shared/testIds';
 
 import type { PublicMenuTheme } from '../utils/publicMenuThemeTypes';
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const CHIP_PADDING_HORIZONTAL = 14;
 const CHIP_PADDING_VERTICAL = 8;
@@ -32,9 +25,6 @@ const HEX_G_END = 5;
 const HEX_B_START = 5;
 const HEX_B_END = 7;
 
-// =============================================================================
-// Props
-// =============================================================================
 
 interface DietaryTagFiltersProps {
   availableTags: string[];
@@ -43,11 +33,7 @@ interface DietaryTagFiltersProps {
   theme: PublicMenuTheme;
 }
 
-// =============================================================================
-// Helpers
-// =============================================================================
 
-/** Builds an RGBA background with the accent color at low opacity. */
 function buildActiveBackground(accentHex: string): string {
   const r = parseInt(accentHex.slice(HEX_R_START, HEX_R_END), HEX_RADIX);
   const g = parseInt(accentHex.slice(HEX_G_START, HEX_G_END), HEX_RADIX);
@@ -55,9 +41,6 @@ function buildActiveBackground(accentHex: string): string {
   return `rgba(${String(r)}, ${String(g)}, ${String(b)}, ${String(ACTIVE_OPACITY)})`;
 }
 
-// =============================================================================
-// Component
-// =============================================================================
 
 export const DietaryTagFilters: React.FC<DietaryTagFiltersProps> = ({
   availableTags,

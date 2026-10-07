@@ -1,8 +1,3 @@
-/**
- * Factory function for creating public menu theme presets
- * with sensible defaults. Keeps each preset definition concise
- * by only requiring the properties that differ from defaults.
- */
 import type {
   PublicMenuBorders,
   PublicMenuColors,

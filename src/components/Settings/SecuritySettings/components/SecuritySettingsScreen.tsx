@@ -1,8 +1,3 @@
-/**
- * Security Settings Screen.
- * Combines change-password form and active-sessions list.
- * Wired to sessions API via Orval hooks.
- */
 import React, { useCallback, useMemo } from 'react';
 
 import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -74,9 +69,6 @@ const SecuritySettingsScreen = (): React.ReactElement => {
   const primary = theme.palette.primary['500'];
   const errorColor = theme.semantic.error['500'];
 
-  // Device-PIN + passkey settings (unified-login Increment 3 Batch 3). Seeded
-  // from `GET /bff/config`; the cards track their own state thereafter. Both
-  // shared components are react-query-free, so they're safe inside this screen.
   const authTheme = useMemo(() => mapAppThemeToAuthTheme(theme), [theme]);
   const { config: loginConfig, loading: loginConfigLoading } = useBffLoginConfig(bffAuthClient);
   const devicePinSettingsLabels = useDevicePinSettingsLabels();
@@ -85,8 +77,6 @@ const SecuritySettingsScreen = (): React.ReactElement => {
   const preferredMethodSettingsLabels = usePreferredMethodSettingsLabels();
   const showPasskeySettings =
     !loginConfigLoading && loginConfig.methods.includes(BffLoginMethod.Passkey);
-  // The cross-device default-method picker only makes sense when more than one
-  // method is offered (otherwise there is nothing to choose between).
   const showPreferredMethod = !loginConfigLoading && loginConfig.methods.length > 1;
 
   const {
@@ -107,7 +97,6 @@ const SecuritySettingsScreen = (): React.ReactElement => {
             queryClient.invalidateQueries({
               queryKey: getIdentityServiceAPIMeListSessionsQueryKey(),
             }).catch(() => {
-              // Ignore invalidation errors
             });
             notifySuccess(FM('settings.security.messages.sessionRevoked'));
           },

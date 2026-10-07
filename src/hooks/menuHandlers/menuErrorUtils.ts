@@ -1,6 +1,3 @@
-/**
- * Error handling utilities for menu operations.
- */
 import { isValueDefined } from '../../utils/is';
 
 const HTTP_CONFLICT = 409;

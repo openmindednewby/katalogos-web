@@ -1,7 +1,3 @@
-/**
- * Inputs & Forms components showcase section.
- * Demonstrates: Checkbox, ChoicePill, FormField, FormSwitch, ChipSelector, FormActions.
- */
 import type { ReactElement } from 'react';
 import { useCallback, useState } from 'react';
 
@@ -21,8 +17,8 @@ const styles = StyleSheet.create({
   pillRow: { flexDirection: 'row' },
 });
 
+// eslint-disable-next-line no-empty-function
 function handleNoOp(): void {
-  // intentional no-op for demo
 }
 
 const InputsSection = (): ReactElement => {

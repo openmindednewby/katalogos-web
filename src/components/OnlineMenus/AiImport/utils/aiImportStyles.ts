@@ -1,6 +1,3 @@
-/**
- * Styles for the AI menu import modal and sub-components.
- */
 import { StyleSheet } from 'react-native';
 
 import { DISABLED_OPACITY } from '@/shared/constants';

@@ -1,4 +1,3 @@
-/** Utility functions for parsing and formatting version snapshots. */
 import { isValueDefined } from '@/utils/is';
 
 interface SnapshotSummary {

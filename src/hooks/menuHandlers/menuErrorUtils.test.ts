@@ -1,6 +1,3 @@
-/**
- * Tests for menu error handling utilities.
- */
 import { getErrorMessage, getHttpStatus, isDuplicateNameError } from './menuErrorUtils';
 
 describe('getErrorMessage', () => {

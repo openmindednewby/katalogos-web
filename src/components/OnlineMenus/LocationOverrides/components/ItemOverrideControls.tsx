@@ -1,7 +1,3 @@
-/**
- * ItemOverrideControls - Per-item override inputs for price, availability,
- * and description when a location is selected.
- */
 import React, { useCallback } from 'react';
 
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';

@@ -1,10 +1,5 @@
-/**
- * Styles for the CropModal component.
- * Extracted to keep the component file under 200 lines.
- */
 import { StyleSheet } from 'react-native';
 
-/** Intentionally darker than standard CROP_OVERLAY_COLOR (0.5) to focus attention on the crop area. */
 const CROP_OVERLAY_COLOR = 'rgba(0,0,0,0.85)';
 const CROP_CONTAINER_HEIGHT = 400;
 const BUTTON_BORDER_RADIUS = 8;

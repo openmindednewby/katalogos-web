@@ -18,7 +18,6 @@ export const MenuTestIds = {
   MENU_CARD_DUPLICATE_BUTTON: 'menu-card-duplicate-button',
   MENU_CARD_OPEN_EXTERNAL_BUTTON: 'menu-card-open-external-button',
   MENU_PREVIEW_MODAL: 'menu-preview-modal',
-  // Menu Editor
   MENU_TAB_METADATA: 'menu-tab-metadata',
   MENU_TAB_CONTENT: 'menu-tab-content',
   MENU_TAB_PREVIEW: 'menu-tab-preview',
@@ -33,7 +32,6 @@ export const MenuTestIds = {
   MENU_EDITOR_BG_COLOR_PICKER: 'menu-editor-bg-color-picker',
   MENU_EDITOR_TEXT_COLOR_PICKER: 'menu-editor-text-color-picker',
 
-  // Category Management
   CATEGORY_LIST: 'category-list',
   CATEGORY_ADD_BUTTON: 'category-add-button',
   CATEGORY_ITEM: 'category-item',
@@ -49,7 +47,6 @@ export const MenuTestIds = {
   CATEGORY_IMAGE_PICKER: 'category-image-picker',
   CATEGORY_VIDEO_PICKER: 'category-video-picker',
 
-  // Menu Item Management
   MENU_ITEM_LIST: 'menu-item-list',
   MENU_ITEM_ADD_BUTTON: 'menu-item-add-button',
   MENU_ITEM: 'menu-item',
@@ -70,14 +67,12 @@ export const MenuTestIds = {
   MENU_ITEM_AI_LOADING: 'menu-item-ai-loading',
   MENU_ITEM_AI_ERROR: 'menu-item-ai-error',
 
-  // Live Preview
   LIVE_PREVIEW_PANEL: 'live-preview-panel',
   LIVE_PREVIEW_VIEWPORT_TOGGLE: 'live-preview-viewport-toggle',
   LIVE_PREVIEW_MOBILE: 'live-preview-mobile',
   LIVE_PREVIEW_TABLET: 'live-preview-tablet',
   LIVE_PREVIEW_DESKTOP: 'live-preview-desktop',
 
-  // Menu Content View (Display)
   MENU_CONTENT_VIEW: 'menu-content-view',
   MENU_CONTENT_VIEW_HEADER: 'menu-content-view-header',
   MENU_CONTENT_VIEW_BANNER: 'menu-content-view-banner',
@@ -89,7 +84,6 @@ export const MenuTestIds = {
   MENU_CONTENT_VIEW_CATEGORY_SECTION: 'menu-content-view-category-section',
   MENU_CONTENT_VIEW_MENU_ITEM: 'menu-content-view-menu-item',
 
-  // Import/Export Configuration
   IMPORT_EXPORT_CONTAINER: 'import-export-container',
   EXPORT_CONFIG_BUTTON: 'export-config-button',
   IMPORT_CONFIG_BUTTON: 'import-config-button',
@@ -100,25 +94,21 @@ export const MenuTestIds = {
   IMPORT_CANCEL_BUTTON: 'import-cancel-button',
   IMPORT_ERROR_MESSAGE: 'import-error-message',
 
-  // Category Emoji Picker
   CATEGORY_EMOJI_BUTTON: 'category-emoji-button',
   CATEGORY_EMOJI_CLEAR_BUTTON: 'category-emoji-clear-button',
   CATEGORY_EMOJI_PICKER: 'category-emoji-picker',
   CATEGORY_EMOJI_GRID_ITEM: 'category-emoji-grid-item',
 
-  // Category Styling Section
   CATEGORY_STYLING_SECTION: 'category-styling-section',
   CATEGORY_STYLING_TOGGLE: 'category-styling-toggle',
   CATEGORY_STYLING_CONTENT: 'category-styling-content',
   CATEGORY_STYLING_BOX_EDITOR: 'category-styling-box-editor',
   CATEGORY_STYLING_MEDIA_EDITOR: 'category-styling-media-editor',
 
-  // Item Styling Section
   ITEM_STYLING_SECTION: 'item-styling-section',
   ITEM_STYLING_HEADER: 'item-styling-header',
   ITEM_STYLING_CONTENT: 'item-styling-content',
 
-  // QR Code
   MENU_CARD_QR_CODE_BUTTON: 'menu-card-qr-code-button',
   QR_CODE_MODAL: 'qr-code-modal',
   QR_CODE_DISPLAY: 'qr-code-display',
@@ -131,7 +121,6 @@ export const MenuTestIds = {
   QR_CODE_FG_COLOR_INPUT: 'qr-code-fg-color-input',
   QR_CODE_BG_COLOR_INPUT: 'qr-code-bg-color-input',
 
-  // Embed Widget
   MENU_CARD_EMBED_BUTTON: 'menu-card-embed-button',
   EMBED_WIDGET_MODAL: 'embed-widget-modal',
   EMBED_WIDGET_CLOSE_BUTTON: 'embed-widget-close-button',
@@ -146,7 +135,6 @@ export const MenuTestIds = {
   EMBED_WIDGET_PRESET_FULL: 'embed-widget-preset-full',
   EMBED_WIDGET_PRESET_FIXED: 'embed-widget-preset-fixed',
 
-  // QR Code Designer
   QR_DESIGNER_MODAL: 'qr-designer-modal',
   QR_DESIGNER_CLOSE_BUTTON: 'qr-designer-close-button',
   QR_DESIGNER_PREVIEW: 'qr-designer-preview',
@@ -164,7 +152,6 @@ export const MenuTestIds = {
   QR_DESIGNER_DOWNLOAD_PDF: 'qr-designer-download-pdf',
   MENU_CARD_DESIGN_QR_BUTTON: 'menu-card-design-qr-button',
 
-  // Variant Groups
   VARIANT_GROUP_SECTION: 'variant-group-section',
   VARIANT_GROUP_ADD_BUTTON: 'variant-group-add-button',
   VARIANT_GROUP_NAME_INPUT: 'variant-group-name-input',
@@ -176,7 +163,6 @@ export const MenuTestIds = {
   VARIANT_DELETE_BUTTON: 'variant-delete-button',
   VARIANT_AVAILABLE_TOGGLE: 'variant-available-toggle',
 
-  // Dietary Tags
   DIETARY_TAG_SELECTOR: 'dietary-tag-selector',
   DIETARY_TAG_SELECTOR_CHIP: 'dietary-tag-selector-chip',
   DIETARY_TAG_BADGE: 'dietary-tag-badge',

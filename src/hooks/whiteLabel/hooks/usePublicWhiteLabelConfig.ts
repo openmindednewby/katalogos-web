@@ -1,13 +1,3 @@
-/**
- * Hook that fetches white-label config for public (unauthenticated) pages.
- *
- * Unlike useWhiteLabelConfig (which reads tenant ID from Redux), this hook
- * accepts the tenant ID as a parameter. Used on public menu pages where the
- * tenant ID is extracted from the menu API response.
- *
- * The GET /tenants/{tenantId}/theme endpoint is AllowAnonymous so no auth
- * token is required.
- */
 import { useMemo } from 'react';
 
 import { useQuery } from '@tanstack/react-query';

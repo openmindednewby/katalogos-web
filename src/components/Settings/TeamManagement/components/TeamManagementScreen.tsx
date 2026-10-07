@@ -1,7 +1,3 @@
-/**
- * Team Management Screen.
- * Displays team members and pending invitations with admin controls.
- */
 import React from 'react';
 
 import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';

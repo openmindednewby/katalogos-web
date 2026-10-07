@@ -1,13 +1,8 @@
 
 
 
-/**
- * Theme color palette definitions.
- * Centralizes all color values for light and dark themes.
- */
 import env from '../../config/environment';
 
-// Brand override flag: prefer app config (environment.ts), fall back to process.env for web builds.
 const isTagHeuerVariant = (env.EXPO_PUBLIC_IS_TAG_HEURE_QUIZZ_FILLER === true)
   || (((process.env.EXPO_PUBLIC_IS_TAG_HEURE_QUIZZ_FILLER ?? process.env.IS_TAG_HEURE_QUIZZ_FILLER) ?? 'false') === 'true');
 
@@ -64,7 +59,6 @@ const basePalette = {
   },
 } as const;
 
-// Tag Heuer variant uses green (#008d5c) and red (#ed1b2f) as primary accents
 const tagHeuerPalette = {
   light: {
     richBlack: '#001219',

@@ -1,6 +1,3 @@
-/**
- * Tests for MenuContentEditor - Menu Item Management functionality.
- */
 import './MenuContentEditor.mocks';
 
 import { fireEvent, render } from '@testing-library/react-native';
@@ -37,10 +34,8 @@ describe('MenuContentEditor - Menu Item Management', () => {
       wrapper: createWrapper(),
     });
 
-    // Expand category
     fireEvent.press(getByTestId('category-toggle-button-0'));
 
-    // Add item
     const addItemButton = getByText('Add Item');
     fireEvent.press(addItemButton);
 
@@ -63,7 +58,6 @@ describe('MenuContentEditor - Menu Item Management', () => {
         }),
       ],
     });
-    // Verify that the new item has an id field
     const calledWith = mockOnChange.mock.calls[0][0] as {
       categories: Array<{ items: Array<{ id?: string }> }>;
     };
@@ -94,10 +88,8 @@ describe('MenuContentEditor - Menu Item Management', () => {
       { wrapper: createWrapper() },
     );
 
-    // Expand category
     fireEvent.press(getByTestId('category-toggle-button-0'));
 
-    // Update price
     const priceInput = getByDisplayValue('8.5');
     fireEvent.changeText(priceInput, '12.99');
 
@@ -139,10 +131,8 @@ describe('MenuContentEditor - Menu Item Management', () => {
       wrapper: createWrapper(),
     });
 
-    // Expand category
     fireEvent.press(getByTestId('category-toggle-button-0'));
 
-    // Toggle availability
     const availableButton = getByText('Available');
     fireEvent.press(availableButton);
 
@@ -191,10 +181,8 @@ describe('MenuContentEditor - Menu Item Management', () => {
       { wrapper: createWrapper() },
     );
 
-    // Expand category
     fireEvent.press(getByTestId('category-toggle-button-0'));
 
-    // Delete first item (Bruschetta) via testID
     fireEvent.press(getByTestId('menu-item-delete-button-0-0'));
 
     expect(mockOnChange).toHaveBeenCalledWith({

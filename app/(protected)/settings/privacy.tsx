@@ -1,7 +1,3 @@
-/**
- * Privacy Settings route page.
- * Wraps the PrivacySettingsScreen component.
- */
 import React from 'react';
 
 import { PrivacySettingsScreen } from '../../../src/components/Settings';

@@ -1,6 +1,3 @@
-/**
- * Tests for MenuContentEditor - Category Management functionality.
- */
 import './MenuContentEditor.mocks';
 
 import { fireEvent, render } from '@testing-library/react-native';
@@ -41,7 +38,6 @@ describe('MenuContentEditor - Category Management', () => {
         }),
       ],
     });
-    // Verify that the new category has an id field
     const calledWith = mockOnChange.mock.calls[0][0] as { categories: Array<{ id?: string }> };
     expect(calledWith.categories[0].id).toBeDefined();
     expect(calledWith.categories[0].id?.startsWith('cat_')).toBe(true);
@@ -63,10 +59,8 @@ describe('MenuContentEditor - Category Management', () => {
       { wrapper: createWrapper() },
     );
 
-    // Expand category first
     fireEvent.press(getByTestId('category-toggle-button-0'));
 
-    // Now edit the category name
     const categoryInput = getByPlaceholderText('Category Name');
     fireEvent.changeText(categoryInput, 'Starters');
 
@@ -101,7 +95,6 @@ describe('MenuContentEditor - Category Management', () => {
       wrapper: createWrapper(),
     });
 
-    // Open overflow menu for first category, then press delete
     fireEvent.press(getByTestId('category-overflow-button-0'));
     fireEvent.press(getByTestId('category-delete-button-0'));
 

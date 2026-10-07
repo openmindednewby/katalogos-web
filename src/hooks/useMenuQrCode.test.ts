@@ -1,7 +1,3 @@
-/**
- * Tests for useMenuQrCode hook.
- * Focuses on state management logic for QR code modal.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import { useMenuQrCode } from './useMenuQrCode';

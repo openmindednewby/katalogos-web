@@ -1,9 +1,6 @@
 
 
 
-/**
- * Form and input layout styles.
- */
 import { StyleSheet } from 'react-native';
 
 const LIGHT_BORDER_COLOR = '#ddd';
@@ -13,7 +10,6 @@ const INACTIVE_TEXT_COLOR = '#555';
 const SUBTLE_TEXT_COLOR = '#666';
 
 export const formStyles = StyleSheet.create({
-  // Section card
   sectionCard: {
     padding: 16,
     borderWidth: 1,
@@ -26,7 +22,6 @@ export const formStyles = StyleSheet.create({
     fontSize: 16,
   },
 
-  // Tabs
   tabsWrapper: {
     flexDirection: 'row',
     marginTop: 8,
@@ -44,7 +39,6 @@ export const formStyles = StyleSheet.create({
     color: INACTIVE_TEXT_COLOR,
   },
 
-  // Form row helpers
   formRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -65,7 +59,6 @@ export const formStyles = StyleSheet.create({
     marginTop: 8,
   },
 
-  // Questions section
   questionsWrapper: {
     marginTop: 12,
   },
@@ -79,7 +72,6 @@ export const formStyles = StyleSheet.create({
     fontSize: 12,
   },
 
-  // Checkbox
   checkboxRow: {
     flexDirection: 'row',
     alignItems: 'center',

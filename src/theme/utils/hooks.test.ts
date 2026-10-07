@@ -15,7 +15,6 @@ jest.mock('react-redux', () => ({
   useSelector: (selector: Selector) => mockUseSelector(selector),
 }));
 
-// Mock ThemeContext as null (no provider) so the hook falls back to Redux
 jest.mock('./ThemeContext', () => ({
   ThemeContext: { _currentValue: null, Provider: jest.fn() },
 }));

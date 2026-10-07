@@ -1,6 +1,3 @@
-/**
- * MetadataTab - Editor tab for menu name, description, theme, and global styling.
- */
 import React from 'react';
 
 import { StyleSheet, Text, TextInput, View } from 'react-native';
@@ -89,13 +86,10 @@ const MetadataTab: React.FC<MetadataTabProps> = ({
   onRemoveSchedule,
   isScheduleSaving,
 }) => {
-  // ScheduleEditor needs the schedule callbacks AND the optional color props;
-  // the aliased checks let TypeScript narrow all four to non-undefined.
   const showScheduleEditor = isValueDefined(onSaveSchedule) && isValueDefined(onRemoveSchedule)
     && isValueDefined(primaryColor) && isValueDefined(textOnPrimary);
   return (
     <View>
-      {/* Menu Name */}
       <Text style={[styles.label, { color: textColor }]}>
         {FM('onlineMenus.nameLabel')} *
       </Text>
@@ -116,7 +110,6 @@ const MetadataTab: React.FC<MetadataTabProps> = ({
         <Text style={[styles.errorText, { color: errorColor }]}>{nameError}</Text>
       ) : null}
 
-      {/* Menu Description */}
       <Text style={[styles.label, { color: textColor }]}>
         {FM('onlineMenus.descriptionLabel')}
       </Text>
@@ -133,14 +126,12 @@ const MetadataTab: React.FC<MetadataTabProps> = ({
         onChangeText={setDescription}
       />
 
-      {/* Theme Selector */}
       <ThemeSelector
         hasPremiumThemes={hasPremiumThemes}
         onPremiumThemeBlocked={onPremiumThemeBlocked}
         onSelectTheme={onThemeSelect}
       />
 
-      {/* Global Styling Controls */}
       <GlobalStylingControls
         backgroundColor={menuContents.backgroundColor}
         textColor={menuContents.textColor}
@@ -156,7 +147,6 @@ const MetadataTab: React.FC<MetadataTabProps> = ({
         }}
       />
 
-      {/* Featured Section Settings */}
       <FeaturedSectionSettings
         borderColor={borderColor}
         menuContents={menuContents}
@@ -165,7 +155,6 @@ const MetadataTab: React.FC<MetadataTabProps> = ({
         onUpdate={setMenuContents}
       />
 
-      {/* Menu Schedule */}
       {showScheduleEditor ? <ScheduleEditor
           backgroundColor={backgroundColor}
           borderColor={borderColor}

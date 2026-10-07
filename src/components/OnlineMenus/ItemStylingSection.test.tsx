@@ -1,11 +1,3 @@
-/**
- * ItemStylingSection Unit Tests
- *
- * Tests focus on logic and behavior, not rendering:
- * - Toggle expansion state
- * - Styling changes propagate through callbacks
- * - Default values are used when item has no styling
- */
 import React from 'react';
 
 import { fireEvent, render } from '@testing-library/react-native';
@@ -20,9 +12,6 @@ import MediaSize from '../../types/enums/MediaSize';
 
 import type { MenuItem } from '../../types/menuTypes';
 
-// =============================================================================
-// Mocks
-// =============================================================================
 
 jest.mock('react-redux', () => ({
   useSelector: jest.fn(() => 'light'),
@@ -84,9 +73,6 @@ jest.mock('./Styling/components/PriceStyleEditor', () => {
   return MockPriceStyleEditor;
 });
 
-// =============================================================================
-// Test Data
-// =============================================================================
 
 const createMockItem = (overrides?: Partial<MenuItem>): MenuItem => ({
   id: 'item-1',
@@ -105,9 +91,6 @@ const defaultProps = {
   surfaceColor: '#fff',
 };
 
-// =============================================================================
-// Tests
-// =============================================================================
 
 describe('ItemStylingSection', () => {
   beforeEach(() => {
@@ -124,24 +107,19 @@ describe('ItemStylingSection', () => {
     it('expands when header is pressed', () => {
       const { getByTestId, queryByTestId } = render(<ItemStylingSection {...defaultProps} />);
 
-      // Initially collapsed
       expect(queryByTestId(TestIds.ITEM_STYLING_CONTENT)).toBeNull();
 
-      // Press header to expand
       fireEvent.press(getByTestId(TestIds.ITEM_STYLING_HEADER));
 
-      // Now expanded
       expect(getByTestId(TestIds.ITEM_STYLING_CONTENT)).toBeTruthy();
     });
 
     it('collapses when header is pressed again', () => {
       const { getByTestId, queryByTestId } = render(<ItemStylingSection {...defaultProps} />);
 
-      // Expand
       fireEvent.press(getByTestId(TestIds.ITEM_STYLING_HEADER));
       expect(getByTestId(TestIds.ITEM_STYLING_CONTENT)).toBeTruthy();
 
-      // Collapse
       fireEvent.press(getByTestId(TestIds.ITEM_STYLING_HEADER));
       expect(queryByTestId(TestIds.ITEM_STYLING_CONTENT)).toBeNull();
     });
@@ -154,10 +132,8 @@ describe('ItemStylingSection', () => {
         <ItemStylingSection {...defaultProps} onUpdate={onUpdate} />
       );
 
-      // Expand section
       fireEvent.press(getByTestId(TestIds.ITEM_STYLING_HEADER));
 
-      // Trigger box style change
       fireEvent.press(getByTestId('box-style-trigger'));
 
       expect(onUpdate).toHaveBeenCalledWith({
@@ -189,7 +165,7 @@ describe('ItemStylingSection', () => {
           borderWidth: 2,
           borderColor: '#000',
           borderRadius: 8,
-          padding: 10, // Changed value
+          padding: 10,
           shadowEnabled: true,
         }),
       });
@@ -231,7 +207,7 @@ describe('ItemStylingSection', () => {
 
       expect(onUpdate).toHaveBeenCalledWith({
         imageSettings: expect.objectContaining({
-          position: 'right', // Changed value
+          position: 'right',
           size: 'large',
           fit: 'contain',
           borderRadius: 12,
@@ -277,7 +253,7 @@ describe('ItemStylingSection', () => {
 
       expect(onUpdate).toHaveBeenCalledWith({
         priceStyle: expect.objectContaining({
-          fontSize: 20, // Changed value
+          fontSize: 20,
           fontWeight: 'bold',
           color: '#ff0000',
           showCurrency: true,
@@ -300,7 +276,6 @@ describe('ItemStylingSection', () => {
       fireEvent.press(getByTestId(TestIds.ITEM_STYLING_HEADER));
       fireEvent.press(getByTestId('box-style-trigger'));
 
-      // Should use defaults and apply the change
       expect(onUpdate).toHaveBeenCalledWith({
         styling: expect.objectContaining({ padding: 10 }),
       });

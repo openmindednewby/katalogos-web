@@ -1,20 +1,10 @@
-/**
- * Per-app marketing brand constants.
- *
- * Katalogos — full Terracotta Warm + Manrope identity (greenfield, no tenant continuity).
- * Marketing landing AND in-app default theme both use this brand.
- *
- * Sourced from apps/katalogos-web/brand/brand.config.json (locked 2026-05-03).
- */
+/** Per-app marketing brand constants. */
 
 /** Wordmark + body font family used across all marketing surfaces. */
 export const MARKETING_WORDMARK_FONT_FAMILY =
   '"Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif';
 
-/**
- * Locked preferred wordmark weight from brand.config.json (KW-02 Manrope).
- * `as const` narrows the literal so it threads into RN Text fontWeight without assertions.
- */
+/** Locked preferred wordmark weight from brand.config.json (KW-02 Manrope). */
 export const MARKETING_WORDMARK_WEIGHT = '500' as const;
 
 /** Locked letter-spacing for the wordmark (-0.02em). */
@@ -29,10 +19,7 @@ export const MARKETING_SITE_NAME = 'Katalogos';
 /** Default social-share image. Existing logo asset (placeholder until brand image is exported). */
 export const MARKETING_OG_IMAGE = '/icons/logo-512.png';
 
-/**
- * P-01 Terracotta Warm palette tokens.
- * These overlay the BaseClient theme on marketing surfaces only — NOT in-app screens.
- */
+/** P-01 Terracotta Warm palette tokens. */
 export const MARKETING_PALETTE = {
   primary: '#b04632',
   accent: '#dca85a',

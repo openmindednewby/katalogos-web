@@ -1,7 +1,3 @@
-/**
- * Tests for useRestoreMenuVersion hook.
- * Focuses on mutation behavior and cache invalidation.
- */
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { renderHook } from '@testing-library/react-native';
 

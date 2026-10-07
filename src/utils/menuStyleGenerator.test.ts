@@ -1,12 +1,3 @@
-/**
- * Unit tests for menuStyleGenerator utility.
- *
- * Tests focus on logic:
- * - Correct style generation from settings
- * - Default value handling for undefined properties
- * - Color scheme integration
- * - Edge cases (null/undefined inputs, partial objects)
- */
 
 import {
   DEFAULT_COLOR_SCHEME,
@@ -853,7 +844,6 @@ describe('menuStyleGenerator', () => {
     it('handles partial boxStyling with shadow', () => {
       const box: BoxStyling = {
         shadowEnabled: true,
-        // No shadowColor or shadowBlur
       };
 
       const result = generateBoxStyles(box);

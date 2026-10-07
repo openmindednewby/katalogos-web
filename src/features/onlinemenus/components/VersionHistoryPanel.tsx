@@ -1,7 +1,3 @@
-/**
- * Panel showing paginated list of menu versions.
- * Displayed as a tab within the menu editor.
- */
 import React, { useCallback, useState } from 'react';
 
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';

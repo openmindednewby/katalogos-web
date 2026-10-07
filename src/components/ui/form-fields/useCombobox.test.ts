@@ -4,9 +4,6 @@ import { useCombobox } from './useCombobox';
 
 import type { SelectOption } from './types';
 
-// =============================================================================
-// Test Data
-// =============================================================================
 
 const MOCK_OPTIONS: SelectOption[] = [
   { value: 'apple', label: 'Apple' },
@@ -23,18 +20,12 @@ const DEFAULT_PARAMS = {
   onBlur: jest.fn(),
 };
 
-// =============================================================================
-// Test Suite
-// =============================================================================
 
 describe('useCombobox', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  // ---------------------------------------------------------------------------
-  // Initial State
-  // ---------------------------------------------------------------------------
 
   describe('initial state', () => {
     it('starts with dropdown closed', () => {
@@ -65,9 +56,6 @@ describe('useCombobox', () => {
     });
   });
 
-  // ---------------------------------------------------------------------------
-  // Filtering
-  // ---------------------------------------------------------------------------
 
   describe('filtering', () => {
     it('filters options case-insensitively as user types', () => {
@@ -117,9 +105,6 @@ describe('useCombobox', () => {
     });
   });
 
-  // ---------------------------------------------------------------------------
-  // Open / Close
-  // ---------------------------------------------------------------------------
 
   describe('open and close', () => {
     it('opens dropdown on input focus', () => {
@@ -171,9 +156,6 @@ describe('useCombobox', () => {
     });
   });
 
-  // ---------------------------------------------------------------------------
-  // Selection
-  // ---------------------------------------------------------------------------
 
   describe('selection', () => {
     it('calls onChange when option is clicked', () => {
@@ -204,9 +186,6 @@ describe('useCombobox', () => {
     });
   });
 
-  // ---------------------------------------------------------------------------
-  // Keyboard Navigation
-  // ---------------------------------------------------------------------------
 
   describe('keyboard navigation', () => {
     const createKeyEvent = (key: string): React.KeyboardEvent =>
@@ -258,7 +237,6 @@ describe('useCombobox', () => {
         result.current.handleInputFocus();
       });
 
-      // Navigate through all options (5 presses: 0,1,2,3,4)
       for (let i = 0; i < MOCK_OPTIONS.length; i++)
         act(() => {
           result.current.handleKeyDown(createKeyEvent('ArrowDown'));
@@ -266,7 +244,6 @@ describe('useCombobox', () => {
 
       expect(result.current.highlightedIndex).toBe(MOCK_OPTIONS.length - 1);
 
-      // One more press wraps to first
       act(() => {
         result.current.handleKeyDown(createKeyEvent('ArrowDown'));
       });
@@ -280,7 +257,6 @@ describe('useCombobox', () => {
         result.current.handleInputFocus();
       });
 
-      // Go down twice
       act(() => {
         result.current.handleKeyDown(createKeyEvent('ArrowDown'));
       });
@@ -289,7 +265,6 @@ describe('useCombobox', () => {
       });
       expect(result.current.highlightedIndex).toBe(1);
 
-      // Go up once
       act(() => {
         result.current.handleKeyDown(createKeyEvent('ArrowUp'));
       });
@@ -324,7 +299,6 @@ describe('useCombobox', () => {
         result.current.handleInputFocus();
       });
 
-      // Navigate to second option
       act(() => {
         result.current.handleKeyDown(createKeyEvent('ArrowDown'));
       });
@@ -332,7 +306,6 @@ describe('useCombobox', () => {
         result.current.handleKeyDown(createKeyEvent('ArrowDown'));
       });
 
-      // Press Enter
       act(() => {
         result.current.handleKeyDown(createKeyEvent('Enter'));
       });
@@ -373,9 +346,6 @@ describe('useCombobox', () => {
     });
   });
 
-  // ---------------------------------------------------------------------------
-  // Click Outside
-  // ---------------------------------------------------------------------------
 
   describe('click outside', () => {
     it('closes dropdown and calls onBlur on click outside', () => {
@@ -389,7 +359,6 @@ describe('useCombobox', () => {
       });
       expect(result.current.isOpen).toBe(true);
 
-      // Simulate click outside
       act(() => {
         const event = new MouseEvent('mousedown', { bubbles: true });
         document.dispatchEvent(event);

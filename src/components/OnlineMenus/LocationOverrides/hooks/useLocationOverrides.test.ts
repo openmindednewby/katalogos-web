@@ -1,7 +1,3 @@
-/**
- * Tests for useLocationOverrides hook.
- * Focuses on logic: override CRUD, dirty tracking, and location switching.
- */
 import { renderHook, act, type RenderHookResult } from '@testing-library/react-native';
 
 import { useLocationOverrides, overrideKey } from './useLocationOverrides';

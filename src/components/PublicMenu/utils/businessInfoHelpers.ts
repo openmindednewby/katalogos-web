@@ -9,7 +9,6 @@ interface OperatingHoursEntry {
   isClosed?: boolean;
 }
 
-/** Type guard for a plain object record. */
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && isValueDefined(value);
 }
@@ -19,7 +18,6 @@ function isNonEmpty(value: string | null | undefined): value is string {
   return isValueDefined(value) && value !== '';
 }
 
-/** Type guard for a valid hours entry. */
 function isValidEntry(value: unknown): value is OperatingHoursEntry {
   if (!isRecord(value)) return false;
   return typeof value.day === 'number' && typeof value.open === 'string' && typeof value.close === 'string';

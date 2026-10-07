@@ -1,9 +1,3 @@
-/**
- * Image picker component for selecting and uploading images.
- *
- * Uses expo-image-picker for image selection, optional web-only
- * CropModal for cropping, and ContentUploader for upload handling.
- */
 import React, { useCallback } from 'react';
 
 import * as ExpoImagePicker from 'expo-image-picker';
@@ -18,18 +12,11 @@ import { useImageCrop } from '../hooks/useImageCrop';
 
 import type { FileInfo } from '../../../lib/hooks/content/types';
 
-// ---------------------------------------------------------------------------
-// Constants
-// ---------------------------------------------------------------------------
 
 const DEFAULT_HINT = 'JPEG, PNG, GIF, or WebP (max 10MB)';
 const DEFAULT_QUALITY = 0.8;
 
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
 
-/** Builds a FileInfo from an expo-image-picker asset. */
 function assetToFileInfo(asset: ExpoImagePicker.ImagePickerAsset): FileInfo {
   const fileName = getFileNameFromUri(asset.uri);
   const mimeType = asset.mimeType ?? getMimeType(fileName);
@@ -45,7 +32,6 @@ interface PreviewUrlState {
   refetch: () => void;
 }
 
-/** Resolves the content preview URL query (public vs authenticated). */
 function useContentPreviewUrl(isPublic: boolean, value?: string): PreviewUrlState {
   const publicUrlQuery = usePublicContentUrl(isPublic ? value : undefined);
   const authenticatedUrlQuery = useContentUrl(isPublic ? undefined : value);
@@ -68,9 +54,6 @@ function useContentPreviewUrl(isPublic: boolean, value?: string): PreviewUrlStat
   };
 }
 
-// ---------------------------------------------------------------------------
-// Component
-// ---------------------------------------------------------------------------
 
 export const ImagePicker = ({
   value, onChange, label, required = false, disabled = false,
@@ -127,9 +110,6 @@ export const ImagePicker = ({
   );
 };
 
-// ---------------------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------------------
 
 interface Props {
   value?: string;
@@ -146,9 +126,6 @@ interface Props {
   initialPreset?: AspectRatioPreset;
 }
 
-// ---------------------------------------------------------------------------
-// URI / MIME helpers
-// ---------------------------------------------------------------------------
 
 function getFileNameFromUri(uri: string): string {
   const parts = uri.split('/');

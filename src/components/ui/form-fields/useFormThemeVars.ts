@@ -1,11 +1,3 @@
-/**
- * Hook that maps useTheme() colors to CSS custom properties
- * for native HTML form field components.
- *
- * Returns a CSSProperties object to be spread on a wrapper element,
- * ensuring form fields use per-tenant theme colors without relying
- * on externally-injected :root CSS variables.
- */
 import { useMemo } from 'react';
 import type { CSSProperties } from 'react';
 
@@ -13,11 +5,9 @@ import { useTheme } from '../../../theme/hooks/useTheme';
 
 const WHITE_COLOR = '#ffffff';
 
-/** CSS custom properties style record compatible with React's style prop. */
 type CssVarStyle = CSSProperties & Record<`--${string}`, string>;
 
 interface FormThemeVars {
-  /** CSS custom properties to spread on the wrapper element */
   style: CssVarStyle;
 }
 

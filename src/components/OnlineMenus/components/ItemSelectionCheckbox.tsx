@@ -1,4 +1,3 @@
-/** ItemSelectionCheckbox - Checkbox for selecting a menu item in bulk mode. */
 import React from 'react';
 
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';

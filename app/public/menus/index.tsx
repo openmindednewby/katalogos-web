@@ -25,13 +25,9 @@ const PublicMenuListPage = (): React.ReactElement => {
   const colors = theme === ThemeMode.Dark ? themePalette.dark : themePalette.light;
   const router = useRouter();
 
-  // Public pages must always show the latest data. staleTime: 0 ensures React
-  // Query refetches on every mount rather than serving a cached snapshot that
-  // might not yet reflect a recent activation / deactivation.
   const STALE_TIME_ZERO = 0;
   const listQuery = useOnlineMenuWebMenuList({ query: { staleTime: STALE_TIME_ZERO } });
 
-  // Filter to active menus only
   const activeMenus = useMemo((): TenantMenusDto[] => {
     const source = listQuery.data?.menus ?? [];
     return source

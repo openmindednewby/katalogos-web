@@ -1,12 +1,3 @@
-/**
- * Core Button — thin adapter over the shared `@dloizides/ui-buttons` Button.
- *
- * Keeps the app-local `ButtonVariant`/`ButtonSize` enums and `icon: IconName`
- * API so the existing call sites stay unchanged; it maps them to the shared
- * string props and an icon render slot. Colours still come from the app theme
- * (the shared Button reads it through the FeedbackUiProvider bridge), so the
- * rendered result is identical to the previous local implementation.
- */
 import React from 'react';
 
 import { Button as SharedButton } from '@dloizides/ui-buttons';

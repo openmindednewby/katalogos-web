@@ -1,7 +1,3 @@
-/**
- * Tests for useTenantAnalytics hook.
- * Focuses on query key generation and fetch function logic.
- */
 import { getTenantAnalyticsQueryKey } from './useTenantAnalytics';
 
 describe('getTenantAnalyticsQueryKey', () => {

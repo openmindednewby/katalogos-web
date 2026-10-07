@@ -1,7 +1,3 @@
-/**
- * Notification categories section.
- * Renders the list of notification categories with their preference controls.
- */
 import React from 'react';
 
 import { StyleSheet, Text } from 'react-native';

@@ -1,6 +1,3 @@
-/**
- * Unit tests for domain validation logic.
- */
 import { isValidDomain } from './domainValidation';
 
 describe('isValidDomain', () => {

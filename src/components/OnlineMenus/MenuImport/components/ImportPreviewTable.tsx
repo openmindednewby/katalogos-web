@@ -1,7 +1,3 @@
-/**
- * Preview table for the menu import wizard.
- * Displays validated rows with color-coded status (valid, error, warning).
- */
 import React from 'react';
 
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -22,9 +18,6 @@ import { menuImportStyles as modalStyles } from '../utils/menuImportStyles';
 
 import type { ValidationResult, ValidatedRow, ValidationIssue } from '../utils/validateMenuRows';
 
-// =============================================================================
-// Local Styles
-// =============================================================================
 
 const previewStyles = StyleSheet.create({
   summaryRow: { flexDirection: 'row', gap: 12, marginBottom: 12 },
@@ -36,9 +29,6 @@ const previewStyles = StyleSheet.create({
   issueText: { fontSize: 11 },
 });
 
-// =============================================================================
-// Sub-components (defined before main component)
-// =============================================================================
 
 const IssueList: React.FC<{ issues: ValidationIssue[]; rowIndex: number; bgColor: string | undefined }> = ({ issues, rowIndex, bgColor }) => (
   <View style={[previewStyles.issueContainer, { backgroundColor: bgColor }]}>
@@ -74,9 +64,6 @@ const PreviewRow: React.FC<{
   );
 };
 
-// =============================================================================
-// Main Component
-// =============================================================================
 
 interface Props {
   validationResult: ValidationResult;

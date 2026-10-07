@@ -1,6 +1,3 @@
-/**
- * Tests for MenuContentEditor - Content Upload Integration.
- */
 import './MenuContentEditor.mocks';
 
 import { fireEvent, render } from '@testing-library/react-native';
@@ -38,10 +35,8 @@ describe('MenuContentEditor - Content Upload Integration', () => {
       { wrapper: createWrapper() },
     );
 
-    // Expand category
     fireEvent.press(getByTestId('category-toggle-button-0'));
 
-    // Check that image picker is rendered
     expect(getByTestId('category-image-picker-0')).toBeTruthy();
   });
 
@@ -61,10 +56,8 @@ describe('MenuContentEditor - Content Upload Integration', () => {
       { wrapper: createWrapper() },
     );
 
-    // Expand category
     fireEvent.press(getByTestId('category-toggle-button-0'));
 
-    // Check that video picker is rendered
     expect(getByTestId('category-video-picker-0')).toBeTruthy();
   });
 
@@ -91,10 +84,8 @@ describe('MenuContentEditor - Content Upload Integration', () => {
       { wrapper: createWrapper() },
     );
 
-    // Expand category
     fireEvent.press(getByTestId('category-toggle-button-0'));
 
-    // Check that content pickers are rendered for menu item
     expect(getByTestId('menu-item-image-picker-0-0')).toBeTruthy();
     expect(getByTestId('menu-item-video-picker-0-0')).toBeTruthy();
     expect(getByTestId('menu-item-document-picker-0-0')).toBeTruthy();

@@ -1,12 +1,6 @@
-/**
- * Test IDs for styling editors (color scheme, typography, price style,
- * media position, box style, header, spacing), notifications, content upload,
- * and native forms showcase.
- * Split from testIds.ts to keep file sizes under 200 lines.
- */
+/** Test IDs for styling editors (color scheme, typography, price style, */
 
 export const StylingTestIds = {
-  // Notifications
   NOTIFICATION_BELL: 'notification-bell',
   NOTIFICATION_BELL_BADGE: 'notification-bell-badge',
   NOTIFICATION_SCREEN: 'notification-screen',
@@ -22,14 +16,12 @@ export const StylingTestIds = {
   NOTIFICATION_PERMISSION_ENABLE_BUTTON: 'notification-permission-enable-button',
   NOTIFICATION_PERMISSION_LATER_BUTTON: 'notification-permission-later-button',
 
-  // Notification Preferences
   NOTIFICATION_PREFERENCES_SCREEN: 'notification-preferences-screen',
   NOTIFICATION_PREFERENCES_ERROR: 'notification-preferences-error',
   NOTIFICATION_PREFERENCES_SAVE_BUTTON: 'notification-preferences-save-button',
   NOTIFICATION_PREFERENCE_DROPDOWN: 'notification-preference-dropdown',
   NOTIFICATION_SETTINGS_BUTTON: 'notification-settings-button',
 
-  // Content Upload Components
   CONTENT_UPLOADER: 'content-uploader',
   CONTENT_UPLOADER_BUTTON: 'content-uploader-button',
   CONTENT_UPLOADER_ERROR: 'content-uploader-error',
@@ -52,7 +44,6 @@ export const StylingTestIds = {
   CONTENT_VIDEO_CATEGORY: 'content-video-category',
   CONTENT_VIDEO_MENU_ITEM: 'content-video-menu-item',
 
-  // Color Scheme Editor
   COLOR_SCHEME_EDITOR: 'color-scheme-editor',
   COLOR_SCHEME_INPUT: 'color-scheme-input',
   COLOR_SCHEME_INPUT_ROW: 'color-scheme-input-row',
@@ -60,7 +51,6 @@ export const StylingTestIds = {
   COLOR_SCHEME_PRESET: 'color-scheme-preset',
   COLOR_SCHEME_RESET_BUTTON: 'color-scheme-reset-button',
 
-  // Typography Editor
   TYPOGRAPHY_EDITOR: 'typography-editor',
   TYPOGRAPHY_SECTION: 'typography-section',
   TYPOGRAPHY_FONT_PICKER: 'typography-font-picker',
@@ -69,7 +59,6 @@ export const StylingTestIds = {
   TYPOGRAPHY_PREVIEW: 'typography-preview',
   TYPOGRAPHY_RESET_BUTTON: 'typography-reset-button',
 
-  // Price Style Editor
   PRICE_STYLE_EDITOR: 'price-style-editor',
   PRICE_STYLE_FONT_SIZE_SLIDER: 'price-style-font-size-slider',
   PRICE_STYLE_FONT_WEIGHT_DROPDOWN: 'price-style-font-weight-dropdown',
@@ -81,7 +70,6 @@ export const StylingTestIds = {
   PRICE_STYLE_STRIKETHROUGH_TOGGLE: 'price-style-strikethrough-toggle',
   PRICE_STYLE_PREVIEW: 'price-style-preview',
 
-  // Media Position Editor
   MEDIA_POSITION_EDITOR: 'media-position-editor',
   MEDIA_POSITION_BUTTON: 'media-position-button',
   MEDIA_SIZE_BUTTON: 'media-size-button',
@@ -90,7 +78,6 @@ export const StylingTestIds = {
   MEDIA_SHOW_TOGGLE: 'media-show-toggle',
   MEDIA_PREVIEW: 'media-preview',
 
-  // Box Style Editor
   BOX_STYLE_EDITOR: 'box-style-editor',
   BOX_STYLE_PREVIEW: 'box-style-preview',
   BOX_STYLE_BACKGROUND_COLOR_INPUT: 'box-style-background-color-input',
@@ -108,7 +95,6 @@ export const StylingTestIds = {
   BOX_STYLE_PADDING_INCREASE: 'box-style-padding-increase',
   BOX_STYLE_SHADOW_TOGGLE: 'box-style-shadow-toggle',
 
-  // Header Editor
   HEADER_EDITOR: 'header-editor',
   HEADER_EDITOR_PREVIEW: 'header-editor-preview',
   HEADER_EDITOR_SHOW_LOGO_TOGGLE: 'header-editor-show-logo-toggle',
@@ -125,7 +111,6 @@ export const StylingTestIds = {
   HEADER_EDITOR_TITLE_POSITION_CENTER: 'header-editor-title-position-center',
   HEADER_EDITOR_TITLE_POSITION_RIGHT: 'header-editor-title-position-right',
 
-  // Global Styling Tab
   GLOBAL_STYLING_TAB: 'global-styling-tab',
   GLOBAL_STYLING_TAB_LAYOUT: 'global-styling-tab-layout',
   GLOBAL_STYLING_TAB_COLORS: 'global-styling-tab-colors',
@@ -136,14 +121,12 @@ export const StylingTestIds = {
   GLOBAL_STYLING_SECTION_HEADER: 'global-styling-section-header',
   GLOBAL_STYLING_SECTION_CONTENT: 'global-styling-section-content',
 
-  // Spacing Settings Editor
   SPACING_EDITOR: 'spacing-editor',
   SPACING_PAGE_PADDING_SLIDER: 'spacing-page-padding-slider',
   SPACING_CATEGORY_SPACING_SLIDER: 'spacing-category-spacing-slider',
   SPACING_ITEM_SPACING_SLIDER: 'spacing-item-spacing-slider',
   SPACING_CONTENT_PADDING_SLIDER: 'spacing-content-padding-slider',
 
-  // Native Forms Showcase
   NATIVE_FORMS_PAGE: 'native-forms-page',
   SHOWCASE_LOGIN_EMAIL: 'showcase-login-email',
   SHOWCASE_LOGIN_PASSWORD: 'showcase-login-password',
@@ -163,7 +146,6 @@ export const StylingTestIds = {
   SHOWCASE_NEWSLETTER_EMAIL: 'showcase-newsletter-email',
   SHOWCASE_NEWSLETTER_SUBMIT: 'showcase-newsletter-submit',
 
-  // Tenant Theme Editor
   TENANT_THEME_EDITOR_SCREEN: 'tenant-theme-editor-screen',
   TENANT_THEME_EDITOR_LOADING: 'tenant-theme-editor-loading',
   TENANT_THEME_EDITOR_SAVE: 'tenant-theme-editor-save',
@@ -174,7 +156,6 @@ export const StylingTestIds = {
   TENANT_THEME_PREVIEW: 'tenant-theme-preview',
   TENANT_THEME_TYPOGRAPHY_SCALE: 'tenant-theme-typography-scale',
 
-  // Theme Settings
   THEME_SETTINGS_SCREEN: 'theme-settings-screen',
   THEME_SETTINGS_LOADING: 'theme-settings-loading',
   THEME_SWATCH_PRIMARY: 'theme-swatch-primary',
@@ -191,14 +172,12 @@ export const StylingTestIds = {
   THEME_BRANDING_UPLOAD: 'theme-branding-upload',
   THEME_LIVE_PREVIEW: 'theme-live-preview',
 
-  // Native Components Showcase
   NATIVE_COMPONENTS_PAGE: 'native-components-page',
   NATIVE_CHECKBOX_CHECKED: 'native-checkbox-checked',
   NATIVE_CHECKBOX_UNCHECKED: 'native-checkbox-unchecked',
   NATIVE_CHECKBOX_DISABLED: 'native-checkbox-disabled',
   NATIVE_CHECKBOX_INDETERMINATE: 'native-checkbox-indeterminate',
 
-  // Image Crop Modal
   CROP_MODAL: 'crop-modal',
   CROP_MODAL_APPLY: 'crop-modal-apply',
   CROP_MODAL_CANCEL: 'crop-modal-cancel',
@@ -208,7 +187,6 @@ export const StylingTestIds = {
   CROP_ASPECT_CLASSIC: 'crop-aspect-classic',
   CROP_ASPECT_FREE: 'crop-aspect-free',
 
-  // Products Showcase Pages
   STUDIO_NATIVE_PRODUCTS_PAGE: 'native-products-page',
   STUDIO_NATIVE_PRODUCTS_GRID: 'native-products-grid',
   STUDIO_PRODUCTS_GRID: 'products-grid',

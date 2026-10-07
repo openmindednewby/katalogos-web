@@ -1,7 +1,3 @@
-/**
- * Stress tests for palette-generator: color scale generation,
- * hex/HSL conversions, lighten/darken, and edge-case inputs.
- */
 import {
   generateColorScale,
   hexToHsl,
@@ -11,7 +7,6 @@ import {
   darken,
 } from './palette-generator';
 
-// -- Constants ----------------------------------------------------------------
 
 const SHADE_KEYS = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'] as const;
 const HEX_PATTERN = /^#[0-9a-f]{6}$/;
@@ -24,9 +19,7 @@ const HEX_BASE = 16;
 const RGB_MAX = 255;
 const FULL_CIRCLE = 360;
 
-// -- Helpers ------------------------------------------------------------------
 
-/** Seed-free pseudo-random hex generator for deterministic-ish stress input. */
 function randomHex(): string {
   const r = Math.floor(Math.random() * (RGB_MAX + 1));
   const g = Math.floor(Math.random() * (RGB_MAX + 1));
@@ -35,7 +28,6 @@ function randomHex(): string {
   return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
 }
 
-/** Parse hex to [r,g,b] channels (0-255). */
 function parseChannels(hex: string): [number, number, number] {
   const clean = hex.replace('#', '');
   return [
@@ -45,7 +37,6 @@ function parseChannels(hex: string): [number, number, number] {
   ];
 }
 
-/** Relative luminance approximation via weighted RGB. */
 function luminance(hex: string): number {
   const [r, g, b] = parseChannels(hex);
   const WEIGHT_R = 0.299;
@@ -54,7 +45,6 @@ function luminance(hex: string): number {
   return WEIGHT_R * r + WEIGHT_G * g + WEIGHT_B * b;
 }
 
-// -- Palette generator: random color stress -----------------------------------
 
 describe('palette generator stress', () => {
   describe('random color scale generation', () => {
@@ -135,7 +125,6 @@ describe('palette generator stress', () => {
   });
 });
 
-// -- Color conversion round-trip stress ---------------------------------------
 
 describe('hex <-> HSL round-trip stress', () => {
   const randomColors = Array.from({ length: ROUND_TRIP_SAMPLE_SIZE }, randomHex);
@@ -171,7 +160,6 @@ describe('hex <-> HSL round-trip stress', () => {
   });
 });
 
-// -- Lighten / darken round-trip stress ---------------------------------------
 
 describe('lighten/darken stress', () => {
   const AMOUNT = 0.3;
@@ -238,7 +226,6 @@ describe('lighten/darken stress', () => {
   });
 });
 
-// -- isValidHex edge cases ----------------------------------------------------
 
 describe('isValidHex edge cases', () => {
   it('rejects empty string', () => expect(isValidHex('')).toBe(false));

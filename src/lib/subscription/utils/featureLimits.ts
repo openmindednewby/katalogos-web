@@ -1,9 +1,3 @@
-/**
- * Maps subscription tiers to feature limits.
- *
- * These limits define what each tier can do. They serve as a client-side
- * fallback; the server is the source of truth via the feature access API.
- */
 import FeatureCode from './FeatureCode';
 import SubscriptionTier from './SubscriptionTier';
 

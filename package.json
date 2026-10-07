@@ -51,7 +51,7 @@
     "@dloizides/auth-web": "^1.18.3",
     "@dloizides/bff-web-client": "^1.2.0",
     "@dloizides/content-upload": "^1.0.0",
-    "@dloizides/frontend-devtools": "^1.2.0",
+    "@dloizides/frontend-devtools": "^1.4.0",
     "@dloizides/legal-ui": "^1.0.1",
     "@dloizides/logging-web": "^1.0.2",
     "@dloizides/notification-client": "^1.4.0",

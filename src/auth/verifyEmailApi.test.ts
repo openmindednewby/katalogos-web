@@ -1,16 +1,3 @@
-/**
- * Unit tests for the verify-email + resend-verification BFF helpers.
- *
- * Focus is on logic: request shape (URL, method, headers, body), response
- * decoding (success / known errorCode / unknown errorCode / non-JSON / network
- * failure). Nothing UI-related lives here — the screen has its own narrow
- * presentational components.
- *
- * We hand-roll a `Response`-shaped mock instead of using the global `Response`
- * constructor because the Jest jsdom env in this app does not ship fetch
- * primitives; only the bits `verifyEmailApi` touches (`ok`, `json()`) need to
- * exist for the helpers to work.
- */
 import { resendVerificationEmail, verifyEmailToken } from './verifyEmailApi';
 import { VerifyEmailErrorCode } from './verifyEmailErrorCode';
 

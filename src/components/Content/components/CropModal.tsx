@@ -1,9 +1,3 @@
-/**
- * CropModal - web-only modal for cropping images before upload.
- *
- * Uses react-easy-crop for the interactive crop area and a native
- * Slider for zoom control. Guarded by Platform.OS === 'web'.
- */
 import React, { useCallback, useState } from 'react';
 
 import { Modal, Platform, Text, TouchableOpacity, View } from 'react-native';
@@ -22,16 +16,10 @@ import { cropModalStyles as styles } from '../utils/cropModalStyles';
 import type AspectRatioPreset from '../../../shared/enums/AspectRatioPreset';
 import type { PixelCrop } from '../utils/cropImageUtils';
 
-// ---------------------------------------------------------------------------
-// Constants
-// ---------------------------------------------------------------------------
 
 const BUTTON_TEXT_ON_PRIMARY = '#ffffff';
 const INITIAL_ZOOM = 1;
 
-// ---------------------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------------------
 
 interface CropArea {
   x: number;
@@ -50,11 +38,7 @@ interface Props {
   onCancel: () => void;
 }
 
-// ---------------------------------------------------------------------------
-// Lazy import helper (web-only)
-// ---------------------------------------------------------------------------
 
-/** Loads the Cropper component on web, returns null otherwise. */
 function getCropper(): React.ComponentType<Record<string, unknown>> | null {
   if (Platform.OS !== 'web') return null;
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- require() returns any
@@ -62,9 +46,6 @@ function getCropper(): React.ComponentType<Record<string, unknown>> | null {
   return mod.default;
 }
 
-// ---------------------------------------------------------------------------
-// Component
-// ---------------------------------------------------------------------------
 
 const CropModal = ({
   visible, imageUri, aspectPreset, aspectRatio, onAspectChange, onApply, onCancel,

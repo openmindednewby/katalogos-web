@@ -1,8 +1,3 @@
-/**
- * Tab bar for the FullMenuEditor.
- * Extracted to keep FullMenuEditor under the file line limit.
- * Scrollable horizontally on phone to prevent overflow on narrow screens.
- */
 import React from 'react';
 
 import { ScrollView, StyleSheet, View } from 'react-native';

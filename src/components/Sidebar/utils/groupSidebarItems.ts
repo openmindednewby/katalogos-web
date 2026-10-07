@@ -2,10 +2,6 @@ import { isValueDefined } from '../../../utils/is';
 
 import type { SidebarItem } from '@baseclient/core';
 
-/**
- * Maps individual sidebar item keys to their parent group key.
- * Items not listed here remain as top-level items.
- */
 const ITEM_TO_GROUP: Record<string, string> = {
   menus: 'nav-group-menus',
   'quiz-templates': 'nav-group-feedback',
@@ -74,13 +70,7 @@ function buildGroupItem(groupKey: string, children: SidebarItem[]): SidebarItem 
   };
 }
 
-/**
- * Groups flat sidebar items into expandable sections.
- *
- * Takes the flat list of items from the module registry and returns
- * a new list where related items are nested under group parent items.
- * Items not mapped to a group remain as top-level items.
- */
+/** Groups flat sidebar items into expandable sections. */
 export function groupSidebarItems(items: SidebarItem[]): SidebarItem[] {
   const groups = new Map<string, SidebarItem[]>();
   const topLevel: SidebarItem[] = [];

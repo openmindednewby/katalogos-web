@@ -1,6 +1,3 @@
-/**
- * Sub-components for ContentPreview.
- */
 import React from 'react';
 
 import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -16,9 +13,6 @@ import { styles, getDocumentIcon } from '../utils/ContentPreviewStyles';
 
 import type { ThemeStyles } from '../utils/ContentPreviewStyles';
 
-// ---------------------------------------------------------------------------
-// Constants
-// ---------------------------------------------------------------------------
 
 const RETRY_BUTTON_MARGIN_TOP = 12;
 const RETRY_BUTTON_PADDING_V = 6;

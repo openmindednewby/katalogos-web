@@ -1,7 +1,3 @@
-/**
- * Tests for versionDiffHelpers utility functions.
- * Tests path formatting, semantic key mapping, summary computation, and value truncation.
- */
 import { VersionChangeType } from '@/shared/enums/VersionChangeType';
 
 import { formatVersionPath, getChangeSemanticKey, getChangeSummary, truncateValue } from './versionDiffHelpers';

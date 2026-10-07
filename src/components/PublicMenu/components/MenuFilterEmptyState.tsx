@@ -1,7 +1,3 @@
-/**
- * MenuFilterEmptyState - Shown when no menu items match the active filters.
- * Displays a message and a hint to adjust filters.
- */
 import React from 'react';
 
 import { Text, View } from 'react-native';
@@ -14,25 +10,16 @@ import { TestIds } from '../../../shared/testIds';
 import type { PublicMenuTheme } from '../utils/publicMenuThemeTypes';
 import type { ResponsiveLayout } from '../utils/responsiveStyles';
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const CONTAINER_PADDING = 40;
 const HINT_MARGIN_TOP = 8;
 
-// =============================================================================
-// Props
-// =============================================================================
 
 interface MenuFilterEmptyStateProps {
   theme: PublicMenuTheme;
   responsive: ResponsiveLayout;
 }
 
-// =============================================================================
-// Component
-// =============================================================================
 
 export const MenuFilterEmptyState: React.FC<MenuFilterEmptyStateProps> = ({
   theme,

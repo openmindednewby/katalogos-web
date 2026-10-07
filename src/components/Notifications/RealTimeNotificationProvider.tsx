@@ -24,9 +24,6 @@ interface Props {
   children: React.ReactNode;
 }
 
-/**
- * Navigate to URL - either internal route or external
- */
 function navigateToUrl(url: string, routerPush: (path: string) => void): void {
   const isHttpUrl = url.startsWith('http://');
   const isHttpsUrl = url.startsWith('https://');
@@ -39,9 +36,6 @@ function navigateToUrl(url: string, routerPush: (path: string) => void): void {
   
 }
 
-/**
- * Process a clicked notification message
- */
 function processClickedMessage(msg: NotificationClickedMessage, routerPush: (path: string) => void): void {
    
   const urlValue: string | null = msg.actionUrl;
@@ -52,16 +46,12 @@ function processClickedMessage(msg: NotificationClickedMessage, routerPush: (pat
   });
    
 
-  // Navigate if URL exists and is not empty
   const hasUrl = isValueDefined(urlValue) && urlValue.length > 0;
   if (hasUrl) 
     navigateToUrl(urlValue, routerPush);
   
 }
 
-/**
- * Handle service worker message callback
- */
 function createMessageHandler(
   routerPush: (path: string) => void,
   trackFn?: (event: AnalyticsEventName, props?: Record<string, string | number | boolean>) => void,
@@ -76,17 +66,7 @@ function createMessageHandler(
   };
 }
 
-/**
- * Wrapper component for notification integration: service-worker registration
- * and OS notification setup, gated on an authenticated BFF session.
- *
- * Post-BFF-cutover the SPA holds no access token. The SignalR
- * `NotificationProvider` authenticates the hub WebSocket with a Bearer token,
- * which the SPA can no longer supply — real-time SignalR notifications are a
- * documented follow-up (they need a BFF WebSocket proxy). Until then this
- * provider still wires the service worker + OS notifications; in-app
- * notifications continue to work via REST through `/bff/api/notifications`.
- */
+/** Wrapper component for notification integration: service-worker registration */
 const RealTimeNotificationProvider = ({ children }: Props): React.ReactElement => {
   const { isLoggedIn } = useAuth();
   const router = useRouter();
@@ -94,7 +74,6 @@ const RealTimeNotificationProvider = ({ children }: Props): React.ReactElement =
   const serviceWorkerRegisteredRef = useRef(false);
   const osNotificationInitializedRef = useRef(false);
 
-  // Register service worker on mount (web only)
   useEffect(() => {
     if (Platform.OS !== 'web')
       return;
@@ -119,11 +98,9 @@ const RealTimeNotificationProvider = ({ children }: Props): React.ReactElement =
     }
 
     registerSW().catch(() => {
-      // Error already logged in registerSW
     });
   }, []);
 
-  // Initialize OS notification service when authenticated
   useEffect(() => {
     const shouldInit = isLoggedIn && Platform.OS === 'web';
     if (!shouldInit)
@@ -148,11 +125,9 @@ const RealTimeNotificationProvider = ({ children }: Props): React.ReactElement =
     }
 
     initOsNotifications().catch(() => {
-      // Error already logged in initOsNotifications
     });
   }, [isLoggedIn]);
 
-  // Handle service worker messages (notification clicks)
   useEffect(() => {
     if (Platform.OS !== 'web')
       return undefined;
@@ -165,9 +140,6 @@ const RealTimeNotificationProvider = ({ children }: Props): React.ReactElement =
     return cleanup;
   }, [router, track]);
 
-  // No SignalR hub: post-BFF-cutover the SPA holds no access token to
-  // authenticate the hub WebSocket. The service worker + OS notifications
-  // above stay wired; in-app notifications use REST via `/bff/api/notifications`.
   return (
     <>
       {isLoggedIn ? <TestApiRegistration /> : null}

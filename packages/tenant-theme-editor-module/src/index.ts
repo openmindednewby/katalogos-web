@@ -2,15 +2,7 @@ import type { Module } from '@baseclient/core';
 
 export const TENANT_THEME_EDITOR_MODULE_NAME = 'tenant-theme-editor';
 
-/**
- * Tenant Theme Editor Module - Theme Customization
- *
- * Required service: IdentityService (port 5002)
- *
- * Features:
- * - Tenant theme CRUD (create, edit, delete)
- * - Theme preview and activation
- */
+/** Tenant Theme Editor Module - Theme Customization */
 export const tenantThemeEditorModule: Module = {
   name: TENANT_THEME_EDITOR_MODULE_NAME,
   displayName: 'Theme Editor',

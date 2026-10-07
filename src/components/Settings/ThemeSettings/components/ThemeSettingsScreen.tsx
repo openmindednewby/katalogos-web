@@ -1,8 +1,3 @@
-/**
- * Theme Settings Screen.
- * Lightweight settings page for viewing and quick-switching theme presets.
- * Admins can modify; non-admins see read-only summary.
- */
 import React, { useCallback, useMemo, useState } from 'react';
 
 import {

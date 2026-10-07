@@ -1,11 +1,5 @@
 
 
-/**
- * Document picker component for selecting and uploading documents.
- *
- * Uses expo-document-picker for document selection and ContentUploader for upload handling.
- * Supports PDF and Word documents.
- */
 import React, { useCallback } from 'react';
 
 import * as ExpoDocumentPicker from 'expo-document-picker';
@@ -27,12 +21,10 @@ export const DocumentPicker = ({
   hint,
   multiple = false,
 }: Props): React.ReactElement => {
-  // Fetch content data if we have a value
   const { data: content } = useContent(value);
   const { data: urlData } = useContentUrl(value);
 
   const handlePickFile = useCallback(async (): Promise<FileInfo | null> => {
-    // Launch document picker
     const result = await ExpoDocumentPicker.getDocumentAsync({
       type: ALLOWED_MIME_TYPES.Document,
       copyToCacheDirectory: true,
@@ -76,27 +68,16 @@ export const DocumentPicker = ({
 }
 
 interface Props {
-  /** Current content ID value (if already uploaded) */
   value?: string;
-  /** Callback when document is uploaded or removed */
   onChange?: (contentId: string | null) => void;
-  /** Optional label text */
   label?: string;
-  /** Whether the field is required */
   required?: boolean;
-  /** Whether the picker is disabled */
   disabled?: boolean;
-  /** Whether uploads should be public */
   isPublic?: boolean;
-  /** Hint text to display in the upload area */
   hint?: string;
-  /** Allow multiple file selection */
   multiple?: boolean;
 }
 
-/**
- * Extracts file name from URI or uses provided name.
- */
 function getFileName(uri: string, providedName?: string): string {
   if (isValueDefined(providedName) && providedName !== '') 
     return providedName;
@@ -107,9 +88,6 @@ function getFileName(uri: string, providedName?: string): string {
   return nameWithoutQuery !== '' ? nameWithoutQuery : 'document.pdf';
 }
 
-/**
- * Gets MIME type from file name.
- */
 function getMimeType(fileName: string): string {
   const extension = fileName.split('.').pop()?.toLowerCase() ?? '';
   if (extension === 'pdf') return 'application/pdf';

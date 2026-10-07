@@ -1,6 +1,3 @@
-/**
- * Utility functions for formatting and calculating nutritional information.
- */
 
 import type { NutritionalInfo } from '../types/menuTypes';
 
@@ -32,12 +29,12 @@ export function fatPercentage(info: NutritionalInfo): number {
   return macroPercentage(info.fatGrams * CALORIES_PER_GRAM_FAT, info.calories);
 }
 
-/** Format a calorie value for display (e.g., 1250 -> "1,250"). */
+/** Format a calorie value for display. */
 export function formatCalories(calories: number): string {
   return Math.round(calories).toLocaleString('en-US');
 }
 
-/** Format grams value for display (e.g., 25.5 -> "25.5"). */
+/** Format a grams value for display. */
 export function formatGrams(grams: number): string {
   const DECIMAL_PLACES = 1;
   const rounded = Number(grams.toFixed(DECIMAL_PLACES));

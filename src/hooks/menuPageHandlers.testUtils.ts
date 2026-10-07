@@ -1,6 +1,3 @@
-/**
- * Shared test utilities for useMenuPageHandlers tests.
- */
 import type { TenantMenusDto } from '../types/menuTypes';
 
 /** Mock translation function for tests - returns the key resolved to its en.json value */
@@ -62,7 +59,6 @@ export function createMockSaveCallbacks(): MockSaveCallbacks {
 /** Sets up common mocks used across tests */
 export function setupCommonMocks(): void {
   jest.clearAllMocks();
-  // Mock window.location for web platform tests
   Object.defineProperty(global, 'window', {
     value: { location: { origin: 'https://test.com' } },
     writable: true,

@@ -1,7 +1,3 @@
-/**
- * CancelButton -- backwards-compatible wrapper around the core Button.
- * Renders a secondary-variant themed button.
- */
 import React from 'react';
 
 import { Button, ButtonVariant } from '../core/Button';
@@ -16,8 +12,8 @@ const DEFAULT_TITLE = 'Cancel';
 const DEFAULT_TEST_ID = 'cancel-button';
 const DEFAULT_HINT = 'Cancels the current action';
 
+// eslint-disable-next-line no-empty-function
 function handleNoOp(): void {
-  // intentional no-op for optional onPress
 }
 
 const CancelButton = ({

@@ -60,7 +60,6 @@ describe('PostHogClient', () => {
   it('queues calls made before the SDK finishes loading and flushes them on ready', async () => {
     const client = new PostHogClient('phc_key', 'https://ph.example.com');
 
-    // Called synchronously before the lazy loader resolves.
     client.track(AnalyticsEventName.MenuCreated, { menuType: 'cafe' });
     expect(mockPosthog.capture).not.toHaveBeenCalled();
 

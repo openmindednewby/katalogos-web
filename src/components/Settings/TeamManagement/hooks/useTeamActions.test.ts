@@ -1,7 +1,3 @@
-/**
- * Unit tests for useTeamActions hook.
- * Focuses on testing callback logic and state transitions.
- */
 import React from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';

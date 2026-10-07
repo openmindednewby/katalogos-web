@@ -1,8 +1,3 @@
-/**
- * TenantStatusBadge - wraps the shared StatusBadge with tenant status color mapping.
- *
- * Kept as StatusBadge export for backwards compatibility.
- */
 import React, { useMemo } from 'react';
 
 import { FM } from '@/localization/helpers';

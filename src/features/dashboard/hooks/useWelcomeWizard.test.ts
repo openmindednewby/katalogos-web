@@ -1,7 +1,3 @@
-/**
- * Tests for useWelcomeWizard hook.
- * Focuses on step navigation, localStorage, API mutation calls, and server-side state.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import type { DashboardData } from '@/components/Dashboard/types';
@@ -71,7 +67,6 @@ describe('useWelcomeWizard', () => {
     mockMutate.mockReset();
     mockCreateMenuMutate.mockReset();
     mockUseCurrentTenant.mockReset();
-    // Default: no tenant name set yet (user pre-dates the /register flow).
     mockUseCurrentTenant.mockReturnValue({ tenantName: null, isLoading: false });
   });
 
@@ -188,7 +183,6 @@ describe('useWelcomeWizard', () => {
     expect(result.current.selectedTemplateSlug).toBeNull();
   });
 
-  // --- Server-side state tests ---
 
   it('hides wizard when server preferences say wizardCompleted is true', () => {
     const prefs = makePreferences({ data: { wizardCompleted: true } });
@@ -230,7 +224,6 @@ describe('useWelcomeWizard', () => {
     expect(result.current.isWizardVisible).toBe(true);
   });
 
-  // --- Auto-skip Step 1 when tenant already has a name ---
 
   it('starts at Step 1 when tenant has no name yet', () => {
     mockUseCurrentTenant.mockReturnValue({ tenantName: null, isLoading: false });
@@ -251,15 +244,10 @@ describe('useWelcomeWizard', () => {
   });
 
   it('auto-skips only once — does not re-skip when user manually returns to Step 1', () => {
-    // Start: tenant has a name -> auto-skip to Logo.
     mockUseCurrentTenant.mockReturnValue({ tenantName: "Joe's Pizza", isLoading: false });
     const { result, rerender } = renderHook(() => useWelcomeWizard(EMPTY_DASHBOARD, makePreferences()));
     expect(result.current.step).toBe(WizardStep.Logo);
 
-    // The Step1 sub-component would only ever set step back to BusinessName via
-    // the underlying useState API, not via the public surface — but the guard
-    // protects against the *render-loop* form of the bug. Re-rendering with
-    // the same tenantName must not "stick" the user away from Logo.
     rerender(undefined);
     expect(result.current.step).toBe(WizardStep.Logo);
   });
@@ -269,7 +257,6 @@ describe('useWelcomeWizard', () => {
     const { result, rerender } = renderHook(() => useWelcomeWizard(EMPTY_DASHBOARD, makePreferences()));
     expect(result.current.step).toBe(WizardStep.BusinessName);
 
-    // Tenant name resolves a tick later — we DO honor it on the next render.
     mockUseCurrentTenant.mockReturnValue({ tenantName: "Joe's Pizza", isLoading: false });
     rerender(undefined);
     expect(result.current.step).toBe(WizardStep.Logo);

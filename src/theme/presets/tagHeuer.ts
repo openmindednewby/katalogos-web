@@ -1,8 +1,3 @@
-/**
- * Tag Heuer variant theme preset.
- * Values are taken directly from palette.ts tagHeuerPalette.
- * Uses green (#008d5c) and red (#ed1b2f) as primary accents.
- */
 import type { TenantThemeConfig } from '../types';
 
 export const TAG_HEUER_THEME_CONFIG: TenantThemeConfig = {

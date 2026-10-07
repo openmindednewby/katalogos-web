@@ -2,12 +2,11 @@ import { LocalStorage } from './LocalStorage';
 
 const isWeb = typeof window !== 'undefined';
 
-// In-memory session store for native (non-web) environments where sessionStorage isn't available
 const inMemorySession: Record<string, string> = {};
 
 interface PersistConfig {
-  local?: string[]; // slice names to persist to LocalStorage/SecureStore
-  session?: string[]; // slice names to persist to sessionStorage (web) or in-memory (native)
+  local?: string[];
+  session?: string[];
 }
 
 type ParseResult = { ok: true; value: unknown } | { ok: false };
@@ -39,8 +38,8 @@ export async function loadPersistedState(cfg: PersistConfig): Promise<Record<str
         const raw = await LocalStorage.getItem(`persist:${key}`);
         const parsed = tryParseJson(raw);
         if (parsed.ok) result[key] = parsed.value;
+      // eslint-disable-next-line no-empty
       } catch {
-        // ignore parse/read errors
       }
     
   
@@ -51,8 +50,8 @@ export async function loadPersistedState(cfg: PersistConfig): Promise<Record<str
         const raw = getSessionRaw(`persist:${key}`);
         const parsed = tryParseJson(raw);
         if (parsed.ok) result[key] = parsed.value;
+      // eslint-disable-next-line no-empty
       } catch {
-        // ignore
       }
     
   
@@ -63,12 +62,11 @@ export async function loadPersistedState(cfg: PersistConfig): Promise<Record<str
 export async function saveSliceToLocal(key: string, value: unknown): Promise<void> {
   try {
     await LocalStorage.setItem(`persist:${key}`, JSON.stringify(value ?? null));
+  // eslint-disable-next-line no-empty
   } catch {
-    // ignore
   }
 }
 
-// ts-prune-ignore-next -- exercised by persist.test.ts via dynamic require
 export function saveSliceToSession(key: string, value: unknown): void {
   try {
     if (isWeb) 
@@ -76,7 +74,7 @@ export function saveSliceToSession(key: string, value: unknown): void {
      else 
       inMemorySession[`persist:${key}`] = JSON.stringify(value ?? null);
     
+  // eslint-disable-next-line no-empty
   } catch {
-    // ignore
   }
 }

@@ -1,6 +1,3 @@
-/**
- * Styles for ReorderButtons component.
- */
 import { StyleSheet } from 'react-native';
 
 import { DISABLED_OPACITY } from '../../../shared/constants';

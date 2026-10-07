@@ -1,7 +1,3 @@
-/**
- * Account Info Section.
- * Displays read-only role and tenant badges in the profile settings.
- */
 import React from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';

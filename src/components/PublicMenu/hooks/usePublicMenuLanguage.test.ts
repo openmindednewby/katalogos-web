@@ -1,8 +1,3 @@
-/**
- * Tests for usePublicMenuLanguage hook and utility functions.
- * Focuses on logic: browser language detection, locale extraction,
- * URL persistence, RTL detection, and state management.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import {
@@ -239,7 +234,6 @@ describe('usePublicMenuLanguage', () => {
     act(() => { result.current.setLanguage('fr'); });
     expect(result.current.currentLanguage).toBe('fr');
 
-    // Simulate re-render with same languages
     rerender({ langs: ['es', 'fr'] });
     expect(result.current.currentLanguage).toBe('fr');
   });

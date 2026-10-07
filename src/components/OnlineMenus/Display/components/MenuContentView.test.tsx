@@ -1,13 +1,3 @@
-/**
- * Unit tests for MenuContentView component.
- *
- * Tests focus on logic and behavior, not visual rendering:
- * - Layout template switching
- * - Global styles propagation
- * - Item press callback
- * - Category filtering (empty categories hidden)
- * - Style merging with defaults
- */
 import React from 'react';
 
 import { fireEvent, render, screen } from '@testing-library/react-native';
@@ -18,7 +8,6 @@ import ItemLayoutType from '../../../../types/enums/ItemLayoutType';
 
 import type { Category, MenuContents, MenuItem } from '../../../../types/menuTypes';
 
-// Mock the MenuItemDisplay to simplify testing - must be before any imports use it
 jest.mock('./MenuItemDisplay', () => {
    
   const ReactModule = require('react');
@@ -48,9 +37,6 @@ jest.mock('./MenuItemDisplay', () => {
   return { MenuItemDisplay: mockMenuItemDisplay };
 });
 
-// =============================================================================
-// Test Data Factories
-// =============================================================================
 
 function createMenuItem(overrides: Partial<MenuItem> = {}): MenuItem {
   return {
@@ -82,9 +68,6 @@ function createMenuContents(overrides: Partial<MenuContents> = {}): MenuContents
   };
 }
 
-// =============================================================================
-// Test Suite
-// =============================================================================
 
 describe('MenuContentView', () => {
   describe('rendering', () => {
@@ -123,10 +106,8 @@ describe('MenuContentView', () => {
 
       render(<MenuContentView contents={contents} menuName="Test Menu" />);
 
-      // Should render available item
       expect(screen.getByTestId(`${TestIds.MENU_CONTENT_VIEW_MENU_ITEM}-0-0`)).toBeTruthy();
 
-      // Should NOT render unavailable item (only 1 item rendered)
       expect(screen.queryByTestId(`${TestIds.MENU_CONTENT_VIEW_MENU_ITEM}-0-1`)).toBeNull();
     });
   });
@@ -172,7 +153,6 @@ describe('MenuContentView', () => {
 
       render(<MenuContentView contents={contents} menuName="Test Menu" />);
 
-      // Component renders - layout is applied internally
       expect(screen.getByTestId(TestIds.MENU_CONTENT_VIEW)).toBeTruthy();
     });
 
@@ -209,7 +189,6 @@ describe('MenuContentView', () => {
       render(<MenuContentView contents={contents} menuName="Test Menu" />);
 
       const container = screen.getByTestId(TestIds.MENU_CONTENT_VIEW);
-      // Verify component renders with custom colors
       expect(container).toBeTruthy();
     });
 
@@ -318,7 +297,6 @@ describe('MenuContentView', () => {
 
       render(<MenuContentView contents={contents} menuName="Test Menu" />);
 
-      // All categories should be rendered
       expect(screen.getByTestId(`${TestIds.MENU_CONTENT_VIEW_CATEGORY_SECTION}-0`)).toBeTruthy();
       expect(screen.getByTestId(`${TestIds.MENU_CONTENT_VIEW_CATEGORY_SECTION}-1`)).toBeTruthy();
       expect(screen.getByTestId(`${TestIds.MENU_CONTENT_VIEW_CATEGORY_SECTION}-2`)).toBeTruthy();
@@ -387,7 +365,6 @@ describe('MenuContentView', () => {
     });
 
     it('renders category with available items when some items are unavailable', () => {
-      // Need at least one available item in category for it to render
       const availableItem = createMenuItem({ id: 'available', isAvailable: true });
       const unavailableItem = createMenuItem({
         id: 'unavailable',
@@ -399,7 +376,6 @@ describe('MenuContentView', () => {
 
       render(<MenuContentView contents={contents} menuName="Test Menu" />);
 
-      // Category renders because it has an available item
       expect(screen.getByTestId(`${TestIds.MENU_CONTENT_VIEW_CATEGORY_SECTION}-0`)).toBeTruthy();
     });
   });

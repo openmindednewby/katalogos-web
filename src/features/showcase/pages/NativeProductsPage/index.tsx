@@ -1,12 +1,4 @@
 /* eslint-disable react-native/no-raw-text, react-native/no-inline-styles, i18next/no-literal-string, react/jsx-no-literals */
-/**
- * Native Products Showcase Page.
- * Displays products from dummyjson API in a native HTML table.
- * Includes category filters and error/retry state.
- *
- * Note: This is a web-only page that uses native HTML elements,
- * so React Native and i18n linting rules are disabled.
- */
 import type { ReactElement } from 'react';
 import { useState } from 'react';
 

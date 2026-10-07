@@ -1,6 +1,3 @@
-/**
- * Typography styles for consistent text rendering.
- */
 import { StyleSheet } from 'react-native';
 
 export const typography = StyleSheet.create({

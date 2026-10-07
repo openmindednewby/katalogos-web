@@ -1,7 +1,3 @@
-/**
- * Utility functions for menu schedule operations.
- * Handles day flag parsing, time formatting, and schedule preview text.
- */
 import { FM } from '@/localization/helpers';
 
 import ScheduledDays from '../../../shared/enums/ScheduledDays';
@@ -58,7 +54,6 @@ export function getSelectedDayLabels(days: number): string[] {
     .map((config) => FM(config.labelKey));
 }
 
-/** Format selected days into a readable summary string. */
 function formatDaysSummary(days: number): string {
   const everyDay: number = ScheduledDays.EveryDay;
   if (days === everyDay)

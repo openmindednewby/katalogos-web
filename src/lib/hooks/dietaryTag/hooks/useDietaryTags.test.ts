@@ -1,7 +1,3 @@
-/**
- * Unit tests for dietary tag hooks.
- * Tests logic and behavior, not rendering.
- */
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react-native';
 

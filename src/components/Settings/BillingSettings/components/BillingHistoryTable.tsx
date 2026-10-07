@@ -1,6 +1,3 @@
-/**
- * BillingHistoryTable - paginated table of past billing transactions.
- */
 import React, { useMemo } from 'react';
 
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';

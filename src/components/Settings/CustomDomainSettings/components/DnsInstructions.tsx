@@ -1,7 +1,3 @@
-/**
- * DnsInstructions - shows CNAME and TXT record setup instructions
- * with copyable values for DNS verification.
- */
 import React, { useCallback } from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';

@@ -49,9 +49,6 @@ export function trimFormValues(values: FormValuesInput): TrimmedFormValues {
   };
 }
 
-/**
- * Converts a trimmed string to undefined if empty.
- */
 function toOptional(value: string): string | undefined {
   return value.length > 0 ? value : undefined;
 }

@@ -1,15 +1,3 @@
-/**
- * React Query hook for fetching and caching the tenant theme configuration.
- *
- * - Reads tenantId from Redux auth state (userInfo.tenantId)
- * - Loads cached theme from localStorage on mount (prevents flash)
- * - Fetches fresh theme via the shared `@dloizides/tenant-theme-web` package
- *   (transport + fallback palette wired in `lib/theme/themeTransport`)
- * - Sends If-None-Match header with cached ETag for conditional requests
- * - On 304 Not Modified, keeps using cached data without re-writing
- * - Writes successful 200 responses to localStorage cache
- * - Falls back to cached data, then defaults, on API errors
- */
 import { useEffect, useMemo } from 'react';
 
 import {
@@ -95,13 +83,11 @@ function extractTenantId(state: RootState): string | undefined {
 }
 
 function handleFetchSuccess(tenantId: string, data: TenantThemeResponse): void {
-  // Skip cache write on 304 Not Modified (cache is already up to date)
   if (data.notModified) return;
   if (!isValueDefined(data.themeConfig)) return;
   writeThemeCache(tenantId, data.themeConfig, data.etag ?? EMPTY_ETAG);
 }
 
-/** Sync fetched theme to localStorage and log errors */
 function useCacheSyncEffects(tenantId: string | undefined, data: TenantThemeResponse | undefined, error: unknown): void {
   useEffect(() => {
     if (!isValueDefined(tenantId) || !isValueDefined(data)) return;
@@ -114,11 +100,9 @@ function useCacheSyncEffects(tenantId: string | undefined, data: TenantThemeResp
   }, [error]);
 }
 
-/** Resolve effective config: fetched > cached > null (304 uses cached) */
 function useResolvedConfig(isLoggedIn: boolean, data: TenantThemeResponse | undefined, cachedConfig: TenantThemeConfig | null): TenantThemeConfig | null {
   return useMemo((): TenantThemeConfig | null => {
     if (!isLoggedIn) return null;
-    // On 304 Not Modified, use cached config (server confirmed it's current)
     const serverConfirmedCached = isValueDefined(data) && data.notModified && isValueDefined(cachedConfig);
     if (serverConfirmedCached) return cachedConfig;
     if (isValueDefined(data?.themeConfig)) return data.themeConfig;
@@ -127,7 +111,6 @@ function useResolvedConfig(isLoggedIn: boolean, data: TenantThemeResponse | unde
   }, [isLoggedIn, data, cachedConfig]);
 }
 
-/** Build stable refetch and clearCache callbacks */
 function useThemeActions(isEnabled: boolean, queryClient: QueryClient): { refetch: () => void; clearCache: () => void } {
   return useMemo(() => ({
     refetch: (): void => {

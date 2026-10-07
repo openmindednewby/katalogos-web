@@ -51,10 +51,6 @@ const WelcomeWizard = ({ wizard }: Props): React.ReactElement => {
   const phoneWrapperStyle = isPhone ? { padding: PHONE_PADDING } : undefined;
   const router = useRouter();
 
-  // P1-08: finishing the first-run wizard drops the new owner straight into the
-  // menu editor (with their starter menu), not the empty-ish dashboard. Wrapping
-  // handleComplete here keeps the navigation side-effect in the container (the
-  // wizard hook is at its line budget and owns state/logic, not routing).
   const wizardWithExit = useMemo<WizardState>(
     () => ({ ...wizard, handleComplete: () => { wizard.handleComplete(); router.push('/menus'); } }),
     [wizard, router],

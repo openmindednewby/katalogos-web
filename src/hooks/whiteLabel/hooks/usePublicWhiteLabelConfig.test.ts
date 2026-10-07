@@ -1,10 +1,3 @@
-/**
- * Unit tests for usePublicWhiteLabelConfig hook.
- * Tests that the hook correctly enables/disables based on tenantId.
- *
- * The mapping logic (toWhiteLabelConfig) is tested in useWhiteLabelConfig.test.ts
- * so we only test the tenantId gating here.
- */
 import { toWhiteLabelConfig } from './useWhiteLabelConfig';
 
 describe('usePublicWhiteLabelConfig (tenantId gating)', () => {

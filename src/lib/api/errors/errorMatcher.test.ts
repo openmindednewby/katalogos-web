@@ -224,8 +224,6 @@ describe('errorMatcher', () => {
       const error = createClassifiedError({ status: 401, url: '/auth/login' });
       const result = matchError(error);
 
-      // session-expired has skipIf for auth endpoints, so it should be skipped
-      // and no other rule matches 401
       expect(result.matched).toBe(false);
     });
 
@@ -250,7 +248,6 @@ describe('errorMatcher', () => {
       const result = matchError(error);
 
       expect(result.matched).toBe(true);
-      // Both have same priority, first registered wins (stable sort behavior)
       expect(result.rule?.action.type).toBeDefined();
     });
 
@@ -286,7 +283,6 @@ describe('errorMatcher', () => {
     it('matches server error range (500-599)', () => {
       const error503 = createClassifiedError({ status: 503 });
       const result503 = matchError(error503);
-      // 503 matches maintenance-mode first (higher priority)
       expect(result503.matched).toBe(true);
       expect(result503.rule?.name).toBe('maintenance-mode');
 
@@ -309,9 +305,6 @@ describe('errorMatcher', () => {
       const result = matchError(error);
 
       expect(result.matched).toBe(true);
-      // network-offline matches status 0 first, or request-timeout matches errorCode
-      // since both have priority 0, network-offline appears first in DEFAULT_ERROR_RULES
-      // after sorting, the one listed earlier in the array wins
     });
   });
 });

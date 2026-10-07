@@ -17,12 +17,10 @@ import MediaSize from '../../../../types/enums/MediaSize';
 
 import type { MediaSettings } from '../../../../types/menuStyleTypes';
 
-// Mock dependencies
 jest.mock('react-redux', () => ({
   useSelector: () => 'light',
 }));
 
-// Mock slider since native modules are not available in tests
 jest.mock('@react-native-community/slider', () => {
    
   const ReactMock = require('react');
@@ -257,7 +255,6 @@ describe('MediaPositionEditor', () => {
       const { getByTestId } = render(<MediaPositionEditor {...defaultProps} />);
 
       const slider = getByTestId('media-border-radius-slider');
-      // Simulate slider change via the onValueChange prop
       slider.props.onValueChange(12);
 
       expect(mockOnChange).toHaveBeenCalledWith({ ...defaultValue, borderRadius: 12 });
@@ -489,7 +486,6 @@ describe('MediaPositionEditor', () => {
       const hiddenValue: MediaSettings = { ...defaultValue, position: MediaPosition.None };
       const { queryByTestId } = render(<MediaPositionEditor {...defaultProps} value={hiddenValue} />);
 
-      // Preview should not exist when hidden
       expect(queryByTestId('media-preview')).toBeNull();
     });
   });
@@ -570,7 +566,6 @@ describe('MediaPositionEditor', () => {
       const noPositionValue: MediaSettings = { size: MediaSize.Medium, fit: MediaFit.Cover };
       const { getByTestId } = render(<MediaPositionEditor {...defaultProps} value={noPositionValue} />);
 
-      // Should still render since position defaults to being visible
       expect(getByTestId('media-position-editor')).toBeTruthy();
     });
 
@@ -578,7 +573,6 @@ describe('MediaPositionEditor', () => {
       const noSizeValue: MediaSettings = { position: MediaPosition.Left, fit: MediaFit.Cover };
       const { getByTestId } = render(<MediaPositionEditor {...defaultProps} value={noSizeValue} />);
 
-      // All size buttons should be visible
       expect(getByTestId('media-size-button-small')).toBeTruthy();
     });
 
@@ -586,7 +580,6 @@ describe('MediaPositionEditor', () => {
       const noFitValue: MediaSettings = { position: MediaPosition.Left, size: MediaSize.Medium };
       const { getByTestId } = render(<MediaPositionEditor {...defaultProps} value={noFitValue} />);
 
-      // All fit buttons should be visible
       expect(getByTestId('media-fit-button-cover')).toBeTruthy();
     });
   });

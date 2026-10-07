@@ -1,7 +1,3 @@
-/**
- * Custom hook that provides menu options for the experiment creation form.
- * Wraps the auto-generated tenant menus list hook.
- */
 import { useMemo } from 'react';
 
 import { isValueDefined } from '../../../utils/is';

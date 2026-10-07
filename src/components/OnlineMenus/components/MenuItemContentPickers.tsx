@@ -1,6 +1,3 @@
-/**
- * MenuItemContentPickers - Content upload section for a menu item.
- */
 import React from 'react';
 
 import { StyleSheet, View } from 'react-native';

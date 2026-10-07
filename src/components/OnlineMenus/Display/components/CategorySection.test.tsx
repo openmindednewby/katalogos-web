@@ -1,12 +1,3 @@
-/**
- * Unit tests for CategorySection component.
- *
- * These tests focus on LOGIC, not rendering:
- * - Style generation based on category settings
- * - Media visibility logic
- * - Description visibility logic
- * - Default value handling
- */
 import FontWeight from '../../../../types/enums/FontWeight';
 import MediaFit from '../../../../types/enums/MediaFit';
 import MediaPosition from '../../../../types/enums/MediaPosition';
@@ -21,9 +12,6 @@ import { generateCategoryStyles, generateMediaStyles } from '../../../../utils/m
 import type { BoxStyling, CategoryTypography } from '../../../../types/menuStyleTypes';
 import type { Category, MenuContents } from '../../../../types/menuTypes';
 
-// =============================================================================
-// Test Data Factories
-// =============================================================================
 
 function createCategory(overrides: Partial<Category> = {}): Category {
   return {
@@ -42,9 +30,6 @@ function createGlobalStyles(overrides: Partial<MenuContents> = {}): MenuContents
   };
 }
 
-// =============================================================================
-// Style Generation Tests
-// =============================================================================
 
 describe('CategorySection Style Generation', () => {
   describe('generateCategoryStyles', () => {
@@ -155,16 +140,12 @@ describe('CategorySection Style Generation', () => {
   });
 });
 
-// =============================================================================
-// Media Style Generation Tests
-// =============================================================================
 
 describe('CategorySection Media Style Generation', () => {
   describe('generateMediaStyles', () => {
     it('applies default media settings when none provided', () => {
       const styles = generateMediaStyles(undefined);
 
-      // generateMediaStyles uses DEFAULT_ITEM_IMAGE_SETTINGS as the base
       expect(styles.borderRadius).toBe(DEFAULT_ITEM_IMAGE_SETTINGS.borderRadius);
       expect(styles.opacity).toBe(DEFAULT_ITEM_IMAGE_SETTINGS.opacity);
     });
@@ -191,9 +172,6 @@ describe('CategorySection Media Style Generation', () => {
   });
 });
 
-// =============================================================================
-// Media Position Logic Tests
-// =============================================================================
 
 describe('CategorySection Media Position Logic', () => {
   describe('position determines layout direction', () => {
@@ -205,7 +183,6 @@ describe('CategorySection Media Position Logic', () => {
       ['background', 'column'],
       ['none', 'column'],
     ])('position "%s" results in flexDirection "%s"', (position, expectedDirection) => {
-      // This tests the getFlexDirection logic
       const getFlexDirection = (pos: MediaPosition): string => {
         switch (pos) {
           case MediaPosition.Left:
@@ -249,9 +226,6 @@ describe('CategorySection Media Position Logic', () => {
   });
 });
 
-// =============================================================================
-// Description Visibility Logic Tests
-// =============================================================================
 
 describe('CategorySection Description Visibility Logic', () => {
   const isDescriptionVisible = (category: Category): boolean => {
@@ -279,15 +253,12 @@ describe('CategorySection Description Visibility Logic', () => {
 
   it('returns default when descriptionVisible is undefined', () => {
     const category = createCategory({
-      typography: { titleFontSize: 24 }, // Other property set, but not descriptionVisible
+      typography: { titleFontSize: 24 },
     });
     expect(isDescriptionVisible(category)).toBe(DEFAULT_CATEGORY_TYPOGRAPHY.descriptionVisible);
   });
 });
 
-// =============================================================================
-// Default Value Handling Tests
-// =============================================================================
 
 describe('CategorySection Default Value Handling', () => {
   it('uses default category name when name is undefined', () => {
@@ -315,9 +286,6 @@ describe('CategorySection Default Value Handling', () => {
   });
 });
 
-// =============================================================================
-// Media Content Detection Tests
-// =============================================================================
 
 describe('CategorySection Media Content Detection', () => {
   const hasMedia = (category: Category): boolean => {
@@ -360,9 +328,6 @@ describe('CategorySection Media Content Detection', () => {
   });
 });
 
-// =============================================================================
-// Overlay Settings Tests
-// =============================================================================
 
 describe('CategorySection Overlay Settings', () => {
   const isOverlayEnabled = (overlay: { enabled: boolean; color: string; opacity: number } | undefined): boolean => {

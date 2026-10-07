@@ -7,9 +7,6 @@ import LayoutTemplate from '../../../../types/enums/LayoutTemplate';
 
 import type { MenuContents } from '../../../../types/menuTypes';
 
-// =============================================================================
-// Mocks
-// =============================================================================
 
 jest.mock('react-redux', () => ({ useSelector: () => 'light' }));
 
@@ -61,9 +58,6 @@ jest.mock('./HeaderEditor', () => {
   return { __esModule: true, default: () => R.createElement(RN.View, { testID: 'header-editor' }) };
 });
 
-// =============================================================================
-// Tests
-// =============================================================================
 
 describe('GlobalStylingTab', () => {
   const mockOnChange = jest.fn();
@@ -110,10 +104,8 @@ describe('GlobalStylingTab', () => {
 
     it('passes disabled prop to collapsible section', () => {
       const { getByTestId } = render(<GlobalStylingTab {...defaultProps} disabled />);
-      // When disabled, section is still rendered but toggle is disabled
       const header = getByTestId('global-styling-tab-layout-header');
       expect(header).toBeTruthy();
-      // Verify component renders without error when disabled
       expect(getByTestId('global-styling-tab')).toBeTruthy();
     });
   });

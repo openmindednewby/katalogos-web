@@ -1,6 +1,3 @@
-/**
- * CategorySection - Renders a menu category with its items in the preview.
- */
 import React from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';
@@ -55,7 +52,6 @@ const CategorySection: React.FC<CategorySectionProps> = ({
   const categoryName = category.name ?? FM('onlineMenus.category');
   const categoryDescription = category.description;
 
-  // Category-level styling (overrides menu-level)
   const hasCustomTextColor = isValueDefined(category.textColor);
   const categoryTextColor = hasCustomTextColor ? String(category.textColor) : menuTextColor;
 

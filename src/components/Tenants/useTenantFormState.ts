@@ -1,6 +1,3 @@
-/**
- * Custom hook for TenantForm state management.
- */
 import { useMemo, useState } from 'react';
 
 import { FM } from '@/localization/helpers';

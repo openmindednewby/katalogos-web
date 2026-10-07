@@ -1,7 +1,3 @@
-/**
- * Tests for useMenuDelete hook.
- * Focus on testing the callback logic, not the underlying mutations.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import {
@@ -16,7 +12,6 @@ import { logger } from '../utils/logger';
 
 type DeleteMutation = ReturnType<typeof useOnlineMenuWebMenuDelete>;
 
-// Mock dependencies
 jest.mock('../lib/notifications', () => ({
   notify: jest.fn(),
   notifySuccess: jest.fn(),

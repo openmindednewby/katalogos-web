@@ -1,13 +1,3 @@
-/**
- * Body of the FullMenuEditor.
- *
- * - Narrow (< EDITOR_TWO_PANE_BREAKPOINT_PX): a single scrollable column,
- *   byte-identical to the pre-two-pane editor layout.
- * - Wide (>= EDITOR_TWO_PANE_BREAKPOINT_PX): a desktop two-pane layout with the
- *   editor form on the left and a live menu preview on the right, each pane
- *   scrolling independently. The preview is driven by the same live editor
- *   state, so edits reflect immediately.
- */
 import React from 'react';
 
 import { ScrollView, Text, View } from 'react-native';

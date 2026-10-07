@@ -1,11 +1,5 @@
 
 
-/**
- * GlobalStylingTab - Unified tabbed interface for all global menu styling options.
- *
- * Combines Layout, Colors, Typography, Media, Header, and Spacing editors with
- * collapsible sections for better UX.
- */
 import React, { useCallback, useState } from 'react';
 
 import { Pressable, ScrollView, Text, View } from 'react-native';
@@ -35,9 +29,6 @@ import type { RootState } from '../../../../store/reduxStore';
 import type { HeaderSettings, MediaSettings } from '../../../../types/menuStyleTypes';
 import type { MenuContents } from '../../../../types/menuTypes';
 
-// =============================================================================
-// Types
-// =============================================================================
 
 interface Props {
   value: MenuContents;
@@ -45,9 +36,6 @@ interface Props {
   disabled?: boolean;
 }
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const TAB_LAYOUT = 'layout';
 const TAB_COLORS = 'colors';
@@ -65,9 +53,6 @@ const TAB_BUTTONS = [
   { value: TAB_SPACING, label: 'Spacing' },
 ];
 
-// =============================================================================
-// Component
-// =============================================================================
 
 const GlobalStylingTab: React.FC<Props> = ({ value, onChange, disabled = false }) => {
   const theme = useSelector((s: RootState) => s.ui.theme);

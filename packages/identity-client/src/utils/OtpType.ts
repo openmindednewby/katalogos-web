@@ -1,4 +1,3 @@
-/** OTP type enum values */
 const OTP_TYPE_SMS = 0;
 const OTP_TYPE_EMAIL = 1;
 

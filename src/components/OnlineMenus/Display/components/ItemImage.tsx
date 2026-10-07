@@ -1,8 +1,5 @@
 
 
-/**
- * ItemImage - Renders the menu item image with proper positioning.
- */
 import React from 'react';
 
 import { View } from 'react-native';

@@ -1,8 +1,3 @@
-/**
- * Tests for useMenuFilter hook and pure filter utility functions.
- * Focuses on logic: search matching, tag filtering, category filtering,
- * tag extraction, and hook state management.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import {
@@ -16,9 +11,6 @@ import {
 
 import type { Category, MenuItem } from '../../../types/menuTypes';
 
-// =============================================================================
-// Test Data Factories
-// =============================================================================
 
 function makeItem(overrides: Partial<MenuItem> = {}): MenuItem {
   return {
@@ -39,9 +31,6 @@ function makeCategory(overrides: Partial<Category> = {}): Category {
   };
 }
 
-// =============================================================================
-// matchesSearch
-// =============================================================================
 
 describe('matchesSearch', () => {
   it('returns true when query is empty', () => {
@@ -68,14 +57,10 @@ describe('matchesSearch', () => {
   });
 
   it('handles items with null name', () => {
-    // The API type says name is never null; verify matchesSearch stays defensive anyway.
     expect(matchesSearch(makeItem({ name: null as unknown as undefined }), 'test')).toBe(false);
   });
 });
 
-// =============================================================================
-// matchesDietaryTags
-// =============================================================================
 
 describe('matchesDietaryTags', () => {
   it('returns true when no tags are selected', () => {
@@ -103,9 +88,6 @@ describe('matchesDietaryTags', () => {
   });
 });
 
-// =============================================================================
-// filterCategoryItems
-// =============================================================================
 
 describe('filterCategoryItems', () => {
   it('returns empty array when no items match search', () => {
@@ -179,9 +161,6 @@ describe('filterCategoryItems', () => {
   });
 });
 
-// =============================================================================
-// filterCategories
-// =============================================================================
 
 describe('filterCategories', () => {
   it('removes categories with no matching items', () => {
@@ -211,9 +190,6 @@ describe('filterCategories', () => {
   });
 });
 
-// =============================================================================
-// extractUniqueTags
-// =============================================================================
 
 describe('extractUniqueTags', () => {
   it('extracts unique tags across all categories', () => {
@@ -278,9 +254,6 @@ describe('extractUniqueTags', () => {
   });
 });
 
-// =============================================================================
-// useMenuFilter hook
-// =============================================================================
 
 describe('useMenuFilter', () => {
   const categories: Category[] = [
@@ -379,12 +352,10 @@ describe('useMenuFilter', () => {
   it('computes correct filtered item count', () => {
     const { result } = renderHook(() => useMenuFilter(categories));
 
-    // All items: 3 + 2 = 5
     expect(result.current.filteredItemCount).toBe(5);
 
     act(() => { result.current.toggleTag('vegan'); });
 
-    // Vegan items: Vegan Burger + Vegan Brownie = 2
     expect(result.current.filteredItemCount).toBe(2);
   });
 

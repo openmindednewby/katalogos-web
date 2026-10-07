@@ -3,13 +3,10 @@ import TimePeriod from '@/shared/enums/TimePeriod';
 
 import type { PopularItemEntry } from '../types';
 
-/** Percentage multiplier for CTR calculations. */
 const PERCENTAGE_MULTIPLIER = 100;
 
-/** View count threshold above which an item is considered "hot". */
 const HOT_THRESHOLD = 50;
 
-/** View count threshold above which an item is considered "popular". */
 const POPULAR_THRESHOLD = 20;
 
 /** Computes click-through rate as a percentage. Returns 0 when there are no views. */

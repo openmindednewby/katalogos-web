@@ -1,17 +1,9 @@
-/**
- * Unit tests for ContentImage component.
- *
- * Focus on logic: conditional rendering based on contentId, and that the image
- * URI is the same-origin BFF streaming path (Option B, #238B) — authenticated
- * `/download` vs public `/public-download` — instead of a resolved S3 URL.
- */
 import React from 'react';
 
 import { render } from '@testing-library/react-native';
 
 import { ContentImage } from './ContentImage';
 
-// Mock theme
 jest.mock('../../../theme/hooks/useTheme', () => ({
   useTheme: () => ({
     theme: {
@@ -31,11 +23,7 @@ jest.mock('../../../theme/hooks/useTheme', () => ({
 
 const CONTENT_BASE = '/bff/api/content/api/v1/content';
 
-/**
- * Extracts the Image source uri from a rendered ContentImage tree.
- */
 function getImageUri(json: ReturnType<ReturnType<typeof render>['toJSON']>): string | undefined {
-  // The tree is View > Image; find the first node whose props carry a source.uri.
   const stack = Array.isArray(json) ? [...json] : [json];
   while (stack.length > 0) {
     const node = stack.pop();

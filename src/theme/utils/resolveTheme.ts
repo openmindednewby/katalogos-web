@@ -1,14 +1,6 @@
 
 
 
-/**
- * Build a fully resolved theme from config and mode.
- * Callers should memoize the result to avoid recomputation.
- */
-/**
- * Builds a ResolvedTheme from a TenantThemeConfig and a ThemeMode.
- * Pure function with no side effects.
- */
 import { generateThemePalette } from './palette-generator';
 import { DEFAULT_THEME_CONFIG } from '../presets';
 

@@ -1,4 +1,3 @@
-// TODO: Replace with generated hook when GET /api/analytics/menu/:menuId is added to OpenAPI spec
 import { useQuery } from '@tanstack/react-query';
 
 import { customInstance } from '@/server/mutators/onlineMenuMutator';

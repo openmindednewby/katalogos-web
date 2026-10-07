@@ -1,7 +1,3 @@
-/**
- * Tests for useCreateUser hook.
- * Focus on testing create mutation callbacks and notifications.
- */
 import './userPageHandlers.setupMocks';
 
 import { renderHook, act } from '@testing-library/react-native';

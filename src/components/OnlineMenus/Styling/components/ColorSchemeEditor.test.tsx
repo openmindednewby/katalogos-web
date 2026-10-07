@@ -6,7 +6,6 @@ import ColorSchemeEditor, { COLOR_PRESETS } from './ColorSchemeEditor';
 
 import type { ColorScheme } from '../utils/colorSchemeConstants';
 
-// Mock dependencies
 jest.mock('react-redux', () => ({
   useSelector: () => 'light',
 }));

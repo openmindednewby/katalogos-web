@@ -1,11 +1,5 @@
 
 
-/**
- * BoxStylePreview Component
- *
- * Displays a preview box with the current styling applied.
- * Used within BoxStyleEditor to show real-time preview of changes.
- */
 import React, { useMemo } from 'react';
 
 import { Platform, Text, View } from 'react-native';
@@ -27,12 +21,8 @@ import { boxStyleEditorStyles as styles } from '../utils/boxStyleEditorStyles';
 
 import type { BoxStyling } from '../../../../types/menuStyleTypes';
 
-/** Default shadow color for native platform shadow */
 const DEFAULT_SHADOW_COLOR = '#000000';
 
-// =============================================================================
-// Types
-// =============================================================================
 
 interface Props {
   value: BoxStyling;
@@ -40,9 +30,6 @@ interface Props {
   textSecondary: string;
 }
 
-// =============================================================================
-// Component
-// =============================================================================
 
 const BoxStylePreview: React.FC<Props> = ({ textColor, textSecondary, value }) => {
 

@@ -1,11 +1,6 @@
 
 
 
-/**
- * Sub-components for ContentUploader.
- *
- * Extracted to reduce file size of main ContentUploader component.
- */
 import React from 'react';
 
 import { StyleSheet, Text } from 'react-native';
@@ -19,9 +14,6 @@ import { Field } from '../../Forms';
 
 import type { ContentCategory, ContentDto } from '../../../lib/hooks/content/types';
 
-// ---------------------------------------------------------------------------
-// Constants
-// ---------------------------------------------------------------------------
 
 const styles = StyleSheet.create({
   errorText: {
@@ -30,9 +22,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// ---------------------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------------------
 
 export interface ThemeStyles {
   uploadButton: ViewStyle;
@@ -71,9 +60,6 @@ interface ErrorDisplayProps {
   themeStyles: ThemeStyles;
 }
 
-// ---------------------------------------------------------------------------
-// Components
-// ---------------------------------------------------------------------------
 
 /**
  * Renders the upload progress view.

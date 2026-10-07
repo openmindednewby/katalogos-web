@@ -1,11 +1,3 @@
-/**
- * Entity-Level Menu Default Constants
- *
- * Default values for category-level and item-level styling properties.
- * Split from menuDefaults.ts to keep file sizes under 200 lines.
- *
- * @see BaseClient/docs/Tasks/TODO/menu-customization-feature.md
- */
 
 import BadgePosition from '../types/enums/BadgePosition';
 import CategoryItemLayout from '../types/enums/CategoryItemLayout';
@@ -31,14 +23,8 @@ import type {
   AvailabilityBadgeStyle,
 } from '../types/menuStyleTypes';
 
-// =============================================================================
-// Category-Level Default Constants
-// =============================================================================
 
-/**
- * Default media settings for category images.
- * Note: overlay is undefined by default (not enabled).
- */
+/** Default media settings for category images. */
 export const DEFAULT_CATEGORY_IMAGE_SETTINGS: MediaSettings = {
   position: MediaPosition.Top,
   size: MediaSize.Large,
@@ -89,14 +75,8 @@ export const DEFAULT_BOX_STYLING: BoxStyling = {
   shadowBlur: 4,
 };
 
-// =============================================================================
-// Item-Level Default Constants
-// =============================================================================
 
-/**
- * Default media settings for item images.
- * Note: overlay is undefined by default (not enabled).
- */
+/** Default media settings for item images. */
 export const DEFAULT_ITEM_IMAGE_SETTINGS: MediaSettings = {
   position: MediaPosition.Left,
   size: MediaSize.Medium,

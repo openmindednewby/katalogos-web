@@ -1,10 +1,3 @@
-/**
- * Hook for managing dark mode preference with localStorage persistence
- * and system preference detection via prefers-color-scheme media query.
- *
- * Returns the user preference (light/dark/system), the resolved effective
- * ThemeMode, and a setter to change the preference.
- */
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { STORAGE_KEYS } from '../../shared/constants';
@@ -37,8 +30,8 @@ function writePreference(preference: DarkModePreference): void {
   if (typeof window === 'undefined') return;
   try {
     localStorage.setItem(STORAGE_KEYS.DARK_MODE_PREFERENCE, preference);
+  // eslint-disable-next-line no-empty
   } catch {
-    // localStorage may be unavailable (private browsing, quota exceeded)
   }
 }
 
@@ -71,7 +64,6 @@ export function useDarkMode(): UseDarkModeReturn {
   );
   const [systemIsDark, setSystemIsDark] = useState(() => getSystemDarkMode());
 
-  // Listen for OS-level color scheme changes
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -97,7 +89,6 @@ export function useDarkMode(): UseDarkModeReturn {
   return { preference: currentPreference, effectiveMode, setPreference };
 }
 
-// Exported for testing
 export {
   readStoredPreference,
   writePreference,

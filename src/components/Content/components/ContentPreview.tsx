@@ -1,12 +1,6 @@
 
 
 
-/**
- * Content preview component.
- *
- * Displays a preview of uploaded content (image, video thumbnail, or document icon).
- * Includes a delete button and loading state.
- */
 import React, { useMemo } from 'react';
 
 import { Text, TouchableOpacity, View } from 'react-native';
@@ -30,9 +24,6 @@ import {
 import type { ContentDto } from '../../../lib/hooks/content/types';
 import type { ThemeStyles, ThemeColors } from '../utils/ContentPreviewStyles';
 
-// ---------------------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------------------
 
 interface Props {
   content?: ContentDto;
@@ -54,13 +45,7 @@ interface DeleteButtonProps {
   themeStyles: ThemeStyles;
 }
 
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
 
-/**
- * Extracts display values from props and content.
- */
 function getDisplayValues(
   url: string | undefined,
   category: ContentCategory | undefined,
@@ -75,9 +60,6 @@ function getDisplayValues(
   };
 }
 
-/**
- * Creates theme colors object from resolved theme.
- */
 function buildThemeColors(theme: { colors: { surface: string; border: string; text: string }; palette: { primary: { '500': string } }; semantic: { error: { '500': string } } }): ThemeColors {
   return {
     surface: theme.colors.surface,
@@ -106,9 +88,6 @@ function createThemeStyles(colors: ThemeColors, errorColor: string, disabled: bo
   };
 }
 
-// ---------------------------------------------------------------------------
-// Sub-components
-// ---------------------------------------------------------------------------
 
 const DeleteButton = ({ onDelete, disabled, isLoading, themeStyles }: DeleteButtonProps): React.JSX.Element => (
   <TouchableOpacity
@@ -124,9 +103,6 @@ const DeleteButton = ({ onDelete, disabled, isLoading, themeStyles }: DeleteButt
   </TouchableOpacity>
 );
 
-// ---------------------------------------------------------------------------
-// Main component
-// ---------------------------------------------------------------------------
 
 export const ContentPreview = ({
   content,

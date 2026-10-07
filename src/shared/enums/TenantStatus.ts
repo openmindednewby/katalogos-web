@@ -25,10 +25,7 @@ export function tenantStatusToLabelKey(s: TenantStatusInput): string {
   return 'tenants.status.disabled';
 }
 
-/**
- * Map tenant status to a semantic color key used by the theme palette.
- * Caller should resolve the actual color from the palette.
- */
+/** Map tenant status to a semantic color key used by the theme palette. */
 export function tenantStatusToColorKey(s: TenantStatusInput | undefined): string {
   const normalized = normalizeStatusValue(s);
   if (normalized === TenantStatusEnum.Enabled) return 'success';

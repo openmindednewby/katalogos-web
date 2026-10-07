@@ -1,10 +1,3 @@
-/**
- * FeaturedSectionSettings - Settings for the featured/Staff Picks section.
- *
- * Provides:
- * - Toggle to enable/disable the Staff Picks section on the public menu
- * - Text input for a custom section title
- */
 import React, { useCallback, useState } from 'react';
 
 import { StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -16,13 +9,8 @@ import { SvgIcon } from '../Icons';
 
 import type { MenuContents } from '../../types/menuTypes';
 
-// =============================================================================
-// Constants
-// =============================================================================
 
-/** Standard React Native Switch inactive thumb color */
 const SWITCH_THUMB_INACTIVE = '#f4f3f4';
-/** Standard React Native Switch inactive track color */
 const SWITCH_TRACK_INACTIVE = '#767577';
 const CHEVRON_ICON_SIZE = 16;
 const SECTION_PADDING = 12;
@@ -40,9 +28,6 @@ const LABEL_MARGIN_BOTTOM = 4;
 const LABEL_MARGIN_TOP = 12;
 const LABEL_MARGIN_TOP_ZERO = 0;
 
-// =============================================================================
-// Styles
-// =============================================================================
 
 const styles = StyleSheet.create({
   container: {
@@ -90,9 +75,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// =============================================================================
-// Props Interface
-// =============================================================================
 
 interface Props {
   menuContents: MenuContents;
@@ -102,9 +84,6 @@ interface Props {
   surfaceColor: string;
 }
 
-// =============================================================================
-// Component
-// =============================================================================
 
 const FeaturedSectionSettings: React.FC<Props> = ({
   menuContents,

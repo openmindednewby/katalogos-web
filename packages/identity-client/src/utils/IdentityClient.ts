@@ -28,13 +28,9 @@ import {
   type RegisterRequest,
 } from '../types';
 
-/** Default HTTP timeout in milliseconds */
 const DEFAULT_TIMEOUT_MS = 30000;
 
-/**
- * OnlineMenu Identity Client
- * Provides embedded authentication for React Native applications
- */
+/** OnlineMenu Identity Client */
 export class IdentityClient {
   private axios: AxiosInstance;
   private baseUrl: string;
@@ -48,8 +44,6 @@ export class IdentityClient {
     const baseHeaders: Record<string, string> = {
       'Content-Type': 'application/json',
     };
-    // Inject X-Realm at the axios-instance level so every outbound
-    // call (including refresh + logout retries) carries it.
     if (typeof realmValue === 'string') baseHeaders['X-Realm'] = realmValue;
     this.axios = axios.create({
       baseURL: config.baseUrl,
@@ -58,21 +52,7 @@ export class IdentityClient {
     });
   }
 
-  /**
-   * Register a new user account and return an auto-issued token bundle.
-   *
-   * Posts to `/auth/register`. The X-Realm header is supplied by the
-   * axios-instance default — it is set from the `realm` constructor arg.
-   *
-   * On non-2xx responses the method throws a `RegisterError` carrying the
-   * server's `errorCode` + per-field validation errors so the UI can
-   * highlight the offending input and show a localized message.
-   *
-   * The success response shape is identical to `loginWithPassword`. The
-   * server contract uses `userInfo.id` instead of `userInfo.sub` — we
-   * normalize that here so downstream consumers do not need to special-case
-   * the register flow.
-   */
+  /** Register a new user account and return an auto-issued token bundle. */
   async register(body: RegisterRequest): Promise<LoginResponse> {
     try {
       const response = await this.axios.post<LoginResponse>('/auth/register', body);

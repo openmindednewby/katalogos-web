@@ -11,17 +11,11 @@ import FontWeight from '../../../../types/enums/FontWeight';
 
 import type { GlobalTypography } from '../../../../types/menuStyleTypes';
 
-// =============================================================================
-// Mocks
-// =============================================================================
 
 jest.mock('react-redux', () => ({
   useSelector: () => 'light',
 }));
 
-// =============================================================================
-// Test Suite
-// =============================================================================
 
 describe('TypographyEditor', () => {
   const mockOnChange = jest.fn();
@@ -50,9 +44,6 @@ describe('TypographyEditor', () => {
     jest.clearAllMocks();
   });
 
-  // ---------------------------------------------------------------------------
-  // Title Typography Tests
-  // ---------------------------------------------------------------------------
 
   describe('title typography', () => {
     it('displays current title font family', () => {
@@ -140,9 +131,6 @@ describe('TypographyEditor', () => {
     });
   });
 
-  // ---------------------------------------------------------------------------
-  // Body Typography Tests
-  // ---------------------------------------------------------------------------
 
   describe('body typography', () => {
     it('displays body section', () => {
@@ -193,9 +181,6 @@ describe('TypographyEditor', () => {
     });
   });
 
-  // ---------------------------------------------------------------------------
-  // Price Typography Tests
-  // ---------------------------------------------------------------------------
 
   describe('price typography', () => {
     it('displays price section', () => {
@@ -236,7 +221,6 @@ describe('TypographyEditor', () => {
       const weightPicker = getByTestId('typography-weight-picker-price');
       fireEvent.press(weightPicker);
 
-      // Use Semibold to avoid confusion with existing 'Normal' labels on the page
       const semiboldOptions = getAllByText('Semibold');
       fireEvent.press(semiboldOptions[semiboldOptions.length - 1]);
 
@@ -247,9 +231,6 @@ describe('TypographyEditor', () => {
     });
   });
 
-  // ---------------------------------------------------------------------------
-  // Preview Tests
-  // ---------------------------------------------------------------------------
 
   describe('preview', () => {
     it('displays preview section', () => {
@@ -265,9 +246,6 @@ describe('TypographyEditor', () => {
     });
   });
 
-  // ---------------------------------------------------------------------------
-  // Reset Button Tests
-  // ---------------------------------------------------------------------------
 
   describe('reset button', () => {
     it('calls onReset when reset button is pressed', () => {
@@ -299,9 +277,6 @@ describe('TypographyEditor', () => {
     });
   });
 
-  // ---------------------------------------------------------------------------
-  // Disabled State Tests
-  // ---------------------------------------------------------------------------
 
   describe('disabled state', () => {
     it('does not open font menu when disabled', () => {
@@ -336,9 +311,6 @@ describe('TypographyEditor', () => {
     });
   });
 
-  // ---------------------------------------------------------------------------
-  // Accessibility Tests
-  // ---------------------------------------------------------------------------
 
   describe('accessibility', () => {
     it('has correct testIDs', () => {
@@ -356,9 +328,6 @@ describe('TypographyEditor', () => {
     });
   });
 
-  // ---------------------------------------------------------------------------
-  // Edge Cases Tests
-  // ---------------------------------------------------------------------------
 
   describe('edge cases', () => {
     it('handles empty GlobalTypography value', () => {
@@ -395,9 +364,6 @@ describe('TypographyEditor', () => {
     });
   });
 
-  // ---------------------------------------------------------------------------
-  // Constants Export Tests
-  // ---------------------------------------------------------------------------
 
   describe('exported constants', () => {
     it('exports FONT_FAMILY_OPTIONS with all built-in fonts', () => {

@@ -1,7 +1,3 @@
-/**
- * WhiteLabelSettingsScreen - main screen for managing white-label configuration.
- * Feature-gated to Enterprise tier via useSubscription.
- */
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { ActivityIndicator, ScrollView, Text, View } from 'react-native';

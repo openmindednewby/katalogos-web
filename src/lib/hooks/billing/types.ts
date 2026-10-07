@@ -1,9 +1,3 @@
-/**
- * Types for billing and subscription hooks.
- *
- * These types are the frontend-facing shapes consumed by UI components.
- * The hooks map Orval-generated API DTOs to these types.
- */
 import type BillingCycle from './enums/BillingCycle';
 import type SubscriptionStatus from './enums/SubscriptionStatus';
 

@@ -1,7 +1,3 @@
-/**
- * Tests for useMenuAnalytics hook.
- * Focuses on query key generation logic.
- */
 import { getMenuAnalyticsQueryKey } from './useMenuAnalytics';
 
 const SAMPLE_MENU_ID = 'menu-123';

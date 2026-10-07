@@ -1,7 +1,3 @@
-/**
- * Unit tests for useWhiteLabelConfig hook utilities.
- * Tests the toWhiteLabelConfig mapping function.
- */
 import { toWhiteLabelConfig } from './useWhiteLabelConfig';
 
 describe('toWhiteLabelConfig', () => {

@@ -1,6 +1,3 @@
-/**
- * Styles for InlineEditableText component.
- */
 import { StyleSheet } from 'react-native';
 
 const EDIT_ICON_MARGIN_LEFT = 4;

@@ -1,4 +1,3 @@
-/** MenuItemEditorBody - Detail body content for a menu item editor with collapsible sections. */
 import React, { useCallback, useState } from 'react';
 
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';

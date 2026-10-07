@@ -1,8 +1,3 @@
-/**
- * Tests for preloadProtectedRoutes.
- * Focuses on logic: requestIdleCallback vs setTimeout fallback,
- * SSR guard, and staggered heavy module preloading.
- */
 
 const PRELOAD_IDLE_TIMEOUT_MS = 2000;
 const PRELOAD_FALLBACK_DELAY_MS = 100;
@@ -95,10 +90,8 @@ describe('preloadProtectedRoutes', () => {
         preloadProtectedRoutes: () => void;
       };
 
-      // Should not throw
       expect(() => preloadProtectedRoutes()).not.toThrow();
 
-      // Restore
       globalThis.window = originalWindow;
     });
   });

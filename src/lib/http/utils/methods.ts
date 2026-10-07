@@ -1,6 +1,3 @@
-/**
- * Core HTTP methods (GET, POST, PUT, PATCH, DELETE).
- */
 import { buildURL, buildPayload, buildQueryParams, buildFormDataPayload } from './utils';
 import env from '../../../config/environment';
 import { isValueDefined } from '../../../utils/is';

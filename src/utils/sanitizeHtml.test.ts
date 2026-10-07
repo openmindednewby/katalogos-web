@@ -1,7 +1,3 @@
-/**
- * Tests for sanitizeHtml utility.
- * Verifies that dangerous HTML is stripped while safe content is preserved.
- */
 import { sanitizeHtml } from './sanitizeHtml';
 
 describe('sanitizeHtml', () => {

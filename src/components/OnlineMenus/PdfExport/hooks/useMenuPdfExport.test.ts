@@ -4,13 +4,11 @@ import { useMenuPdfExport } from './useMenuPdfExport';
 
 import type { MenuContents } from '../../../../types/menuTypes';
 
-// Mock the renderer module
 const mockRenderMenuPdf = jest.fn();
 jest.mock('../utils/menuPdfRenderer', () => ({
   renderMenuPdf: (...args: unknown[]) => mockRenderMenuPdf(...args),
 }));
 
-// Mock createPdfDocument to avoid dynamic jsPDF import
 const mockSave = jest.fn();
 const mockDoc = {
   setFontSize: jest.fn(),

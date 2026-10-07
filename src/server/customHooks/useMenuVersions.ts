@@ -1,7 +1,3 @@
-/**
- * Custom hook for fetching paginated menu version history.
- * Uses the OnlineMenu API: GET /TenantMenus/{menuId}/versions
- */
 import { useQuery } from '@tanstack/react-query';
 
 import { customInstance } from '@/server/mutators/onlineMenuMutator';

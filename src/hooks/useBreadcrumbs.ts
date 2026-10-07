@@ -1,7 +1,3 @@
-/**
- * Hook to resolve breadcrumb trail for the current route.
- * Returns an array of BreadcrumbItem based on the current pathname.
- */
 import { usePathname } from 'expo-router';
 
 import { BREADCRUMB_MAP } from '../navigation/breadcrumbMap';

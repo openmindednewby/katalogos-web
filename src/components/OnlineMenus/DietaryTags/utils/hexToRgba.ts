@@ -1,6 +1,3 @@
-/**
- * Converts a hex color string to rgba with the given alpha.
- */
 const HEX_RADIX = 16;
 const R_START = 1;
 const R_END = 3;

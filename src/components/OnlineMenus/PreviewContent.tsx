@@ -1,6 +1,3 @@
-/**
- * PreviewContent - Renders the menu preview content including categories and items.
- */
 import React from 'react';
 
 import { ScrollView, StyleSheet, Text, View } from 'react-native';

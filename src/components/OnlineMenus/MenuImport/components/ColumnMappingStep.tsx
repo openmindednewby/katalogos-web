@@ -1,7 +1,3 @@
-/**
- * Column mapping step: lets user match file columns to menu fields.
- * Shows auto-detected mappings and allows manual adjustment.
- */
 import React, { useCallback } from 'react';
 
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -19,18 +15,12 @@ import { menuImportStyles as modalStyles } from '../utils/menuImportStyles';
 
 import type { ColumnMapping } from '../utils/columnDetection';
 
-// =============================================================================
-// Local Styles
-// =============================================================================
 
 const columnStyles = StyleSheet.create({
   selectInput: { width: '100%', padding: 4, fontSize: 13 },
   errorBg: { backgroundColor: `${ERROR_TEXT_COLOR}15` },
 });
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const FIELD_OPTIONS: Array<{ value: MenuField; labelKey: string }> = [
   { value: MenuField.Unmapped, labelKey: 'menuImport.columns.unmapped' },
@@ -52,9 +42,6 @@ function toMenuField(value: string): MenuField {
   return MENU_FIELD_MAP[value] ?? MenuField.Unmapped;
 }
 
-// =============================================================================
-// Types
-// =============================================================================
 
 interface Props {
   mappings: ColumnMapping[];
@@ -65,9 +52,6 @@ interface Props {
   onUpdateMapping: (columnIndex: number, field: MenuField) => void;
 }
 
-// =============================================================================
-// Component
-// =============================================================================
 
 const ColumnMappingStep: React.FC<Props> = ({
   mappings, sampleRows, mappingErrors, textColor, borderColor, onUpdateMapping,

@@ -1,7 +1,3 @@
-/**
- * Unit tests for CropModal component.
- * Tests logic: apply/cancel callbacks, disabled apply when no crop area.
- */
 import React from 'react';
 
 import { Platform } from 'react-native';
@@ -12,9 +8,6 @@ import CropModal from './CropModal';
 import AspectRatioPreset from '../../../shared/enums/AspectRatioPreset';
 import { TestIds } from '../../../shared/testIds';
 
-// ---------------------------------------------------------------------------
-// Mocks
-// ---------------------------------------------------------------------------
 
 jest.mock('react-easy-crop', () => ({
   __esModule: true,
@@ -35,9 +28,6 @@ jest.mock('@/localization/helpers', () => ({
   FM: (key: string) => key,
 }));
 
-// ---------------------------------------------------------------------------
-// Tests
-// ---------------------------------------------------------------------------
 
 describe('CropModal', () => {
   const defaultProps = {

@@ -3,7 +3,6 @@
  */
 
 export const ProfileTestIds = {
-  // Profile Settings
   PROFILE_SETTINGS_SCREEN: 'profile-settings-screen',
   PROFILE_SETTINGS_LOADING: 'profile-settings-loading',
   PROFILE_SETTINGS_ERROR: 'profile-settings-error',
@@ -15,7 +14,6 @@ export const ProfileTestIds = {
   PROFILE_TENANT_BADGE: 'profile-tenant-badge',
   PROFILE_SAVE_BUTTON: 'profile-save-button',
 
-  // Security Settings
   SECURITY_SETTINGS_SCREEN: 'security-settings-screen',
   SECURITY_CURRENT_PASSWORD_INPUT: 'security-current-password-input',
   SECURITY_NEW_PASSWORD_INPUT: 'security-new-password-input',
@@ -27,10 +25,8 @@ export const ProfileTestIds = {
   SECURITY_SESSION_ITEM: 'security-session-item',
   SECURITY_REVOKE_SESSION_BUTTON: 'security-revoke-session-button',
 
-  // Settings Dropdown
   SETTINGS_DROPDOWN_BACKDROP: 'settings-dropdown-backdrop',
 
-  // Preferences Settings
   PREFERENCES_SETTINGS_SCREEN: 'preferences-settings-screen',
   PREFERENCES_SETTINGS_LOADING: 'preferences-settings-loading',
   PREFERENCES_SETTINGS_ERROR: 'preferences-settings-error',

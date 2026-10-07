@@ -1,9 +1,3 @@
-/**
- * React Query hook that polls backend service health endpoints.
- *
- * Each service's `/health/ready` endpoint is fetched every POLL_INTERVAL_MS.
- * Results are aggregated into an OverallHealthState.
- */
 
 import { useCallback, useMemo } from 'react';
 
@@ -28,14 +22,9 @@ const HEALTH_QUERY_KEY = ['service-health'] as const;
 /** Timeout for individual health check requests in milliseconds. */
 const REQUEST_TIMEOUT_MS = 5000;
 
-/** Stable empty array to prevent useMemo dependency changes. */
 const EMPTY_SERVICES: ServiceHealthResult[] = [];
 
-/**
- * Fetch the health status of a single service.
- * Uses the Fetch API directly (not axios) because this hits the raw
- * health endpoint which does not require auth headers.
- */
+/** Fetch the health status of a single service. */
 async function checkServiceHealth(baseUrl: string, serviceKey: string): Promise<ServiceHealthResult> {
   const url = buildHealthUrl({ key: serviceKey, nameKey: '', baseUrl });
   const startTime = performance.now();
@@ -68,7 +57,6 @@ async function checkServiceHealth(baseUrl: string, serviceKey: string): Promise<
   }
 }
 
-/** Fetch all service health statuses concurrently. */
 async function fetchAllServiceHealth(): Promise<ServiceHealthResult[]> {
   const checks = SERVICE_CONFIGS.map(
     async (config): Promise<ServiceHealthResult> => checkServiceHealth(config.baseUrl, config.key),
@@ -76,11 +64,7 @@ async function fetchAllServiceHealth(): Promise<ServiceHealthResult[]> {
   return Promise.all(checks);
 }
 
-/**
- * Hook that returns the aggregated health state of all backend services.
- *
- * Polls every 30 seconds. Provides a `refresh` callback for manual refresh.
- */
+/** Hook that returns the aggregated health state of all backend services. */
 function useServiceHealth(): OverallHealthState & { refresh: () => void } {
   const queryClient = useQueryClient();
 

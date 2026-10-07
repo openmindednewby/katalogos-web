@@ -1,7 +1,3 @@
-/**
- * SaveButton -- backwards-compatible wrapper around the core Button.
- * Renders a primary-variant themed button.
- */
 import React from 'react';
 
 import { Button, ButtonVariant } from '../core/Button';
@@ -17,8 +13,8 @@ const DEFAULT_TITLE = 'Save';
 const DEFAULT_TEST_ID = 'save-button';
 const DEFAULT_HINT = 'Saves the current changes';
 
+// eslint-disable-next-line no-empty-function
 function handleNoOp(): void {
-  // intentional no-op for optional onPress
 }
 
 const SaveButton = ({

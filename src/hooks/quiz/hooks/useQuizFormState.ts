@@ -1,9 +1,6 @@
 
 
 
-/**
- * useQuizFormState - State management for quiz form.
- */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { ScrollView, Animated } from 'react-native';
@@ -88,7 +85,6 @@ function initFormFromData(data: TemplateData, t: (k: string, d?: string) => stri
   return { id: data.externalId ?? 'active-template', name: data.name ?? t('quizActive.title', 'Active Quiz'), description: data.description ?? undefined, questions };
 }
 
-/** Applies answer update and clears skip-dependent answers. */
 function applyAnswerUpdate(form: DynamicQuiz, qId: string, v: Answer): { next: DynamicQuiz; cleared: string[] } {
   const cleared: string[] = [];
   const updated = form.questions.map((q) => (q.id === qId ? { ...q, answer: v } : q));
@@ -101,24 +97,20 @@ function applyAnswerUpdate(form: DynamicQuiz, qId: string, v: Answer): { next: D
   return { next: { ...base, questions: afterSkip }, cleared };
 }
 
-/** Collects validation errors for given questions. */
 function collectErrors(questions: UiQuestion[], skipFn: (q: UiQuestion) => boolean, msg: string): Record<string, string> {
   const errs: Record<string, string> = {};
   questions.forEach((q) => { const isUnansweredRequired = !skipFn(q) && q.isRequired === true && isRequiredAnswerMissing(q.answer); if (isUnansweredRequired) errs[q.id] = msg; });
   return errs;
 }
 
-/** Returns error-clearing updater for a question and any cleared-by-skip IDs. */
 function clearErrorsFor(qId: string, cleared: string[]): (prev: Record<string, string>) => Record<string, string> {
   return (prev) => { const n = { ...prev }; delete n[qId]; for (const id of cleared) delete n[id]; return n; };
 }
 
-/** Counts visible pages. */
 function countVisiblePages(form: DynamicQuiz): number {
   return [...new Set(form.questions.map((q) => q.page))].filter((p) => pageHasVisibleQuestion(form, p)).length;
 }
 
-/** Hook managing form initialization and empty-page skip navigation. */
 function useFormEffects({ data, tRef, form, currentPage, setForm, setCurrentPage, setErrors, navigateToPage }: FormEffectsDeps): void {
   useEffect(() => {
     if (data) { setForm(initFormFromData(data, tRef.current)); setCurrentPage(1); setErrors({}); }

@@ -1,6 +1,3 @@
-/**
- * Props interface for TenantListItemActions component.
- */
 interface ActionColors {
   primary: string;
   secondary: string;

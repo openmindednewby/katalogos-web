@@ -1,7 +1,3 @@
-/**
- * Tests for useUserQueries hook.
- * Focus on testing query and mutation object availability.
- */
 import './userPageHandlers.setupMocks';
 
 import { renderHook, act } from '@testing-library/react-native';
@@ -92,7 +88,6 @@ describe('useUserQueries', () => {
 
     expect(mockRefetch).not.toHaveBeenCalled();
 
-    // Reset mock
     useGetRole.mockReturnValue({
       isSuperAdmin: true,
       isTenantAdmin: false,

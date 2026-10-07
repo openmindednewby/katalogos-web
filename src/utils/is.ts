@@ -1,8 +1,4 @@
-/**
- * Re-export type guards from @dloizides/utils package.
- * This file is kept for backward compatibility with existing imports.
- * New code should import directly from '@dloizides/utils'.
- */
+/** Re-export type guards from @dloizides/utils package. */
 export {
   isValueDefined,
   isNotEmptyArray,

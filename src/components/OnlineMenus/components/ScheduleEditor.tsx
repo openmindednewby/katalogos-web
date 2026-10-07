@@ -1,4 +1,3 @@
-/** ScheduleEditor - Editor for menu time-based scheduling with HH:mm validation. */
 import React, { useCallback, useState } from 'react';
 
 import { Text, TouchableOpacity, View } from 'react-native';

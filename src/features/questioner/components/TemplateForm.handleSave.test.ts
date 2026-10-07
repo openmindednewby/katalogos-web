@@ -1,16 +1,5 @@
-/**
- * BUG-QUIZ-009: Tests that handleSave sets isActive directly on basePayload
- * instead of using a confusing alias.
- *
- * We test the logic by verifying the payload received by onSave includes
- * isActive when showStatus is true, and excludes it when false.
- */
 
 describe('TemplateForm - handleSave payload (BUG-QUIZ-009)', () => {
-  /**
-   * Simulates the handleSave logic extracted from TemplateForm.
-   * This mirrors the fixed implementation without the alias.
-   */
   function buildPayload(
     name: string,
     description: string,

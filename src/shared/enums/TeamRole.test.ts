@@ -1,6 +1,3 @@
-/**
- * Unit tests for TeamRole enum helpers.
- */
 import { isManagerRole, isOwnerRole, teamRoleToLabelKey, teamRoleToSemanticColor } from './TeamRole';
 
 describe('teamRoleToLabelKey', () => {

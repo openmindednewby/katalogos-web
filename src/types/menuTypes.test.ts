@@ -19,7 +19,6 @@ describe('menuTypes helpers', () => {
         name: 'Test Menu',
         isActive: true,
       };
-      // Cast to TenantMenusDto to test type guard
       const typedMenu = menu as unknown as TenantMenusDto;
 
       expect(isActiveMenu(typedMenu)).toBe(true);
@@ -30,7 +29,6 @@ describe('menuTypes helpers', () => {
         externalId: 'test-id',
         name: 'Test Menu',
       };
-      // Cast to TenantMenusDto to test type guard
       const typedMenu = menu as unknown as TenantMenusDto;
 
       expect(isActiveMenu(typedMenu)).toBe(false);
@@ -42,7 +40,6 @@ describe('menuTypes helpers', () => {
         name: 'Test Menu',
         isActive: 'true' as unknown as boolean,
       };
-      // Cast to TenantMenusDto to test type guard
       const typedMenu = menu as unknown as TenantMenusDto;
 
       expect(isActiveMenu(typedMenu)).toBe(false);

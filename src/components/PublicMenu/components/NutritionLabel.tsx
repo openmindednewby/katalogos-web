@@ -1,8 +1,3 @@
-/**
- * NutritionLabel - Read-only nutritional info display for the public menu.
- * Shows calories prominently with an expandable section for full macros.
- * Only renders when nutritional info is present on the item.
- */
 import React, { useState } from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';

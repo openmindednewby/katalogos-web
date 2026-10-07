@@ -5,9 +5,6 @@ import CurrencyPosition from '../../../../types/enums/CurrencyPosition';
 import MediaPosition from '../../../../types/enums/MediaPosition';
 
 
-// =============================================================================
-// Style Constants
-// =============================================================================
 
 const ITEM_MIN_HEIGHT = 80;
 const BADGE_PADDING_HORIZONTAL = 8;
@@ -26,9 +23,6 @@ export const DEFAULT_NAME_FONT_SIZE = 16;
 export const DEFAULT_DESCRIPTION_FONT_SIZE = 14;
 export const DEFAULT_IMAGE_BORDER_RADIUS = 8;
 
-// =============================================================================
-// Style Helpers
-// =============================================================================
 
 /**
  * Gets the flex direction for a media position.
@@ -40,9 +34,6 @@ export function getFlexDirection(position: MediaPosition): ViewStyle['flexDirect
   return 'column';
 }
 
-/**
- * Options for formatting a price.
- */
 interface FormatPriceOptions {
   price: number;
   showCurrency: boolean;
@@ -76,9 +67,6 @@ export function getImageSize(size?: string): number {
   return ITEM_IMAGE_SIZE_MEDIUM;
 }
 
-// =============================================================================
-// Base Styles
-// =============================================================================
 
 export const styles = StyleSheet.create({
   container: {

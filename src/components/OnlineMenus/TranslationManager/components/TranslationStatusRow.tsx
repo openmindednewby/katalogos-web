@@ -1,7 +1,3 @@
-/**
- * A single row in the translation status grid.
- * Shows language name, status badge, and action buttons.
- */
 import React from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';

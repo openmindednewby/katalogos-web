@@ -1,6 +1,3 @@
-/**
- * Shared styles for the Experiments feature screens.
- */
 import { StyleSheet } from 'react-native';
 
 const CONTAINER_PADDING = 16;
@@ -35,7 +32,6 @@ export const experimentStyles = StyleSheet.create({
   description: { fontSize: DESC_FONT_SIZE, marginBottom: SECTION_GAP },
   sectionGap: { height: SECTION_GAP },
 
-  // Card
   card: {
     padding: CARD_PADDING,
     borderRadius: CARD_BORDER_RADIUS,
@@ -46,11 +42,9 @@ export const experimentStyles = StyleSheet.create({
   cardName: { fontSize: TITLE_FONT_SIZE, fontWeight: '600', flex: 1, marginRight: 8 },
   cardMenuLabel: { fontSize: SUBTITLE_FONT_SIZE, marginBottom: 8 },
 
-  // Badge
   badge: { paddingHorizontal: BADGE_PADDING_H, paddingVertical: BADGE_PADDING_V, borderRadius: BADGE_BORDER_RADIUS },
   badgeText: { fontSize: BADGE_FONT_SIZE, fontWeight: '600' },
 
-  // Button
   button: {
     paddingVertical: BUTTON_PADDING_V,
     paddingHorizontal: BUTTON_PADDING_H,
@@ -59,12 +53,10 @@ export const experimentStyles = StyleSheet.create({
   },
   buttonText: { fontSize: BUTTON_FONT_SIZE, fontWeight: '700' },
 
-  // Detail
   backButton: { padding: BACK_BUTTON_PADDING, marginBottom: 8 },
   backButtonText: { fontSize: BUTTON_FONT_SIZE },
   controlsRow: { flexDirection: 'row', gap: 12, marginBottom: SECTION_GAP },
 
-  // Metrics
   metricsContainer: { gap: SECTION_GAP },
   metricRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   metricValue: { fontSize: METRIC_FONT_SIZE, fontWeight: '700' },
@@ -72,7 +64,6 @@ export const experimentStyles = StyleSheet.create({
   barContainer: { height: BAR_HEIGHT, borderRadius: BAR_BORDER_RADIUS, overflow: 'hidden' },
   barFill: { height: BAR_HEIGHT, borderRadius: BAR_BORDER_RADIUS },
 
-  // Winner
   winnerContainer: {
     padding: CARD_PADDING,
     borderRadius: CARD_BORDER_RADIUS,
@@ -81,11 +72,9 @@ export const experimentStyles = StyleSheet.create({
   },
   winnerText: { fontSize: WINNER_FONT_SIZE, fontWeight: '700' },
 
-  // Loading
   loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   errorContainer: { padding: CONTAINER_PADDING },
 
-  // Create modal
   modalOverlay: { flex: 1, justifyContent: 'center', padding: CONTAINER_PADDING },
   modalContent: {
     padding: CARD_PADDING,

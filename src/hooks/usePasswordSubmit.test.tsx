@@ -1,7 +1,3 @@
-/**
- * Tests for usePasswordSubmit hook.
- * Focus on testing password update callbacks and notifications.
- */
 import './userPageHandlers.setupMocks';
 
 import { renderHook, act } from '@testing-library/react-native';

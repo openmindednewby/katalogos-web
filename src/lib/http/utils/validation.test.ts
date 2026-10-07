@@ -1,4 +1,3 @@
-/** Mock FM to return the translation key as-is, so error messages contain the key */
 const mockFM = jest.fn((key: string) => key);
 
 describe("http/validation", () => {

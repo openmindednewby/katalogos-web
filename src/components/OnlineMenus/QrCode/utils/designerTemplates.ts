@@ -56,7 +56,6 @@ export function escapeXml(text: string): string {
     .replace(/'/g, '&apos;');
 }
 
-/** Validates that a data URI begins with `data:image/`. */
 function isValidImageDataUri(uri: string): boolean {
   return uri.startsWith(DATA_IMAGE_PREFIX);
 }
@@ -70,7 +69,6 @@ interface TextBlockOptions {
   fontWeight?: string;
 }
 
-/** Renders a text element centered horizontally. */
 function centeredText(opts: TextBlockOptions): string {
   const half = opts.containerWidth / 2;
   const escaped = escapeXml(opts.text);
@@ -88,13 +86,11 @@ interface RectOptions {
   rx?: number;
 }
 
-/** Renders a rect element. */
 function svgRect(opts: RectOptions): string {
   const rxAttr = (opts.rx ?? 0) > 0 ? ` rx="${String(opts.rx)}"` : '';
   return `<rect x="${opts.x}" y="${opts.y}" width="${opts.width}" height="${opts.height}" fill="${escapeXml(opts.fill)}"${rxAttr} />`;
 }
 
-/** Renders a centered image element. */
 function centeredImage(y: number, size: number, dataUri: string, containerWidth: number): string {
   if (!isValidImageDataUri(dataUri)) return '';
   const x = (containerWidth - size) / 2;

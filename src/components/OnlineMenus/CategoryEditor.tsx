@@ -1,4 +1,3 @@
-/** CategoryEditor - Editor for a single menu category including its items. */
 import React, { useCallback, useState } from 'react';
 
 import { Text, TouchableOpacity, View } from 'react-native';

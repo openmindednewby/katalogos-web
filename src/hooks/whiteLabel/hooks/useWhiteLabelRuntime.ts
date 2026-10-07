@@ -1,14 +1,3 @@
-/**
- * Runtime hook for applying white-label configuration on public pages.
- *
- * - Injects custom CSS via a <style> tag
- * - Injects custom favicon via a <link> tag
- * - Determines whether to show the "Powered by" watermark
- * - Provides custom header/footer HTML strings for rendering
- * - Provides company name and support email for display
- *
- * Only runs on the web platform; on native, injections are no-ops.
- */
 import { useEffect, useMemo, useRef } from 'react';
 
 import { Platform } from 'react-native';

@@ -1,7 +1,3 @@
-/**
- * Custom hook for fetching a tenant's public business profile.
- * This hook does NOT require authentication and is used on public menu pages.
- */
 import { useQuery } from '@tanstack/react-query';
 
 import env from '../../config/environment';
@@ -14,7 +10,6 @@ const MINUTES_10 = 10;
 const SECONDS_PER_MINUTE = 60;
 const MS_PER_SECOND = 1000;
 
-/** Stale time for business profile data (10 minutes). */
 const PROFILE_STALE_TIME_MS = MINUTES_10 * SECONDS_PER_MINUTE * MS_PER_SECOND;
 
 /** Query key for public business profile queries. */
@@ -22,7 +17,6 @@ export function getPublicBusinessProfileQueryKey(tenantId: string): string[] {
   return ['public', 'business-profile', tenantId];
 }
 
-/** Fetches a public business profile by tenant ID without authentication. */
 async function fetchPublicBusinessProfile(
   tenantId: string,
   signal?: AbortSignal,
@@ -39,12 +33,7 @@ async function fetchPublicBusinessProfile(
   );
 }
 
-/**
- * Hook for fetching a tenant's public business profile.
- * Does NOT require authentication - intended for public-facing menu pages.
- *
- * @param tenantId - The tenant ID to fetch the business profile for
- */
+/** Hook for fetching a tenant's public business profile. */
 export function usePublicBusinessProfile(
   tenantId: string | null | undefined,
 ): UseQueryResult<IdentityServiceAPITenantsPublicBusinessProfileResponse> {

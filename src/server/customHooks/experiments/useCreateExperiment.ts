@@ -1,7 +1,3 @@
-/**
- * Custom hook for creating an experiment.
- * Uses the OnlineMenu API: POST /api/v1/experiments
- */
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { customInstance } from '@/server/mutators/onlineMenuMutator';

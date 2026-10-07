@@ -1,24 +1,3 @@
-/**
- * VerificationPendingBanner — persistent banner on the authenticated layout
- * shown while the signed-in user's email is not yet verified.
- *
- * Renders only when `userInfo.email_verified === false` (the BFF projects the
- * Keycloak `email_verified` claim verbatim). Hidden whenever the value is
- * `undefined` (claim missing) or `true`, so we never surface the banner for
- * sessions that don't carry the claim yet — better to under-show than to nag
- * users who are already verified.
- *
- * Not dismissible — verifying email is a precondition for password recovery,
- * so we want the affordance present until they act on it. Tapping "Resend
- * verification email" fires the same `/bff/resend-verification` POST as the
- * verify-email page; on success we swap the button for a five-second-lived
- * confirmation. Network-failure collapses to the same confirmation (anti-enum).
- *
- * Colour palette is a hard-coded amber/warning bag because the tenant
- * `ResolvedTheme` does not include a warning token — these match the
- * Tailwind-flavoured `amber-100 / amber-700 / amber-600` triplet used across
- * other warning surfaces in the SaaS.
- */
 import React, { type ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 
 import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
@@ -34,10 +13,6 @@ const TEXT_AMBER = '#92400E';
 const BUTTON_AMBER = '#D97706';
 const BUTTON_TEXT = '#FFFFFF';
 const CONFIRMATION_VISIBLE_MS = 5000;
-/**
- * Warning-sign glyph (U+26A0). Built from a codepoint so the JSX literal-text
- * rule does not flag it — it is decorative chrome, not user copy.
- */
 const WARNING_SIGN_CODEPOINT = 0x26a0;
 const WARNING_GLYPH = String.fromCodePoint(WARNING_SIGN_CODEPOINT);
 
@@ -65,7 +40,6 @@ const styles = StyleSheet.create({
   confirmation: { color: TEXT_AMBER, fontSize: 13, fontStyle: 'italic' },
 });
 
-/** Read the verified email off the current session, or `null` if unavailable. */
 function useResendEmail(): string | null {
   const { userInfo } = useAuth();
   if (!isValueDefined(userInfo)) return null;
@@ -74,7 +48,6 @@ function useResendEmail(): string | null {
   return email;
 }
 
-/** True when the session explicitly carries `email_verified: false`. */
 function useShouldShowBanner(): boolean {
   const { userInfo, isLoggedIn } = useAuth();
   if (!isLoggedIn) return false;
@@ -127,18 +100,11 @@ const ResendAction = ({ email }: ResendActionProps): ReactElement => {
   );
 };
 
-/**
- * Persistent banner mounted on the authenticated layout. Returns `null` when
- * the user is verified or the claim is missing, so the layout can render the
- * banner unconditionally without a wrapping conditional.
- */
+/** Persistent banner mounted on the authenticated layout. Returns `null` when */
 const VerificationPendingBanner = (): ReactElement | null => {
   const show = useShouldShowBanner();
   const email = useResendEmail();
 
-  // Web a11y: announce the banner once on mount so screen readers don't miss
-  // it. RN's `aria-live` is a web-only prop; the typed record keeps the spread
-  // honest on native platforms (where it's a no-op).
   const liveProps: Record<string, string> = Platform.OS === 'web' ? { 'aria-live': 'polite' } : {};
 
   if (!show) return null;

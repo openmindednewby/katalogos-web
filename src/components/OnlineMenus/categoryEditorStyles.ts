@@ -1,6 +1,3 @@
-/**
- * Styles for CategoryEditor component.
- */
 import { StyleSheet } from 'react-native';
 
 const PHONE_CARD_PADDING = 10;

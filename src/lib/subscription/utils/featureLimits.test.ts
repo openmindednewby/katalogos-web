@@ -1,7 +1,3 @@
-/**
- * Unit tests for featureLimits utility.
- * Tests tier-to-limits mapping and required tier lookup.
- */
 import FeatureCode from './FeatureCode';
 import { getFeatureLimits, getRequiredTier } from './featureLimits';
 import SubscriptionTier from './SubscriptionTier';

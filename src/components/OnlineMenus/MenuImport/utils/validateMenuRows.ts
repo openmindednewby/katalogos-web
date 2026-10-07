@@ -1,7 +1,3 @@
-/**
- * Validation utilities for menu import rows.
- * Validates parsed rows and returns structured results with error/warning messages.
- */
 import { isValueDefined } from '@dloizides/utils';
 
 import { getValueByField } from './columnDetection';
@@ -10,16 +6,10 @@ import ValidationSeverity from '../../../../shared/enums/ValidationSeverity';
 
 import type { ColumnMapping } from './columnDetection';
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const DEFAULT_PRICE = 0;
 const CURRENCY_STRIP_PATTERN = /[^0-9.,-]/g;
 
-// =============================================================================
-// Types
-// =============================================================================
 
 export interface ValidationIssue {
   severity: ValidationSeverity;
@@ -44,21 +34,14 @@ export interface ValidationResult {
   warningCount: number;
 }
 
-// =============================================================================
-// Price Parsing
-// =============================================================================
 
-/**
- * Parse a price string into a number.
- * Handles formats: "12.99", "$12.99", "12,99", "EUR 12.99", etc.
- */
+/** Parse a price string into a number. */
 export function parsePrice(raw: string): number | null {
   if (raw.trim() === '') return null;
 
   const cleaned = raw.replace(CURRENCY_STRIP_PATTERN, '').trim();
   if (cleaned === '') return null;
 
-  // European format: "1.234,56" -> "1234.56"
   const hasCommaDecimal = /,\d{1,2}$/.test(cleaned) && !cleaned.endsWith(',');
   if (hasCommaDecimal) {
     const withDot = cleaned.replace(/\./g, '').replace(',', '.');
@@ -71,9 +54,6 @@ export function parsePrice(raw: string): number | null {
   return Number.isFinite(parsed) ? parsed : null;
 }
 
-// =============================================================================
-// Row Validation
-// =============================================================================
 
 /**
  * Validate all parsed rows against the column mappings.

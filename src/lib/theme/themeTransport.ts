@@ -1,11 +1,3 @@
-/**
- * App-owned ports for `@dloizides/tenant-theme-web`.
- *
- * The shared package owns the tenant-theme fetch/cache/mapper logic; this module
- * supplies the per-app concerns: the HTTP transport (wired to the app's
- * BFF `apiClient` and the Identity Orval mutator), the API base URL, the
- * product's fallback palette, and the cache-failure logger.
- */
 import { configureThemeCacheLogger } from '@dloizides/tenant-theme-web';
 
 import env from '../../config/environment';
@@ -58,5 +50,4 @@ export const httpPut: HttpPut = async <TResp = unknown, TBody = unknown>(
     data: args.data,
   });
 
-// Route the package's cache-failure warnings through the app logging service.
 configureThemeCacheLogger((context, message, error) => logger.warn(context, message, error));

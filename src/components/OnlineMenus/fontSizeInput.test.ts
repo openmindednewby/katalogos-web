@@ -1,13 +1,5 @@
-/**
- * Tests for BUG-MENU-009 font size input logic.
- * Verifies the validate-on-blur pattern that allows clearing the input.
- */
 
 describe('Font size input validation logic (BUG-MENU-009)', () => {
-  /**
-   * Simulates the onBlur validation logic from GlobalStylingControls.
-   * Returns the parsed value if valid, or null to indicate a reset to currentFontSize.
-   */
   function validateFontSizeOnBlur(fontSizeText: string): number | null {
     const MIN_FONT_SIZE = 1;
     const parsed = parseInt(fontSizeText, 10);
@@ -40,28 +32,19 @@ describe('Font size input validation logic (BUG-MENU-009)', () => {
   });
 
   it('accepts number with trailing text (parseInt behavior)', () => {
-    // parseInt('32px', 10) returns 32, which is valid
     expect(validateFontSizeOnBlur('32px')).toBe(32);
   });
 
   it('allows clearing and retyping without snapping back', () => {
-    // This simulates the user flow:
-    // 1. User sees "32" in the input
-    // 2. User clears the field -> fontSizeText = ""
-    // 3. During typing, value is just local state, no validation fires
-    // 4. User types "24"
-    // 5. User blurs -> validates "24" -> calls onTitleFontSizeChange(24)
 
     const steps: string[] = ['32', '3', '', '2', '24'];
     const onTitleFontSizeChange = jest.fn();
     const DEFAULT_FONT_SIZE = 32;
 
-    // Simulate typing: only local state changes, no callback
+    // eslint-disable-next-line no-empty
     for (const _step of steps) {
-      // onChangeText just updates local state, no validation
     }
 
-    // Simulate blur on final value
     const finalValue = steps[steps.length - 1];
     const result = validateFontSizeOnBlur(finalValue);
     if (result !== null)
@@ -69,18 +52,14 @@ describe('Font size input validation logic (BUG-MENU-009)', () => {
 
     expect(onTitleFontSizeChange).toHaveBeenCalledWith(24);
 
-    // Simulate blur on empty value (mid-typing)
     onTitleFontSizeChange.mockClear();
     const emptyResult = validateFontSizeOnBlur('');
     if (emptyResult !== null)
       onTitleFontSizeChange(emptyResult);
 
-    // Should not call the callback, just reset to default
     expect(onTitleFontSizeChange).not.toHaveBeenCalled();
-    // In the component, this would reset fontSizeText to String(currentFontSize)
     expect(emptyResult).toBeNull();
 
-    // Verify default would be used
     const resetValue = emptyResult ?? DEFAULT_FONT_SIZE;
     expect(resetValue).toBe(DEFAULT_FONT_SIZE);
   });

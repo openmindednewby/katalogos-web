@@ -1,7 +1,3 @@
-/**
- * Notification Preferences route page.
- * Wraps the NotificationPreferencesScreen component.
- */
 import React from 'react';
 
 import NotificationPreferencesScreen from '../../../src/features/notification/components/NotificationPreferencesScreen';

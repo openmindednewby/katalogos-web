@@ -26,19 +26,17 @@ interface UseTenantMutationsReturn {
   handleCreate: (payload: TenantFormPayload) => void;
 }
 
-/** Create success handler for delete operation */
 function createDeleteSuccessHandler(refetch: () => void): () => void {
   return () => {
     refetch();
     try {
       notifySuccess(FM('tenants.messages.deleteSuccess'));
+    // eslint-disable-next-line no-empty
     } catch {
-      // ignore notifications failure
     }
   };
 }
 
-/** Create error handler for mutation operations */
 function createErrorHandler(): (err: unknown) => void {
   return (err: unknown) => {
     const msg = getErrorMessage(err, 'Unknown error');
@@ -46,7 +44,6 @@ function createErrorHandler(): (err: unknown) => void {
   };
 }
 
-/** Create success handler for update operation */
 function createUpdateSuccessHandler(setEditingId: (id: string | null) => void, refetch: () => void): () => void {
   return () => {
     setEditingId(null);
@@ -55,7 +52,6 @@ function createUpdateSuccessHandler(setEditingId: (id: string | null) => void, r
   };
 }
 
-/** Create success handler for create operation */
 function createCreateSuccessHandler(setShowCreateModal: (show: boolean) => void, refetch: () => void): () => void {
   return () => {
     setShowCreateModal(false);
@@ -64,7 +60,6 @@ function createCreateSuccessHandler(setShowCreateModal: (show: boolean) => void,
   };
 }
 
-/** Hook for delete handler */
 function useDeleteHandler(
   deleteMutation: ReturnType<typeof useIdentityServiceAPITenantsDeleteTenant>,
   refetch: () => void,
@@ -78,7 +73,6 @@ function useDeleteHandler(
   );
 }
 
-/** Hook for update handler */
 function useUpdateHandler(
   updateMutation: ReturnType<typeof useIdentityServiceAPITenantsUpdateTenant>,
   setEditingId: (id: string | null) => void,
@@ -94,7 +88,6 @@ function useUpdateHandler(
   );
 }
 
-/** Hook for create handler */
 function useCreateHandler(
   createMutation: ReturnType<typeof useIdentityServiceAPITenantsCreateTenant>,
   setShowCreateModal: (show: boolean) => void,

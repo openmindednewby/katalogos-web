@@ -1,7 +1,3 @@
-/**
- * Tests for TemplateEditorModal - covers BUG-QUIZ-003 and BUG-QUIZ-006 fixes.
- * Tests logic: state sync via useEffect (not during render) and JSON editor feedback loop prevention.
- */
 import React from 'react';
 
 import { render, fireEvent } from '@testing-library/react-native';
@@ -65,8 +61,6 @@ describe('TemplateEditorModal', () => {
 
   describe('BUG-QUIZ-003: no setState during render', () => {
     it('syncs state from item via useEffect without errors', () => {
-      // Before the fix, this would cause "setState called during render" warning.
-      // After the fix, syncStateFromItem is in a useEffect.
       const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
       const item = createItem();
@@ -79,7 +73,6 @@ describe('TemplateEditorModal', () => {
         />,
       );
 
-      // Check no "Cannot update" render errors were logged
       const renderErrors = consoleSpy.mock.calls.filter(
         (call) => typeof call[0] === 'string' && call[0].includes('Cannot update'),
       );
@@ -100,7 +93,6 @@ describe('TemplateEditorModal', () => {
         />,
       );
 
-      // Rerender with a different item
       rerender(
         <TemplateEditorModal
           visible
@@ -110,8 +102,6 @@ describe('TemplateEditorModal', () => {
         />,
       );
 
-      // No assertion needed beyond "does not crash"
-      // The useEffect approach handles the state sync properly
     });
   });
 
@@ -130,10 +120,8 @@ describe('TemplateEditorModal', () => {
         />,
       );
 
-      // Switch to JSON tab using fireEvent
       fireEvent.press(getByTestId('tab-json'));
 
-      // The component should render the JSON editor without feedback loop
       expect(getByTestId('template-json-editor')).toBeTruthy();
     });
   });

@@ -33,10 +33,6 @@ function defaultParams(overrides: Partial<AutoSaveParams> = {}): AutoSaveParams 
 
 const TIMER_BUFFER = 100;
 
-/**
- * The hook skips the first data change after mount (changeCount goes 0→1, guard is <= 1).
- * This warm-up rerender simulates that first ignored change so subsequent rerenders trigger auto-save.
- */
 function warmUp(rerender: (props: AutoSaveParams) => void, initial: AutoSaveParams): void {
   act(() => { rerender({ ...initial, description: 'warmup' }); });
 }

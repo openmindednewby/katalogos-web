@@ -1,6 +1,3 @@
-/**
- * Modal for resetting a user's password.
- */
 import React from 'react';
 
 import { ActivityIndicator, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';

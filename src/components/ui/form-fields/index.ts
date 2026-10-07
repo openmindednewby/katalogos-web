@@ -1,10 +1,4 @@
-/**
- * Native form field components.
- * All components use React Hook Form Controller and native HTML elements.
- * No Syncfusion dependencies.
- *
- * Error messages are shown only when the field has been touched (blur event).
- */
+/** Native form field components. */
 export { FormNativeInput } from './FormNativeInput';
 export { FormNativeSelect } from './FormNativeSelect';
 export { FormNativeTextarea } from './FormNativeTextarea';

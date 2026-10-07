@@ -1,6 +1,3 @@
-/**
- * User password mutation handlers.
- */
 import { useCallback } from 'react';
 
 import { notify, notifySuccess } from '../../lib/notifications';

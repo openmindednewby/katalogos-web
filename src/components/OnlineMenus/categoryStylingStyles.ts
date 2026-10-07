@@ -1,6 +1,3 @@
-/**
- * Styles for CategoryStylingSection component.
- */
 import { StyleSheet } from 'react-native';
 
 const BORDER_RADIUS = 8;

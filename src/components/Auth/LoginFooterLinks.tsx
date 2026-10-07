@@ -1,12 +1,3 @@
-/**
- * Footer links shown on the login and register pages.
- *
- * - On the login page (mode = 'login'): "Don't have an account? Sign up" → register, then privacy/terms links.
- * - On the register page (mode = 'register'): "Already have an account? Sign in" → login, then privacy/terms links.
- *
- * Privacy + Terms open in modals (no navigation). The auth-mode link uses
- * expo-router to switch between /login and /register.
- */
 import React, { useState, useCallback } from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
@@ -51,10 +42,6 @@ const styles = StyleSheet.create({
 });
 
 interface Props {
-  /**
-   * Page mode: Login shows a "Sign up" link, Register shows a "Sign in" link.
-   * Defaults to AuthFooterMode.Login for backwards compatibility.
-   */
   mode?: AuthFooterMode;
 }
 

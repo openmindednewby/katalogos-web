@@ -1,12 +1,3 @@
-/**
- * Unit tests for menuConfigExport utility.
- *
- * Tests focus on logic:
- * - Correct JSON serialization with metadata
- * - Filename generation
- * - Blob creation
- * - Download trigger mechanism (mocked)
- */
 
 import {
   exportMenuConfig,
@@ -304,7 +295,6 @@ describe('menuConfigExport', () => {
       const contents: MenuContents = { categories: [{ name: 'Test', displayOrder: 0 }] };
       const blob = createMenuConfigBlob(contents);
       const expectedJson = exportMenuConfig(contents);
-      // Read blob content using FileReader
       const reader = new FileReader();
       const blobText = await new Promise<string>((resolve) => {
         reader.onload = () => resolve(reader.result as string);

@@ -1,6 +1,3 @@
-/**
- * ExperimentStatusBadge -- shows a colored badge for experiment status.
- */
 import React, { useMemo } from 'react';
 
 import { Text, View } from 'react-native';

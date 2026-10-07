@@ -1,7 +1,3 @@
-/**
- * Enhanced useForm hook with Zod schema integration.
- * Provides automatic type inference and consistent defaults.
- */
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
@@ -9,26 +5,7 @@ import type { UseFormWithSchemaProps, UseFormWithSchemaReturn } from './types';
 import type { FieldValues } from 'react-hook-form';
 import type { ZodSchema } from 'zod';
 
-/**
- * useFormWithSchema - Enhanced useForm hook with Zod schema integration.
- *
- * Combines React Hook Form with Zod validation for type-safe forms.
- * Provides automatic type inference from the schema.
- *
- * @param props - Configuration including Zod schema and form options
- * @returns React Hook Form methods with inferred types
- *
- * @example
- * const schema = z.object({
- *   email: z.string().email(),
- *   password: z.string().min(8),
- * });
- *
- * const { control, handleSubmit, formState } = useFormWithSchema({
- *   schema,
- *   defaultValues: { email: '', password: '' },
- * });
- */
+/** useFormWithSchema - Enhanced useForm hook with Zod schema integration. */
 export function useFormWithSchema<TSchema extends ZodSchema<FieldValues>>({
   schema,
   defaultValues,

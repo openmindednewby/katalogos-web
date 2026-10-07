@@ -1,15 +1,3 @@
-/**
- * `<LoginMethodTabs>` — the inline method picker shown on the login screen when
- * the BFF advertises more than one inline credential method (password +
- * email-OTP), unified-login parity (#172).
- *
- * Presentational only: it renders a two-tab row (Password / Email code) and
- * reports the selection back via callbacks. The screen owns the active-method
- * state and decides which form (`<LoginForm>` / `<OtpForm>`) to render below.
- *
- * Passkey + device-PIN are NOT tabs here — passkey is a button below the form
- * and device-PIN is a full-screen unlock gate, so only password/OTP need a tab.
- */
 import React from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -18,8 +6,6 @@ import { FM } from '../../localization/helpers';
 
 import type { AuthTheme } from '@dloizides/auth-web';
 
-// Declared before the component so the ESLint config's use-before-define +
-// enforce-function-style rules (constants precede functions) are satisfied.
 const styles = StyleSheet.create({
   tab: {
     borderRadius: 8,
@@ -43,15 +29,10 @@ const styles = StyleSheet.create({
 });
 
 interface LoginMethodTabsProps {
-  /** True when the email-OTP tab is the active one. */
   otpActive: boolean;
-  /** The auth surface theme — drives the active/inactive tab colours. */
   theme: AuthTheme;
-  /** Prefix applied to each tab's `testID`. */
   testIdPrefix: string;
-  /** Called when the user taps the password tab. */
   onSelectPassword: () => void;
-  /** Called when the user taps the email-OTP tab. */
   onSelectOtp: () => void;
 }
 

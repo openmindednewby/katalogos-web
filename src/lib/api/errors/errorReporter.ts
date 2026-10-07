@@ -1,10 +1,3 @@
-/**
- * Monitoring reporter.
- *
- * Logs classified errors to the application logger and forwards them
- * to Sentry for external error tracking. When the Sentry DSN is empty
- * (dev/test), `captureException` is a no-op.
- */
 
 import { logger } from '../../../utils/logger';
 import { captureException } from '../../monitoring';

@@ -1,7 +1,3 @@
-/**
- * AddDomainForm - text input and submit button for adding a custom domain.
- * Validates domain format before submission.
- */
 import React, { useCallback, useState } from 'react';
 
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';

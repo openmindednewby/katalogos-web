@@ -1,6 +1,3 @@
-/**
- * Hook encapsulating team management mutation actions and modal state.
- */
 import { useCallback, useState } from 'react';
 
 import { useTeamMutations } from './useTeamMutations';

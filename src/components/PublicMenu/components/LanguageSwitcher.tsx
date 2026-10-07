@@ -1,9 +1,3 @@
-/**
- * Compact language dropdown for the public menu.
- * Only renders when translated languages are available.
- *
- * WCAG: Escape closes the dropdown, accessibilityState reflects expanded state.
- */
 import React, { useCallback, useState } from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';

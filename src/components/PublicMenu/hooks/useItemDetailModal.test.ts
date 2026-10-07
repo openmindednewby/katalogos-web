@@ -23,7 +23,6 @@ const SECOND_MOCK_ITEM: MenuItem = {
 
 describe('useItemDetailModal', () => {
   beforeEach(() => {
-    // Ensure Platform.OS is 'web' for keyboard tests
     Object.defineProperty(Platform, 'OS', { value: 'web', writable: true });
   });
 
@@ -117,13 +116,11 @@ describe('useItemDetailModal', () => {
 
     const { result } = renderHook(() => useItemDetailModal());
 
-    // Modal is closed, no keydown listener should be added
     const keydownCalls = addSpy.mock.calls.filter(
       ([event]) => event === 'keydown',
     );
     expect(keydownCalls).toHaveLength(0);
 
-    // Open and close to verify cleanup
     act(() => {
       result.current.openModal(MOCK_ITEM);
     });

@@ -54,7 +54,6 @@ describe('useHighContrast', () => {
     (Platform as { OS: string }).OS = 'web';
     matchesValue = true;
 
-    // Re-mock to return true
     Object.defineProperty(window, 'matchMedia', {
       writable: true,
       value: jest.fn().mockImplementation(() => ({

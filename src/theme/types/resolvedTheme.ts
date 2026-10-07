@@ -1,7 +1,3 @@
-/**
- * Fully resolved theme consumed by components via useTheme().
- * Built at runtime from TenantThemeConfig after palette generation.
- */
 import type { ColorScale } from './colorScale';
 import type { ThemeModeColors } from './themeModeColors';
 import type ThemeMode from '../../shared/enums/ThemeMode';

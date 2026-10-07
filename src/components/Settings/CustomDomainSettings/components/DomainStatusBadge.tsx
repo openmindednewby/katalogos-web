@@ -1,6 +1,3 @@
-/**
- * DomainStatusBadge - wraps the shared StatusBadge with custom domain status color mapping.
- */
 import React, { useMemo } from 'react';
 
 import CustomDomainStatus from '../../../../lib/hooks/customDomain/enums/CustomDomainStatus';
@@ -14,7 +11,6 @@ interface Props {
   status: CustomDomainStatus;
 }
 
-/** Maps a custom domain status to its translation key. */
 function getStatusTranslationKey(status: CustomDomainStatus): string {
   const keyMap: Record<CustomDomainStatus, string> = {
     [CustomDomainStatus.PendingVerification]: 'settings.customDomain.statusPending',

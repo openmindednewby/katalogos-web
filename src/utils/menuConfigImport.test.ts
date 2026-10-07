@@ -1,13 +1,3 @@
-/**
- * Unit tests for menuConfigImport utility.
- *
- * Tests focus on logic:
- * - JSON parsing and validation
- * - Type guard behavior
- * - Version migration
- * - Error handling for invalid inputs
- * - File reading (mocked)
- */
 
 import { isValueDefined } from '@dloizides/utils';
 
@@ -210,7 +200,6 @@ describe('menuConfigImport', () => {
     });
 
     it('accepts any plain object as MenuContents since all fields are optional', () => {
-      // MenuContents has all optional fields, so any plain object is technically valid
       const json = JSON.stringify({ notAMenu: true });
       const result = parseMenuConfig(json);
       expect(result.success).toBe(true);
@@ -344,7 +333,6 @@ describe('menuConfigImport', () => {
     it('accepts any plain object in file since MenuContents has all optional fields', async () => {
       const jsonFile = createMockFile('{ "notValid": true }', 'config.json', 'application/json');
       const result = await importMenuConfigFromFile(jsonFile);
-      // MenuContents has all optional fields, so any plain object is valid
       expect(result.success).toBe(true);
       expect(result.contents).toBeDefined();
     });

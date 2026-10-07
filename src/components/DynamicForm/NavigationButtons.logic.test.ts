@@ -1,12 +1,5 @@
-/**
- * BUG-QUIZ-016: Tests that NavigationButtons shows "Submit" on the last page
- * based on an isLastPage boolean, not a page count comparison.
- */
 
 describe('NavigationButtons - isLastPage logic (BUG-QUIZ-016)', () => {
-  /**
-   * Mirrors the fixed label selection logic.
-   */
   function getButtonLabel(isLastPage: boolean): string {
     return isLastPage ? 'Submit' : 'Next';
   }
@@ -19,9 +12,6 @@ describe('NavigationButtons - isLastPage logic (BUG-QUIZ-016)', () => {
     expect(getButtonLabel(false)).toBe('Next');
   });
 
-  /**
-   * Mirrors the isLastPage computation from QuizContent.
-   */
   function computeIsLastPage(currentPage: number, pages: number[]): boolean {
     if (pages.length === 0) return true;
     return currentPage === Math.max(...pages);
@@ -46,16 +36,13 @@ describe('NavigationButtons - isLastPage logic (BUG-QUIZ-016)', () => {
   });
 
   it('old comparison currentPage === totalPages fails for non-contiguous pages', () => {
-    // Non-contiguous pages: [1, 3, 5] => totalPages (count) = 3, max page = 5
-    // Old: currentPage (5) === totalPages (3) => false (BUG!)
-    // New: currentPage (5) === Math.max(1, 3, 5) => true
     const pages = [1, 3, 5];
     const currentPage = 5;
-    const totalPagesCount = pages.length; // 3
+    const totalPagesCount = pages.length;
     const oldComparison = currentPage === totalPagesCount;
     const newComparison = computeIsLastPage(currentPage, pages);
 
-    expect(oldComparison).toBe(false); // old logic fails
-    expect(newComparison).toBe(true);  // new logic correct
+    expect(oldComparison).toBe(false);
+    expect(newComparison).toBe(true);
   });
 });

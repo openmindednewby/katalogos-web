@@ -1,7 +1,3 @@
-/**
- * NutritionCard - Editable nutritional information display for the menu item editor.
- * Shows serving size, calories, macros grid, and detected allergens.
- */
 import React, { useCallback } from 'react';
 
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';

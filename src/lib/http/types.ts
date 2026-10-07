@@ -1,6 +1,3 @@
-/**
- * Shared types and interfaces for HTTP service modules.
- */
 import type { AxiosRequestConfig } from 'axios';
 
 export interface DefaultPayload {}

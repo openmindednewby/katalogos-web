@@ -57,9 +57,6 @@ const styles = StyleSheet.create({
   },
 });
 
-/**
- * Permission state for the banner
- */
 const enum PermissionState {
   Loading = 'loading',
   Default = 'default',
@@ -69,10 +66,7 @@ const enum PermissionState {
   Unsupported = 'unsupported',
 }
 
-/**
- * Banner component that prompts user to enable OS notifications.
- * Shows when permission is 'default' and hides when granted, denied, or dismissed.
- */
+/** Banner component that prompts user to enable OS notifications. */
 const NotificationPermissionBanner = (): React.ReactElement | null => {
   const { theme } = useTheme();
   const colors = theme.colors;
@@ -108,8 +102,6 @@ const NotificationPermissionBanner = (): React.ReactElement | null => {
 
       if (result === 'granted') {
         setPermissionState(PermissionState.Granted);
-        // Permission is now granted — also subscribe this browser to server Web Push
-        // (no second prompt). enableWebPush is fail-safe (never throws).
         const subscribed = await enableWebPush();
         logger.info('NotificationPermissionBanner', 'web push subscribe', { subscribed });
       } else if (result === 'denied') 
@@ -126,7 +118,6 @@ const NotificationPermissionBanner = (): React.ReactElement | null => {
     setPermissionState(PermissionState.Dismissed);
   }, []);
 
-  // Only show banner when permission is 'default'
   const shouldShowBanner = permissionState === PermissionState.Default;
   if (!shouldShowBanner) 
     return null;

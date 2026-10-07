@@ -1,4 +1,3 @@
-/** Header row controls: location picker and language switcher for the public menu. */
 import React from 'react';
 
 import { LanguageSwitcher } from './LanguageSwitcher';
@@ -26,8 +25,6 @@ export const MenuHeaderControls = ({
   availableLanguages, currentLanguage, onLanguageChange,
 }: MenuHeaderControlsProps): React.ReactElement | null => {
   if (!hasLocationPicker && !hasLanguageSwitcher) return null;
-  // The has* flags imply the corresponding data props are defined (caller invariant);
-  // the explicit checks below let TypeScript narrow the optional props to non-undefined.
   const showLocationPicker = hasLocationPicker && isValueDefined(locations) && isValueDefined(onLocationChange);
   const showLanguageSwitcher = hasLanguageSwitcher && isValueDefined(availableLanguages) && isValueDefined(onLanguageChange);
   return (

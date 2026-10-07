@@ -9,9 +9,6 @@ import { useFocusTrap } from './useFocusTrap';
 
 
 
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
 
 function createFocusableContainer(): {
   container: HTMLDivElement;
@@ -38,9 +35,6 @@ function tabKeyEvent(shift = false): KeyboardEvent {
   return new KeyboardEvent('keydown', { key: 'Tab', shiftKey: shift, bubbles: true, cancelable: true });
 }
 
-// ---------------------------------------------------------------------------
-// Tests
-// ---------------------------------------------------------------------------
 
 describe('useFocusTrap', () => {
   const originalPlatformOS = Platform.OS;
@@ -59,7 +53,6 @@ describe('useFocusTrap', () => {
 
     renderHook(() => useFocusTrap(ref, true));
 
-    // Focus should NOT have moved to first child
     expect(document.activeElement).not.toBe(buttons[0]);
   });
 
@@ -70,7 +63,6 @@ describe('useFocusTrap', () => {
     const ref = makeRef(container);
 
     renderHook(() => useFocusTrap(ref, false));
-    // Flush microtask
     await Promise.resolve();
 
     expect(document.activeElement).not.toBe(buttons[0]);
@@ -97,11 +89,9 @@ describe('useFocusTrap', () => {
     renderHook(() => useFocusTrap(ref, true));
     await Promise.resolve();
 
-    // Move focus to the last button
     buttons[2].focus();
     expect(document.activeElement).toBe(buttons[2]);
 
-    // Press Tab — should wrap to first
     const event = tabKeyEvent(false);
     container.dispatchEvent(event);
     expect(document.activeElement).toBe(buttons[0]);
@@ -117,10 +107,8 @@ describe('useFocusTrap', () => {
     renderHook(() => useFocusTrap(ref, true));
     await Promise.resolve();
 
-    // Focus should be on first
     expect(document.activeElement).toBe(buttons[0]);
 
-    // Press Shift+Tab — should wrap to last
     const event = tabKeyEvent(true);
     container.dispatchEvent(event);
     expect(document.activeElement).toBe(buttons[2]);
@@ -141,7 +129,6 @@ describe('useFocusTrap', () => {
     const { unmount } = renderHook(() => useFocusTrap(ref, true));
     await Promise.resolve();
 
-    // Focus moved into the trap
     expect(document.activeElement).not.toBe(outsideButton);
 
     unmount();

@@ -1,7 +1,3 @@
-/**
- * Tests for useMenuTemplates hook.
- * Focuses on data transformation and loading state logic.
- */
 import { renderHook, waitFor } from '@testing-library/react-native';
 
 import { useMenuTemplates } from './useMenuTemplates';
@@ -63,9 +59,6 @@ describe('useMenuTemplates', () => {
   });
 
   it('degrades to an empty array when data is a non-array (e.g. SPA HTML)', () => {
-    // Regression for the P1-08 wizard crash: a 308 redirect out of the BFF
-    // returned the SPA's index.html as a string; `templates.map` then threw
-    // "x.map is not a function". The hook must never expose a non-array.
     useQuery.mockReturnValue({ data: '<!DOCTYPE html>...', isLoading: false, error: null });
 
     const { result } = renderHook(() => useMenuTemplates());

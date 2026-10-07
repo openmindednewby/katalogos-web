@@ -1,10 +1,3 @@
-/**
- * Integration tests for resolveTheme across presets and modes.
- *
- * Verifies that resolveTheme produces correct ResolvedTheme for each
- * preset in both light and dark modes. Complements ThemeProvider.test.tsx
- * which tests the hook/context layer but not preset-specific palette values.
- */
 import ThemeMode from '../../shared/enums/ThemeMode';
 import {
   DEFAULT_THEME_CONFIG,
@@ -17,9 +10,6 @@ import { resolveTheme } from './resolveTheme';
 
 import type { TenantThemeConfig } from '../types';
 
-// ---------------------------------------------------------------------------
-// Constants
-// ---------------------------------------------------------------------------
 
 const ALL_PRESETS: ReadonlyArray<{ name: string; config: TenantThemeConfig }> = [
   { name: 'default', config: DEFAULT_THEME_CONFIG },
@@ -29,9 +19,6 @@ const ALL_PRESETS: ReadonlyArray<{ name: string; config: TenantThemeConfig }> = 
   { name: 'sunset', config: SUNSET_THEME_CONFIG },
 ];
 
-// ---------------------------------------------------------------------------
-// Tests
-// ---------------------------------------------------------------------------
 
 describe('resolveTheme - light mode with default preset', () => {
   const theme = resolveTheme(null, ThemeMode.Light);
@@ -245,7 +232,6 @@ describe('resolveTheme - semantic colors', () => {
     };
 
     const theme = resolveTheme(configWithoutSemantic, ThemeMode.Light);
-    // Default semantic values from palette-generator
     expect(theme.semantic.success['500']).toBe('#0a9396');
     expect(theme.semantic.error['500']).toBe('#ae2012');
   });

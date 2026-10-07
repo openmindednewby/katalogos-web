@@ -1,8 +1,3 @@
-/**
- * Searchable combobox wrapped with React Hook Form Controller.
- * Consumes useTheme() via useFormThemeVars() for per-tenant styling.
- * No Syncfusion dependencies.
- */
 import { useMemo, type ReactElement } from 'react';
 
 import { Controller } from 'react-hook-form';
@@ -33,9 +28,6 @@ function buildOptionClassName(isHighlighted: boolean, isActive: boolean): string
   return className;
 }
 
-// =============================================================================
-// Sub-components (defined before usage)
-// =============================================================================
 
 const ComboboxDropdown = ({
   filteredOptions,
@@ -182,9 +174,6 @@ const ComboboxField = ({
   );
 };
 
-// =============================================================================
-// Main export
-// =============================================================================
 
 export const FormNativeSelect = <T extends FieldValues>({
   name,

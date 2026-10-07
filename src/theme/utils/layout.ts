@@ -1,11 +1,6 @@
 
 
 
-// Combine all styles for backwards compatibility
-/**
- * Layout styles for sidebar, topbar, and page structure.
- * Re-exports split layout modules for backwards compatibility.
- */
 import { StyleSheet } from 'react-native';
 
 import { drawerStyles } from './layoutDrawer';
@@ -15,9 +10,7 @@ import { topbarStyles } from './layoutTopbar';
 
 const LIGHT_BORDER_COLOR = '#ddd';
 
-// Core layout styles that tie everything together
 const coreLayoutStyles = StyleSheet.create({
-  // Page helpers
   container: {
     flex: 1,
     padding: 16,
@@ -28,7 +21,6 @@ const coreLayoutStyles = StyleSheet.create({
     marginBottom: 12,
   },
 
-  // Spacing utilities
   sectionSpacing: {
     marginTop: 12,
   },
@@ -42,7 +34,6 @@ const coreLayoutStyles = StyleSheet.create({
     marginTop: 12,
   },
 
-  // List item
   listItem: {
     paddingVertical: 12,
     paddingHorizontal: 8,
@@ -57,7 +48,6 @@ export const layoutStyles = StyleSheet.create({
   ...formStyles,
   ...drawerStyles,
   ...coreLayoutStyles,
-  // Override listItem to include border color
   listItem: {
     ...coreLayoutStyles.listItem,
     borderColor: LIGHT_BORDER_COLOR,

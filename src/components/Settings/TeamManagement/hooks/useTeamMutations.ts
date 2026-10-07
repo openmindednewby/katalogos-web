@@ -1,6 +1,3 @@
-/**
- * Hook wrapping team mutation hooks with notification callbacks.
- */
 import { useCallback } from 'react';
 
 import { notifyError, notifySuccess } from '../../../../lib/notifications';

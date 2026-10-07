@@ -1,7 +1,3 @@
-/**
- * CreateExperimentModal -- form to create a new A/B test experiment.
- * Uses a dropdown to select available menus instead of raw menu ID input.
- */
 import React, { useCallback, useMemo, useState } from 'react';
 
 import { Modal, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';

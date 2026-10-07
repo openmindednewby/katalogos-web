@@ -1,14 +1,3 @@
-/**
- * TenantLogo: displays the tenant's branding logo from the resolved theme.
- * Falls back to the tenant's name (resolved from the IdentityService) when no
- * logo URL is configured. If neither a logo nor a tenant name are available,
- * falls back to the product name (`FM('app.title')`).
- *
- * Tenant-name resolution lives in the shared `useCurrentTenant` hook and is
- * driven by the Keycloak `tenantId` claim. The product name comes from the
- * per-app `app.title` translation key — see `brand/brand.config.json` for the
- * canonical product name in each app.
- */
 import React from 'react';
 
 import { Image, StyleSheet, Text } from 'react-native';
@@ -33,22 +22,13 @@ const styles = StyleSheet.create({
   },
 });
 
-/**
- * Resolve the logo URL from the theme branding.
- * Returns null if no logo is configured.
- */
+/** Resolve the logo URL from the theme branding. */
 export function resolveLogoUrl(logoUrl: string | null): string | null {
   if (isNullOrUndefined(logoUrl) || logoUrl === '') return null;
   return logoUrl;
 }
 
-/**
- * Pick the best fallback text for the topbar when no logo is available.
- *
- * Priority: tenant name (from API) > product name (from `app.title`).
- *
- * Exported for unit testing.
- */
+/** Pick the best fallback text for the topbar when no logo is available. */
 export function resolveFallbackText(tenantName: string | null, productName: string): string {
   if (isValueDefined(tenantName) && tenantName.trim() !== '') return tenantName;
   return productName;

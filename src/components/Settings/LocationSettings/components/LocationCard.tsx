@@ -1,6 +1,3 @@
-/**
- * LocationCard - Displays a single location with name, city, badges, and edit/delete actions.
- */
 import React, { useCallback } from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';

@@ -31,7 +31,6 @@ describe('isCustomDomainHost', () => {
   });
 
   it('does not mistake a lookalike suffix for the platform zone', () => {
-    // notdloizides.com must NOT match `.dloizides.com`
     expect(isCustomDomainHost('notdloizides.com')).toBe(true);
     expect(isCustomDomainHost('evil-dloizides.com')).toBe(true);
   });

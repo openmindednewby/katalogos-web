@@ -1,7 +1,3 @@
-/**
- * Team Management route page.
- * Wraps the TeamManagementScreen component.
- */
 import React from 'react';
 
 import { TeamManagementScreen } from '../../../src/components/Settings';

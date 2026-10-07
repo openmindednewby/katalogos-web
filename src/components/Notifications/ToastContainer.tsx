@@ -1,10 +1,3 @@
-/**
- * ToastContainer — thin adapter over the shared `ToastHost` from
- * `@dloizides/ui-feedback`. The animated overlay + theming live in the package;
- * this component wires the app's notification event bus (`addListener`) into the
- * host's `subscribe` port, mapping signout/success/error events to toast text +
- * type. The `notification-toast` testID is preserved for E2E.
- */
 import React, { useCallback } from 'react';
 
 import { ToastHost, type ToastInput } from '@dloizides/ui-feedback';
@@ -18,7 +11,6 @@ import { isValueDefined } from '../../utils/is';
 import { logger } from '../../utils/logger';
 import { sanitizeText } from '../../utils/sanitize';
 
-/** Maximum length for sanitized message text. */
 const TOAST_MESSAGE_MAX_LENGTH = 500;
 
 interface PayloadWithMessage {

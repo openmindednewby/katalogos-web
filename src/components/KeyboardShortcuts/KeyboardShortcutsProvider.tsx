@@ -1,8 +1,3 @@
-/**
- * Provides global and navigation keyboard shortcuts for the admin panel.
- * Renders the shortcuts help modal and manages its visibility.
- * Web-only -- the hook is a no-op on native platforms.
- */
 import React, { useCallback, useMemo, useState } from 'react';
 
 import { useRouter } from 'expo-router';
@@ -15,7 +10,6 @@ import type { KeyboardShortcut } from './keyboardShortcutTypes';
 
 interface Props {
   children: React.ReactNode;
-  /** Optional external save handler (e.g., from current form). */
   onSave?: () => void;
 }
 
@@ -32,12 +26,10 @@ const KeyboardShortcutsProvider: React.FC<Props> = ({ children, onSave }) => {
   const navSettings = useCallback(() => { router.push(Routes.ACCOUNT_SETTINGS); }, [router]);
 
   const shortcuts = useMemo<KeyboardShortcut[]>(() => [
-    // Global
     { id: 'global-save', labelKey: 'keyboardShortcuts.save', key: 's', ctrlOrMeta: true, handler: handleSave },
     { id: 'global-command-palette', labelKey: 'keyboardShortcuts.commandPalette', key: 'k', ctrlOrMeta: true, handler: openHelp },
     { id: 'help-question', labelKey: 'keyboardShortcuts.showHelp', key: '?', suppressInInput: true, handler: openHelp },
     { id: 'help-ctrl-slash', labelKey: 'keyboardShortcuts.showHelp', key: '/', ctrlOrMeta: true, handler: openHelp },
-    // Navigation
     { id: 'nav-dashboard', labelKey: 'keyboardShortcuts.navDashboard', key: '1', alt: true, handler: navDashboard },
     { id: 'nav-menus', labelKey: 'keyboardShortcuts.navMenus', key: '2', alt: true, handler: navMenus },
     { id: 'nav-settings', labelKey: 'keyboardShortcuts.navSettings', key: '3', alt: true, handler: navSettings },

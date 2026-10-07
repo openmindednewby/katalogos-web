@@ -1,4 +1,3 @@
-/** ScheduleEditorForm - Form body for the schedule editor: days, time inputs, timezone, preview, buttons. */
 import React, { useMemo } from 'react';
 
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';

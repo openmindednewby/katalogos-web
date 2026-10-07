@@ -1,7 +1,3 @@
-/**
- * Custom hook for fetching a single menu version with full snapshot.
- * Uses the OnlineMenu API: GET /TenantMenus/{menuId}/versions/{versionId}
- */
 import { useQuery } from '@tanstack/react-query';
 
 import { customInstance } from '@/server/mutators/onlineMenuMutator';

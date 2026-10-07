@@ -1,7 +1,3 @@
-/**
- * CSS styles for the component showcase page.
- * Injected into the document head on web platform.
- */
 import { isValueDefined } from '../../../../utils/is';
 
 const STYLE_ID = 'component-showcase-styles';

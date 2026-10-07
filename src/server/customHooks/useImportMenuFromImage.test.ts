@@ -1,7 +1,3 @@
-/**
- * Tests for useImportMenuFromImage hook.
- * Focuses on mutation behavior and callback invocation.
- */
 import { useMutation } from '@tanstack/react-query';
 import { renderHook } from '@testing-library/react-native';
 

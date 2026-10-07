@@ -1,7 +1,3 @@
-/**
- * FreeTierWatermark - "Powered by MenuFlow" watermark for Free tier users.
- * Checks subscription status and only renders for free-tier subscriptions.
- */
 import React from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';

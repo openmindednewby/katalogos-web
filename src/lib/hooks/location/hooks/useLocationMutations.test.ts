@@ -1,7 +1,3 @@
-/**
- * Unit tests for useLocationMutations hook.
- * Tests mutation callbacks, cache invalidation, and toast notifications.
- */
 import { useQueryClient } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react-native';
 

@@ -1,4 +1,3 @@
-/** BulkPriceRow - Inline price adjustment controls for bulk actions. */
 import React, { useState } from 'react';
 
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';

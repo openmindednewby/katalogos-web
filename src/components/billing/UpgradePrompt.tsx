@@ -1,7 +1,3 @@
-/**
- * UpgradePrompt - reusable component shown when a user tries to access a gated feature.
- * Can be used inline or as a modal overlay.
- */
 import React from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -15,11 +11,8 @@ import { useTheme } from '../../theme/hooks/useTheme';
 import { isValueDefined } from '../../utils/is';
 
 interface Props {
-  /** The plan name required to access the feature. */
   requiredPlan: string;
-  /** The user's current plan name. */
   currentPlan: string;
-  /** Optional callback when the prompt is dismissed. */
   onDismiss?: () => void;
 }
 

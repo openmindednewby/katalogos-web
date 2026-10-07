@@ -1,7 +1,3 @@
-/**
- * React Query hooks for GDPR account deletion requests.
- * Wraps generated Orval API functions with app-specific logic.
- */
 import { useCallback } from 'react';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';

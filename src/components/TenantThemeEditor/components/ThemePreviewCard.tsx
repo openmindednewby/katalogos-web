@@ -1,10 +1,6 @@
 
 
 
-/**
- * Live mini-preview card showing how the current theme config looks.
- * Displays a header bar, buttons, text sample, and card surface.
- */
 import React, { useMemo } from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';

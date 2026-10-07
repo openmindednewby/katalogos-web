@@ -1,13 +1,3 @@
-/**
- * Tests for useDashboardData (Katalogos).
- *
- * Katalogos is the OnlineMenu product. The dashboard hook MUST NOT call
- * any questioner endpoints — doing so leaks across the realm boundary
- * and causes 401s on production.
- *
- * Logic-only tests: shape of returned data, isEmpty derivation, and
- * (most importantly) absence of any cross-product hook import.
- */
 import { renderHook } from '@testing-library/react-native';
 
 import { useDashboardData } from './useDashboardData';
@@ -74,10 +64,6 @@ describe('useDashboardData (Katalogos)', () => {
   });
 
   it('does NOT import any questioner hook (Katalogos must not call questioner-api)', () => {
-    // Static guarantee: importing the hook above only mocks the onlinemenu
-    // module. If a future change reintroduces a questioner import, this
-    // test file would have to mock it too — making the leak visible at
-    // test time rather than only in production browser logs.
     const moduleSource = jest.requireActual<{ useDashboardData: unknown }>(
       './useDashboardData',
     );

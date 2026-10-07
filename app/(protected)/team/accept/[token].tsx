@@ -1,7 +1,3 @@
-/**
- * Accept Team Invitation route page.
- * Allows authenticated users to accept a team invitation via token.
- */
 import React, { useCallback } from 'react';
 
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';

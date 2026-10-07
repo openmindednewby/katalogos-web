@@ -115,10 +115,6 @@ const DashboardPage = (): React.ReactElement => {
   const { isPhone } = useBreakpoint();
   const { isSuperAdmin } = useGetRole();
 
-  // Post-login device-PIN offer (unified-login Increment 3 Batch 3): skippable,
-  // shown once per visit to a signed-in user when the BFF advertises the
-  // pin/passkey method AND this device has no PIN yet. Dismissed (enrolled or
-  // skipped) in local state. The shared offer component is react-query-free.
   const authTheme = useMemo(() => mapAppThemeToAuthTheme(theme), [theme]);
   const { config: loginConfig, loading: loginConfigLoading } = useBffLoginConfig(bffAuthClient);
   const devicePinEnrollLabels = useDevicePinEnrollLabels();

@@ -1,8 +1,3 @@
-/**
- * Tests for serviceWorkerRegistration utilities.
- *
- * Unit tests focus on the service worker registration logic.
- */
 import {
   isNotificationApiSupported,
   isNotificationClickedMessage,
@@ -16,7 +11,6 @@ import type {
   NotificationClosedMessage,
 } from './serviceWorkerRegistration';
 
-// Mock logger
 jest.mock('../../../utils/logger', () => ({
   logger: {
     debug: jest.fn(),
@@ -37,7 +31,6 @@ describe('serviceWorkerRegistration', () => {
     });
 
     it('returns false when window is undefined', () => {
-      // Simulate non-browser environment
       // eslint-disable-next-line @typescript-eslint/no-explicit-any -- test override
       (global as any).window = undefined;
 

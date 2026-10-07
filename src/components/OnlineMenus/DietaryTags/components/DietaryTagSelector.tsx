@@ -1,10 +1,3 @@
-/**
- * DietaryTagSelector - Multi-select tag picker for the menu item editor.
- *
- * Shows available dietary tags as colored chips.
- * Tapping a chip toggles its selection.
- * Selected tags are highlighted with the tag's color.
- */
 import React, { useCallback, useMemo } from 'react';
 
 import { Text, TouchableOpacity, View } from 'react-native';
@@ -21,9 +14,6 @@ import { hexToRgba } from '../utils/hexToRgba';
 
 import type { DietaryTagDto } from '../../../../lib/hooks/dietaryTag/types';
 
-// =============================================================================
-// Sub-component (defined before main component to satisfy no-use-before-define)
-// =============================================================================
 
 interface SelectorChipProps {
   tag: DietaryTagDto;
@@ -78,9 +68,6 @@ const SelectorChip: React.FC<SelectorChipProps> = ({
   );
 };
 
-// =============================================================================
-// Main Component
-// =============================================================================
 
 interface DietaryTagSelectorProps {
   availableTags: DietaryTagDto[];

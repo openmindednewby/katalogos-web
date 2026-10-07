@@ -1,6 +1,3 @@
-/**
- * Renders a single team member row with role badge and action buttons.
- */
 import React, { useMemo } from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -67,7 +64,6 @@ const TeamMemberRow = ({ member, isAdmin, onRemove, onChangeRole }: Props): Reac
   const roleLabel = FM(teamRoleToLabelKey(member.role));
   const semanticColor = teamRoleToSemanticColor(member.role);
   const badgeScale = theme.semantic[semanticColor];
-  // MEASURED per seed — see `PendingInvitationRow` for why a fixed shade is not safe.
   const badgePair = badgeColors(badgeScale);
   const badgeBg = badgePair.backgroundColor;
   const badgeFg = badgePair.color;

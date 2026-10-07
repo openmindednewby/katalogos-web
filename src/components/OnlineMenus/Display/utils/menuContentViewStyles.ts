@@ -1,11 +1,7 @@
 import { StyleSheet } from 'react-native';
 
-/**
- * Styles for MenuContentView and sub-components.
- * These are base styles that get enhanced with dynamic styling from MenuContents.
- */
+/** Styles for MenuContentView and sub-components. */
 export const menuContentViewStyles = StyleSheet.create({
-  // Container styles
   container: {
     flex: 1,
   },
@@ -13,7 +9,6 @@ export const menuContentViewStyles = StyleSheet.create({
     flexGrow: 1,
   },
 
-  // Header styles
   header: {
     marginBottom: 16,
   },
@@ -49,7 +44,6 @@ export const menuContentViewStyles = StyleSheet.create({
     marginBottom: 16,
   },
 
-  // Category section styles
   categoriesContainer: {
     flex: 1,
   },
@@ -73,7 +67,6 @@ export const menuContentViewStyles = StyleSheet.create({
     marginVertical: 16,
   },
 
-  // Item styles
   itemsContainer: {
     flexDirection: 'column',
   },
@@ -113,7 +106,6 @@ export const menuContentViewStyles = StyleSheet.create({
     marginBottom: 8,
   },
 
-  // Empty state
   emptyContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -124,7 +116,6 @@ export const menuContentViewStyles = StyleSheet.create({
     textAlign: 'center',
   },
 
-  // Touch feedback
   pressable: {
     overflow: 'hidden',
   },

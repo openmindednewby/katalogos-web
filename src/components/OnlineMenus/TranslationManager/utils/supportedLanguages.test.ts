@@ -1,6 +1,3 @@
-/**
- * Tests for supportedLanguages utility functions.
- */
 import { getLanguageName, SUPPORTED_LANGUAGES } from './supportedLanguages';
 
 describe('getLanguageName', () => {

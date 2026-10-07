@@ -1,9 +1,5 @@
  
 
-/**
- * Tests for feature flag defaults and environment variable overrides.
- * Focuses on logic: flag resolution priority (env var > config > default).
- */
 
 describe('featureFlags', () => {
   const originalEnv = { ...process.env };

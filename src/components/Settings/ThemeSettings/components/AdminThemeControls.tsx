@@ -1,7 +1,3 @@
-/**
- * Admin-only theme controls section.
- * Renders preset grid, color scales, branding upload, preview, and action buttons.
- */
 import React from 'react';
 
 import { StyleSheet, View } from 'react-native';

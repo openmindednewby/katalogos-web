@@ -1,15 +1,9 @@
-/**
- * Constants for the TypographyEditor component.
- */
 
 import { isValueDefined } from '@dloizides/utils';
 
 import NumericFontWeight from '../../../../shared/enums/NumericFontWeight';
 import FontWeight from '../../../../types/enums/FontWeight';
 
-/**
- * Maps FontWeight values to numeric font weights.
- */
 const FONT_WEIGHT_MAP: Record<FontWeight, NumericFontWeight> = {
   [FontWeight.Normal]: NumericFontWeight.W400,
   [FontWeight.Bold]: NumericFontWeight.W700,
@@ -26,19 +20,12 @@ const FONT_WEIGHT_MAP: Record<FontWeight, NumericFontWeight> = {
 
 export { default as TypographySectionKey } from '../../../../shared/enums/TypographySectionKey';
 
-/**
- * Font family options available in the typography editor.
- */
 interface FontFamilyOption {
   label: string;
   value: string;
-  /** CSS font-family value for preview */
   cssValue: string;
 }
 
-/**
- * Font weight options available in the typography editor.
- */
 interface FontWeightOption {
   label: string;
   value: FontWeight;
@@ -54,17 +41,12 @@ export const GENERIC_FONT_COUNT = 4;
  */
 export const TOTAL_FONT_COUNT = 16;
 
-/**
- * Available font family options.
- * Generic options come first, followed by popular Google Fonts.
- */
+/** Available font family options. */
 export const FONT_FAMILY_OPTIONS: FontFamilyOption[] = [
-  // Generic options
   { label: 'System', value: 'System', cssValue: 'system-ui, -apple-system, sans-serif' },
   { label: 'Serif', value: 'Serif', cssValue: 'Georgia, "Times New Roman", serif' },
   { label: 'Sans-serif', value: 'Sans-serif', cssValue: 'Arial, Helvetica, sans-serif' },
   { label: 'Monospace', value: 'Monospace', cssValue: '"Courier New", Courier, monospace' },
-  // Google Fonts
   { label: 'Inter', value: 'Inter', cssValue: "'Inter', sans-serif" },
   { label: 'Roboto', value: 'Roboto', cssValue: "'Roboto', sans-serif" },
   { label: 'Open Sans', value: 'Open Sans', cssValue: "'Open Sans', sans-serif" },
@@ -98,9 +80,6 @@ export const FONT_SIZE_LIMITS = {
   price: { min: 12, max: 32, default: 18 },
 } as const;
 
-/**
- * Typography section configuration without type assertions.
- */
 interface TypographySectionConfig {
   fontKey: 'titleFont' | 'bodyFont' | 'priceFont';
   sizeKey: 'titleFontSize' | 'bodyFontSize' | 'priceFontSize';
@@ -136,15 +115,11 @@ export const TYPOGRAPHY_SECTIONS: Record<string, TypographySectionConfig> = {
   },
 };
 
-/** @see TypographySectionKey enum exported above */
 
 /** Opacity for disabled elements */
 export { DISABLED_OPACITY } from '../../../../shared/constants';
 
-/**
- * Gets the CSS font-family value for a font family name.
- * For custom fonts (not in FONT_FAMILY_OPTIONS), returns the raw value.
- */
+/** Gets the CSS font-family value for a font family name. */
 export function getCssFontFamily(fontFamily: string | undefined): string {
   if (!isValueDefined(fontFamily)) return FONT_FAMILY_OPTIONS[0].cssValue;
   const option = FONT_FAMILY_OPTIONS.find((opt) => opt.value === fontFamily);
@@ -152,10 +127,7 @@ export function getCssFontFamily(fontFamily: string | undefined): string {
   return fontFamily;
 }
 
-/**
- * Gets the display label for a font family value.
- * For built-in fonts, returns the option label. For custom fonts, returns the raw value.
- */
+/** Gets the display label for a font family value. */
 export function getFontFamilyLabel(fontValue: string | undefined): string {
   if (!isValueDefined(fontValue)) return 'System';
   const option = FONT_FAMILY_OPTIONS.find((opt) => opt.value === fontValue);

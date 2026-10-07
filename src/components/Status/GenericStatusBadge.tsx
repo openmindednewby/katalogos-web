@@ -1,7 +1,3 @@
-/**
- * GenericStatusBadge - works with any boolean or numeric status.
- * Wraps the shared StatusBadge with active/inactive color mapping.
- */
 import React, { useMemo } from 'react';
 
 import { FM } from '@/localization/helpers';

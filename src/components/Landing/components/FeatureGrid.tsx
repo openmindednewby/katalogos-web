@@ -39,10 +39,7 @@ const styles = StyleSheet.create({
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: FEATURE_GRID_GAP },
 });
 
-/**
- * Responsive grid of FeatureItem components.
- * 3 columns on desktop, 2 on tablet, 1 on mobile.
- */
+/** Responsive grid of FeatureItem components. */
 const FeatureGrid = ({ sectionTitleKey, features }: Props): ReactElement => {
   const { theme } = useTheme();
   const { width } = useWindowDimensions();

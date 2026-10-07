@@ -1,8 +1,4 @@
-/**
- * Settings components barrel export.
- * Notification-related components (NotificationPreferencesScreen, CategoryPreferenceRow,
- * DisplayPreferenceDropdown) have been moved to src/features/notification/components/.
- */
+/** Settings components barrel export. */
 export { AccountSettingsHubScreen } from './AccountSettingsHub';
 export { BillingSettingsScreen } from './BillingSettings';
 export { BusinessProfileSettingsScreen } from './BusinessProfileSettings';

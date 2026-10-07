@@ -1,7 +1,3 @@
-/**
- * Button that triggers menu PDF export.
- * Shows a spinner while the PDF is being generated.
- */
 import React, { useMemo } from 'react';
 
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity } from 'react-native';

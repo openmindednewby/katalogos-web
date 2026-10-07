@@ -1,7 +1,3 @@
-/**
- * Tests verifying re-exports from @dloizides/utils work correctly.
- * Full implementation tests are in the @dloizides/utils package.
- */
 import {
   isValueDefined,
   isNotEmptyArray,

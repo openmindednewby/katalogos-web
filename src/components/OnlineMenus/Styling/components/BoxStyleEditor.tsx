@@ -1,11 +1,5 @@
 
 
-/**
- * BoxStyleEditor Component
- *
- * A reusable component for editing BoxStyling properties.
- * Used for styling category boxes, item boxes, and other containers.
- */
 import React, { useCallback } from 'react';
 
 import { Switch, Text, View } from 'react-native';
@@ -51,14 +45,12 @@ const BoxStyleEditor: React.FC<Props> = ({ value, onChange, label, disabled = fa
   const bgColor = String(colors.surface);
   const errorColor = String(colors.error);
 
-  // Get current values with defaults
   const currentBorderColor = value.borderColor ?? '';
   const borderWidth = value.borderWidth ?? 0;
   const borderRadius = value.borderRadius ?? 0;
   const padding = value.padding ?? 0;
   const shadowEnabled = value.shadowEnabled ?? false;
 
-  // Handlers
   const handleBorderColorChange = useCallback(
     (newColor: string) => {
       onChange({ ...value, borderColor: newColor });
@@ -107,12 +99,9 @@ const BoxStyleEditor: React.FC<Props> = ({ value, onChange, label, disabled = fa
         </Text>
       )}
 
-      {/* Preview */}
       <BoxStylePreview textColor={textColor} textSecondary={textSecondary} value={value} />
 
-      {/* Controls */}
       <View style={styles.controlsContainer}>
-        {/* Border Color */}
         <BorderColorInput
           bgColor={bgColor}
           borderColor={borderColor}
@@ -124,7 +113,6 @@ const BoxStyleEditor: React.FC<Props> = ({ value, onChange, label, disabled = fa
           onChange={handleBorderColorChange}
         />
 
-        {/* Border Width */}
         <SliderRow
           accessibilityHint={FM('boxStyle.borderWidthHint')}
           accessibilityLabel={FM('boxStyle.borderWidth')}
@@ -141,7 +129,6 @@ const BoxStyleEditor: React.FC<Props> = ({ value, onChange, label, disabled = fa
           onChange={handleBorderWidthChange}
         />
 
-        {/* Border Radius */}
         <SliderRow
           accessibilityHint={FM('boxStyle.borderRadiusHint')}
           accessibilityLabel={FM('boxStyle.borderRadius')}
@@ -158,7 +145,6 @@ const BoxStyleEditor: React.FC<Props> = ({ value, onChange, label, disabled = fa
           onChange={handleBorderRadiusChange}
         />
 
-        {/* Padding */}
         <SliderRow
           accessibilityHint={FM('boxStyle.paddingHint')}
           accessibilityLabel={FM('boxStyle.padding')}
@@ -175,7 +161,6 @@ const BoxStyleEditor: React.FC<Props> = ({ value, onChange, label, disabled = fa
           onChange={handlePaddingChange}
         />
 
-        {/* Shadow Toggle */}
         <View style={styles.toggleRow}>
           <Text style={[styles.toggleLabel, labelStyle]}>
             {FM('boxStyle.shadow')}

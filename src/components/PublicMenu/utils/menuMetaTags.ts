@@ -25,7 +25,6 @@ interface MetaTagData {
   ogImage?: string;
 }
 
-/** Truncate a string to the given length, appending an ellipsis when cut. */
 function truncateDescription(text: string, maxLength: number): string {
   if (text.length <= maxLength) return text;
 
@@ -33,7 +32,6 @@ function truncateDescription(text: string, maxLength: number): string {
   return `${text.slice(0, maxLength - ELLIPSIS_LENGTH)}...`;
 }
 
-/** Build a page title from menu name and optional restaurant name. */
 function buildTitle(menuName: string, restaurantName?: string): string {
   if (isValueDefined(restaurantName) && restaurantName !== '')
     return FM('seo.menuTitleFormat', menuName, restaurantName);
@@ -41,7 +39,6 @@ function buildTitle(menuName: string, restaurantName?: string): string {
   return menuName;
 }
 
-/** Build a meta description, enriched with business info when available. */
 function buildDescription(
   menuDescription?: string,
   businessProfile?: BusinessProfileData,
@@ -69,17 +66,11 @@ function buildDescription(
   return FM('seo.defaultDescription');
 }
 
-/** Check if a string value is non-empty. */
 function isNonEmptyStr(value: string | null | undefined): value is string {
   return isValueDefined(value) && value !== '';
 }
 
-/**
- * Generates meta tag data for a public menu page.
- *
- * Returns an object with title, description, and Open Graph values
- * suitable for injection into the page head.
- */
+/** Generates meta tag data for a public menu page. */
 export function generateMenuMetaTags(options: MetaTagOptions): MetaTagData {
   const title = buildTitle(options.menuName, options.restaurantName);
   const description = buildDescription(options.menuDescription, options.businessProfile);

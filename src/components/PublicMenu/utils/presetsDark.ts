@@ -1,7 +1,3 @@
-/**
- * Dark and specialty public menu theme presets.
- * Split from publicMenuThemePresets.ts to stay under 200 lines.
- */
 import { createPreset } from './createPreset';
 
 import type { PublicMenuTheme } from './publicMenuThemeTypes';

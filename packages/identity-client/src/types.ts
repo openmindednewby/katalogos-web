@@ -64,8 +64,8 @@ export interface SendOtpRequest {
 export interface SendOtpResponse {
   success: boolean;
   expiresIn: number;
-  code?: string | null; // Only populated when SMS verification is disabled
-  smsSent: boolean; // Indicates if SMS was actually sent
+  code?: string | null;
+  smsSent: boolean;
   errorMessage?: string;
   errorCode?: string;
 }
@@ -111,12 +111,7 @@ export interface RefreshResponse {
   errorCode?: string;
 }
 
-/**
- * Register request parameters.
- *
- * Sent to `POST /api/v1/auth/register`. The realm header is injected by the
- * IdentityClient (X-Realm) — callers do not pass realm in the body.
- */
+/** Register request parameters. */
 export interface RegisterRequest {
   username: string;
   email: string;
@@ -134,18 +129,7 @@ export interface RegisterErrorField {
   message: string;
 }
 
-/**
- * Structured register error.
- *
- * Thrown by `IdentityClient.register` so the UI can map `errorCode` → a
- * localized message and highlight the offending `fieldErrors` entries.
- *
- * `errorCode` values from the contract:
- * - "USERNAME_TAKEN", "EMAIL_TAKEN" (409)
- * - "REALM_REQUIRED", "REALM_INVALID" (422)
- * - validation error code (400, with populated `fieldErrors`)
- * - "NETWORK_ERROR" (no response)
- */
+/** Structured register error. */
 export interface RegisterErrorShape {
   errorCode: string;
   message: string;
@@ -184,15 +168,6 @@ export interface GetAuthMethodsResponse {
 export interface IdentityClientConfig {
   baseUrl: string;
   timeout?: number;
-  /**
-   * Keycloak realm name (e.g. "questioner", "onlinemenu").
-   *
-   * When set, the client injects an `X-Realm` header on every auth
-   * call (login / refresh / send-otp / verify-otp / logout) so the
-   * IdentityService routes the underlying ROPC + refresh against the
-   * matching realm. Multi-realm IdentityService deployments REQUIRE
-   * this — a missing header on a multi-realm config returns
-   * `400 REALM_REQUIRED`.
-   */
+  /** Keycloak realm name (e.g. "questioner", "onlinemenu"). */
   realm?: string;
 }

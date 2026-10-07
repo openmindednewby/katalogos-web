@@ -1,7 +1,4 @@
-/**
- * Types for multi-location override management.
- * Maps to backend Location and MenuItemOverride entities.
- */
+/** Types for multi-location override management. */
 
 /** DTO for a tenant location (matches backend LocationDto). */
 export interface LocationDto {

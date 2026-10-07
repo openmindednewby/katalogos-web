@@ -1,7 +1,3 @@
-/**
- * Hook for menu content editing handlers (category + item CRUD, reorder, expansion).
- * Extracted from MenuContentEditor to keep the component under the line limit.
- */
 import { useCallback, useMemo, useState } from 'react';
 
 import { FM } from '@/localization/helpers';

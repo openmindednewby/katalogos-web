@@ -97,14 +97,12 @@ const UserListItem = ({
       style={[styles.container, { backgroundColor: colors.surface, borderColor: colors.border }]}
       testID="user-item"
     >
-      {/* User Info */}
       <View style={styles.infoBlock}>
         <Text style={[styles.displayName, { color: colors.text }]}>{displayName}</Text>
         <Text style={[styles.line, { color: colors.textSecondary }]}>{FM('users.atUsername', username)}</Text>
         {isValueDefined(email) ? <Text style={[styles.line, { color: colors.textSecondary }]}>{email}</Text> : null}
         {isValueDefined(phoneNumber) ? <Text style={[styles.line, { color: colors.textSecondary }]}>{phoneNumber}</Text> : null}
 
-        {/* Roles */}
         {roles.length > 0 ? <View style={styles.rolesRow}>
             {roles.map((role) => (
               <View
@@ -117,7 +115,6 @@ const UserListItem = ({
           </View> : null}
       </View>
 
-      {/* Status Badge */}
       <View style={styles.statusBlock}>
         <View
           style={[styles.statusPill, item.enabled ? styles.statusEnabled : styles.statusDisabled]}

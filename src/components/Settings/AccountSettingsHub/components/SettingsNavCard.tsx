@@ -1,7 +1,3 @@
-/**
- * Navigation card for the Account Settings Hub.
- * Renders a tappable card with title, description, and chevron icon.
- */
 import React from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';

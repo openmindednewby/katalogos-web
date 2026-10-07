@@ -53,10 +53,7 @@ function buildJsCode(config: EmbedWidgetConfig, publicUrl: string, menuId: strin
   ].join('\n');
 }
 
-/**
- * Generates iframe and JS widget embed code snippets from the given configuration.
- * Pure computation, no side effects.
- */
+/** Generates iframe and JS widget embed code snippets from the given configuration. */
 export function generateEmbedCode(config: EmbedWidgetConfig, publicUrl: string, menuId: string): EmbedCodeResult {
   const origin = typeof window !== 'undefined' ? window.location.origin : '';
   const embedUrl = buildEmbedUrl(publicUrl, menuId, {

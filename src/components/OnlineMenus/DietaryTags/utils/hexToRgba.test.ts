@@ -1,6 +1,3 @@
-/**
- * Unit tests for hexToRgba utility.
- */
 import { hexToRgba } from './hexToRgba';
 
 describe('hexToRgba', () => {

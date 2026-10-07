@@ -1,7 +1,3 @@
-/**
- * Account Settings Hub route page.
- * Wraps the AccountSettingsHubScreen component.
- */
 import React from 'react';
 
 import { AccountSettingsHubScreen } from '../../../src/components/Settings';

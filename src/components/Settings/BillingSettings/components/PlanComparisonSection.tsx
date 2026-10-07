@@ -1,6 +1,3 @@
-/**
- * PlanComparisonSection - grid of plan cards with billing cycle toggle.
- */
 import React, { useCallback, useState } from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';

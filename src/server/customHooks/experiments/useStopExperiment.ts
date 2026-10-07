@@ -1,7 +1,3 @@
-/**
- * Custom hook for stopping an experiment.
- * Uses the OnlineMenu API: POST /api/v1/experiments/{id}/stop
- */
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { customInstance } from '@/server/mutators/onlineMenuMutator';

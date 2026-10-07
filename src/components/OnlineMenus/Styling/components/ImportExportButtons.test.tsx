@@ -1,13 +1,3 @@
-/**
- * Unit tests for ImportExportButtons component.
- *
- * Tests focus on logic and callbacks:
- * - Export button triggers download
- * - Disabled state prevents actions
- *
- * Note: File input tests are limited because HTML input elements
- * don't work well with react-native-testing-library.
- */
 
 import React from 'react';
 
@@ -23,9 +13,6 @@ import * as menuConfigExport from '../../../../utils/menuConfigExport';
 
 import type { MenuContents } from '../../../../types/menuTypes';
 
-// =============================================================================
-// Mocks
-// =============================================================================
 
 jest.mock('../../../../utils/menuConfigExport', () => ({
   downloadMenuConfig: jest.fn(),
@@ -36,9 +23,6 @@ jest.mock('../../../../utils/menuConfigImport', () => ({
   importMenuConfigFromFile: jest.fn(),
 }));
 
-// =============================================================================
-// Test Setup
-// =============================================================================
 
 const mockStore = configureStore({
   reducer: {

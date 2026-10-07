@@ -1,7 +1,3 @@
-/**
- * Renders the active tab content inside the FullMenuEditor.
- * Extracted to reduce cyclomatic complexity of the parent component.
- */
 import React from 'react';
 
 import MenuContentEditor from '@/components/OnlineMenus/MenuContentEditor';

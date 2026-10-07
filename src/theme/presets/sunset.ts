@@ -1,8 +1,3 @@
-/**
- * Warm sunset theme preset.
- * Rich coral and amber tones evoking a sunset horizon.
- * Warm oranges with deep plum undertones for depth.
- */
 import type { TenantThemeConfig } from '../types';
 
 export const SUNSET_THEME_CONFIG: TenantThemeConfig = {

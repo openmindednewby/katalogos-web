@@ -1,4 +1,3 @@
-/** Styles for the EmojiPicker component. */
 import { StyleSheet } from 'react-native';
 
 const GRID_GAP = 4;

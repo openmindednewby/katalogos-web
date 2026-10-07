@@ -1,11 +1,6 @@
 
 
 
-/**
- * CSS animation styles for native form components.
- * GPU-accelerated: uses only transform + opacity (except max-height for error messages).
- * Merged into the main stylesheet by styles.ts.
- */
 
 const FIELD_FADE_DURATION_MS = 200;
 const FIELD_STAGGER_DELAY_MS = 50;

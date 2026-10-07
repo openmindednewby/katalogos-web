@@ -1,6 +1,3 @@
-/**
- * Pure helpers for variant/modifier CRUD and price calculations.
- */
 import type {
   VariantGroup,
   Variant,
@@ -9,9 +6,6 @@ import type {
   MenuItem,
 } from '../../../types/menuTypes';
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const DEFAULT_VARIANT_PRICE = 0;
 const DEFAULT_MODIFIER_PRICE = 0;
@@ -20,9 +14,6 @@ const DEFAULT_MAX_SELECTIONS = 1;
 const MODIFIER_DEFAULT_MIN = 0;
 const MODIFIER_DEFAULT_MAX = 3;
 
-// =============================================================================
-// Variant Group Helpers
-// =============================================================================
 
 /**
  * Creates a new empty variant group with sensible defaults.
@@ -135,9 +126,6 @@ export function updateVariantInGroup(
   });
 }
 
-// =============================================================================
-// Modifier Group Helpers
-// =============================================================================
 
 /**
  * Creates a new empty modifier group with sensible defaults.
@@ -253,14 +241,8 @@ export function updateModifierInGroup(
   });
 }
 
-// =============================================================================
-// Price Calculation Helpers
-// =============================================================================
 
-/**
- * Returns the minimum price across all variants in all groups.
- * Returns undefined if no variants exist.
- */
+/** Returns the minimum price across all variants in all groups. */
 export function getMinVariantPrice(item: MenuItem): number | undefined {
   const groups = item.variantGroups;
   if (!groups || groups.length === 0) return undefined;

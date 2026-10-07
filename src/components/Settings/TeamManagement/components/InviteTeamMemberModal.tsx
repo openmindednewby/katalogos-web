@@ -1,7 +1,3 @@
-/**
- * Modal for inviting a new team member.
- * Includes email input and role selector.
- */
 import React, { useCallback, useMemo, useState } from 'react';
 
 import {
@@ -61,10 +57,6 @@ const styles = StyleSheet.create({
 const InviteTeamMemberModal = ({ visible, loading, onSubmit, onClose }: Props): React.ReactElement | null => {
   const { theme } = useTheme();
   const { colors } = theme;
-  // The selected role tile is a text-on-tint pair. It shipped `primary['700']` on
-  // `primary['100']`, which clears AA on all five bundled presets but only because
-  // their seeds are dark — `700`-on-`100` bottoms out at 1.09:1 across the seed
-  // space, and a tenant supplies this palette. `badgeColors` measures per seed.
   const selectedRoleColors = useMemo(() => badgeColors(theme.palette.primary), [theme.palette.primary]);
 
   const [email, setEmail] = useState('');

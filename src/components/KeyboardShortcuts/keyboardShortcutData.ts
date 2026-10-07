@@ -1,13 +1,7 @@
-/**
- * Static shortcut definitions for the help modal.
- * These define what is displayed, not what is registered --
- * registration happens in the provider and consuming components.
- */
 import { getModifierLabel } from './utils/platformUtils';
 
 import type { ShortcutCategory } from './keyboardShortcutTypes';
 
-/** Builds the global shortcuts category. */
 function buildGlobalCategory(mod: string): ShortcutCategory {
   return {
     titleKey: 'keyboardShortcuts.categoryGlobal',
@@ -20,7 +14,6 @@ function buildGlobalCategory(mod: string): ShortcutCategory {
   };
 }
 
-/** Builds the editor shortcuts category. */
 function buildEditorCategory(mod: string): ShortcutCategory {
   return {
     titleKey: 'keyboardShortcuts.categoryEditor',
@@ -33,7 +26,6 @@ function buildEditorCategory(mod: string): ShortcutCategory {
   };
 }
 
-/** Builds the navigation shortcuts category. */
 function buildNavigationCategory(): ShortcutCategory {
   return {
     titleKey: 'keyboardShortcuts.categoryNavigation',

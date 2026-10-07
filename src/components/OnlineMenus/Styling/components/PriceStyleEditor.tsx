@@ -48,7 +48,6 @@ const PriceStyleEditor: React.FC<Props> = ({ value, onChange, disabled = false }
   const errorColor = String(colors.error);
   const primaryColor = String(colors.primary);
 
-  // Computed values with defaults
   const currentFontWeight = value.fontWeight ?? FontWeight.Bold;
   const currentFontSize = value.fontSize ?? DEFAULT_FONT_SIZE;
   const currentColor = value.color ?? '';
@@ -56,7 +55,6 @@ const PriceStyleEditor: React.FC<Props> = ({ value, onChange, disabled = false }
   const currentShowCurrency = value.showCurrency ?? true;
   const currentStrikethrough = value.strikethroughWhenUnavailable ?? true;
 
-  // Handlers
   const handleFontSizeChange = useCallback(
     (fontSize: number) => onChange({ ...value, fontSize: Math.round(fontSize) }),
     [onChange, value],

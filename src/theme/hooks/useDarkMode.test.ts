@@ -1,7 +1,3 @@
-/**
- * Unit tests for useDarkMode hook.
- * Focuses on logic: preference persistence, system detection, effective mode resolution.
- */
 import { renderHook, act } from '@testing-library/react-native';
 
 import {
@@ -16,9 +12,6 @@ import DarkModePreference from '../../shared/enums/DarkModePreference';
 import ThemeMode from '../../shared/enums/ThemeMode';
 
 
-// ---------------------------------------------------------------------------
-// Mock localStorage
-// ---------------------------------------------------------------------------
 
 const localStorageMock = (() => {
   let store: Record<string, string> = {};
@@ -35,9 +28,6 @@ const localStorageMock = (() => {
 
 Object.defineProperty(window, 'localStorage', { value: localStorageMock });
 
-// ---------------------------------------------------------------------------
-// Mock matchMedia
-// ---------------------------------------------------------------------------
 
 let mockMatchesValue = false;
 let mediaChangeHandler: ((e: { matches: boolean }) => void) | null = null;
@@ -56,9 +46,6 @@ Object.defineProperty(window, 'matchMedia', {
   })),
 });
 
-// ---------------------------------------------------------------------------
-// Setup
-// ---------------------------------------------------------------------------
 
 beforeEach(() => {
   localStorageMock.clear();
@@ -67,9 +54,6 @@ beforeEach(() => {
   mediaChangeHandler = null;
 });
 
-// ---------------------------------------------------------------------------
-// Pure function tests
-// ---------------------------------------------------------------------------
 
 describe('isDarkModePreference', () => {
   it('returns true for valid preferences', () => {
@@ -133,9 +117,6 @@ describe('writePreference', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// Hook tests
-// ---------------------------------------------------------------------------
 
 describe('useDarkMode hook', () => {
   it('defaults to System preference with Light effective mode', () => {
@@ -192,7 +173,6 @@ describe('useDarkMode hook', () => {
 
     expect(result.current.effectiveMode).toBe(ThemeMode.Light);
 
-    // Simulate OS switching to dark mode
     act(() => {
       mediaChangeHandler?.({ matches: true });
     });
@@ -207,7 +187,6 @@ describe('useDarkMode hook', () => {
       result.current.setPreference(DarkModePreference.Light);
     });
 
-    // Simulate OS switching to dark mode
     act(() => {
       mediaChangeHandler?.({ matches: true });
     });
@@ -222,7 +201,6 @@ describe('useDarkMode hook', () => {
       result.current.setPreference(DarkModePreference.Dark);
     });
 
-    // Simulate OS switching to light mode
     act(() => {
       mediaChangeHandler?.({ matches: false });
     });

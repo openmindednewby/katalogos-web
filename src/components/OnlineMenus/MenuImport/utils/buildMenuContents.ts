@@ -1,7 +1,3 @@
-/**
- * Build MenuContents from validated import rows.
- * Groups items by category and assigns display orders.
- */
 import { generateUniqueId } from '../../../../types/menuTypes';
 
 import type { ValidatedRow } from './validateMenuRows';
@@ -13,11 +9,7 @@ export interface ImportSummary {
   skippedCount: number;
 }
 
-/**
- * Build a MenuContents object from validated rows.
- * Only includes rows that passed validation (isValid === true).
- * Merges into existing contents if provided.
- */
+/** Build a MenuContents object from validated rows. */
 export function buildMenuContents(
   validatedRows: ValidatedRow[],
   existingContents?: MenuContents | null,

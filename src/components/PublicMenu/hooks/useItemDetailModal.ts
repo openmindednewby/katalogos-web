@@ -1,7 +1,3 @@
-/**
- * Hook to manage the item detail modal open/close state
- * and the currently selected menu item.
- */
 import { useCallback, useEffect, useState } from 'react';
 
 import { Platform } from 'react-native';
@@ -13,17 +9,12 @@ import type { MenuItem } from '../../../types/menuTypes';
 const ESCAPE_KEY = 'Escape';
 
 interface UseItemDetailModalResult {
-  /** The item currently displayed in the modal, or null */
   readonly selectedItem: MenuItem | null;
-  /** Whether the modal is open */
   readonly isOpen: boolean;
-  /** Open the modal with the given item */
   readonly openModal: (item: MenuItem) => void;
-  /** Close the modal and clear the selected item */
   readonly closeModal: () => void;
 }
 
-/** Type guard for non-null MenuItem. */
 function isItemSelected(item: MenuItem | null): item is MenuItem {
    
   return isValueDefined(item);

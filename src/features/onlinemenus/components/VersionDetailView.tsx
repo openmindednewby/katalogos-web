@@ -1,7 +1,3 @@
-/**
- * Displays full details of a single menu version with restore and compare actions.
- * Shows a human-readable summary by default with a toggle for raw JSON.
- */
 import React, { useCallback, useMemo, useState } from 'react';
 
 import { ActivityIndicator, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';

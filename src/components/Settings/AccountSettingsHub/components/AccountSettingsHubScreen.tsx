@@ -1,8 +1,3 @@
-/**
- * Account Settings Hub Screen.
- * Displays a user profile summary and navigation cards to each settings sub-section,
- * organized into logical groups: Account, Business, and Advanced.
- */
 import React from 'react';
 
 import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';

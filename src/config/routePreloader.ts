@@ -2,17 +2,11 @@ const PRELOAD_IDLE_TIMEOUT_MS = 2000;
 const PRELOAD_FALLBACK_DELAY_MS = 100;
 const HEAVY_MODULE_DELAY_MS = 3000;
 
-/**
- * Preload critical framework chunks that gate the first protected render.
- * These must be cached before navigation so the Suspense boundary in
- * LazyQueryProvider resolves instantly.
- */
 function preloadCriticalChunks(): void {
   import('@tanstack/react-query').catch(() => undefined);
   import('../lib/queryClient').catch(() => undefined);
 }
 
-/** Preload main application pages. */
 function preloadMainPages(): void {
   import('../../app/(protected)/tenants/index').catch(() => undefined);
   import('../../app/(protected)/menus/index').catch(() => undefined);
@@ -31,7 +25,6 @@ function preloadMainPages(): void {
   import('../../app/(protected)/experiments/index').catch(() => undefined);
 }
 
-/** Preload settings and auxiliary pages. */
 function preloadSettingsPages(): void {
   import('../../app/(protected)/settings/index').catch(() => undefined);
   import('../../app/(protected)/settings/notification-preferences').catch(() => undefined);
@@ -49,42 +42,27 @@ function preloadSettingsPages(): void {
   import('../../app/(protected)/team/accept/[token]').catch(() => undefined);
 }
 
-/**
- * Preload heavy library modules that cause visible delays on first use.
- * These are loaded with a secondary idle callback to avoid competing
- * with the critical route preloads.
- */
 function preloadHeavyModules(): void {
-  // PDF export (jsPDF ~200 KB)
   import('jspdf').catch(() => undefined);
 
-  // Excel file parsing for CSV/XLSX import
   import('read-excel-file/browser').catch(() => undefined);
 
-  // QR code renderer
   import('react-qr-code').catch(() => undefined);
 
-  // Menu editor styling sub-components (color picker, typography, layout)
   import('../components/OnlineMenus/Styling/components/GlobalStylingTab').catch(() => undefined);
   import('../components/OnlineMenus/Styling/components/ColorSchemeEditor').catch(() => undefined);
   import('../components/OnlineMenus/Styling/components/TypographyEditor').catch(() => undefined);
   import('../components/OnlineMenus/Styling/components/BoxStyleEditor').catch(() => undefined);
   import('../components/OnlineMenus/Styling/components/HeaderEditor').catch(() => undefined);
 
-  // Menu import modal
   import('../components/OnlineMenus/MenuImport/ImportMenuModal').catch(() => undefined);
 
-  // Analytics charts
   import('../components/Analytics/components/MenuAnalyticsScreen').catch(() => undefined);
 }
 
-/**
- * Preloads all protected route page chunks in the background.
- * Uses requestIdleCallback to avoid blocking the main thread.
- * Call this when the login page mounts so chunks are cached by the time the user logs in.
- */
+/** Preloads all protected route page chunks in the background. */
 export function preloadProtectedRoutes(): void {
-  if (typeof window === 'undefined') return; // SSR guard
+  if (typeof window === 'undefined') return;
 
   const preloadRoutes = (): void => {
     preloadCriticalChunks();

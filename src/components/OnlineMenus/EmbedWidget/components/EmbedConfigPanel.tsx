@@ -86,7 +86,6 @@ const EmbedConfigPanel = ({
 
   return (
     <View style={styles.container}>
-      {/* Width presets */}
       <View>
         <Text style={[styles.label, { color: textColor }]}>{FM('onlineMenus.embedWidget.widthLabel')}</Text>
         <View style={styles.presetRow}>
@@ -123,7 +122,6 @@ const EmbedConfigPanel = ({
         ) : null}
       </View>
 
-      {/* Height */}
       <View>
         <Text style={[styles.label, { color: textColor }]}>{FM('onlineMenus.embedWidget.heightLabel')}</Text>
         <TextInput
@@ -137,7 +135,6 @@ const EmbedConfigPanel = ({
         />
       </View>
 
-      {/* Theme override */}
       <View>
         <Text style={[styles.label, { color: textColor }]}>{FM('onlineMenus.embedWidget.themeLabel')}</Text>
         <View style={styles.themeRow}>
@@ -161,7 +158,6 @@ const EmbedConfigPanel = ({
         </View>
       </View>
 
-      {/* Accent color */}
       <View>
         <Text style={[styles.label, { color: textColor }]}>{FM('onlineMenus.embedWidget.accentColorLabel')}</Text>
         <TextInput

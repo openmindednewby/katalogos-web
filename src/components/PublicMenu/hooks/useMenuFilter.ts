@@ -1,20 +1,10 @@
-/**
- * useMenuFilter - Client-side filtering logic for public menu items.
- * Filters categories and items by search query and/or dietary tags.
- */
 import { useCallback, useMemo, useState } from 'react';
 
 import type { Category, MenuItem } from '../../../types/menuTypes';
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const EMPTY_TAGS: string[] = [];
 
-// =============================================================================
-// Pure Filter Helpers
-// =============================================================================
 
 /** Checks whether an item name matches a search query (case-insensitive). */
 export function matchesSearch(item: MenuItem, query: string): boolean {
@@ -71,37 +61,23 @@ export function extractUniqueTags(categories: Category[]): string[] {
   return Array.from(tagSet).sort();
 }
 
-// =============================================================================
-// Hook
-// =============================================================================
 
 interface UseMenuFilterReturn {
-  /** Current search query string. */
   searchQuery: string;
-  /** Update the search query. */
   setSearchQuery: (query: string) => void;
-  /** Currently selected dietary tag strings. */
   selectedTags: string[];
-  /** Toggle a dietary tag on/off. */
   toggleTag: (tag: string) => void;
-  /** Whether any filter is active. */
   hasActiveFilters: boolean;
-  /** Clear all filters (search and tags). */
   clearAllFilters: () => void;
-  /** Categories with items filtered by current criteria. */
   filteredCategories: Category[];
-  /** All unique dietary tags present in the menu data. */
   availableTags: string[];
-  /** Total number of items after filtering. */
   filteredItemCount: number;
 }
 
-/** Counts the total items across filtered categories. */
 function countFilteredItems(cats: Category[]): number {
   return cats.reduce((sum, cat) => sum + (cat.items?.length ?? 0), 0);
 }
 
-/** Toggles a tag in the selected tags array (add if absent, remove if present). */
 function toggleInArray(prev: string[], tag: string): string[] {
   if (prev.includes(tag)) return prev.filter((t) => t !== tag);
   return [...prev, tag];

@@ -57,11 +57,6 @@ const OnlineMenusPage = (): React.ReactElement => {
 
   const { startTour, hasSeenTour } = useTooltipTourContext();
 
-  // Track the menu being edited by externalId rather than by snapshot. This
-  // lets `editingItem` re-derive from the latest `allItems` on every render,
-  // so when the list query refetches after a save the open editor sees the
-  // fresh contents (categories/items/imageContentIds) instead of holding a
-  // stale closure from the moment Edit was clicked.
   const [editingItemId, setEditingItemId] = useState<string | null>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [activeTab, setActiveTab] = useState<MenuTabFilter>(MenuTabFilter.All);

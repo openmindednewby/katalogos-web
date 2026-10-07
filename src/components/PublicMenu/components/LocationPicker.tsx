@@ -1,9 +1,3 @@
-/**
- * Compact location dropdown for the public menu.
- * Only renders when the menu is available at multiple locations.
- *
- * WCAG: Escape closes the dropdown, accessibilityState reflects expanded state.
- */
 import React, { useCallback, useState } from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';

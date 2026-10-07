@@ -1,8 +1,3 @@
-/**
- * Unit tests for testNotificationApi store operations
- *
- * Tests the API operations when a store is registered.
- */
 
 import {
   setupTestNotificationApi,
@@ -11,7 +6,6 @@ import {
 } from './testNotificationApi';
 import { createMockStore } from './testNotificationApi.helpers';
 
-// Mock the process.env
 const originalEnv = process.env.NODE_ENV;
 
 describe('testNotificationApi operations', () => {

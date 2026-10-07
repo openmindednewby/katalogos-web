@@ -4,7 +4,6 @@ import { StyleSheet } from 'react-native';
 
 import { DISABLED_OPACITY } from '../../../../shared/constants';
 
-// Style constants
 const SECTION_MARGIN_VERTICAL = 8;
 const SECTION_TITLE_FONT_SIZE = 16;
 const SECTION_TITLE_MARGIN_BOTTOM = 12;

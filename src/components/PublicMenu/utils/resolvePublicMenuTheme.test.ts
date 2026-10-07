@@ -1,7 +1,3 @@
-/**
- * Unit tests for resolvePublicMenuTheme.
- * Tests theme resolution priority: override > contents > legacy > default.
- */
 import { DEFAULT_PUBLIC_MENU_THEME } from './publicMenuThemePresets';
 import { findThemeById, resolvePublicMenuTheme } from './resolvePublicMenuTheme';
 

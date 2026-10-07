@@ -92,7 +92,6 @@ const GlobalStylingControls: React.FC<GlobalStylingControlsProps> = ({
 
   return (
     <View style={styles.container}>
-      {/* Background Color */}
       <Text style={[styles.label, { color: textColorValue }]}>
         {FM('onlineMenus.backgroundColor')}
       </Text>
@@ -119,7 +118,6 @@ const GlobalStylingControls: React.FC<GlobalStylingControlsProps> = ({
         />
       </View>
 
-      {/* Text Color */}
       <Text style={[styles.label, { color: textColorValue }]}>
         {FM('onlineMenus.textColor')}
       </Text>
@@ -146,7 +144,6 @@ const GlobalStylingControls: React.FC<GlobalStylingControlsProps> = ({
         />
       </View>
 
-      {/* Title Font Size */}
       <Text style={[styles.label, { color: textColorValue }]}>
         {FM('onlineMenus.titleFontSize')}
       </Text>

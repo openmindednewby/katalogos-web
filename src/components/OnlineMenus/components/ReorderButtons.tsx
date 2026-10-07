@@ -1,9 +1,3 @@
-/**
- * ReorderButtons - A pair of move up/down buttons for reordering list items.
- *
- * Renders compact arrow buttons. Disables "up" on the first item
- * and "down" on the last item.
- */
 import React from 'react';
 
 import { Text, TouchableOpacity, View } from 'react-native';

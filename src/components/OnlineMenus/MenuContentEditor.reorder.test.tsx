@@ -1,7 +1,3 @@
-/**
- * Tests for MenuContentEditor - Category and Item reordering.
- * Category move buttons are inside the overflow menu modal.
- */
 import './MenuContentEditor.mocks';
 
 import { fireEvent, render } from '@testing-library/react-native';
@@ -11,7 +7,6 @@ import { createWrapper } from './testUtils';
 
 import type { MenuContents } from '../../types/menuTypes';
 
-/** Opens the overflow menu for a category, then presses the target button. */
 function openOverflowAndPress(
   getByTestId: ReturnType<typeof render>['getByTestId'],
   categoryIndex: number,

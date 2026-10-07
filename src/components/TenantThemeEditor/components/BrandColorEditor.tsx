@@ -1,8 +1,5 @@
 
 
-/**
- * Brand color editor section with primary, secondary, and accent color inputs.
- */
 import React, { useCallback } from 'react';
 
 import { FM } from '@/localization/helpers';

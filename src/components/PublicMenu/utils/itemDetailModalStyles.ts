@@ -1,7 +1,3 @@
-/**
- * Style builders for the ItemDetailModal component.
- * Group/option/tag styles are in itemDetailGroupStyles.ts.
- */
 import type { TextStyle, ViewStyle } from 'react-native';
 
 import { MODAL_OVERLAY_COLOR as BACKDROP_COLOR } from '../../../shared/constants';

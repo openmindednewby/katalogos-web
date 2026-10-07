@@ -1,8 +1,3 @@
-/**
- * Tracks menu item visibility using IntersectionObserver.
- * Fires analytics events when items are visible for >1 second.
- * Web-only; no-ops on native platforms.
- */
 import { useCallback, useEffect, useRef } from 'react';
 
 import { Platform } from 'react-native';

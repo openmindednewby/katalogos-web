@@ -1,11 +1,6 @@
 
 
 
-/**
- * HeaderLogoSizeSelector Component
- *
- * A selector for logo size options (small/medium/large).
- */
 import React from 'react';
 
 import { Text, TouchableOpacity, View } from 'react-native';
@@ -19,9 +14,6 @@ import { headerEditorStyles as styles } from '../utils/headerEditorStyles';
 
 import type { LogoSize } from '../../../../types/menuStyleTypes';
 
-// =============================================================================
-// Types
-// =============================================================================
 
 interface Props {
   label: string;
@@ -34,9 +26,6 @@ interface Props {
   accentColor: string;
 }
 
-// =============================================================================
-// Constants
-// =============================================================================
 
 const LOGO_SIZE_TEST_IDS: Record<LogoSize, string> = {
   small: TestIds.HEADER_EDITOR_LOGO_SIZE_SMALL,
@@ -44,9 +33,6 @@ const LOGO_SIZE_TEST_IDS: Record<LogoSize, string> = {
   large: TestIds.HEADER_EDITOR_LOGO_SIZE_LARGE,
 };
 
-// =============================================================================
-// Component
-// =============================================================================
 
 const HeaderLogoSizeSelector = ({
   label,

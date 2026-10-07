@@ -1,10 +1,3 @@
-/**
- * Hook that synchronises Redux auth state with the Sentry user scope.
- *
- * When the authenticated user changes, `setSentryUser` is called with
- * the Keycloak GUID (no PII). On logout, `clearSentryUser` removes the
- * scope so subsequent events are anonymous.
- */
 
 import { useEffect, useRef } from 'react';
 

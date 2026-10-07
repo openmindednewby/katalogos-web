@@ -1,12 +1,4 @@
-/**
- * Unit tests for BusinessProfileSettingsScreen logic.
- * Tests handleSave mutation call shape, success/error notifications,
- * and derived state (isSaving/saveLabel).
- */
 
-// ---------------------------------------------------------------------------
-// Mocks
-// ---------------------------------------------------------------------------
 
 jest.mock('../../../../localization/helpers', () => ({
   FM: (key: string) => key,
@@ -27,9 +19,6 @@ jest.mock('../../../../lib/notifications', () => ({
   notifyError: (...args: unknown[]) => mockNotifyError(...args),
 }));
 
-// ---------------------------------------------------------------------------
-// Constants
-// ---------------------------------------------------------------------------
 
 const TEST_NAME = 'Joes Diner';
 const TEST_DESCRIPTION = 'A great diner';
@@ -44,9 +33,6 @@ const TEST_POSTAL_CODE = '62701';
 const TEST_COUNTRY = 'US';
 const TEST_HOURS_JSON = '{"hours":[]}';
 
-// ---------------------------------------------------------------------------
-// Tests: handleSave mutation logic (simulated)
-// ---------------------------------------------------------------------------
 
 describe('BusinessProfileSettingsScreen - handleSave logic', () => {
   const mockMutate = jest.fn();
@@ -55,9 +41,6 @@ describe('BusinessProfileSettingsScreen - handleSave logic', () => {
     jest.clearAllMocks();
   });
 
-  /**
-   * Simulates the handleSave callback from the component.
-   */
   function simulateHandleSave(fields: {
     name: string;
     description: string;
@@ -227,9 +210,6 @@ describe('BusinessProfileSettingsScreen - handleSave logic', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// Tests: derived state (isSaving / saveLabel)
-// ---------------------------------------------------------------------------
 
 describe('BusinessProfileSettingsScreen - derived state', () => {
   const { FM } = require('../../../../localization/helpers');
@@ -247,9 +227,6 @@ describe('BusinessProfileSettingsScreen - derived state', () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// Tests: profile data defaults
-// ---------------------------------------------------------------------------
 
 describe('BusinessProfileSettingsScreen - profile data defaults', () => {
   function extractDefaults(profile: {

@@ -1,7 +1,3 @@
-/**
- * SeasonalBadge - Small badge indicating an item has seasonal availability.
- * Shown on menu items in both the editor and public menu.
- */
 import React from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';

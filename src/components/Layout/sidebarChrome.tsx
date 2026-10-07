@@ -1,13 +1,3 @@
-/**
- * Sidebar chrome slots for the shared NavShell side rail — the Home shortcut and
- * the footer (Appearance control + Logout), each in a full (text) and a collapsed
- * (icon-only) variant. Extracted so `ProtectedLayout` stays a thin NavShell wiring.
- *
- * The dark-mode control is the shared `@dloizides/ui-nav` `DarkModeControl`
- * (segmented on the full rail, cycle on the collapsed rail); logout keeps the
- * `LOGOUT_BUTTON` testID that the E2E suite AND the global logout listener in
- * `AuthProvider` key off. All colours flow through the app theme.
- */
 import React, { useMemo } from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -44,7 +34,6 @@ const styles = StyleSheet.create({
   footerColumn: { gap: FOOTER_GAP },
 });
 
-/** Map a DarkModeControl string value back to the app's `DarkModePreference` (no unsafe cast). */
 const PREFERENCE_BY_VALUE: Record<string, DarkModePreference> = {
   [DarkModePreference.Light]: DarkModePreference.Light,
   [DarkModePreference.Dark]: DarkModePreference.Dark,
@@ -95,7 +84,6 @@ export const SidebarHomeLink = ({ active, collapsed = false, onPress }: HomeLink
   );
 };
 
-/** Build the pre-localized Light / Dark / System options for the shared DarkModeControl. */
 function useDarkModeOptions(): DarkModeOption[] {
   return useMemo(
     () => [

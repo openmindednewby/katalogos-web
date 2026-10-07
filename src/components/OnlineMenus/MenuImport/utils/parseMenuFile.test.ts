@@ -1,6 +1,3 @@
-/**
- * Tests for CSV/Excel file parsing utilities.
- */
 import { parseCsvText } from './parseMenuFile';
 
 describe('parseCsvText', () => {

@@ -1,6 +1,3 @@
-/**
- * Tests for quizHelpers - Answer validation and page completion.
- */
 import { isRequiredAnswerMissing, isPageComplete } from './quizHelpers';
 import QuestionType from '../../../shared/enums/QuestionType';
 

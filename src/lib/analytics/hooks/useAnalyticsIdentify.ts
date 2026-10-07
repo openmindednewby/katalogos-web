@@ -7,10 +7,7 @@ import { isValueDefined } from '../../../utils/is';
 
 import type { RootState } from '../../../store/reduxStore';
 
-/**
- * Automatically identifies or resets the analytics user when auth state changes.
- * Uses only the Keycloak GUID — no PII (no email, name, or phone).
- */
+/** Automatically identifies or resets the analytics user when auth state changes. */
 export function useAnalyticsIdentify(): void {
   const user = useSelector((s: RootState) => s.auth.user);
   const userInfo = useSelector((s: RootState) => s.auth.userInfo);

@@ -1,7 +1,3 @@
-/**
- * BUG-QUIZ-018: Tests that totalPages counts only pages with at least one
- * non-skipped (visible) question.
- */
 import { pageHasVisibleQuestion } from './quizHelpers';
 import QuestionType from '../../../shared/enums/QuestionType';
 
@@ -20,9 +16,6 @@ describe('quizHelpers - visible pages count (BUG-QUIZ-018)', () => {
     };
   }
 
-  /**
-   * Mirrors the fixed totalPages computation from useQuizFormState.
-   */
   function computeVisiblePageCount(form: DynamicQuiz): number {
     const allPages = [...new Set(form.questions.map((q) => q.page))];
     return allPages.filter((page) => pageHasVisibleQuestion(form, page)).length;
@@ -93,7 +86,7 @@ describe('quizHelpers - visible pages count (BUG-QUIZ-018)', () => {
     const oldCount = [...new Set(form.questions.map((q) => q.page))].length;
     const newCount = computeVisiblePageCount(form);
 
-    expect(oldCount).toBe(2); // old: counts both pages
-    expect(newCount).toBe(1); // new: only counts visible page
+    expect(oldCount).toBe(2);
+    expect(newCount).toBe(1);
   });
 });

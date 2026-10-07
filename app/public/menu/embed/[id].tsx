@@ -29,7 +29,6 @@ import type { Category } from '../../../../src/types/menuTypes';
 const POST_MESSAGE_TYPE = 'menu-widget-resize';
 const WILDCARD_ORIGIN = '*';
 
-/** Sends the current content height to the parent window for auto-resize. */
 function postResizeMessage(height: number, targetOrigin: string): void {
   if (Platform.OS !== 'web' || typeof window === 'undefined') return;
   try {

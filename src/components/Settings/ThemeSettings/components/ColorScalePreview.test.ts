@@ -1,7 +1,3 @@
-/**
- * Unit tests for ColorScalePreview logic.
- * Tests the shade text color selection and scale generation.
- */
 import { shadeTextColor } from './ColorScalePreview';
 import { generateColorScale, isValidHex } from '../../../../theme/utils/palette-generator';
 
@@ -77,8 +73,6 @@ describe('generateColorScale integration', () => {
 
   it('should produce lighter shades for lower numbers', () => {
     const scale: ColorScale = generateColorScale('#005f73');
-    // shade 50 should be lighter than shade 500 (higher lightness)
-    // We can't easily compare hex lightness, but we can verify they are different
     expect(scale['50']).not.toBe(scale['500']);
     expect(scale['900']).not.toBe(scale['500']);
   });

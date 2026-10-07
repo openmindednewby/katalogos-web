@@ -1,11 +1,4 @@
 /* eslint-disable no-console */
-/**
- * Demo registration form using native HTML elements.
- * No Syncfusion dependencies.
- *
- * Note: This is a web-only component using native HTML,
- * so React Native linting rules are disabled.
- */
 import type { ReactElement } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -39,7 +32,6 @@ export const RegistrationForm = (): ReactElement => {
   });
 
   function handleFormSubmit(data: RegistrationFormData): void {
-    // Demo: log form data
     console.log('Registration form submitted:', data);
     // eslint-disable-next-line no-alert
     alert(`Registration submitted!\nName: ${data.name}\nEmail: ${data.email}`);

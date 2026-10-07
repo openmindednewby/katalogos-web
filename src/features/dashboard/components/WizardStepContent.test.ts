@@ -1,8 +1,3 @@
-/**
- * Tests for the realm-key resolver used by Step1Content to pick between
- * questioner-flavored and onlinemenu-flavored copy. We mock @/auth/keycloakConfig
- * per test by re-importing in `jest.isolateModules`.
- */
 
 describe('resolveWizardRealmKey', () => {
   beforeEach(() => {
@@ -11,7 +6,6 @@ describe('resolveWizardRealmKey', () => {
 
   function loadResolver(realm: string | null): () => 'questioner' | 'onlinemenu' {
     jest.doMock('@/auth/keycloakConfig', () => ({ keycloakRealm: realm }));
-    // Mock the heavy transitive deps so the file imports cleanly in Jest.
     jest.doMock('@/components/Content/components/ImagePicker', () => ({ ImagePicker: () => null }));
     jest.doMock('@/components/Dashboard/components/wizardContentStyles', () => ({
       DISABLED_OPACITY: 0.5,

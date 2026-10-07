@@ -6,10 +6,7 @@ import type ContentStatus from '../../../shared/enums/ContentStatus';
 export { default as ContentCategory } from '../../../shared/enums/ContentCategory';
 export { default as ContentStatus } from '../../../shared/enums/ContentStatus';
 
-/**
- * Raw content metadata as returned from the API.
- * Note: The API uses 'externalId' instead of 'id'.
- */
+/** Raw content metadata as returned from the API. */
 export interface RawContentDto {
   externalId: string;
   fileName: string;
@@ -24,10 +21,7 @@ export interface RawContentDto {
   lastUpdatedDate?: string;
 }
 
-/**
- * Content metadata normalized for frontend use.
- * Maps API's 'externalId' to 'id' for consistency.
- */
+/** Content metadata normalized for frontend use. */
 export interface ContentDto {
   id: string;
   fileName: string;
@@ -42,13 +36,9 @@ export interface ContentDto {
   updatedAt?: string;
 }
 
-/**
- * File size constants.
- */
 const BYTES_PER_KB = 1024;
 const BYTES_PER_MB = BYTES_PER_KB * BYTES_PER_KB;
 
-/** Maximum image file size in MB */
 const MAX_IMAGE_SIZE_MB = 10;
 
 /**
@@ -108,9 +98,7 @@ export interface UploadState {
   error: Error | null;
   contentId: string | null;
 }
-/** Maximum video file size in MB */
 const MAX_VIDEO_SIZE_MB = 500;
-/** Maximum document file size in MB */
 const MAX_DOCUMENT_SIZE_MB = 50;
 
 function isMetadataRecord(value: unknown): value is Record<string, string | undefined> {

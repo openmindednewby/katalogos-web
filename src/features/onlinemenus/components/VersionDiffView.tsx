@@ -1,7 +1,3 @@
-/**
- * Displays a diff comparison between a selected version and the current version.
- * Shows changes grouped by path with color-coded change types.
- */
 import React from 'react';
 
 import { ActivityIndicator, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';

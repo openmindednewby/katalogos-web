@@ -1,7 +1,3 @@
-/**
- * Personal Info Section.
- * Editable fields for first name, last name, email, and phone number.
- */
 import React from 'react';
 
 import { StyleSheet, Text, TextInput } from 'react-native';

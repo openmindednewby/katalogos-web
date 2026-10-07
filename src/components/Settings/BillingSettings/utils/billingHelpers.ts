@@ -1,6 +1,3 @@
-/**
- * Helper functions for billing settings display logic.
- */
 import { MS_PER_DAY } from '../../../../lib/hooks/billing/constants';
 import SubscriptionStatus from '../../../../lib/hooks/billing/enums/SubscriptionStatus';
 import { isValueDefined } from '../../../../utils/is';

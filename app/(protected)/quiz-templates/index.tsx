@@ -20,7 +20,6 @@ import { getErrorMessage } from '../../../src/utils/errorMessage';
 
 import type { RootState } from '../../../src/store/reduxStore';
 
-// Lazy load the editor modal - only loaded when editing
 const TemplateEditorModal = lazy(async () => import('../../../src/features/questioner/components/TemplateEditorModal'));
 
 const QuizTemplatesPage = (): React.ReactElement => {
@@ -109,7 +108,6 @@ const QuizTemplatesPage = (): React.ReactElement => {
         />
       ) : null}
 
-      {/* Lazy load editor modal - only loaded when modal is opened */}
       {isModalVisible ? (
         <Suspense fallback={<LoadingFallback fullScreen />}>
           <TemplateEditorModal

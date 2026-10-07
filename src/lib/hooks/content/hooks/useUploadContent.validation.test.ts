@@ -1,6 +1,3 @@
-/**
- * Unit tests for useUploadContent hook - File validation.
- */
 import { validateFile } from '..';
 import ContentCategory from '../../../../shared/enums/ContentCategory';
 
@@ -13,7 +10,7 @@ describe('validateFile', () => {
         uri: 'file://test.jpg',
         name: 'test.jpg',
         type: 'image/jpeg',
-        size: 5 * 1024 * 1024, // 5MB
+        size: 5 * 1024 * 1024,
       };
 
       const result = validateFile(file, ContentCategory.Image);
@@ -26,7 +23,7 @@ describe('validateFile', () => {
         uri: 'file://large.jpg',
         name: 'large.jpg',
         type: 'image/jpeg',
-        size: 15 * 1024 * 1024, // 15MB - exceeds 10MB limit
+        size: 15 * 1024 * 1024,
       };
 
       const result = validateFile(file, ContentCategory.Image);
@@ -39,7 +36,7 @@ describe('validateFile', () => {
         uri: 'file://video.mp4',
         name: 'video.mp4',
         type: 'video/mp4',
-        size: 400 * 1024 * 1024, // 400MB
+        size: 400 * 1024 * 1024,
       };
 
       const result = validateFile(file, ContentCategory.Video);
@@ -51,7 +48,7 @@ describe('validateFile', () => {
         uri: 'file://large-video.mp4',
         name: 'large-video.mp4',
         type: 'video/mp4',
-        size: 600 * 1024 * 1024, // 600MB
+        size: 600 * 1024 * 1024,
       };
 
       const result = validateFile(file, ContentCategory.Video);
@@ -64,7 +61,7 @@ describe('validateFile', () => {
         uri: 'file://doc.pdf',
         name: 'doc.pdf',
         type: 'application/pdf',
-        size: 40 * 1024 * 1024, // 40MB
+        size: 40 * 1024 * 1024,
       };
 
       const result = validateFile(file, ContentCategory.Document);

@@ -1,7 +1,3 @@
-/**
- * Custom hooks for notification preferences.
- * Wraps auto-generated Orval hooks with additional logic and type safety.
- */
 import { useCallback } from 'react';
 
 import { useQueryClient } from '@tanstack/react-query';

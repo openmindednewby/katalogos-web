@@ -1,7 +1,3 @@
-/**
- * Unit tests for useCreateSubscription hook.
- * Tests mutation callbacks, cache invalidation, and request mapping.
- */
 import { useQueryClient } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react-native';
 

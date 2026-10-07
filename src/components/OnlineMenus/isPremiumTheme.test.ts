@@ -1,8 +1,3 @@
-/**
- * Tests for isPremiumTheme utility.
- * Verifies that free-tier themes (light, dark) are correctly identified,
- * and premium themes (elegant, colorful, minimal) are gated.
- */
 import { isPremiumTheme } from './ThemeSelector';
 
 describe('isPremiumTheme', () => {
