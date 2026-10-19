@@ -14,7 +14,7 @@ import reactCompilerPlugin from 'eslint-plugin-react-compiler';
 // Shared custom ESLint rules — published as @dloizides/frontend-devtools (Platform P1).
 // `legacyPlugins` is a Record<ruleName, oneRulePlugin> that preserves the exact
 // `'<name>/<name>'` config keys + inline `eslint-disable-next-line <name>` comments.
-import { legacyPlugins, commentsConfig } from '@dloizides/frontend-devtools/eslint';
+import { legacyPlugins, commentsConfig, apiConfig } from '@dloizides/frontend-devtools/eslint';
 
 export default [
   // Ignore patterns
@@ -74,7 +74,6 @@ export default [
       globals: {
         // React Native globals
         __DEV__: 'readonly',
-        fetch: 'readonly',
         FormData: 'readonly',
         Headers: 'readonly',
         Request: 'readonly',
@@ -834,4 +833,20 @@ export default [
     },
   },
   commentsConfig,
+  {
+    ...apiConfig,
+    name: 'dloizides/api PATTERN-1.9 LINT_CONFIG_OVERRIDE adopt',
+    rules: {
+      '@dloizides/no-raw-backend-fetch': [
+        'error',
+        {
+          allow: [
+            'src/components/StatusPage/hooks/useServiceHealth.ts',
+            'src/features/showcase/hooks/useProducts.ts',
+            'src/lib/analytics/utils/UmamiClient.ts',
+          ],
+        },
+      ],
+    },
+  },
 ];
