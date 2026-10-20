@@ -35,7 +35,7 @@
     "security:audit-fix": "npm audit fix",
     "deps:outdated": "npm outdated || exit 0",
     "deps:unused": "npx depcheck --ignores=\"@types/jest,@size-limit/file,eslint-import-resolver-typescript,ajv-formats,react-native-svg,react-native-worklets,expo-status-bar\"",
-    "deps:licenses": "npx license-checker --onlyAllow \"MIT;Apache-2.0;Apache 2.0;ISC;BSD;BSD-2-Clause;BSD-3-Clause;0BSD;Unlicense;UNLICENSED;CC0-1.0;CC-BY-3.0;CC-BY-4.0;Python-2.0;BlueOak-1.0.0;MPL-2.0;UNKNOWN\"",
+    "deps:licenses": "npx license-checker --production --onlyAllow \"MIT;Apache-2.0;Apache 2.0;ISC;BSD;BSD-2-Clause;BSD-3-Clause;0BSD;Unlicense;UNLICENSED;CC0-1.0;CC-BY-3.0;CC-BY-4.0;Python-2.0;BlueOak-1.0.0;MPL-2.0;UNKNOWN\" && npx license-checker --development --onlyAllow \"MIT;Apache-2.0;Apache 2.0;ISC;BSD;BSD-2-Clause;BSD-3-Clause;0BSD;Unlicense;UNLICENSED;CC0-1.0;CC-BY-3.0;CC-BY-4.0;Python-2.0;BlueOak-1.0.0;MPL-2.0;UNKNOWN;LGPL-3.0;LGPL-3.0-only;LGPL-3.0-or-later\"",
     "deps:bundle-size": "npx size-limit",
     "deps:health": "npm run deps:outdated && npm run deps:unused",
     "deps:all": "npm run security:audit && npm run deps:health && npm run deps:licenses"
