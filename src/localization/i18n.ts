@@ -1,6 +1,6 @@
 import * as Localization from 'expo-localization';
 
-import { initI18n } from '@dloizides/frontend-devtools';
+import { initI18n } from '@dloizides/i18n';
 
 import en from './locales/en.json';
 

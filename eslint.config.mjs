@@ -14,7 +14,7 @@ import reactCompilerPlugin from 'eslint-plugin-react-compiler';
 // Shared custom ESLint rules — published as @dloizides/frontend-devtools (Platform P1).
 // `legacyPlugins` is a Record<ruleName, oneRulePlugin> that preserves the exact
 // `'<name>/<name>'` config keys + inline `eslint-disable-next-line <name>` comments.
-import { legacyPlugins, commentsConfig, apiConfig } from '@dloizides/frontend-devtools/eslint';
+import { legacyPlugins, commentsConfig, apiConfig, patternPacksConfig } from '@dloizides/frontend-devtools/eslint';
 
 export default [
   // Ignore patterns
@@ -830,6 +830,17 @@ export default [
       // Enforce no braces for single-statement if/else/while/for blocks
       // This makes code more concise: if (x) return y; instead of if (x) { return y; }
       'curly': ['error', 'multi'],
+    },
+  },
+  patternPacksConfig,
+  {
+    name: 'dloizides/boundaries elements',
+    settings: {
+      'boundaries/elements': [
+        { type: 'app', pattern: 'app/**' },
+        { type: 'src', pattern: 'src/*' },
+        { type: 'packages', pattern: 'packages/*' },
+      ],
     },
   },
   commentsConfig,

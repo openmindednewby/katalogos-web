@@ -1,0 +1,11 @@
+{
+  "seededOn": "2026-10-20",
+  "total": 270,
+  "byPack": {
+    "sonarjs": 163,
+    "react-you-might-not-need-an-effect": 69,
+    "@tanstack/query": 19,
+    "@dloizides/query-key-factory": 17,
+    "other": 2
+  }
+}

@@ -15,6 +15,7 @@
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
     "lint:strict": "eslint . --max-warnings 0",
+    "lint:ratchet": "node scripts/check-pattern-warnings.mjs",
     "yagni": "ts-prune --ignore \"\\\\app\\\\|index.ts|index.tsx|__tests__|__mocks__|.test.|.spec.|\\\\server\\\\|\\\\generated\\\\|\\\\@types\\\\|\\\\shared\\\\testIds|\\\\shared\\\\types|\\\\packages\\\\|\\\\dist\\\\|.config.\"",
     "yagni:ci": "ts-prune --error --ignore \"\\\\app\\\\|index.ts|index.tsx|__tests__|__mocks__|.test.|.spec.|\\\\server\\\\|\\\\generated\\\\|\\\\@types\\\\|\\\\shared\\\\testIds|\\\\shared\\\\types|\\\\packages\\\\|\\\\dist\\\\|.config.\"",
     "postinstall": "node -e \"require('fs').mkdirSync('node_modules/@tybys/wasm-util/lib/cjs/wasi',{recursive:true})\"",
@@ -51,7 +52,7 @@
     "@dloizides/auth-web": "^1.18.3",
     "@dloizides/bff-web-client": "^1.2.0",
     "@dloizides/content-upload": "^1.0.0",
-    "@dloizides/frontend-devtools": "^1.8.0",
+    "@dloizides/i18n": "^1.1.0",
     "@dloizides/legal-ui": "^1.0.1",
     "@dloizides/logging-web": "^1.0.2",
     "@dloizides/notification-client": "^1.4.0",
@@ -108,6 +109,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@dloizides/frontend-devtools": "^2.0.0",
     "@eslint/js": "^10.0.1",
     "@lhci/cli": "^0.15.1",
     "@size-limit/file": "12.0.0",
