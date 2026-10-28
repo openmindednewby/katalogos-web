@@ -53,7 +53,7 @@
     "@dloizides/bff-web-client": "^1.4.0",
     "@dloizides/content-upload": "^1.0.0",
     "@dloizides/i18n": "^1.1.0",
-    "@dloizides/legal-ui": "^1.4.0",
+    "@dloizides/legal-ui": "^1.4.1",
     "@dloizides/logging-web": "^1.0.2",
     "@dloizides/notification-client": "^1.4.0",
     "@dloizides/orval-preset": "^1.0.1",

@@ -7,7 +7,7 @@ import { Platform } from 'react-native';
 
 import { Stack, useRouter } from 'expo-router';
 
-import { useConsentBannerInset } from '@dloizides/legal-ui';
+import { useConsentInsetStyle } from '@dloizides/legal-ui';
 import { WarmingOverlay } from '@dloizides/ui-feedback';
 import { Provider, useSelector } from 'react-redux';
 
@@ -43,6 +43,7 @@ import { questionerInstance } from '../src/server/httpClientQuestioner';
 import { registerMutators } from '../src/server/mutators';
 import { reduxStore, type RootState } from '../src/store/reduxStore';
 import ThemeProvider from '../src/theme/components/ThemeProvider';
+import { useThemeColors } from '../src/theme/utils/hooks';
 import { logger } from '../src/utils/logger';
 
 const CookieConsentBanner = React.lazy(async () => import('../src/components/CookieConsent/CookieConsentBanner'));
@@ -73,8 +74,8 @@ const SentryEffects = (): null => {
 };
 
 const ConsentAwareStack = (): ReactElement => {
-  const bottomInset = useConsentBannerInset();
-  return <Stack screenOptions={{ headerShown: false, contentStyle: { paddingBottom: bottomInset } }} />;
+  const contentStyle = useConsentInsetStyle(String(useThemeColors().background));
+  return <Stack screenOptions={{ headerShown: false, contentStyle }} />;
 };
 
 const InnerApp = (): ReactElement => {
