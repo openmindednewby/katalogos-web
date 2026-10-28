@@ -38,6 +38,7 @@ RUN find dist -name '*.html' -exec sed -i 's#</head>#<meta property="og:title" c
 # index.html is served no-cache, so the next visit points at a URL the stale
 # immutable cache can't match → forced fresh fetch → working app, zero user action.
 RUN node scripts/append-bundle-cache-buster.mjs dist
+RUN node scripts/route-canonicals.js dist https://katalogos.dloizides.com
 
 # Stage 2: Serve with Nginx
 FROM nginx:alpine AS production
