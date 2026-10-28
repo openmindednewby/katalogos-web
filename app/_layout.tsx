@@ -7,6 +7,7 @@ import { Platform } from 'react-native';
 
 import { Stack, useRouter } from 'expo-router';
 
+import { useConsentBannerInset } from '@dloizides/legal-ui';
 import { WarmingOverlay } from '@dloizides/ui-feedback';
 import { Provider, useSelector } from 'react-redux';
 
@@ -69,6 +70,11 @@ const AnalyticsEffects = (): null => {
 const SentryEffects = (): null => {
   useSentryUser();
   return null;
+};
+
+const ConsentAwareStack = (): ReactElement => {
+  const bottomInset = useConsentBannerInset();
+  return <Stack screenOptions={{ headerShown: false, contentStyle: { paddingBottom: bottomInset } }} />;
 };
 
 const InnerApp = (): ReactElement => {
@@ -138,7 +144,7 @@ const InnerApp = (): ReactElement => {
                   accessibilityLabel: FM('common.warming.accessibilityLabel'),
                 }}
               />
-              <Stack screenOptions={{ headerShown: false }} />
+              <ConsentAwareStack />
               <TooltipOverlay />
               {shouldShowInstallPrompts ? (
                 <>
