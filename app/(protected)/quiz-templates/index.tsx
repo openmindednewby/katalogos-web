@@ -77,6 +77,7 @@ const QuizTemplatesPage = (): React.ReactElement => {
       {isLoading ? <ActivityIndicator /> : null}
       {!isLoading && isError ? (
         <ErrorState
+          error={error}
           message={getErrorMessage(error, FM('common.errorOccurred'))}
           onRetry={handleRefetch}
         />

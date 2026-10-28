@@ -598,6 +598,7 @@
     "answerInputLabel": "Answer input"
   },
   "common": {
+    "errorReference": "Error reference:",
     "copyHint": "Copy the full value to the clipboard",
     "copied": "Copied!",
     "copyFailed": "Copy failed",

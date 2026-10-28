@@ -81,6 +81,7 @@ const EmbedMenuPage = (): React.ReactElement => {
   if (menuQuery.isError || !isValueDefined(menuQuery.data))
     return (
       <ErrorState
+        error={menuQuery.error}
         message={FM('onlineMenus.errors.loadFailed')}
       />
     );

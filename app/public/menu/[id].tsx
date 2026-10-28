@@ -104,7 +104,7 @@ const PublicMenuViewerPage = (): React.ReactElement => {
     );
 
   if (activeQuery.isError || !isValueDefined(activeQuery.data))
-    return <ErrorState message={FM('onlineMenus.errors.loadFailed')} />;
+    return <ErrorState error={activeQuery.error} message={FM('onlineMenus.errors.loadFailed')} />;
 
   const hasActiveOverrides = currentLanguage !== '' || selectedLocationId !== '';
   const isTranslationLoading = translatedQuery.isFetching && hasActiveOverrides;
