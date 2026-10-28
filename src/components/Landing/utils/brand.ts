@@ -13,6 +13,9 @@ export const MARKETING_WORDMARK_LETTER_SPACING = -1.92;
 /** Marketing landing canonical URL (production). */
 export const MARKETING_CANONICAL_URL = 'https://katalogos.dloizides.com';
 
+/** Canonical URL of the marketing pricing page. */
+export const MARKETING_PRICING_URL = `${MARKETING_CANONICAL_URL}/pricing`;
+
 /** OpenGraph site name. */
 export const MARKETING_SITE_NAME = 'Katalogos';
 

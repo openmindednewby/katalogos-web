@@ -8,7 +8,7 @@ import {
   LANDING_SECTION_PADDING_HORIZONTAL,
   LANDING_SECTION_PADDING_VERTICAL,
 } from '../src/components/Landing/constants';
-import { MARKETING_PALETTE } from '../src/components/Landing/utils/brand';
+import { MARKETING_PALETTE, MARKETING_PRICING_URL } from '../src/components/Landing/utils/brand';
 import { SEOHead } from '../src/components/Shared/SEOHead';
 import { useAnalytics } from '../src/lib/analytics';
 import { FM } from '../src/localization/helpers';
@@ -89,6 +89,7 @@ const PricingPage = (): React.ReactElement => {
       <SEOHead
         description={FM('landing.pricing.seoDescription')}
         title={FM('landing.pricing.seoTitle')}
+        url={MARKETING_PRICING_URL}
       />
       <View style={styles.outer}>
         <View style={styles.section} testID={TestIds.LANDING_PRICING_GRID}>
