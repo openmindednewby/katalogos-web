@@ -1786,6 +1786,7 @@
     "modalDismiss": "Dismiss"
   },
   "topbar": {
+    "brandHome": "Katalogos, home",
     "dark": "Dark",
     "menu": "Menu",
     "menuHint": "Open navigation menu",

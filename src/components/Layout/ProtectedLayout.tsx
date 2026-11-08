@@ -77,7 +77,7 @@ const ProtectedLayout = ({ children }: Props): React.ReactElement => {
       <NavShell
         banner={<VerificationPendingBanner />}
         contentPadding={0}
-        header={<Topbar showAccountButton={false} />}
+        header={<Topbar showAccountButton={false} onNavigate={handleNavigate} />}
         layout="side"
         mobileMenu={{
           openLabel: FM('topbar.menu'),

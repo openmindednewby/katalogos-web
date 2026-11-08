@@ -1,5 +1,6 @@
 export const enum Routes {
   DASHBOARD = '/',
+  SIGNED_IN_HOME = '/(protected)',
   TENANTS = '/tenants',
   USERS = '/users',
   QUIZ_TEMPLATES = '/quiz-templates',

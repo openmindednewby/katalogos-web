@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { Topbar as SharedTopbar } from '@dloizides/ui-nav';
+import { BrandHomeLink, Topbar as SharedTopbar } from '@dloizides/ui-nav';
 import { useDispatch, useSelector } from 'react-redux';
 
 
 import { FM } from '@/localization/helpers';
 
 import { useAuth } from '../../auth/AuthProvider';
+import { Routes } from '../../navigation/routes';
 import { TestIds } from '../../shared/testIds';
 import { setLocale } from '../../store/slices/uiSlice';
 import { TenantLogo } from '../core/TenantLogo';
@@ -18,9 +19,10 @@ const FALLBACK_NAME = '---';
 
 interface Props {
   showAccountButton?: boolean;
+  onNavigate: (route: string) => void;
 }
 
-const Topbar = ({ showAccountButton = false }: Props): React.ReactElement => {
+const Topbar = ({ showAccountButton = false, onNavigate }: Props): React.ReactElement => {
   const { user, userInfo, logout } = useAuth();
   const dispatch = useDispatch();
   const locale = useSelector((s: RootState) => s.ui.locale);
@@ -50,7 +52,11 @@ const Topbar = ({ showAccountButton = false }: Props): React.ReactElement => {
         hint: FM('topbar.langHint'),
         onPress: () => dispatch(setLocale(locale)),
       }}
-      left={<TenantLogo />}
+      left={
+        <BrandHomeLink label={FM('topbar.brandHome')} route={Routes.SIGNED_IN_HOME} onNavigate={onNavigate}>
+          <TenantLogo />
+        </BrandHomeLink>
+      }
       logout={{
         label: FM('topbar.logout'),
         hint: FM('topbar.logoutHint'),
