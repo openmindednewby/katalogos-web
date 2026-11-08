@@ -1,15 +1,14 @@
 import React from 'react';
 
-import { fireEvent, render } from '@testing-library/react-native';
-
 import { NAV_TEST_IDS } from '@dloizides/ui-nav';
+import { fireEvent, render } from '@testing-library/react-native';
 
 import Topbar from './Topbar';
 import { Routes } from '../../navigation/routes';
 
 jest.mock('@dloizides/ui-nav', () => ({
   ...jest.requireActual('@dloizides/ui-nav'),
-  Topbar: ({ left }: { left: React.ReactNode }) => left,
+  Topbar: ({ left }: { left: React.ReactElement }) => left,
 }));
 jest.mock('@dloizides/ui-feedback', () => ({
   ...jest.requireActual('@dloizides/ui-feedback'),
