@@ -7,8 +7,7 @@ WORKDIR /app
 COPY clients/OnlineMenuClientApp/package.json clients/OnlineMenuClientApp/package-lock.json ./
 # Local workspace deps referenced via `file:` (e.g. `../packages/identity-client`)
 COPY clients/packages/identity-client /packages/identity-client
-# Use npm ci when possible; fall back to legacy peer dep resolution if needed
-RUN npm ci --no-audit --prefer-offline || npm install --no-audit --prefer-offline --legacy-peer-deps
+RUN npm ci --no-audit --prefer-offline
 
 # Copy client source
 COPY clients/OnlineMenuClientApp/. ./

@@ -110,7 +110,7 @@
   },
   "devDependencies": {
     "@dloizides/frontend-devtools": "^2.0.0",
-    "@eslint/js": "^10.0.1",
+    "@eslint/js": "^9.39.2",
     "@lhci/cli": "^0.15.1",
     "@size-limit/file": "12.0.0",
     "@testing-library/react-native": "^13.2.0",
@@ -148,6 +148,9 @@
   },
   "private": true,
   "overrides": {
+    "eslint-plugin-react-native-a11y": {
+      "eslint": "$eslint"
+    },
     "minimatch": ">=10.2.1",
     "test-exclude": {
       "minimatch": "^3.1.2"

@@ -4,8 +4,7 @@ WORKDIR /app
 
 # Install dependencies
 COPY package.json package-lock.json ./
-# Use npm ci when possible; fall back to legacy peer dep resolution if needed
-RUN npm ci --no-audit --prefer-offline || npm install --no-audit --prefer-offline --legacy-peer-deps
+RUN npm ci --no-audit --prefer-offline
 
 # Copy all project files
 COPY . .
