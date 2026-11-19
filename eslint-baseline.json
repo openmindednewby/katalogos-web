@@ -1,0 +1,95 @@
+{
+  "src/components/OnlineMenus/Display/components/CategorySection.test.tsx": {
+    "max-lines": 1
+  },
+  "src/components/OnlineMenus/Display/components/MenuContentView.test.tsx": {
+    "max-lines": 1
+  },
+  "src/components/OnlineMenus/Display/components/MenuItemDisplay.test.tsx": {
+    "max-lines": 1
+  },
+  "src/components/OnlineMenus/ItemStylingSection.test.tsx": {
+    "max-lines": 1
+  },
+  "src/components/OnlineMenus/Styling/components/BoxStyleEditor.test.tsx": {
+    "max-lines": 1
+  },
+  "src/components/OnlineMenus/Styling/components/HeaderEditor.test.tsx": {
+    "max-lines": 1
+  },
+  "src/components/OnlineMenus/Styling/components/MediaPositionEditor.test.tsx": {
+    "max-lines": 1
+  },
+  "src/components/OnlineMenus/Styling/components/PriceStyleEditor.test.tsx": {
+    "max-lines": 1
+  },
+  "src/components/OnlineMenus/Styling/components/TypographyEditor.test.tsx": {
+    "max-lines": 1
+  },
+  "src/components/OnlineMenus/utils/variantModifierHelpers.test.ts": {
+    "max-lines": 1
+  },
+  "src/components/PublicMenu/hooks/useMenuFilter.test.ts": {
+    "max-lines": 1
+  },
+  "src/components/PublicMenu/hooks/usePublicMenuLanguage.test.ts": {
+    "max-lines": 1
+  },
+  "src/components/PublicMenu/utils/menuStructuredData.test.ts": {
+    "max-lines": 1
+  },
+  "src/components/Settings/BusinessProfileSettings/components/BusinessProfileSettingsScreen.test.ts": {
+    "max-lines": 1
+  },
+  "src/components/Shared/Accessibility.test.tsx": {
+    "max-lines": 1
+  },
+  "src/components/ui/form-fields/useCombobox.test.ts": {
+    "max-lines": 1
+  },
+  "src/hooks/useMenuSave.test.tsx": {
+    "max-lines": 1
+  },
+  "src/lib/analytics/utils/PostHogClient.ts": {
+    "@typescript-eslint/member-ordering": 5
+  },
+  "src/lib/api/errors/errorActions.test.ts": {
+    "max-lines": 1
+  },
+  "src/lib/api/errors/errorMatcher.test.ts": {
+    "max-lines": 1
+  },
+  "src/localization/locales/en.json": {
+    "max-lines": 1
+  },
+  "src/localization/locales/en/core.json": {
+    "max-lines": 1
+  },
+  "src/localization/locales/en/features.json": {
+    "max-lines": 1
+  },
+  "src/theme/utils/palette-generator.test.ts": {
+    "max-lines": 1
+  },
+  "src/types/menuStyleTypes.test.ts": {
+    "max-lines": 1
+  },
+  "src/types/menuTypes.test.ts": {
+    "max-lines": 1
+  },
+  "src/types/menuTypes.ts": {
+    "max-lines": 1
+  },
+  "src/utils/menuConfigExport.test.ts": {
+    "max-lines": 1
+  },
+  "src/utils/menuConfigImport.test.ts": {
+    "max-lines": 1
+  },
+  "src/utils/menuDefaults.test.ts": {
+    "max-lines": 1
+  },
+  "src/utils/menuStyleGenerator.test.ts": {
+    "max-lines": 1
+  }
+}
