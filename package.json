@@ -11,7 +11,7 @@
     "web": "powershell ./scripts/set-environment.ps1 -Environment dev",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "lint": "eslint-baseline lint -- .",
+    "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
     "lint:strict": "eslint . --max-warnings 0",
