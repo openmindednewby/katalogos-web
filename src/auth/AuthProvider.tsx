@@ -1,7 +1,7 @@
-import React, { createContext, useContext, useCallback, useEffect } from 'react';
+import React, { createContext, useContext, useCallback, useEffect, useMemo } from 'react';
 
 import { type BffRegisterRequest, type BffUser } from '@dloizides/auth-client';
-import { performBffLogout, useBffSessionBootstrap } from '@dloizides/auth-web';
+import { performBffLogout, useBffSessionBootstrap, type BffSessionBootstrapHandlers } from '@dloizides/auth-web';
 import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -70,17 +70,24 @@ function useLogoutButtonEffect(logout: () => Promise<void>): void {
 }
 
 function useSessionBootstrap(dispatch: AppDispatch): void {
-  useBffSessionBootstrap({
-    load: () => bffAuthClient.getCurrentUser(),
-    onUser: (user) => {
-      dispatch(setUserInfo(bffUserToKeycloakUserInfo(user)));
-      dispatch(setUser(bffUserToNormalizedUser(user)));
-      dispatch(setAuthenticated(true));
-    },
-    onAnonymous: () => dispatch(setAuthenticated(false)),
-    onError: (err) => logger.warn('AuthProvider', 'Session bootstrap (/bff/me) failed', err),
-    onSettled: () => dispatch(setLoading(false)),
-  });
+  const handlers = useMemo<BffSessionBootstrapHandlers>(
+    () => ({
+      load: async () => {
+        const user = await bffAuthClient.getCurrentUser();
+        return user;
+      },
+      onUser: (user) => {
+        dispatch(setUserInfo(bffUserToKeycloakUserInfo(user)));
+        dispatch(setUser(bffUserToNormalizedUser(user)));
+        dispatch(setAuthenticated(true));
+      },
+      onAnonymous: () => dispatch(setAuthenticated(false)),
+      onError: (err) => logger.warn('AuthProvider', 'Session bootstrap (/bff/me) failed', err),
+      onSettled: () => dispatch(setLoading(false)),
+    }),
+    [dispatch],
+  );
+  useBffSessionBootstrap(handlers);
 }
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }): React.ReactElement => {
