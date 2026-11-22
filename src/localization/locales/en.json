@@ -283,6 +283,7 @@
     "invalidEmail": "Invalid email address",
     "missingFields": "Please fill in all required fields",
     "usernameTaken": "Username already in use",
+    "invalidUsername": "Use 3 to 50 letters, numbers, dots, dashes or underscores.",
     "tenantNameTaken": "That organisation name is taken. Choose another.",
     "rateLimited": "Too many attempts. Wait a minute, then try again.",
     "autoLoginFailed": "Your account was created. Sign in to continue.",

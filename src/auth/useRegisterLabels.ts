@@ -42,6 +42,7 @@ export function registerErrorMessage(code: RegisterErrorCode): string {
     [RegisterErrorCode.WeakPassword]: FM('register.weakPassword'),
     [RegisterErrorCode.PasswordMismatch]: FM('register.passwordMismatch'),
     [RegisterErrorCode.UsernameTaken]: FM('register.usernameTaken'),
+    [RegisterErrorCode.InvalidUsername]: FM('register.invalidUsername'),
     [RegisterErrorCode.EmailTaken]: FM('register.emailTaken'),
     [RegisterErrorCode.RealmInvalid]: FM('register.realmInvalid'),
     [RegisterErrorCode.TenantNameTaken]: FM('register.tenantNameTaken'),
