@@ -601,6 +601,7 @@
     "answerInputLabel": "Answer input"
   },
   "common": {
+    "countBadgeLabel": "{{p1}} items",
     "pageEnlarge": "Open the page at full size",
     "pageEnlargeHint": "Shows the page at its printed size; Escape closes it",
     "errorReference": "Error reference:",
