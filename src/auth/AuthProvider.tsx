@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useCallback, useEffect } from 'react';
 
 import { type BffRegisterRequest, type BffUser } from '@dloizides/auth-client';
-import { performBffLogout } from '@dloizides/auth-web';
+import { performBffLogout, useBffSessionBootstrap } from '@dloizides/auth-web';
 import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -14,7 +14,6 @@ import { useAuthOperations } from './useAuthOperations';
 import { redirectTo } from '../lib/navigation';
 import { TestIds } from '../shared/testIds';
 import { setAuthenticated, setLoading, setUser, setUserInfo } from '../store/slices/authSlice';
-import { isValueDefined } from '../utils/is';
 import { logger } from '../utils/logger';
 
 import type { AppDispatch, RootState } from '../store/reduxStore';
@@ -71,32 +70,17 @@ function useLogoutButtonEffect(logout: () => Promise<void>): void {
 }
 
 function useSessionBootstrap(dispatch: AppDispatch): void {
-  useEffect(() => {
-    let active = true;
-    bffAuthClient
-      .getCurrentUser()
-      .then((user) => {
-        if (!active) return;
-        if (!isValueDefined(user)) {
-          dispatch(setAuthenticated(false));
-          return;
-        }
-        dispatch(setUserInfo(bffUserToKeycloakUserInfo(user)));
-        dispatch(setUser(bffUserToNormalizedUser(user)));
-        dispatch(setAuthenticated(true));
-      })
-      .catch((err: unknown) => {
-        if (!active) return;
-        logger.warn('AuthProvider', 'Session bootstrap (/bff/me) failed', err);
-        dispatch(setAuthenticated(false));
-      })
-      .finally(() => {
-        if (active) dispatch(setLoading(false));
-      });
-    return () => {
-      active = false;
-    };
-  }, [dispatch]);
+  useBffSessionBootstrap({
+    load: () => bffAuthClient.getCurrentUser(),
+    onUser: (user) => {
+      dispatch(setUserInfo(bffUserToKeycloakUserInfo(user)));
+      dispatch(setUser(bffUserToNormalizedUser(user)));
+      dispatch(setAuthenticated(true));
+    },
+    onAnonymous: () => dispatch(setAuthenticated(false)),
+    onError: (err) => logger.warn('AuthProvider', 'Session bootstrap (/bff/me) failed', err),
+    onSettled: () => dispatch(setLoading(false)),
+  });
 }
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }): React.ReactElement => {
