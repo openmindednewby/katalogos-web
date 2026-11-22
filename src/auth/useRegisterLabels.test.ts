@@ -10,6 +10,7 @@ describe('registerErrorMessage', () => {
     [RegisterErrorCode.WeakPassword, 'register.weakPassword'],
     [RegisterErrorCode.PasswordMismatch, 'register.passwordMismatch'],
     [RegisterErrorCode.UsernameTaken, 'register.usernameTaken'],
+    [RegisterErrorCode.InvalidUsername, 'register.invalidUsername'],
     [RegisterErrorCode.EmailTaken, 'register.emailTaken'],
     [RegisterErrorCode.RealmInvalid, 'register.realmInvalid'],
     [RegisterErrorCode.TenantNameTaken, 'register.tenantNameTaken'],
