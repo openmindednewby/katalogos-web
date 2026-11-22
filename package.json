@@ -49,7 +49,7 @@
     "@baseclient/tenant-theme-editor-module": "file:./packages/tenant-theme-editor-module",
     "@dloizides/api-client-base": "^1.0.0",
     "@dloizides/auth-client": "^4.2.0",
-    "@dloizides/auth-web": "^1.18.3",
+    "@dloizides/auth-web": "^1.33.2",
     "@dloizides/bff-web-client": "^1.4.0",
     "@dloizides/content-upload": "^1.0.0",
     "@dloizides/i18n": "^1.1.0",
